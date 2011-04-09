@@ -29,8 +29,8 @@ $messages['en'] = array(
 	'semanticglossary-brokensession' => 'Action not allowed. Broken session data.',
 	'semanticglossary-norights' => 'Action not allowed. Insufficient rights.',
 
-	'___glt' => 'Glossary-Term',
-	'___gld' => 'Glossary-Definition',
+	'semanticglossary-prop-glt' => 'Glossary-Term',
+	'semanticglossary-prop-gld' => 'Glossary-Definition',
 
 );
 
@@ -57,6 +57,6 @@ $messages['de'] = array(
 
 	'semanticglossary-messageheader' => 'Meldungen:',
 
-	'___glt' => 'Glossar-Term',
-	'___gld' => 'Glossar-Definition',
+	'semanticglossary-prop-glt' => 'Glossar-Term',
+	'semanticglossary-prop-gld' => 'Glossar-Definition',
 );

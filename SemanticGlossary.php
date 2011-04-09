@@ -118,7 +118,7 @@ function SemanticGlossaryRegisterProperties () {
 }
 
 function SemanticGlossaryRegisterPropertyAliases () {
-	SMWPropertyValue::registerPropertyAlias( '___glt', wfMsg( '___glt' ) );
-	SMWPropertyValue::registerPropertyAlias( '___gld', wfMsg( '___gld' ) );
+	SMWPropertyValue::registerPropertyAlias( '___glt', wfMsg( 'semanticglossary-prop-glt' ) );
+	SMWPropertyValue::registerPropertyAlias( '___gld', wfMsg( 'semanticglossary-prop-gld' ) );
 	return true;
 }
