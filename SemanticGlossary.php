@@ -48,6 +48,7 @@ $dir = dirname( __FILE__ );
 
 // register message file
 $wgExtensionMessagesFiles[ 'SemanticGlossary' ] = $dir . '/SemanticGlossary.i18n.php';
+$wgExtensionMessagesFiles[ 'SemanticGlossaryAlias' ] = $dir . '/SemanticGlossary.alias.php';
 
 
 // register class files with the Autoloader
