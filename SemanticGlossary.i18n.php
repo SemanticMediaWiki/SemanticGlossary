@@ -4,7 +4,6 @@
  */
 
 $messages = array();
-$specialPageAliases = array();
 
 /** English
  * @author F.trott
@@ -35,10 +34,6 @@ $messages['en'] = array(
 
 );
 
-$specialPageAliases['en'] = array(
-        'SemanticGlossaryBrowser' => array( 'Glossary' ),
-);
-
 /** Message documentation (Message documentation)
  * @author F.trott
  */
@@ -46,6 +41,9 @@ $messages['qqq'] = array(
 	'semanticglossary-desc' => '{{desc}}',
 );
 
+/** German (Deutsch)
+ * @author F.trott
+ */
 $messages['de'] = array(
 	'semanticglossary-desc' => 'A terminology markup extension with a [http://semantic-mediawiki.org Semantic MediaWiki] backend',
 	'semanticglossary-browsertitle' => 'Glossar',
@@ -62,8 +60,3 @@ $messages['de'] = array(
 	'___glt' => 'Glossar-Term',
 	'___gld' => 'Glossar-Definition',
 );
-
-$specialPageAliases['de'] = array(
-        'SemanticGlossaryBrowser' => array( 'Glossar' ),
-);
-
