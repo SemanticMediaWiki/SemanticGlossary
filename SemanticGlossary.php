@@ -1,0 +1,123 @@
+<?php
+
+/**
+ * A terminology markup extension with a Semantic MediaWiki backend
+ *
+ * @defgroup SemanticGlossary
+ * @author Stephan Gambke
+ * @version 0.1 alpha
+ */
+
+/**
+ * The main file of the SemanticGlossary extension
+ *
+ * @author Stephan Gambke
+ *
+ * @file
+ * @ingroup SemanticGlossary
+ */
+
+
+if ( !defined( 'MEDIAWIKI' ) ) {
+	die( 'This file is part of a MediaWiki extension, it is not a valid entry point.' );
+}
+
+if ( !defined( 'SMW_VERSION' ) ) {
+	die( 'Semantic Glossary depends on the Semantic MediaWiki extension. You need to install Semantic MediaWiki first.' );
+}
+
+/**
+ * The Semantic Glossary version
+ */
+define( 'SG_VERSION', '0.1 alpha' );
+
+
+// register the extension
+$wgExtensionCredits[ defined( 'SEMANTIC_EXTENSION_TYPE' ) ? 'semantic' : 'other' ][ ] = array(
+	'path' => __FILE__,
+	'name' => 'Semantic Glossary',
+	'author' => array( '[http://www.mediawiki.org/wiki/User:F.trott Stephan Gambke]' ),
+	'url' => 'http://www.mediawiki.org/wiki/Extension:Semantic_Glossary',
+	'descriptionmsg' => 'semanticglossary-desc',
+	'version' => SG_VERSION,
+);
+
+// server-local path to this file
+$dir = dirname( __FILE__ );
+
+
+// register message file
+$wgExtensionMessagesFiles[ 'SemanticGlossary' ] = $dir . '/SemanticGlossary.i18n.php';
+
+
+// register class files with the Autoloader
+$wgAutoloadClasses[ 'SemanticGlossarySettings' ] = $dir . '/SemanticGlossarySettings.php';
+$wgAutoloadClasses[ 'SemanticGlossaryParser' ] = $dir . '/SemanticGlossaryParser.php';
+$wgAutoloadClasses[ 'SemanticGlossaryElement' ] = $dir . '/SemanticGlossaryElement.php';
+$wgAutoloadClasses[ 'SemanticGlossaryMessageLog' ] = $dir . '/SemanticGlossaryMessageLog.php';
+$wgAutoloadClasses[ 'SpecialSemanticGlossaryBrowser' ] = $dir . '/SpecialSemanticGlossaryBrowser.php';
+
+
+// register Special pages
+$wgSpecialPages[ 'SemanticGlossaryBrowser' ] = 'SpecialSemanticGlossaryBrowser'; # Tell MediaWiki about the new special page and its class name
+$wgSpecialPageGroups[ 'SemanticGlossaryBrowser' ] = 'other';
+
+// register hook handlers
+//$wgHooks['ParserFirstCallInit'][] = 'SemanticGlossarySetup';  // Define a setup function
+$wgHooks[ 'ParserAfterTidy' ][ ] = array( 'SemanticGlossaryParser::parse' );
+
+
+$wgHooks[ 'smwInitProperties' ][] = 'SemanticGlossaryRegisterProperties';
+$wgHooks[ 'smwInitDatatypes'][] = 'SemanticGlossaryRegisterPropertyAliases';
+
+// register resource modules with the Resource Loader
+$wgResourceModules[ 'ext.SemanticGlossary' ] = array(
+	// JavaScript and CSS styles. To combine multiple file, just list them as an array.
+	//'scripts' => 'js/ext.myExtension.js',
+	'styles' => 'css/SemanticGlossary.css',
+
+	// When your module is loaded, these messages will be available to mediaWiki.msg()
+	//'messages' => array( 'myextension-hello-world', 'myextension-goodbye-world' ),
+
+	// If your scripts need code from other modules, list their identifiers as dependencies
+	// and ResourceLoader will make sure they're loaded before you.
+	// You don't need to manually list 'mediawiki' or 'jquery', which are always loaded.
+	//'dependencies' => array( 'jquery.ui.datepicker' ),
+
+	// ResourceLoader needs to know where your files are; specify your
+	// subdir relative to "extensions" or $wgExtensionAssetsPath
+	'localBasePath' => dirname( __FILE__ ),
+	'remoteExtPath' => 'SemanticGlossary'
+);
+
+$wgResourceModules[ 'ext.SemanticGlossary.Browser' ] = array(
+	'styles' => 'css/SemanticGlossaryBrowser.css',
+	'localBasePath' => dirname( __FILE__ ),
+	'remoteExtPath' => 'SemanticGlossary'
+);
+
+// Create new permission 'editglossary' and assign it to usergroup 'user' by default
+$wgGroupPermissions[ 'user' ][ 'editglossary' ] = true;
+
+// create and initialize settings object
+$sggSettings = new SemanticGlossarySettings();
+
+/**
+ * Handler for late setup of Semantic Glossary
+ */
+//function SemanticGlossarySetup () {
+//
+//	return true;
+//}
+
+function SemanticGlossaryRegisterProperties () {
+	SMWPropertyValue::registerProperty( '___glt', '_str', false , true );
+	SMWPropertyValue::registerProperty( '___gld', '_txt', false , true );
+	return true;
+}
+
+function SemanticGlossaryRegisterPropertyAliases () {
+	SMWPropertyValue::registerPropertyAlias( '___glt', wfMsg( '___glt' ) );
+	SMWPropertyValue::registerPropertyAlias( '___gld', wfMsg( '___gld' ) );
+	return true;
+}

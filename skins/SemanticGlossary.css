@@ -1,0 +1,39 @@
+/* 
+* Stylesheet for the markup of glossary terms in wiki pages.
+*/
+
+.tooltip {
+	display: inline;
+	position: static;
+	cursor: help;
+}
+
+.tooltip_abbr {
+    border-bottom: 1px dotted #00f;;
+}
+
+.tooltip_tip {
+    display: none;
+
+	border: 1px solid gray;
+	background-color: white;
+	padding: 0.1em 0.2em 0.1em 0.1em;
+	margin: 0;
+	line-height: 1.2em;
+
+	position: absolute;
+	top: 1.1em;
+	left: 1em;
+}
+
+.tooltip_tip span {
+	display: block;
+}
+
+.tooltip:hover {
+	position: relative;
+}
+
+.tooltip:hover .tooltip_tip {
+    display: block;
+}

@@ -1,0 +1,74 @@
+/*
+* Stylesheet for the markup of the glossary browser.
+*/
+
+.glossarybrowser table {
+	margin: 1em 0;
+	width: 100%;
+	border-collapse: separate;
+	border-spacing: 0.4em;
+}
+
+.glossarybrowser .messages,
+.glossarybrowser .termslist,
+.glossarybrowser .newterm,
+.glossarybrowser .setupbutton {
+	margin: 2em 0;
+}
+
+.glossarybrowser .heading {
+	font-weight: bold;
+}
+
+.glossarybrowser td {
+	padding: 0;
+	vertical-align: top;
+}
+
+.glossarybrowser .actioncell {
+	text-align: center;
+}
+
+.glossarybrowser .termcell {
+	width: 20%;
+}
+
+.glossarybrowser .definitioncell {
+	width: 80%;
+}
+
+.glossarybrowser .definitioncell .definitionareawrapper {
+	position: relative;
+}
+
+.glossarybrowser textarea {
+	border: 1px solid gray;
+	margin: 0;
+	padding: 0;
+	height: 1.3em;
+	width: 99%;
+	resize: none;
+	position: static;
+	z-index: 1;
+	overflow: hidden;
+}
+
+.glossarybrowser .termslist textarea {
+	border-color: transparent;
+}
+
+.glossarybrowser .termslist textarea:hover {
+	border-color: gray;
+}
+
+.glossarybrowser .termslist textarea:focus {
+	border-color: gray;
+}
+
+.glossarybrowser .definitioncell textarea:focus {
+	height: 5em;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index:	2;
+}
