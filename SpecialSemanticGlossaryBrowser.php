@@ -84,8 +84,9 @@ class SpecialSemanticGlossaryBrowser extends SpecialPage {
 				$sourceArray = $glossaryElement -> getSource( $key );
 				$source = $sourceArray[ 2 ] . ':' . $sourceArray[ 1 ] . ':' . $sourceArray[ 0 ];
 				$definition = $glossaryElement -> getDefinition( $key );
+				$link = $glossaryElement -> getLink( $key );
 
-				$tablerows .= $this -> $createTableRowMethod( $source, $term, $definition );
+				$tablerows .= $this -> $createTableRowMethod( $source, $term, $definition, $link );
 
 				$glossaryElement -> next();
 			}
@@ -140,6 +141,9 @@ class SpecialSemanticGlossaryBrowser extends SpecialPage {
 									Html::rawElement( 'div', array( 'class' => 'definitionareawrapper' ),
 										Html::element( 'textarea', array( 'name' => 'newdefinition' ) )
 									)
+								) .
+								Html::rawElement( 'td', array( 'class' => 'linkcell' ),
+									Html::element( 'textarea', array( 'name' => 'newlink' ) )
 								)
 							)
 						)
@@ -219,6 +223,7 @@ class SpecialSemanticGlossaryBrowser extends SpecialPage {
 				// new data
 				$newTerm = $value;
 				$newDefinition = $inputdata[ $pageString . ':definition' ];
+				$newLink = $inputdata[ $pageString . ':link' ];
 
 				$page = $this -> getPageObjectFromInputName( $pageString );
 
@@ -228,25 +233,36 @@ class SpecialSemanticGlossaryBrowser extends SpecialPage {
 
 				// get old values
 				$oldTerm = $this -> getPropertyFromData( $pageData, '___glt' );
-				if ( !$oldTerm )
+				if ( $oldTerm === false )
 					continue;
 
 				$oldDefinition = $this -> getPropertyFromData( $pageData, '___gld' );
-				if ( !$oldDefinition )
+				if ( $oldDefinition === false )
+					continue;
+
+				$oldLink = $this -> getPropertyFromData( $pageData, '___gll' );
+				if ( $oldLink === false )
 					continue;
 
 				// only store data if anything changed
-				if ( $newTerm != $oldTerm || $newDefinition != $oldDefinition ) {
+				if ( $newTerm != $oldTerm ||
+					$newDefinition != $oldDefinition ||
+					$newLink != $oldLink
+				) {
 
 					$this -> updateData( $page, array(
 						'___glt' => $newTerm,
-						'___gld' => $newDefinition
+						'___gld' => $newDefinition,
+						'___gll' => $newLink,
 						) );
 
+					// issue a warning if the original definition is on a real page
 					if ( $page -> getArticleID() != 0 ) {
 						$this -> mMessages -> addMessage( wfMsg( 'semanticglossary-storedtermdefinedinarticle', array( $oldTerm, $page -> getPrefixedText() ) )
 							, SemanticGlossaryMessageLog::SG_WARNING
 						);
+					} else {
+						$this -> mMessages -> addMessage( wfMsg( 'semanticglossary-termchanged', array( $oldTerm ) ), SemanticGlossaryMessageLog::SG_NOTICE );
 					}
 				}
 			}
@@ -265,6 +281,7 @@ class SpecialSemanticGlossaryBrowser extends SpecialPage {
 		}
 
 		$newDefinition = $wgRequest -> getText( 'newdefinition' );
+		$newLink = $wgRequest -> getText( 'newlink' );
 
 		$termNumber = 1;
 
@@ -277,8 +294,11 @@ class SpecialSemanticGlossaryBrowser extends SpecialPage {
 		// store data
 		$this -> updateData( $page, array(
 			'___glt' => $newTerm,
-			'___gld' => $newDefinition
+			'___gld' => $newDefinition,
+			'___gll' => $newLink,
 			) );
+
+		$this -> mMessages -> addMessage( wfMsg( 'semanticglossary-termadded', array( $newTerm ) ), SemanticGlossaryMessageLog::SG_NOTICE );
 	}
 
 	protected function actionDeleteData () {
@@ -300,7 +320,8 @@ class SpecialSemanticGlossaryBrowser extends SpecialPage {
 
 				$this -> updateData( $page, array(
 					'___glt' => null,
-					'___gld' => null
+					'___gld' => null,
+					'___gll' => null,
 					) );
 
 				$title = $page -> getTitle();
@@ -324,14 +345,20 @@ class SpecialSemanticGlossaryBrowser extends SpecialPage {
 		$property = SMWPropertyValue::makeProperty( $propertyName );
 		$propertyValues = $pageData -> getPropertyValues( $property );
 
-		if ( count( $propertyValues ) > 1 ) {
-			$this -> mMessages -> addMessage( wfMsg( 'semanticglossary-storedtermdefinedtwice', array( $pageData -> getSubject() -> getPrefixedText(), $propertyName, $newTerm ) ),
-				SemanticGlossaryMessageLog::SG_ERROR
-			);
-			return false;
-		}
+		if ( count( $propertyValues ) == 1 ) {
 
-		return $propertyValues[ 0 ] -> getShortWikiText();
+			return $propertyValues[ 0 ] -> getShortWikiText();
+		} else if ( count( $propertyValues ) > 1 ) {
+
+			if ( count( $propertyValues ) > 1 ) {
+				$this -> mMessages -> addMessage( wfMsg( 'semanticglossary-storedtermdefinedtwice', array( $pageData -> getSubject() -> getPrefixedText(), $propertyName, $newTerm ) ),
+					SemanticGlossaryMessageLog::SG_ERROR
+				);
+			}
+			return false;
+		} else {
+			return null;
+		}
 	}
 
 	protected function getPageObjectFromInputName ( $pageString ) {
@@ -395,7 +422,7 @@ class SpecialSemanticGlossaryBrowser extends SpecialPage {
 		smwfGetStore() -> doDataUpdate( $newData );
 	}
 
-	private function createTableRowForEdit ( $source, $term, $definition ) {
+	private function createTableRowForEdit ( $source, $term, $definition, $link ) {
 
 		return
 		Html::rawElement( 'tr', array( 'class' => 'row' ),
@@ -409,16 +436,20 @@ class SpecialSemanticGlossaryBrowser extends SpecialPage {
 				Html::rawElement( 'div', array( 'class' => 'definitionareawrapper' ),
 					Html::textarea( "$source:definition", $definition )
 				)
+			) .
+			Html::rawElement( 'td', array( 'class' => 'linkcell' ),
+				Html::textarea( "$source:link", $link )
 			)
 		);
 	}
 
-	private function createTableRowForDisplay ( $source, $term, $definition ) {
+	private function createTableRowForDisplay ( $source, $term, $definition, $link ) {
 
 		return
 		Html::rawElement( 'tr', array( 'class' => 'row' ),
 			Html::rawElement( 'td', array( 'class' => 'termcell' ), $term ) .
-			Html::rawElement( 'td', array( 'class' => 'definitioncell' ), $definition )
+			Html::rawElement( 'td', array( 'class' => 'definitioncell' ), $definition ) .
+			Html::rawElement( 'td', array( 'class' => 'linkcell' ), $link )
 		);
 	}
 

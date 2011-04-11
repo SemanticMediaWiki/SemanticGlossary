@@ -21,24 +21,23 @@ if ( !defined( 'SG_VERSION' ) ) {
 class SemanticGlossaryElement {
 	const SG_DEFINITION = 1;
 	const SG_SOURCE = 2;
+	const SG_LINK = 3;
 
 	private $mTerm;
 	private $mFullDefinition = null;
 	private $mDefinitions = array( );
 
-	public function __construct ( $term=null, $definition=null, $source=null ) {
+	public function __construct ( $term=null, $definition=null, $link=null, $source=null ) {
 		$this -> mTerm = $term;
-
-		if ( $definition ) {
-			$this -> addDefinition( $definition, $source );
-		}
+		$this -> addDefinition( $definition, $link, $source );
 	}
 
-	public function addDefinition ( $definition=null, $source=null ) {
+	public function addDefinition ( $definition=null, $link=null, $source=null ) {
 
 		$this -> mDefinitions[ ] = array(
 			self::SG_DEFINITION => $definition,
 			self::SG_SOURCE => $source,
+			self::SG_LINK => $link,
 		);
 	}
 
@@ -68,6 +67,10 @@ class SemanticGlossaryElement {
 
 	public function getDefinition ( $key ) {
 		return $this -> mDefinitions[ $key ][ self::SG_DEFINITION ];
+	}
+
+	public function getLink ( $key ) {
+		return $this -> mDefinitions[ $key ][ self::SG_LINK ];
 	}
 
 	public function next () {

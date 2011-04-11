@@ -51,6 +51,7 @@ class SemanticGlossaryParser {
 		$desc = new SMWSomeProperty(SMWPropertyValue::makeProperty( '___glt'  ), new SMWThingDescription());
 		$desc -> addPrintRequest(new SMWPrintRequest( SMWPrintRequest::PRINT_PROP, null, SMWPropertyValue::makeProperty( '___glt'  ) ));
 		$desc -> addPrintRequest(new SMWPrintRequest( SMWPrintRequest::PRINT_PROP, null, SMWPropertyValue::makeProperty( '___gld'  ) ));
+		$desc -> addPrintRequest(new SMWPrintRequest( SMWPrintRequest::PRINT_PROP, null, SMWPropertyValue::makeProperty( '___gll'  ) ));
 
 		$query = new SMWQuery( $desc, true, false );
 		$query -> querymode = SMWQuery::MODE_INSTANCES;
@@ -68,6 +69,7 @@ class SemanticGlossaryParser {
 
 			$term = $resultline[ 0 ] -> getNextText( SMW_OUTPUT_HTML );
 			$definition = $resultline[ 1 ] -> getNextText( SMW_OUTPUT_HTML );
+			$link = $resultline[ 2 ] -> getNextText( SMW_OUTPUT_HTML );
 			$subject = $resultline[ 0 ] -> getResultSubject();
 
 			// FIXME: SMW has a bug that right after storing data this data
@@ -94,9 +96,9 @@ class SemanticGlossaryParser {
 			$source = $subject -> getDBkeys();
 
 			if ( array_key_exists( $term, $result ) ) {
-				$result[ $term ] -> addDefinition( $definition, $source );
+				$result[ $term ] -> addDefinition( $definition, $link, $source );
 			} else {
-				$result[ $term ] = new SemanticGlossaryElement( $term, $definition, $source );
+				$result[ $term ] = new SemanticGlossaryElement( $term, $definition, $link, $source );
 			}
 		}
 

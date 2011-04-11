@@ -25,16 +25,16 @@
 	vertical-align: top;
 }
 
-.glossarybrowser .actioncell {
-	text-align: center;
-}
-
 .glossarybrowser .termcell {
-	width: 20%;
+	width: 15%;
 }
 
 .glossarybrowser .definitioncell {
-	width: 80%;
+	width: 70%;
+}
+
+.glossarybrowser .linkcell {
+	width: 15%;
 }
 
 .glossarybrowser .definitioncell .definitionareawrapper {
@@ -46,7 +46,7 @@
 	margin: 0;
 	padding: 0;
 	height: 1.3em;
-	width: 99%;
+	width: 100%;
 	resize: none;
 	position: static;
 	z-index: 1;
@@ -57,11 +57,11 @@
 	border-color: transparent;
 }
 
-.glossarybrowser .termslist textarea:hover {
+.glossarybrowser .termslist tr:hover textarea {
 	border-color: gray;
 }
 
-.glossarybrowser .termslist textarea:focus {
+.glossarybrowser .termslist tr textarea:focus {
 	border-color: gray;
 }
 

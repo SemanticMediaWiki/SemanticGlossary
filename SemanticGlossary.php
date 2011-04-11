@@ -3,7 +3,7 @@
 /**
  * A terminology markup extension with a Semantic MediaWiki backend
  *
- * @defgroup SemanticGlossary
+ * @defgroup SemanticGlossary Semantic Glossary
  * @author Stephan Gambke
  * @version 0.1 alpha
  */
@@ -114,11 +114,13 @@ $sggSettings = new SemanticGlossarySettings();
 function SemanticGlossaryRegisterProperties () {
 	SMWPropertyValue::registerProperty( '___glt', '_str', false , true );
 	SMWPropertyValue::registerProperty( '___gld', '_txt', false , true );
+	SMWPropertyValue::registerProperty( '___gll', '_str', false , true );
 	return true;
 }
 
 function SemanticGlossaryRegisterPropertyAliases () {
 	SMWPropertyValue::registerPropertyAlias( '___glt', wfMsg( 'semanticglossary-prop-glt' ) );
 	SMWPropertyValue::registerPropertyAlias( '___gld', wfMsg( 'semanticglossary-prop-gld' ) );
+	SMWPropertyValue::registerPropertyAlias( '___gll', wfMsg( 'semanticglossary-prop-gll' ) );
 	return true;
 }
