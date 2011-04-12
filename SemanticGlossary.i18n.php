@@ -45,7 +45,7 @@ $messages['qqq'] = array(
 	'semanticglossary-deleteselected' => 'This is the label of a button.',
 	'semanticglossary-savechanges' => 'This is the label of a button.',
 	'semanticglossary-createnew' => 'This is the label of a button.',
-	'semanticglossary-prop-glt' => 'This is the name of a  [http://semantic-mediawiki.org/wiki/Property property] in the sense of [http://semantic-mediawiki.org/ Semantic MediaWiki].',
+	'semanticglossary-prop-glt' => 'This is the name of a [http://semantic-mediawiki.org/wiki/Property property] in the sense of [http://semantic-mediawiki.org/ Semantic MediaWiki].',
 	'semanticglossary-prop-gld' => 'This is the name of a [http://semantic-mediawiki.org/wiki/Property property] in the sense of [http://semantic-mediawiki.org/ Semantic MediaWiki].',
 	'semanticglossary-prop-gll' => 'This is the name of a [http://semantic-mediawiki.org/wiki/Property property] in the sense of [http://semantic-mediawiki.org/ Semantic MediaWiki].',
 );

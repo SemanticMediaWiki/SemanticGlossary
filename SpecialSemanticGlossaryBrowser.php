@@ -296,6 +296,9 @@ class SpecialSemanticGlossaryBrowser extends SpecialPage {
 			'___glt' => $newTerm,
 			'___gld' => $newDefinition,
 			'___gll' => $newLink,
+//			wfMsg( 'semanticglossary-prop-glt' ) => $newTerm,
+//			wfMsg( 'semanticglossary-prop-gld' ) => $newDefinition,
+//			wfMsg( 'semanticglossary-prop-gll' ) => $newLink,
 			) );
 
 		$this -> mMessages -> addMessage( wfMsg( 'semanticglossary-termadded', array( $newTerm ) ), SemanticGlossaryMessageLog::SG_NOTICE );

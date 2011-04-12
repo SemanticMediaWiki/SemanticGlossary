@@ -26,6 +26,7 @@ class SemanticGlossaryElement {
 	private $mTerm;
 	private $mFullDefinition = null;
 	private $mDefinitions = array( );
+	static private $mLinkTemplate = null;
 
 	public function __construct ( $term=null, $definition=null, $link=null, $source=null ) {
 		$this -> mTerm = $term;
@@ -43,18 +44,23 @@ class SemanticGlossaryElement {
 
 	public function getFullDefinition ( DOMDocument &$doc ) {
 
+		// only create if not yet created
 		if ( $this -> mFullDefinition == null ) {
 
-			$this -> mFullDefinition = $doc -> createElement('span');
+			$this -> mFullDefinition = $doc -> createElement( 'span' );
 
 			foreach ( $this -> mDefinitions as $definition ) {
-				$element = $doc -> createElement('span', $definition[ self::SG_DEFINITION ] );
+				$element = $doc -> createElement( 'span', $definition[ self::SG_DEFINITION ] . ' ' );
+				if ( $definition[ self::SG_LINK ] ) {
+					$link = $this -> getLinkTemplate( $doc );
+					$link -> setAttribute( 'href', Title::newFromText( $definition[ self::SG_LINK ] ) -> getFullURL() );
+					$element -> appendChild( $link );
+				}
 				$this -> mFullDefinition -> appendChild( $element );
 			}
-
 		}
 
-		return $this -> mFullDefinition -> cloneNode( true);
+		return $this -> mFullDefinition -> cloneNode( true );
 	}
 
 	public function getCurrentKey () {
@@ -75,6 +81,24 @@ class SemanticGlossaryElement {
 
 	public function next () {
 		next( $this -> mDefinitions );
+	}
+
+	private function getLinkTemplate ( DOMDocument &$doc ) {
+		
+		// create template if it doesnot yet exist
+		// FIXME: Is it safe to use a singleton here?
+		if ( !self::$mLinkTemplate ) {
+
+			global $wgScriptPath;
+
+			$linkimage = $doc -> createElement( 'img' );
+			$linkimage -> setAttribute( "src", $wgScriptPath . '/extensions/SemanticGlossary/skins/linkicon.png' );
+
+			self::$mLinkTemplate = $doc -> createElement( 'a' );
+			self::$mLinkTemplate -> appendChild( $linkimage );
+		}
+
+		return self::$mLinkTemplate -> cloneNode( true );
 	}
 
 }

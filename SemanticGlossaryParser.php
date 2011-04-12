@@ -58,7 +58,7 @@ class SemanticGlossaryParser {
 
 		global $smwgQDefaultLimit;
 		$query -> setLimit( $smwgQDefaultLimit );
-		$query -> sortkeys[ '___glt' ] = 'ASC';
+		$query -> sortkeys[ SG_PROP_GLT ] = 'ASC';
 
 		// get the query result
 		$queryresult = $store -> getQueryResult( $query );

@@ -45,7 +45,6 @@ $wgExtensionCredits[ defined( 'SEMANTIC_EXTENSION_TYPE' ) ? 'semantic' : 'other'
 // server-local path to this file
 $dir = dirname( __FILE__ );
 
-
 // register message file
 $wgExtensionMessagesFiles[ 'SemanticGlossary' ] = $dir . '/SemanticGlossary.i18n.php';
 $wgExtensionMessagesFiles[ 'SemanticGlossaryAlias' ] = $dir . '/SemanticGlossary.alias.php';
@@ -111,10 +110,20 @@ $sggSettings = new SemanticGlossarySettings();
 //	return true;
 //}
 
+define( 'SG_PROP_GLT', 'Glossary-Term' );
+define( 'SG_PROP_GLD', 'Glossary-Definition' );
+define( 'SG_PROP_GLL', 'Glossary-Link' );
+
+
 function SemanticGlossaryRegisterProperties () {
-	SMWPropertyValue::registerProperty( '___glt', '_str', false , true );
-	SMWPropertyValue::registerProperty( '___gld', '_txt', false , true );
-	SMWPropertyValue::registerProperty( '___gll', '_str', false , true );
+//	SMWPropertyValue::registerProperty( '___glt', '_str', false , true );
+//	SMWPropertyValue::registerProperty( '___gld', '_txt', false , true );
+//	SMWPropertyValue::registerProperty( '___gll', '_str', false , true );
+
+	SMWPropertyValue::registerProperty( '___glt', '_str', SG_PROP_GLT, true );
+	SMWPropertyValue::registerProperty( '___gld', '_txt', SG_PROP_GLD, true );
+	SMWPropertyValue::registerProperty( '___gll', '_str', SG_PROP_GLL, true );
+
 	return true;
 }
 
