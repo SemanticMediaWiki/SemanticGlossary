@@ -63,6 +63,8 @@ $messages['br'] = array(
 	'semanticglossary-enternewterm' => 'Gallout a rit merkañ un termen nevez gant e dermandur amañ :',
 	'semanticglossary-messageheader' => 'Kemennadennoù :',
 	'semanticglossary-termdeleted' => 'Diverket $1',
+	'semanticglossary-termchanged' => 'Kemmet $1.',
+	'semanticglossary-termadded' => 'Ouzhpennet $1.',
 	'semanticglossary-termdefinedtwice' => "Muioc'h eget un termen ha/pe un termenadur zo er bajenn [[$1]]. N'hallo ket ar pennger-se bezañ implijet er c'heriaoueg.",
 	'semanticglossary-norights' => "N'eo ket aotreet an ober-mañ. Re skort eo ho gwirioù.",
 	'semanticglossary-prop-glt' => 'Geriaoueg-Termen',
@@ -101,12 +103,15 @@ $messages['de'] = array(
 	'semanticglossary-storedtermdefinedinarticle' => 'Der Begriff „$1“ wurde ursprünglich auf Seite [[$2]] definiert. Die Definition wurde vorerst entsprechend den Eingaben geändert. Allerdings wird, sobald die ursprüngliche Seite bearbeitet wird, die dort angegebene Definition wieder den Vorrang erhalten.',
 	'semanticglossary-deletedtermdefinedinarticle' => 'Der Begriff „$1“ wurde ursprünglich auf Seite [[$2]] definiert. Die Definition wurde vorerst gelöscht. Allerdings wird, sobald die ursprüngliche Seite bearbeitet wird, die dort angegebene Definition wieder den Vorrang erhalten.',
 	'semanticglossary-termdeleted' => 'Der Begriff „$1“ wurde gelöscht.',
+	'semanticglossary-termchanged' => 'Der Begriff „$1“ wurde geändert.',
+	'semanticglossary-termadded' => 'Der Begriff „$1“ wurde hinzugefügt.',
 	'semanticglossary-storedtermdefinedtwice' => 'Die Seite [[$1]] enthält mehr als ein Attribut namens $2. Die Daten für den Begriff „$3“ werden nicht gespeichert.',
 	'semanticglossary-termdefinedtwice' => 'Die Seite [[$1]] enthält mehr als einen Begriff und/ oder mehr als eine Definition. Die Eingaben werden daher nicht im Glossar verfügbar sein.',
 	'semanticglossary-brokensession' => 'Diese Aktion ist nicht zulässig: Abgelaufene Sitzungsdaten.',
 	'semanticglossary-norights' => 'Diese Aktion ist nicht zulässig: Unzureichende Berechtigungen.',
 	'semanticglossary-prop-glt' => 'Glossar (Begriff)',
 	'semanticglossary-prop-gld' => 'Glossar (Definition)',
+	'semanticglossary-prop-gll' => 'Glossar (Link)',
 );
 
 /** Interlingua (Interlingua)
@@ -176,7 +181,7 @@ $messages['lb'] = array(
  * @author Bjankuloski06
  */
 $messages['mk'] = array(
-	'semanticglossary-desc' => 'Додаток за означување на терминологија за [http://semantic-mediawiki.org Семантички МедијаВики]',
+	'semanticglossary-desc' => 'Додаток со поимник за [http://semantic-mediawiki.org Семантички МедијаВики]',
 	'semanticglossary-browsertitle' => 'Поимник',
 	'semanticglossary-deleteselected' => 'Избриши одбрано',
 	'semanticglossary-savechanges' => 'Зачувај промени',
@@ -188,12 +193,15 @@ $messages['mk'] = array(
 	'semanticglossary-storedtermdefinedinarticle' => 'Поимот „$1“ бил првично утврден на страницата [[$2]]. Толкувањето е сменето според тековните потреби. Но штом повторно ќе се уреди изворната страница, тамошното толкување добива предност.',
 	'semanticglossary-deletedtermdefinedinarticle' => 'Поимот „$1“ бил првично утврден на страницата [[$2]]. Толкувањето е избришано според тековните потреби. Но штом повторно ќе се уреди изворната страница, тамошното толкување добива предност.',
 	'semanticglossary-termdeleted' => 'Го избришав $1.',
+	'semanticglossary-termchanged' => 'Изменето: $1.',
+	'semanticglossary-termadded' => 'Додадено: $1.',
 	'semanticglossary-storedtermdefinedtwice' => 'Страницата [[$1]] содржи повеќе од едно својство со име $2. Нема да зачувам податоци за поимот „$3“.',
 	'semanticglossary-termdefinedtwice' => 'Оваа страница [[$1]] содржи повеќе од еден поим и/или повеќе од едно толкување. Овие записи нема да бидат достапни во поимникот.',
 	'semanticglossary-brokensession' => 'Дејството не е допуштено. Сесиските податоци се расипани.',
 	'semanticglossary-norights' => 'Дејството не е допуштено. Немате доволно права.',
 	'semanticglossary-prop-glt' => 'Поимник-Поим',
 	'semanticglossary-prop-gld' => 'Поимник-Толкување',
+	'semanticglossary-prop-gll' => 'Поимник-Врска',
 );
 
 /** Dutch (Nederlands)
@@ -204,11 +212,23 @@ $messages['nl'] = array(
 	'semanticglossary-browsertitle' => 'Begrippenlijst',
 	'semanticglossary-deleteselected' => 'Selectie verwijderen',
 	'semanticglossary-savechanges' => 'Wijzigingen opslaan',
-	'semanticglossary-createnew' => 'Nieuwe term aanmaken',
+	'semanticglossary-createnew' => 'Nieuwe begrip aanmaken',
 	'semanticglossary-termsdefined' => 'Dit zijn de in de wiki gedefinieerde begrippen:',
 	'semanticglossary-notermsdefined' => 'Er zijn momenteel geen begrippen gedefinieerd in de wiki.',
 	'semanticglossary-enternewterm' => 'U kunt hier een nieuw begrip met definitie hier invoeren:',
 	'semanticglossary-messageheader' => 'Berichten:',
+	'semanticglossary-storedtermdefinedinarticle' => 'Het begrip "$1" was oorspronkelijk gedefinieerd op de pagina [[$2]]. De definitie is gewijzigd. Echter, wanneer de oorspronkelijke pagina opnieuw wordt bewerkt, heeft die definitie weer voorrang.',
+	'semanticglossary-deletedtermdefinedinarticle' => 'Het begrip "$1" was oorspronkelijk gedefinieerd op de pagina [[$2]]. De definitie is verwijderd. Echter, wanneer de oorspronkelijke pagina opnieuw wordt bewerkt, heeft die definitie weer voorrang.',
+	'semanticglossary-termdeleted' => '"$1" verwijderd',
+	'semanticglossary-termchanged' => '"$1" gewijzigd.',
+	'semanticglossary-termadded' => '"$1" toegevoegd.',
+	'semanticglossary-storedtermdefinedtwice' => 'De pagina [[$1]] bevat meerdere eigenschappen met de naam $2. De gegevens voor Het begrip "$3" worden niet opgeslagen.',
+	'semanticglossary-termdefinedtwice' => 'De pagina [[$1]] bevat meerdere begrippen of definities van/voor hetzelfde. De gegevens zijn niet beschikbaar in de begrippenlijst.',
+	'semanticglossary-brokensession' => 'De handeling is niet toegestaan. De sessie is afgebroken.',
+	'semanticglossary-norights' => 'De handeling is niet toegestaan. Onvoldoende rechten.',
+	'semanticglossary-prop-glt' => 'Begrippenlijstbegrip',
+	'semanticglossary-prop-gld' => 'Begrippenlijstdefinitie',
+	'semanticglossary-prop-gll' => 'Begrippenlijstverwijzing',
 );
 
 /** Pashto (پښتو)
@@ -246,9 +266,15 @@ $messages['sr-ec'] = array(
  * @author Veeven
  */
 $messages['te'] = array(
+	'semanticglossary-browsertitle' => 'పదకోశం',
 	'semanticglossary-deleteselected' => 'ఎంచుకున్నవాటిని తొలగించు',
 	'semanticglossary-savechanges' => 'మార్పులను భద్రపరచు',
+	'semanticglossary-createnew' => 'కొత్త పదాన్ని సృష్టించు',
+	'semanticglossary-termsdefined' => 'ఈ వికీలో నిర్వచించిన పదాలు:',
 	'semanticglossary-messageheader' => 'సందేశాలు:',
+	'semanticglossary-termdeleted' => '$1ని తొలగించారు.',
+	'semanticglossary-termchanged' => '$1ని మార్చారు.',
+	'semanticglossary-termadded' => '$1ని చేర్చారు.',
 	'semanticglossary-norights' => 'చర్యను అనుమతించము. తగినన్ని అధికారాలు లేవు.',
 );
 
