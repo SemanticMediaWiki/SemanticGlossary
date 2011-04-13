@@ -118,7 +118,7 @@ $messages['de'] = array(
  * @author McDutchie
  */
 $messages['ia'] = array(
-	'semanticglossary-desc' => 'Un extension pro marcation de terminologia con un base de [http://semantic-mediawiki.org Semantic MediaWiki]',
+	'semanticglossary-desc' => 'Un extension pro glossarios a base de [http://semantic-mediawiki.org Semantic MediaWiki]',
 	'semanticglossary-browsertitle' => 'Glossario',
 	'semanticglossary-deleteselected' => 'Deler selection',
 	'semanticglossary-savechanges' => 'Salveguardar modificationes',
@@ -130,19 +130,22 @@ $messages['ia'] = array(
 	'semanticglossary-storedtermdefinedinarticle' => 'Le termino "$1" esseva originalmente definite in le pagina [[$2]]. Le definition esseva cambiate como necessari pro le momento. Nonobstante, si tosto que le pagina original es modificate de novo, le definition de illo habera le precedentia.',
 	'semanticglossary-deletedtermdefinedinarticle' => 'Le termino "$1" esseva originalmente definite in le pagina [[$2]]. Le definition esseva delite como necessari pro le momento. Nonobstante, si tosto que le pagina original es modificate de novo, le definition de illo habera le precedentia.',
 	'semanticglossary-termdeleted' => '$1 delite.',
+	'semanticglossary-termchanged' => '"$1" modificate.',
+	'semanticglossary-termadded' => '"$1" addite.',
 	'semanticglossary-storedtermdefinedtwice' => 'Le pagina [[$1]] contine plus de un proprietate con nomine $2. Le datos pro le termino "$3" non essera immagazinate.',
 	'semanticglossary-termdefinedtwice' => 'Le pagina [[$1]] contine plus de un termino e/o plus de un definition. Le entratas non essera disponibile in le glossario.',
 	'semanticglossary-brokensession' => 'Action non permittite. Datos de session defectuose.',
 	'semanticglossary-norights' => 'Action non permittite. Derectos insufficiente.',
 	'semanticglossary-prop-glt' => 'Termino de glossario',
 	'semanticglossary-prop-gld' => 'Definition de glossario',
+	'semanticglossary-prop-gll' => 'Ligamine-a-glossario',
 );
 
 /** Colognian (Ripoarisch)
  * @author Purodha
  */
 $messages['ksh'] = array(
-	'semanticglossary-desc' => 'E Zohsazprojramm för Bejreffe ze makeere med_enem [http://semantic-mediawiki.org Semantesch MediaWiki] Hengerjrond.',
+	'semanticglossary-desc' => 'E Zohsazprojramm för e Verzeishneß met makeerte Bejreffe met [http://semantic-mediawiki.org Semantesch MediaWiki] dohenger.',
 	'semanticglossary-browsertitle' => 'Wööterverzeischneß',
 	'semanticglossary-deleteselected' => 'Donn de ußjewählte fottschmieße!',
 	'semanticglossary-savechanges' => 'Änderunge faßhallde',
@@ -158,6 +161,8 @@ Allerdengs, wann di orschprönglesche Sigg norr_ens verändert weed, kritt dat, 
 Jäz eß di Bedüggdeneß wi nüüdesch fott jeschmeße woode.
 Allerdengs, esubalt di orschprönglesche Sigg norr_ens verändert weed, kritt dat, wat doh shtund, widder der Vörrang.',
 	'semanticglossary-termdeleted' => '„$1“ es fottjeschmeße.',
+	'semanticglossary-termchanged' => 'Dä Bejreff „$1“ es jeändert.',
+	'semanticglossary-termadded' => 'Dä Bejreff „$1“ es dobei jekumme.',
 	'semanticglossary-storedtermdefinedtwice' => 'En dä Sigg „[[$1]]“ es mieh wi ein Eijeschaff mem Naame „$2“ dren. Di Daate för dä Bejreff „$3“ wääde nit faßjehallde.',
 	'semanticglossary-termdefinedtwice' => 'En dä Sigg „[[$1]]“ es mieh wie eine Bejreff, udder miehj wi ein Bedüggdeneß usseneijn possemänteert, udder beeds. Di wääde nit em Wööter_Verzeishneß faßjehallde.',
 	'semanticglossary-brokensession' => 'Dat jeiht nit. Ding Daate fum Enlogge sin fott.',
@@ -165,6 +170,7 @@ Allerdengs, esubalt di orschprönglesche Sigg norr_ens verändert weed, kritt da
 Ding Zohjreffsrräschte ricke doh nit för.',
 	'semanticglossary-prop-glt' => 'Bejreff em Wööterverzeijschneß',
 	'semanticglossary-prop-gld' => 'Bedüggdeneß em Wööterverzeischneß',
+	'semanticglossary-prop-gll' => 'Lenk en et Wööterverzeischneß',
 );
 
 /** Luxembourgish (Lëtzebuergesch)
@@ -239,6 +245,28 @@ $messages['ps'] = array(
 	'semanticglossary-deleteselected' => 'ټاکل شوی ړنګول',
 	'semanticglossary-savechanges' => 'بدلونونه خوندي کول',
 	'semanticglossary-messageheader' => 'پيغامونه:',
+);
+
+/** Russian (Русский)
+ * @author Ичи
+ */
+$messages['ru'] = array(
+	'semanticglossary-browsertitle' => 'Глоссарий',
+	'semanticglossary-deleteselected' => 'Удалить выбранные',
+	'semanticglossary-savechanges' => 'Сохранить изменения',
+	'semanticglossary-createnew' => 'Создать новый термин',
+	'semanticglossary-termsdefined' => 'Это термины, определяемые в вики:',
+	'semanticglossary-enternewterm' => 'Вы можете ввести новый термин и определение здесь:',
+	'semanticglossary-messageheader' => 'Сообщения:',
+	'semanticglossary-storedtermdefinedinarticle' => 'Термин "$1"был первоначально определен на странице [[$2]]. Определение было изменено в соответствии с текущими требованиями. Однако, после следующего редактирования, определение будет приоритетным',
+	'semanticglossary-termdeleted' => 'Удалить $1.',
+	'semanticglossary-termchanged' => 'Изменен $1 .',
+	'semanticglossary-termadded' => 'Добавлено $1 .',
+	'semanticglossary-brokensession' => 'Действий не допускается. Повреждены данные сессии.',
+	'semanticglossary-norights' => 'Действий не допускается. Недостаточно прав.',
+	'semanticglossary-prop-glt' => 'Глоссарий-Термин',
+	'semanticglossary-prop-gld' => 'Глоссарий-Определение',
+	'semanticglossary-prop-gll' => 'Глоссарий-Ссылка',
 );
 
 /** Serbian Cyrillic ekavian (‪Српски (ћирилица)‬)
