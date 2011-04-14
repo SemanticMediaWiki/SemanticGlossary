@@ -50,6 +50,33 @@ $messages['qqq'] = array(
 	'semanticglossary-prop-gll' => 'This is the name of a [http://semantic-mediawiki.org/wiki/Property property] in the sense of [http://semantic-mediawiki.org/ Semantic MediaWiki].',
 );
 
+/** Old English (Ænglisc)
+ * @author Gott wisst
+ */
+$messages['ang'] = array(
+	'semanticglossary-desc' => 'Ȝetæl ƿorda mid [http://semantic-mediawiki.org Semantic MediaǷiki] bæcende',
+	'semanticglossary-browsertitle' => 'Ȝetæl ƿorda',
+	'semanticglossary-deleteselected' => 'Forlēos þā ȝecorenan',
+	'semanticglossary-savechanges' => 'Horda hƿearfunȝa',
+	'semanticglossary-createnew' => 'Sciepe nīƿe ƿord',
+	'semanticglossary-termsdefined' => 'Þās sind þā amearcodan ƿord on þissus ƿiki:',
+	'semanticglossary-notermsdefined' => 'Þǣr sind nū nǣnȝu amearcod ƿord on þissum ƿiki.',
+	'semanticglossary-enternewterm' => 'Þū mōst inƿrītan nīƿe ƿord and amearcunȝe hēr:',
+	'semanticglossary-messageheader' => 'Ǣrendȝeƿritu:',
+	'semanticglossary-storedtermdefinedinarticle' => 'Þæt ƿord "$1" ƿæs ǣrost amearcod on þǣm [[$2]] tramete. Sēo amearcunȝ ƿæs āƿend sƿā nū is þearf. Þēahhƿæðere, sōna se ǣra tramet sīe eft āƿend, sēo amearcunȝ bēo hefiȝre.',
+	'semanticglossary-deletedtermdefinedinarticle' => 'Þæt ƿord "$1" ƿæs ǣrost amearcod on þǣm [[$2]] tramete. Sēo amearcunȝ ƿæs forloren sƿā is nū þearf. Þēahhƿæðere, sōna se ǣra tramet sīe eft āƿend, sēo amearcunȝ þǣr bēo hefiȝre.',
+	'semanticglossary-termdeleted' => 'Forlēas $1.',
+	'semanticglossary-termchanged' => 'Āƿende $1.',
+	'semanticglossary-termadded' => 'Ēacnode mid $1.',
+	'semanticglossary-storedtermdefinedtwice' => 'Se tramet [[$1]] innaþ mā þonne ān þāra ƿeorða mid þǣm naman $2. Ne hordaþ ȝeƿitnesse þæs ƿordes "$3".',
+	'semanticglossary-termdefinedtwice' => 'Se tramet [[$1]] innaþ mā þonne ān ƿord oþþe mā þonne āne amearcunȝe. Þā ȝeƿritu ne bēoþ ȝearu on þǣm ȝetæle ƿorda.',
+	'semanticglossary-brokensession' => 'Dǣd nis alȳfedlīc. Ȝebrocen tīman ȝeƿitness.',
+	'semanticglossary-norights' => 'Dǣd nis alȳfedlīc. Ne sind ȝenōh riht.',
+	'semanticglossary-prop-glt' => 'Ƿordȝetælƿord',
+	'semanticglossary-prop-gld' => 'Ƿordȝetælamearcunȝ',
+	'semanticglossary-prop-gll' => 'Ƿordȝetælhlence',
+);
+
 /** Breton (Brezhoneg)
  * @author Fulup
  */
@@ -248,6 +275,7 @@ $messages['ps'] = array(
 );
 
 /** Russian (Русский)
+ * @author Lockal
  * @author Ичи
  */
 $messages['ru'] = array(
@@ -256,14 +284,14 @@ $messages['ru'] = array(
 	'semanticglossary-savechanges' => 'Сохранить изменения',
 	'semanticglossary-createnew' => 'Создать новый термин',
 	'semanticglossary-termsdefined' => 'Это термины, определяемые в вики:',
-	'semanticglossary-enternewterm' => 'Вы можете ввести новый термин и определение здесь:',
+	'semanticglossary-enternewterm' => 'Здесь вы можете ввести новый термин и определение:',
 	'semanticglossary-messageheader' => 'Сообщения:',
-	'semanticglossary-storedtermdefinedinarticle' => 'Термин "$1"был первоначально определен на странице [[$2]]. Определение было изменено в соответствии с текущими требованиями. Однако, после следующего редактирования, определение будет приоритетным',
-	'semanticglossary-termdeleted' => 'Удалить $1.',
-	'semanticglossary-termchanged' => 'Изменен $1 .',
-	'semanticglossary-termadded' => 'Добавлено $1 .',
-	'semanticglossary-brokensession' => 'Действий не допускается. Повреждены данные сессии.',
-	'semanticglossary-norights' => 'Действий не допускается. Недостаточно прав.',
+	'semanticglossary-storedtermdefinedinarticle' => 'Термин «$1» был первоначально определён на странице [[$2]]. Определение было изменено в соответствии с текущими требованиями. Однако, после следующего редактирования, определение будет приоритетным.',
+	'semanticglossary-termdeleted' => 'Термин $1 удалён.',
+	'semanticglossary-termchanged' => 'Термин $1 изменён.',
+	'semanticglossary-termadded' => 'Добавлен термин $1.',
+	'semanticglossary-brokensession' => 'Действие не допускается. Данные сессии повреждены.',
+	'semanticglossary-norights' => 'Действие не допускается. Недостаточно прав.',
 	'semanticglossary-prop-glt' => 'Глоссарий-Термин',
 	'semanticglossary-prop-gld' => 'Глоссарий-Определение',
 	'semanticglossary-prop-gll' => 'Глоссарий-Ссылка',
