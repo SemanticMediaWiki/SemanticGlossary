@@ -58,7 +58,7 @@ $messages['ang'] = array(
 	'semanticglossary-browsertitle' => 'Ȝetæl ƿorda',
 	'semanticglossary-deleteselected' => 'Forlēos þā ȝecorenan',
 	'semanticglossary-savechanges' => 'Horda hƿearfunȝa',
-	'semanticglossary-createnew' => 'Sciepe nīƿe ƿord',
+	'semanticglossary-createnew' => 'Sciepp nīƿe ƿord',
 	'semanticglossary-termsdefined' => 'Þās sind þā amearcodan ƿord on þissus ƿiki:',
 	'semanticglossary-notermsdefined' => 'Þǣr sind nū nǣnȝu amearcod ƿord on þissum ƿiki.',
 	'semanticglossary-enternewterm' => 'Þū mōst inƿrītan nīƿe ƿord and amearcunȝe hēr:',
@@ -338,7 +338,7 @@ $messages['te'] = array(
  * @author AnakngAraw
  */
 $messages['tl'] = array(
-	'semanticglossary-desc' => 'Isang minarkahang paitaas na dugtong sa terminolohiya na may isang dulong panlikod na [http://semantic-mediawiki.org Semantikong MediaWiki]',
+	'semanticglossary-desc' => 'Isang dugtong ng glosaryo na may isang dulong panlikod na [http://semantic-mediawiki.org Semantikong MediaWiki]',
 	'semanticglossary-browsertitle' => 'Glosaryo',
 	'semanticglossary-deleteselected' => 'Burahin ang napili',
 	'semanticglossary-savechanges' => 'Sagipin ang mga pagbabago',
@@ -350,9 +350,14 @@ $messages['tl'] = array(
 	'semanticglossary-storedtermdefinedinarticle' => 'Ang katagang "$1" ay orihinal na binigyan ng kahulugan sa pahinang [[$2]].  Binago ang kahulugan ayon sa pangangailangan para sa ngayon.  Subalit, kapag nabago na ulit ang orihinal na pahina, ang kahulugan doon ang magkakamit ng mas mahigit na kahalagan.',
 	'semanticglossary-deletedtermdefinedinarticle' => 'Ang katagang "$1" ay orihinal na nabigyan ng kahulugan sa pahina [[$2]].  Nabura ang kahulugan ayon sa pangangailangan sa ngayon.  Subalit, kapag binago na ulit ang orihinal na pahina, ang kahulugan doon ang magkakamit ng mas mahigit na kahalagahan.',
 	'semanticglossary-termdeleted' => 'Binura ang $1.',
+	'semanticglossary-termchanged' => 'Binago ang $1.',
+	'semanticglossary-termadded' => 'Idinagdag ang $1.',
 	'semanticglossary-storedtermdefinedtwice' => 'Ang pahinang [[$1]] ay naglalaman ng mas mahigit kaysa isang ari-arian na pinangalanang $2.  Hindi mag-iimbak ng dato para sa katagang "$3".',
 	'semanticglossary-termdefinedtwice' => 'Ang pahinang [[$1]] ay naglalaman ng mas mahigit kaysa isang kataga at/o mas mahigit pa sa isang kahulugan.  Ang mga pagpapasok ay hindi makukuha para sa glosaryo.',
 	'semanticglossary-brokensession' => 'Hindi pinapayagan ang kilos.  Sira ang dato ng inilaang panahon.',
 	'semanticglossary-norights' => 'Hindi pinapahintulutan ang galaw.  Hindi sapat ang mga karapatan.',
+	'semanticglossary-prop-glt' => 'Kataga sa Glosaryo',
+	'semanticglossary-prop-gld' => 'Kahulugan sa Glosaryo',
+	'semanticglossary-prop-gll' => 'Kawing sa Glosaryo',
 );
 
