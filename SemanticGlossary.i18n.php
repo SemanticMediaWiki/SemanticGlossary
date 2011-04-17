@@ -141,6 +141,33 @@ $messages['de'] = array(
 	'semanticglossary-prop-gll' => 'Glossar (Link)',
 );
 
+/** Hebrew (עברית)
+ * @author Amire80
+ */
+$messages['he'] = array(
+	'semanticglossary-desc' => 'הרחבה ליצירת מונחון עם מנוע של [http://semantic-mediawiki.org מדיה־ויקי סמנטית]',
+	'semanticglossary-browsertitle' => 'מונחון',
+	'semanticglossary-deleteselected' => 'מחיקת הפריטים שנבחרו',
+	'semanticglossary-savechanges' => 'שמירת שינויים',
+	'semanticglossary-createnew' => 'יצירת מונח חדש',
+	'semanticglossary-termsdefined' => 'אלה המונחים שהוגדרו בוייקי הזאת:',
+	'semanticglossary-notermsdefined' => 'כעת אין מונחים שהוגדרו בוויקי הזה.',
+	'semanticglossary-enternewterm' => 'אפשר להוסיף מונח חדש עם הגדרה כאן:',
+	'semanticglossary-messageheader' => 'הודעות:',
+	'semanticglossary-storedtermdefinedinarticle' => 'המונח "$1" הוגדר במקור בדף [[$2]]. ההגדרה שונתה כפי שנדרש עכשיו. אולם כאשר הדף המקורי ייערך שוב, ההגדרה שם תוחל.',
+	'semanticglossary-deletedtermdefinedinarticle' => 'המונח "$1" הוגדר במקור בדף [[$2]]. ההגדרה נמחקה כפי שנדרש עכשיו. אולם כאשר הדף המקורי ייערך שוב, ההגדרה שם תוחל.',
+	'semanticglossary-termdeleted' => '$1 נמחק.',
+	'semanticglossary-termchanged' => '$1 שוּנה.',
+	'semanticglossary-termadded' => '$1 נוסף.',
+	'semanticglossary-storedtermdefinedtwice' => 'הדף [[$1]] מכיל יותר ממאפיין אחד בשם $2. נתונים על המונח "$3" לא יישמרו.',
+	'semanticglossary-termdefinedtwice' => 'הדף [[$1]] מכיל יותר ממונח אחד או יותר מהגדרה אחת. הערכים לא יהיו זמינים למונחון.',
+	'semanticglossary-brokensession' => 'פעולה לא מורשית. נתוני שיח מקולקלים.',
+	'semanticglossary-norights' => 'פעולה לא מורשית. אין הרשאות מספיקות.',
+	'semanticglossary-prop-glt' => 'מונח-במונחון',
+	'semanticglossary-prop-gld' => 'הגדרה-במונחון',
+	'semanticglossary-prop-gll' => 'קישור-במונחון',
+);
+
 /** Interlingua (Interlingua)
  * @author McDutchie
  */
