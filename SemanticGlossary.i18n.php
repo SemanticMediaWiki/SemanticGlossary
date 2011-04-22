@@ -141,6 +141,24 @@ $messages['de'] = array(
 	'semanticglossary-prop-gll' => 'Glossar (Link)',
 );
 
+/** French (Français)
+ * @author IAlex
+ */
+$messages['fr'] = array(
+	'semanticglossary-desc' => 'Une extension de glossaire utilisant [http://semantic-mediawiki.org Semantic MediaWiki]',
+	'semanticglossary-browsertitle' => 'Glossaire',
+	'semanticglossary-deleteselected' => 'Supprimer la sélection',
+	'semanticglossary-savechanges' => 'Sauvegarder les modifications',
+	'semanticglossary-createnew' => 'Créer un nouveau terme',
+	'semanticglossary-termsdefined' => 'Voici les termes définis sur le wiki :',
+	'semanticglossary-notermsdefined' => "Il n'y a actuellement aucun terme défini sur le wiki.",
+	'semanticglossary-enternewterm' => 'Vous pouvez entrer un nouveau terme et sa définition ici :',
+	'semanticglossary-messageheader' => 'Messages :',
+	'semanticglossary-termdeleted' => '$1 supprimé.',
+	'semanticglossary-termchanged' => '$1 modifié.',
+	'semanticglossary-termadded' => '$1 ajouté.',
+);
+
 /** Hebrew (עברית)
  * @author Amire80
  */
