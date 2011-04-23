@@ -77,6 +77,14 @@ $messages['ang'] = array(
 	'semanticglossary-prop-gll' => 'Ƿordȝetælhlence',
 );
 
+/** Arabic (العربية)
+ * @author OsamaK
+ */
+$messages['ar'] = array(
+	'semanticglossary-savechanges' => 'احفظ التغييرات',
+	'semanticglossary-createnew' => 'أنشئ مصطلحا جديدا',
+);
+
 /** Breton (Brezhoneg)
  * @author Fulup
  */
