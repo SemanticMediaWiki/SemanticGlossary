@@ -165,6 +165,11 @@ $messages['fr'] = array(
 	'semanticglossary-termdeleted' => '$1 supprimé.',
 	'semanticglossary-termchanged' => '$1 modifié.',
 	'semanticglossary-termadded' => '$1 ajouté.',
+	'semanticglossary-brokensession' => 'Action non autorisée. Données de session incorrectes.',
+	'semanticglossary-norights' => 'Action non autorisée. Droits insuffisants.',
+	'semanticglossary-prop-glt' => 'Terme du glossaire',
+	'semanticglossary-prop-gld' => 'Définition du glossaire',
+	'semanticglossary-prop-gll' => 'Lien du glossaire',
 );
 
 /** Hebrew (עברית)
@@ -261,6 +266,11 @@ $messages['lb'] = array(
 	'semanticglossary-savechanges' => 'Ännerunge späicheren',
 	'semanticglossary-createnew' => 'Neie Begrëff uleeën',
 	'semanticglossary-messageheader' => 'Messagen:',
+	'semanticglossary-termdeleted' => '$1 ass geläscht.',
+	'semanticglossary-termchanged' => '$1 ass geännert.',
+	'semanticglossary-termadded' => '$1 gouf derbäigesat.',
+	'semanticglossary-prop-gld' => 'Glossaire-Definitioun',
+	'semanticglossary-prop-gll' => 'Glossaire-Link',
 );
 
 /** Macedonian (Македонски)
