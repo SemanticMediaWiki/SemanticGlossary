@@ -121,6 +121,31 @@ $messages['bs'] = array(
 	'semanticglossary-prop-gld' => 'Rječnička-Definicija',
 );
 
+/** Catalan (Català)
+ * @author Dvdgmz
+ */
+$messages['ca'] = array(
+	'semanticglossary-desc' => 'Una extensió de glossari sobre la base de [http://semantic-mediawiki.org Semantic MediaWiki]',
+	'semanticglossary-browsertitle' => 'Glossari',
+	'semanticglossary-deleteselected' => 'Esborrar seleccionat',
+	'semanticglossary-savechanges' => 'Desar canvis',
+	'semanticglossary-createnew' => 'Crear un nou terme',
+	'semanticglossary-termsdefined' => 'Aquests són els termes definits al wiki:',
+	'semanticglossary-notermsdefined' => 'Ara per ara no hi ha cap terme definit al wiki.',
+	'semanticglossary-enternewterm' => 'Pots entrar un nou terme i la seva definició aquí:',
+	'semanticglossary-messageheader' => 'Missatges:',
+	'semanticglossary-termdeleted' => 'Esborrat $1.',
+	'semanticglossary-termchanged' => 'Modificat $1.',
+	'semanticglossary-termadded' => 'Afegit $1.',
+	'semanticglossary-storedtermdefinedtwice' => 'La pàgina [[$1]] conté més d\'una propietat anomenada $2. No s\'enregistraran dades per al terme "$3".',
+	'semanticglossary-termdefinedtwice' => "La pàgina [[$1]] conté més d'un terme i/o més d'una definició. Les entrades no estaran disponibles per el glossari.",
+	'semanticglossary-brokensession' => "Acció no permesa. S'han perdut les dades de la sessió.",
+	'semanticglossary-norights' => 'Acció no permesa. Permisos insuficients.',
+	'semanticglossary-prop-glt' => 'Terme de glossari',
+	'semanticglossary-prop-gld' => 'Definició de glossari',
+	'semanticglossary-prop-gll' => 'Enllaç de glossari',
+);
+
 /** German (Deutsch)
  * @author F.trott
  * @author Kghbln
