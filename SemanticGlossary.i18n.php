@@ -356,6 +356,29 @@ $messages['nl'] = array(
 	'semanticglossary-prop-gll' => 'Begrippenlijstverwijzing',
 );
 
+/** Piedmontese (Piemontèis)
+ * @author Dragonòt
+ */
+$messages['pms'] = array(
+	'semanticglossary-desc' => "N'estension ëd glossari con un backend [http://semantic-mediawiki.org Semantic MediaWiki]",
+	'semanticglossary-browsertitle' => 'Glossari',
+	'semanticglossary-deleteselected' => 'Scansela le selessionà',
+	'semanticglossary-savechanges' => 'Salvé ij cangiament',
+	'semanticglossary-createnew' => 'Creé termo neuv',
+	'semanticglossary-termsdefined' => 'Costi-sì a son ij termo definì ant la wiki:',
+	'semanticglossary-notermsdefined' => 'A-i é pa al moment gnun termo definì ant la wiki.',
+	'semanticglossary-enternewterm' => 'It peule anserì un termo neuv e la definission ambelessì:',
+	'semanticglossary-messageheader' => 'Messagi:',
+	'semanticglossary-storedtermdefinedinarticle' => 'Ël termo "$1" a l\'era originariament definì ant la pagina [[$2]]. La definission a l\'é stàita cangià com ciamà për adess. An tùit ij cas, com la pagina originaria a l\'é torna modificà, la definission antlora a pija la precedensa.',
+	'semanticglossary-deletedtermdefinedinarticle' => 'Ël termo "$1" a l\'era originariament definì ant la pagina [[$2]]. La definission a l\'é stàita scanselà com ciamà për adess. An tùit ij cas, com la pagina originaria a l\'é torna modificà, la definission antlora a pija la precedensa.',
+	'semanticglossary-termdeleted' => 'Scanselà $1.',
+	'semanticglossary-termchanged' => 'Cangià $1.',
+	'semanticglossary-termadded' => 'Giontà $1.',
+	'semanticglossary-storedtermdefinedtwice' => 'La pagina [[$1]] a conten pi che na proprietà ciamà $2. A memoriserà pa dat për ël termo "$3".',
+	'semanticglossary-termdefinedtwice' => "La pagina [[$1]] a conten pi che un termo e/o pi che na definission. J'intrade a saran pa disponìbij për ël glossari.",
+	'semanticglossary-brokensession' => 'Assion pa përmëttùa. Dat ëd session përdù.',
+);
+
 /** Pashto (پښتو)
  * @author Ahmed-Najib-Biabani-Ibrahimkhel
  */
