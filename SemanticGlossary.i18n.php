@@ -377,6 +377,10 @@ $messages['pms'] = array(
 	'semanticglossary-storedtermdefinedtwice' => 'La pagina [[$1]] a conten pi che na proprietà ciamà $2. A memoriserà pa dat për ël termo "$3".',
 	'semanticglossary-termdefinedtwice' => "La pagina [[$1]] a conten pi che un termo e/o pi che na definission. J'intrade a saran pa disponìbij për ël glossari.",
 	'semanticglossary-brokensession' => 'Assion pa përmëttùa. Dat ëd session përdù.',
+	'semanticglossary-norights' => 'Assion pa përmëttùa. Pa basta drit.',
+	'semanticglossary-prop-glt' => 'Glossari-Termo',
+	'semanticglossary-prop-gld' => 'Glossari-Definission',
+	'semanticglossary-prop-gll' => 'Glossari-Colegament',
 );
 
 /** Pashto (پښتو)
