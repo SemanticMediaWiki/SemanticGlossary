@@ -89,6 +89,7 @@ $messages['ar'] = array(
  * @author Fulup
  */
 $messages['br'] = array(
+	'semanticglossary-desc' => 'Un astenn geriaoueg diazezet war [http://semantic-mediawiki.org Semantic MediaWiki]',
 	'semanticglossary-browsertitle' => 'Geriaoueg',
 	'semanticglossary-deleteselected' => 'Dilemel ar re diuzet',
 	'semanticglossary-savechanges' => "Enrollañ ar c'hemmoù",
@@ -100,10 +101,13 @@ $messages['br'] = array(
 	'semanticglossary-termdeleted' => 'Diverket $1',
 	'semanticglossary-termchanged' => 'Kemmet $1.',
 	'semanticglossary-termadded' => 'Ouzhpennet $1.',
+	'semanticglossary-storedtermdefinedtwice' => 'Meur a berzh anvet $2 zo er bajenn [[$1]]. Ne vo ket stoket ar roadennoù evit an termen "$3".',
 	'semanticglossary-termdefinedtwice' => "Muioc'h eget un termen ha/pe un termenadur zo er bajenn [[$1]]. N'hallo ket ar pennger-se bezañ implijet er c'heriaoueg.",
+	'semanticglossary-brokensession' => "Difennet eo an ober-mañ. Torret eo roadennoù an dalc'h.",
 	'semanticglossary-norights' => "N'eo ket aotreet an ober-mañ. Re skort eo ho gwirioù.",
 	'semanticglossary-prop-glt' => 'Geriaoueg-Termen',
 	'semanticglossary-prop-gld' => 'Geriaoueg-Termenadur',
+	'semanticglossary-prop-gll' => "Liamm eus ar c'heriaoueg",
 );
 
 /** Bosnian (Bosanski)
@@ -226,6 +230,16 @@ $messages['he'] = array(
 	'semanticglossary-prop-glt' => 'מונח-במונחון',
 	'semanticglossary-prop-gld' => 'הגדרה-במונחון',
 	'semanticglossary-prop-gll' => 'קישור-במונחון',
+);
+
+/** Hungarian (Magyar)
+ * @author Dani
+ */
+$messages['hu'] = array(
+	'semanticglossary-savechanges' => 'Változtatások mentése',
+	'semanticglossary-termdeleted' => '$1 törölve.',
+	'semanticglossary-termchanged' => '$1 módosítva.',
+	'semanticglossary-termadded' => '$1 hozzáadva.',
 );
 
 /** Interlingua (Interlingua)
