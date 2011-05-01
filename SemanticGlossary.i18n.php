@@ -85,6 +85,19 @@ $messages['ar'] = array(
 	'semanticglossary-createnew' => 'أنشئ مصطلحا جديدا',
 );
 
+/** Bengali (বাংলা)
+ * @author Wikitanvir
+ */
+$messages['bn'] = array(
+	'semanticglossary-browsertitle' => 'শব্দকোষ',
+	'semanticglossary-deleteselected' => 'নির্বাচিত গুলো মুছে ফেলো',
+	'semanticglossary-savechanges' => 'পরিবর্তন সংরক্ষণ',
+	'semanticglossary-createnew' => 'নতুন পরিভাষা তৈরি করো',
+	'semanticglossary-termdeleted' => '$1 অপসারিত হয়েছে',
+	'semanticglossary-termchanged' => '$1 পরিবর্তিত হয়েছে।',
+	'semanticglossary-termadded' => '$1 যোগ করা হয়েছে।',
+);
+
 /** Breton (Brezhoneg)
  * @author Fulup
  */
