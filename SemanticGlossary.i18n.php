@@ -282,6 +282,33 @@ $messages['ia'] = array(
 	'semanticglossary-prop-gll' => 'Ligamine-a-glossario',
 );
 
+/** Indonesian (Bahasa Indonesia)
+ * @author IvanLanin
+ */
+$messages['id'] = array(
+	'semanticglossary-desc' => 'Ekstensi glosarium yang didukung oleh [http://semantic-mediawiki.org Semantic MediaWiki]',
+	'semanticglossary-browsertitle' => 'Glosarium',
+	'semanticglossary-deleteselected' => 'Hapus yang dipilih',
+	'semanticglossary-savechanges' => 'Simpan perubahan',
+	'semanticglossary-createnew' => 'Buat istilah baru',
+	'semanticglossary-termsdefined' => 'Berikut istilah yang didefinisikan dalam wiki ini:',
+	'semanticglossary-notermsdefined' => 'Saat ini tidak ada istilah yang didefinisikan dalam wiki ini.',
+	'semanticglossary-enternewterm' => 'Anda dapat memasukkan istilah baru dan definisi di sini:',
+	'semanticglossary-messageheader' => 'Pesan:',
+	'semanticglossary-storedtermdefinedinarticle' => 'Istilah "$1" awalnya didefinisikan dalam halaman [[$2]]. Saat ini, definisi diubah sesuai permintaan. Namun, segera setelah halaman asli disunting lagi, definisi yang ada di sana akan diprioritaskan.',
+	'semanticglossary-deletedtermdefinedinarticle' => 'Istilah "$1" awalnya didefinisikan dalam halaman [[$2]]. Saat ini, definisi dihapus sesuai permintaan. Namun, segera setelah halaman asli disunting lagi, definisi yang ada di sana akan diprioritaskan.',
+	'semanticglossary-termdeleted' => 'Menghapus $1.',
+	'semanticglossary-termchanged' => 'Mengubah $1.',
+	'semanticglossary-termadded' => 'Menambah: $1.',
+	'semanticglossary-storedtermdefinedtwice' => 'Halaman [[$1]] berisi lebih dari satu properti dengan nama $2. Data istilah "$3" tidak akan disimpan.',
+	'semanticglossary-termdefinedtwice' => 'Halaman [[$1]] berisi lebih dari satu istilah dan/atau lebih dari satu definisi. Entri tersebut tidak akan tersedia untuk glosarium.',
+	'semanticglossary-brokensession' => 'Tindakan tidak diizinkan. Data sesi rusak.',
+	'semanticglossary-norights' => 'Tindakan tidak diizinkan. Hak akses tidak memadai.',
+	'semanticglossary-prop-glt' => 'Glosarium-Istilah',
+	'semanticglossary-prop-gld' => 'Glosarium-Definisi',
+	'semanticglossary-prop-gll' => 'Glosarium-Tautan',
+);
+
 /** Colognian (Ripoarisch)
  * @author Purodha
  */
