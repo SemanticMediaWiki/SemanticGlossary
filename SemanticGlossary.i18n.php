@@ -85,6 +85,15 @@ $messages['ar'] = array(
 	'semanticglossary-createnew' => 'أنشئ مصطلحا جديدا',
 );
 
+/** Belarusian (Taraškievica orthography) (‪Беларуская (тарашкевіца)‬)
+ * @author EugeneZelenko
+ * @author Jim-by
+ */
+$messages['be-tarask'] = array(
+	'semanticglossary-desc' => 'Пашырэньне-глясарый з выкарыстаньнем [http://semantic-mediawiki.org Semantic MediaWiki]',
+	'semanticglossary-browsertitle' => 'Глясарый',
+);
+
 /** Bengali (বাংলা)
  * @author Wikitanvir
  */
