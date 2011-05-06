@@ -227,6 +227,26 @@ $messages['fr'] = array(
 	'semanticglossary-prop-gll' => 'Lien du glossaire',
 );
 
+/** Galician (Galego)
+ * @author Toliño
+ */
+$messages['gl'] = array(
+	'semanticglossary-browsertitle' => 'Glosario',
+	'semanticglossary-deleteselected' => 'Eliminar o seleccionado',
+	'semanticglossary-savechanges' => 'Gardar os cambios',
+	'semanticglossary-createnew' => 'Crear un novo termo',
+	'semanticglossary-termsdefined' => 'Estes son os termos definidos no wiki:',
+	'semanticglossary-notermsdefined' => 'Actualmente non existen termos definidos no wiki.',
+	'semanticglossary-enternewterm' => 'Pode introducir un novo termo e definición aquí:',
+	'semanticglossary-messageheader' => 'Mensaxes:',
+	'semanticglossary-termdeleted' => '$1 borrado.',
+	'semanticglossary-termchanged' => '$1 modificado.',
+	'semanticglossary-termadded' => '$1 engadido.',
+	'semanticglossary-prop-glt' => 'Termo do glosario',
+	'semanticglossary-prop-gld' => 'Definición do glosario',
+	'semanticglossary-prop-gll' => 'Ligazón do glosario',
+);
+
 /** Hebrew (עברית)
  * @author Amire80
  */
