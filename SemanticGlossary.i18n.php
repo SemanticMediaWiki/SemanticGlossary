@@ -476,6 +476,33 @@ $messages['ps'] = array(
 	'semanticglossary-messageheader' => 'پيغامونه:',
 );
 
+/** Portuguese (Português)
+ * @author Hamilton Abreu
+ */
+$messages['pt'] = array(
+	'semanticglossary-desc' => 'Uma extensão de glossário com base no [http://semantic-mediawiki.org MediaWiki Semântico]',
+	'semanticglossary-browsertitle' => 'Glossário',
+	'semanticglossary-deleteselected' => 'Eliminar as seleccionadas',
+	'semanticglossary-savechanges' => 'Gravar alterações',
+	'semanticglossary-createnew' => 'Criar termo novo',
+	'semanticglossary-termsdefined' => 'Os termos definidos na wiki são os seguintes:',
+	'semanticglossary-notermsdefined' => 'Neste momento não existe nenhum termo definido na wiki.',
+	'semanticglossary-enternewterm' => 'Pode introduzir um termo novo e a sua definição aqui:',
+	'semanticglossary-messageheader' => 'Mensagens:',
+	'semanticglossary-storedtermdefinedinarticle' => 'O termo "$1" foi definido originalmente na página [[$2]]. A definição foi alterada conforme pedido, por agora. No entanto, logo que a página original seja novamente editada, a definição da página original terá precedência.',
+	'semanticglossary-deletedtermdefinedinarticle' => 'O termo "$1" foi definido originalmente na página [[$2]]. A definição foi eliminada conforme pedido, por agora. No entanto, logo que a página original seja novamente editada, a definição da página original terá precedência.',
+	'semanticglossary-termdeleted' => '$1 foi eliminado.',
+	'semanticglossary-termchanged' => '$1 foi alterado.',
+	'semanticglossary-termadded' => '$1 foi adicionado.',
+	'semanticglossary-storedtermdefinedtwice' => 'A página [[$1]] contém mais do que uma propriedade com o nome $2. Não serão armazenados dados para o termo "$3".',
+	'semanticglossary-termdefinedtwice' => 'A página [[$1]] contém mais do que um termo ou definição. As entradas não ficarão disponíveis no glossário.',
+	'semanticglossary-brokensession' => 'A operação não é permitida. Os dados da sessão estão danificados.',
+	'semanticglossary-norights' => 'A operação não é permitida. Não tem a permissão necessária.',
+	'semanticglossary-prop-glt' => 'Glossário-Termo',
+	'semanticglossary-prop-gld' => 'Glossário-Definição',
+	'semanticglossary-prop-gll' => 'Glossário-Link',
+);
+
 /** Russian (Русский)
  * @author Lockal
  * @author Ичи
