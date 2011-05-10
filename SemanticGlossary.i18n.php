@@ -92,6 +92,9 @@ $messages['ar'] = array(
 $messages['be-tarask'] = array(
 	'semanticglossary-desc' => 'Пашырэньне-глясарый з выкарыстаньнем [http://semantic-mediawiki.org Semantic MediaWiki]',
 	'semanticglossary-browsertitle' => 'Глясарый',
+	'semanticglossary-deleteselected' => 'Выдаліць выбраныя',
+	'semanticglossary-savechanges' => 'Захаваць зьмены',
+	'semanticglossary-createnew' => 'Стварыць новы тэрмін',
 );
 
 /** Bengali (বাংলা)
