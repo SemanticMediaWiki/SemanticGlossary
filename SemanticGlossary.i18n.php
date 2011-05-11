@@ -37,6 +37,7 @@ $messages['en'] = array(
 );
 
 /** Message documentation (Message documentation)
+ * @author EugeneZelenko
  * @author F.trott
  * @author Purodha
  */
@@ -45,6 +46,7 @@ $messages['qqq'] = array(
 	'semanticglossary-deleteselected' => 'This is the label of a button.',
 	'semanticglossary-savechanges' => 'This is the label of a button.',
 	'semanticglossary-createnew' => 'This is the label of a button.',
+	'semanticglossary-messageheader' => '{{Identical|Message}}',
 	'semanticglossary-prop-glt' => 'This is the name of a [http://semantic-mediawiki.org/wiki/Property property] in the sense of [http://semantic-mediawiki.org/ Semantic MediaWiki].',
 	'semanticglossary-prop-gld' => 'This is the name of a [http://semantic-mediawiki.org/wiki/Property property] in the sense of [http://semantic-mediawiki.org/ Semantic MediaWiki].',
 	'semanticglossary-prop-gll' => 'This is the name of a [http://semantic-mediawiki.org/wiki/Property property] in the sense of [http://semantic-mediawiki.org/ Semantic MediaWiki].',
@@ -95,6 +97,11 @@ $messages['be-tarask'] = array(
 	'semanticglossary-deleteselected' => 'Выдаліць выбраныя',
 	'semanticglossary-savechanges' => 'Захаваць зьмены',
 	'semanticglossary-createnew' => 'Стварыць новы тэрмін',
+	'semanticglossary-termsdefined' => 'Гэта тэрміны, вызначаныя ў {{GRAMMAR:месны|{{SITENAME}}}}:',
+	'semanticglossary-notermsdefined' => 'Няма тэрмінаў вызначаных у {{GRAMMAR:месны|{{SITENAME}}}}.',
+	'semanticglossary-enternewterm' => 'Тут Вы можаце ўвесьці новы тэрмін і вызначэньне:',
+	'semanticglossary-messageheader' => 'Паведамленьні:',
+	'semanticglossary-storedtermdefinedinarticle' => 'Тэрмін «$1» першапачаткова быў вызначаны на старонцы [[$2]]. Вызначэньне было зьмененае ў адпаведнасьці з цяперашнімі ўмовамі. Тым ня менш, пасьля новага рэдагаваньня пачатковай старонкі, вызначэньне будзе прыярытэтным.',
 );
 
 /** Bengali (বাংলা)
