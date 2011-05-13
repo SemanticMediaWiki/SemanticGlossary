@@ -102,6 +102,17 @@ $messages['be-tarask'] = array(
 	'semanticglossary-enternewterm' => 'Тут Вы можаце ўвесьці новы тэрмін і вызначэньне:',
 	'semanticglossary-messageheader' => 'Паведамленьні:',
 	'semanticglossary-storedtermdefinedinarticle' => 'Тэрмін «$1» першапачаткова быў вызначаны на старонцы [[$2]]. Вызначэньне было зьмененае ў адпаведнасьці з цяперашнімі ўмовамі. Тым ня менш, пасьля новага рэдагаваньня пачатковай старонкі, вызначэньне будзе прыярытэтным.',
+	'semanticglossary-deletedtermdefinedinarticle' => 'Тэрмін «$1» першапачаткова быў вызначаны на старонцы [[$2]]. Вызначэньне было выдаленае ў адпаведнасьці з цяперашнімі ўмовамі. Тым ня менш, пасьля новага рэдагаваньня пачатковай старонкі, вызначэньне будзе прыярытэтным.',
+	'semanticglossary-termdeleted' => '$1 выдалены.',
+	'semanticglossary-termchanged' => '$1 зьменены.',
+	'semanticglossary-termadded' => '$1 дададзены.',
+	'semanticglossary-storedtermdefinedtwice' => 'Старонка [[$1]] утрымлівае больш чым адну ўласьцівасьць з назвай $2. Зьвесткі для тэрміну «$3» ня будуць захаваныя.',
+	'semanticglossary-termdefinedtwice' => 'Старонка [[$1]] утрымлівае больш чым адзін тэрмін і/ці больш чым адно вызначэньне. Уведзеныя зьвесткі ня будуць даступныя для глясарыя.',
+	'semanticglossary-brokensession' => 'Дзеяньне не дазволенае. Пашкоджаныя зьвесткі пра сэсію.',
+	'semanticglossary-norights' => 'Дзеяньне не дазволенае. Недастаткова правоў.',
+	'semanticglossary-prop-glt' => 'Глясарый-Тэрмін',
+	'semanticglossary-prop-gld' => 'Глясарый-Вызначэньне',
+	'semanticglossary-prop-gll' => 'Глясарый-Спасылка',
 );
 
 /** Bengali (বাংলা)
@@ -515,20 +526,26 @@ $messages['pt'] = array(
 
 /** Russian (Русский)
  * @author Lockal
+ * @author Александр Сигачёв
  * @author Ичи
  */
 $messages['ru'] = array(
+	'semanticglossary-desc' => 'Расширение-глоссарий на основе [http://semantic-mediawiki.org Semantic MediaWiki]',
 	'semanticglossary-browsertitle' => 'Глоссарий',
 	'semanticglossary-deleteselected' => 'Удалить выбранные',
 	'semanticglossary-savechanges' => 'Сохранить изменения',
 	'semanticglossary-createnew' => 'Создать новый термин',
 	'semanticglossary-termsdefined' => 'Это термины, определяемые в вики:',
+	'semanticglossary-notermsdefined' => 'Сейчас в вики нет определений.',
 	'semanticglossary-enternewterm' => 'Здесь вы можете ввести новый термин и определение:',
 	'semanticglossary-messageheader' => 'Сообщения:',
 	'semanticglossary-storedtermdefinedinarticle' => 'Термин «$1» был первоначально определён на странице [[$2]]. Определение было изменено в соответствии с текущими требованиями. Однако, после следующего редактирования, определение будет приоритетным.',
+	'semanticglossary-deletedtermdefinedinarticle' => 'Термин «$1» был первоначально определён на странице [[$2]]. Определение было удалено в соответствии с текущими требованиями. Однако, после следующего редактирования исходной страницы, определение с той страницы снова станет приоритетным.',
 	'semanticglossary-termdeleted' => 'Термин $1 удалён.',
 	'semanticglossary-termchanged' => 'Термин $1 изменён.',
 	'semanticglossary-termadded' => 'Добавлен термин $1.',
+	'semanticglossary-storedtermdefinedtwice' => 'Страницы [[$1]] содержит более одного свойства с именем $2. Данные для термина «$3» не будут храниться.',
+	'semanticglossary-termdefinedtwice' => 'Страница [[$1]] содержит более одного термина и/или более одного определения. Записи не будут доступны в глоссарии.',
 	'semanticglossary-brokensession' => 'Действие не допускается. Данные сессии повреждены.',
 	'semanticglossary-norights' => 'Действие не допускается. Недостаточно прав.',
 	'semanticglossary-prop-glt' => 'Глоссарий-Термин',
