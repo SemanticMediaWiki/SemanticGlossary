@@ -5,16 +5,32 @@
 
 $specialPageAliases = array();
 
-/** English
- * @author F.trott
- */
+/** English (English) */
 $specialPageAliases['en'] = array(
-        'SemanticGlossaryBrowser' => array( 'Glossary' ),
+	'SemanticGlossaryBrowser' => array( 'Glossary' ),
 );
 
-/** German (Deutsch)
- * @author F.trott
- */
-$specialPageAliases['de'] = array(
-        'SemanticGlossaryBrowser' => array( 'Glossar' ),
+/** Arabic (العربية) */
+$specialPageAliases['ar'] = array(
+	'SemanticGlossaryBrowser' => array( 'قاموس' ),
 );
+
+/** German (Deutsch) */
+$specialPageAliases['de'] = array(
+	'SemanticGlossaryBrowser' => array( 'Glossar' ),
+);
+
+/** Macedonian (Македонски) */
+$specialPageAliases['mk'] = array(
+	'SemanticGlossaryBrowser' => array( 'Поимник' ),
+);
+
+/** Dutch (Nederlands) */
+$specialPageAliases['nl'] = array(
+	'SemanticGlossaryBrowser' => array( 'Woordenlijst' ),
+);
+
+/**
+ * For backwards compatibility with MediaWiki 1.15 and earlier.
+ */
+$aliases =& $specialPageAliases;
