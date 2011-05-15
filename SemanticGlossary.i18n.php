@@ -252,6 +252,7 @@ $messages['fr'] = array(
  * @author Toliño
  */
 $messages['gl'] = array(
+	'semanticglossary-desc' => 'Unha extensión de glosario baseada en [http://semantic-mediawiki.org Semantic MediaWiki]',
 	'semanticglossary-browsertitle' => 'Glosario',
 	'semanticglossary-deleteselected' => 'Eliminar o seleccionado',
 	'semanticglossary-savechanges' => 'Gardar os cambios',
@@ -260,9 +261,15 @@ $messages['gl'] = array(
 	'semanticglossary-notermsdefined' => 'Actualmente non existen termos definidos no wiki.',
 	'semanticglossary-enternewterm' => 'Pode introducir un novo termo e definición aquí:',
 	'semanticglossary-messageheader' => 'Mensaxes:',
+	'semanticglossary-storedtermdefinedinarticle' => 'O termo "$1" conta coa definición orixinal na páxina "[[$2]]". A definición foi modificada conforme o necesitado polo de agora. Con todo, así como a páxina orixinal sufra unha nova edición, a definición alí terá prioridade.',
+	'semanticglossary-deletedtermdefinedinarticle' => 'O termo "$1" conta coa definición orixinal na páxina "[[$2]]". A definición foi eliminada conforme o necesitado polo de agora. Con todo, así como a páxina orixinal sufra unha nova edición, a definición alí terá prioridade.',
 	'semanticglossary-termdeleted' => '$1 borrado.',
 	'semanticglossary-termchanged' => '$1 modificado.',
 	'semanticglossary-termadded' => '$1 engadido.',
+	'semanticglossary-storedtermdefinedtwice' => 'A páxina "[[$1]]" contén máis dunha propiedade chamada "$2". Non se han almacenar datos para o termo "$3".',
+	'semanticglossary-termdefinedtwice' => 'A páxina "[[$1]]" contén máis dun termo e/ou máis dunha definición. As entradas non estarán dispoñibles para o glosario.',
+	'semanticglossary-brokensession' => 'Acción non permitida. Datos de sesión incorrectos.',
+	'semanticglossary-norights' => 'Acción non permitida. Dereitos insuficientes.',
 	'semanticglossary-prop-glt' => 'Termo do glosario',
 	'semanticglossary-prop-gld' => 'Definición do glosario',
 	'semanticglossary-prop-gll' => 'Ligazón do glosario',
@@ -402,6 +409,7 @@ $messages['lb'] = array(
 	'semanticglossary-termdeleted' => '$1 ass geläscht.',
 	'semanticglossary-termchanged' => '$1 ass geännert.',
 	'semanticglossary-termadded' => '$1 gouf derbäigesat.',
+	'semanticglossary-prop-glt' => 'Begrëff am Glossaire',
 	'semanticglossary-prop-gld' => 'Glossaire-Definitioun',
 	'semanticglossary-prop-gll' => 'Glossaire-Link',
 );
