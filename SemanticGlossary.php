@@ -116,20 +116,15 @@ define( 'SG_PROP_GLL', 'Glossary-Link' );
 
 
 function SemanticGlossaryRegisterProperties () {
-//	SMWPropertyValue::registerProperty( '___glt', '_str', false , true );
-//	SMWPropertyValue::registerProperty( '___gld', '_txt', false , true );
-//	SMWPropertyValue::registerProperty( '___gll', '_str', false , true );
-
-	SMWPropertyValue::registerProperty( '___glt', '_str', SG_PROP_GLT, true );
-	SMWPropertyValue::registerProperty( '___gld', '_txt', SG_PROP_GLD, true );
-	SMWPropertyValue::registerProperty( '___gll', '_str', SG_PROP_GLL, true );
-
+	SMWDIProperty::registerProperty( '___glt', '_str', SG_PROP_GLT, true );
+	SMWDIProperty::registerProperty( '___gld', '_txt', SG_PROP_GLD, true );
+	SMWDIProperty::registerProperty( '___gll', '_str', SG_PROP_GLL, true );
 	return true;
 }
 
 function SemanticGlossaryRegisterPropertyAliases () {
-	SMWPropertyValue::registerPropertyAlias( '___glt', wfMsg( 'semanticglossary-prop-glt' ) );
-	SMWPropertyValue::registerPropertyAlias( '___gld', wfMsg( 'semanticglossary-prop-gld' ) );
-	SMWPropertyValue::registerPropertyAlias( '___gll', wfMsg( 'semanticglossary-prop-gll' ) );
+	SMWDIProperty::registerPropertyAlias( '___glt', wfMsg( 'semanticglossary-prop-glt' ) );
+	SMWDIProperty::registerPropertyAlias( '___gld', wfMsg( 'semanticglossary-prop-gld' ) );
+	SMWDIProperty::registerPropertyAlias( '___gll', wfMsg( 'semanticglossary-prop-gll' ) );
 	return true;
 }

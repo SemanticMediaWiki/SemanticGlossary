@@ -30,10 +30,15 @@ class SemanticGlossaryParser {
 	 */
 	static function parse( &$parser, &$text ) {
 
+		wfProfileIn( __METHOD__ );
+
 		$sl = new SemanticGlossaryParser();
 		$sl -> realParse( $parser, $text );
 
+		wfProfileOut( __METHOD__ );
+
 		return true;
+
 	}
 
 	/**
@@ -45,10 +50,12 @@ class SemanticGlossaryParser {
 
 		global $smwgQDefaultNamespaces;
 
+		wfProfileIn( __METHOD__ );
+
 		$store = smwfGetStore(); // default store
 
 		// Create query
-		$desc = new SMWSomeProperty(SMWPropertyValue::makeProperty( '___glt'  ), new SMWThingDescription());
+		$desc = new SMWSomeProperty(new SMWDIProperty( '___glt' ), new SMWThingDescription());
 		$desc -> addPrintRequest(new SMWPrintRequest( SMWPrintRequest::PRINT_PROP, null, SMWPropertyValue::makeProperty( '___glt'  ) ));
 		$desc -> addPrintRequest(new SMWPrintRequest( SMWPrintRequest::PRINT_PROP, null, SMWPropertyValue::makeProperty( '___gld'  ) ));
 		$desc -> addPrintRequest(new SMWPrintRequest( SMWPrintRequest::PRINT_PROP, null, SMWPropertyValue::makeProperty( '___gll'  ) ));
@@ -93,7 +100,7 @@ class SemanticGlossaryParser {
 				continue;
 			}
 
-			$source = $subject -> getDBkeys();
+			$source = array( $subject->getDBkey(), $subject->getNamespace(), $subject->getInterwiki(), $subject->getDBkey() );
 
 			if ( array_key_exists( $term, $result ) ) {
 				$result[ $term ] -> addDefinition( $definition, $link, $source );
@@ -101,6 +108,8 @@ class SemanticGlossaryParser {
 				$result[ $term ] = new SemanticGlossaryElement( $term, $definition, $link, $source );
 			}
 		}
+
+		wfProfileOut( __METHOD__ );
 
 		return $result;
 	}
@@ -117,6 +126,8 @@ class SemanticGlossaryParser {
 	protected function realParse( &$parser, &$text ) {
 
 		global $wgRequest, $sggSettings;
+
+		wfProfileIn( __METHOD__ );
 
 		$action = $wgRequest -> getVal( 'action', 'view' );
 		if ( $text == null || $text == '' || $action == "edit" || $action == "ajax" || isset( $_POST[ 'wpPreview' ] ) )
@@ -149,7 +160,7 @@ class SemanticGlossaryParser {
 
 		for ( $pos = 0; $pos < $nb; $pos++ ) {
 
-			$el = &$elements -> item( $pos );
+			$el = $elements -> item( $pos );
 
 			if ( strlen( $el -> nodeValue ) < $min )
 				continue;
@@ -201,6 +212,8 @@ class SemanticGlossaryParser {
 			$text = $doc -> saveHTML();
 			$this -> loadModules( $parser );
 		}
+
+		wfProfileOut( __METHOD__ );
 
 		return true;
 	}

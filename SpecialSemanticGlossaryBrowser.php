@@ -251,15 +251,18 @@ class SpecialSemanticGlossaryBrowser extends SpecialPage {
 				) {
 
 					$this -> updateData( $page, array(
-						'___glt' => $newTerm,
-						'___gld' => $newDefinition,
-						'___gll' => $newLink,
+						'___glt' => ($newTerm ? new SMWDIString( $newTerm ) : null),
+						'___gld' => ($newDefinition ? new SMWDIBlob( $newDefinition ) : null),
+						'___gll' => ($newLink ? new SMWDIString( $newLink ) : null)
 						) );
 
 					// issue a warning if the original definition is on a real page
-					if ( $page -> getArticleID() != 0 ) {
-						$this -> mMessages -> addMessage( wfMsg( 'semanticglossary-storedtermdefinedinarticle', array( $oldTerm, $page -> getPrefixedText() ) )
-							, SemanticGlossaryMessageLog::SG_WARNING
+
+					$title = $page -> getTitle();
+					if ( $title -> isKnown() ) {
+						$this -> mMessages -> addMessage(
+							wfMsg( 'semanticglossary-storedtermdefinedinarticle', array( $oldTerm, $title -> getPrefixedText() ) ),
+							SemanticGlossaryMessageLog::SG_WARNING
 						);
 					} else {
 						$this -> mMessages -> addMessage( wfMsg( 'semanticglossary-termchanged', array( $oldTerm ) ), SemanticGlossaryMessageLog::SG_NOTICE );
@@ -283,22 +286,13 @@ class SpecialSemanticGlossaryBrowser extends SpecialPage {
 		$newDefinition = $wgRequest -> getText( 'newdefinition' );
 		$newLink = $wgRequest -> getText( 'newlink' );
 
-		$termNumber = 1;
-
-		// find unused SMW page
-		do {
-			$page = SMWWikiPageValue::makePage( "GlossaryTerm#$termNumber", 0 );
-			$termNumber++;
-		} while ( count( smwfGetStore() -> getProperties( $page ) ) > 0 );
+		$page = $this -> findNextPageName();
 
 		// store data
 		$this -> updateData( $page, array(
-			'___glt' => $newTerm,
-			'___gld' => $newDefinition,
-			'___gll' => $newLink,
-//			wfMsg( 'semanticglossary-prop-glt' ) => $newTerm,
-//			wfMsg( 'semanticglossary-prop-gld' ) => $newDefinition,
-//			wfMsg( 'semanticglossary-prop-gll' ) => $newLink,
+			'___glt' => ($newTerm ? new SMWDIString( $newTerm ) : null),
+			'___gld' => ($newDefinition ? new SMWDIBlob( $newDefinition ) : null),
+			'___gll' => ($newLink ? new SMWDIString( $newLink ) : null)
 			) );
 
 		$this -> mMessages -> addMessage( wfMsg( 'semanticglossary-termadded', array( $newTerm ) ), SemanticGlossaryMessageLog::SG_NOTICE );
@@ -327,14 +321,14 @@ class SpecialSemanticGlossaryBrowser extends SpecialPage {
 					'___gll' => null,
 					) );
 
-				$title = $page -> getTitle();
-
 				$oldTerm = $wgRequest -> getVal( $pageString . ':term' );
 
-				if ( $title && $title -> exists() ) {
+				$title = $page -> getTitle();
+				if ( $title && $title -> isKnown() ) {
 
-					$this -> mMessages -> addMessage( wfMsg( 'semanticglossary-deletedtermdefinedinarticle', array( $oldTerm, $page -> getPrefixedText() ) )
-						, SemanticGlossaryMessageLog::SG_WARNING
+					$this -> mMessages -> addMessage(
+						wfMsg( 'semanticglossary-deletedtermdefinedinarticle', array( $oldTerm, $title -> getPrefixedText() ) ),
+						SemanticGlossaryMessageLog::SG_WARNING
 					);
 				} else {
 					$this -> mMessages -> addMessage( wfMsg( 'semanticglossary-termdeleted', array( $oldTerm ) ), SemanticGlossaryMessageLog::SG_NOTICE );
@@ -345,12 +339,12 @@ class SpecialSemanticGlossaryBrowser extends SpecialPage {
 
 	protected function getPropertyFromData ( SMWSemanticData &$pageData, $propertyName ) {
 
-		$property = SMWPropertyValue::makeProperty( $propertyName );
+		$property = new SMWDIProperty( $propertyName );
 		$propertyValues = $pageData -> getPropertyValues( $property );
 
 		if ( count( $propertyValues ) == 1 ) {
 
-			return $propertyValues[ 0 ] -> getShortWikiText();
+			return $propertyValues[ 0 ] -> getString();
 		} else if ( count( $propertyValues ) > 1 ) {
 
 			if ( count( $propertyValues ) > 1 ) {
@@ -371,10 +365,43 @@ class SpecialSemanticGlossaryBrowser extends SpecialPage {
 		preg_match( '/^(.*):(.*):(.*)$/', $pageString, $matches );
 
 		// create SMWWikiPageValue (SMW's wiki page representation)
-		return SMWWikiPageValue::makePage( $matches[ 3 ], $matches[ 2 ], '', $matches[ 1 ] );
+		return new SMWDIWikiPage( $matches[ 3 ], $matches[ 2 ], $matches[ 1 ] );
 	}
 
-	protected function updateData ( SMWWikiPageValue &$page, array $data ) {
+	// find unused SMW page
+	protected function findNextPageName () {
+
+		$termPages = smwfGetStore() -> getAllPropertySubjects( new SMWDIProperty( '___glt' ) );
+		$defPages = smwfGetStore() -> getAllPropertySubjects( new SMWDIProperty( '___gld' ) );
+		$linkPages = smwfGetStore() -> getAllPropertySubjects( new SMWDIProperty( '___gll' ) );
+
+		$pages = array( );
+
+		foreach ( $termPages as $page ) {
+			$pages[ $page -> getDBkey() ] = $page -> getDBkey();
+		}
+
+		foreach ( $defPages as $page ) {
+			$pages[ $page -> getDBkey() ] = $page -> getDBkey();
+		}
+
+		foreach ( $linkPages as $page ) {
+			$pages[ $page -> getDBkey() ] = $page -> getDBkey();
+		}
+
+		$termNumber = count( $pages );
+
+
+		while ( array_key_exists( "GlossaryTerm#$termNumber", $pages ) ) {
+			$termNumber++;
+		}
+
+		return new SMWDIWikiPage( "GlossaryTerm#$termNumber", NS_MAIN, '' );
+
+		exit ();
+	}
+
+	protected function updateData ( SMWDIWikiPage &$page, array $data ) {
 
 		$newData = new SMWSemanticData( $page, false );
 
@@ -384,16 +411,15 @@ class SpecialSemanticGlossaryBrowser extends SpecialPage {
 		// get properties, replace as requested, retain other properties
 		foreach ( $oldProps as $property ) {
 
-			$propertyID = $property -> getPropertyID();
+			$propertyID = $property -> getKey();
 
 			if ( array_key_exists( $propertyID, $data ) ) {
-
 
 				// set new data if defined, else ignore property (i.e. delete property from page)
 				if ( $data[ $propertyID ] != null ) {
 
-					$value = SMWDataValueFactory::newPropertyObjectValue( $property, $data[ $propertyID ] );
-					$newData -> addPropertyObjectValue( $property, $value );
+//					$value = SMWDataValueFactory::newPropertyObjectValue( $property, $data[ $propertyID ] );
+					$newData -> addPropertyObjectValue( $property, $data[ $propertyID ] );
 				}
 
 				unset( $data[ $propertyID ] );
@@ -413,9 +439,9 @@ class SpecialSemanticGlossaryBrowser extends SpecialPage {
 			// set new data if defined, else ignore property (i.e. do not set property on this page)
 			if ( $data[ $propertyID ] != null ) {
 
-				$property = SMWPropertyValue::makeProperty( $propertyID );
-				$value = SMWDataValueFactory::newPropertyObjectValue( $property, $data[ $propertyID ] );
-				$newData -> addPropertyObjectValue( $property, $value );
+				$property = new SMWDIProperty( $propertyID );
+//				$value = SMWDataValueFactory::newPropertyObjectValue( $property, $data[ $propertyID ] );
+				$newData -> addPropertyObjectValue( $property, $data[ $propertyID ] );
 			}
 
 			unset( $data[ $propertyID ] );
