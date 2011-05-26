@@ -152,7 +152,7 @@ class SemanticGlossaryParser {
 
 		//Find all text in HTML.
 		$xpath = new DOMXpath( $doc );
-		$elements = $xpath -> query( "//*[not(ancestor::*[@class='noglossary'])][text()!=' ']/text()" );
+		$elements = $xpath -> query( "//*[not(ancestor-or-self::*[@class='noglossary'] or ancestor-or-self::a)][text()!=' ']/text()" );
 
 		//Iterate all HTML text matches
 		$nb = $elements -> length;

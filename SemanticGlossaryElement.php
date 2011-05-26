@@ -85,9 +85,8 @@ class SemanticGlossaryElement {
 
 	private function getLinkTemplate ( DOMDocument &$doc ) {
 		
-		// create template if it doesnot yet exist
-		// FIXME: Is it safe to use a singleton here?
-		if ( !self::$mLinkTemplate ) {
+		// create template if it does not yet exist
+		if ( !self::$mLinkTemplate || ( self::$mLinkTemplate -> ownerDocument !== $doc ) ) {
 
 			global $wgScriptPath;
 
