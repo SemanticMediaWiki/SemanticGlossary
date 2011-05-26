@@ -28,7 +28,7 @@ class SemanticGlossaryParser {
 	 * @param $text
 	 * @return Boolean
 	 */
-	static function parse( &$parser, &$text ) {
+	static function parse ( &$parser, &$text ) {
 
 		wfProfileIn( __METHOD__ );
 
@@ -38,7 +38,6 @@ class SemanticGlossaryParser {
 		wfProfileOut( __METHOD__ );
 
 		return true;
-
 	}
 
 	/**
@@ -46,19 +45,18 @@ class SemanticGlossaryParser {
 	 * 
 	 * @return Array an array mapping terms (keys) to descriptions (values)
 	 */
-	function getGlossaryArray( SemanticGlossaryMessageLog &$messages = null ) {
+	function getGlossaryArray ( SemanticGlossaryMessageLog &$messages = null ) {
 
 		global $smwgQDefaultNamespaces;
 
 		wfProfileIn( __METHOD__ );
 
 		$store = smwfGetStore(); // default store
-
 		// Create query
-		$desc = new SMWSomeProperty(new SMWDIProperty( '___glt' ), new SMWThingDescription());
-		$desc -> addPrintRequest(new SMWPrintRequest( SMWPrintRequest::PRINT_PROP, null, SMWPropertyValue::makeProperty( '___glt'  ) ));
-		$desc -> addPrintRequest(new SMWPrintRequest( SMWPrintRequest::PRINT_PROP, null, SMWPropertyValue::makeProperty( '___gld'  ) ));
-		$desc -> addPrintRequest(new SMWPrintRequest( SMWPrintRequest::PRINT_PROP, null, SMWPropertyValue::makeProperty( '___gll'  ) ));
+		$desc = new SMWSomeProperty( new SMWDIProperty( '___glt' ), new SMWThingDescription() );
+		$desc -> addPrintRequest( new SMWPrintRequest( SMWPrintRequest::PRINT_PROP, null, SMWPropertyValue::makeProperty( '___glt' ) ) );
+		$desc -> addPrintRequest( new SMWPrintRequest( SMWPrintRequest::PRINT_PROP, null, SMWPropertyValue::makeProperty( '___gld' ) ) );
+		$desc -> addPrintRequest( new SMWPrintRequest( SMWPrintRequest::PRINT_PROP, null, SMWPropertyValue::makeProperty( '___gll' ) ) );
 
 		$query = new SMWQuery( $desc, true, false );
 		$query -> querymode = SMWQuery::MODE_INSTANCES;
@@ -93,14 +91,14 @@ class SemanticGlossaryParser {
 
 				if ( $messages ) {
 					$messages -> addMessage(
-						wfMsg('semanticglossary-termdefinedtwice', array($subject -> getPrefixedText())),
+						wfMsg( 'semanticglossary-termdefinedtwice', array( $subject -> getPrefixedText() ) ),
 						SemanticGlossaryMessageLog::SG_WARNING );
 				}
 
 				continue;
 			}
 
-			$source = array( $subject->getDBkey(), $subject->getNamespace(), $subject->getInterwiki(), $subject->getDBkey() );
+			$source = array( $subject -> getDBkey(), $subject -> getNamespace(), $subject -> getInterwiki(), $subject -> getDBkey() );
 
 			if ( array_key_exists( $term, $result ) ) {
 				$result[ $term ] -> addDefinition( $definition, $link, $source );
@@ -123,7 +121,7 @@ class SemanticGlossaryParser {
 	 * @param $text
 	 * @return Boolean
 	 */
-	protected function realParse( &$parser, &$text ) {
+	protected function realParse ( &$parser, &$text ) {
 
 		global $wgRequest, $sggSettings;
 
@@ -144,11 +142,10 @@ class SemanticGlossaryParser {
 //		var_export($text);
 		//Parse HTML from page
 //		$doc = new DOMDocument();
-////		@$doc -> loadHTML( '<html><meta http-equiv="content-type" content="charset=utf-8"/>' . $text . '</html>' );
+//		@$doc -> loadHTML( '<html><meta http-equiv="content-type" content="charset=utf-8"/>' . $text . '</html>' );
 //		$doc -> loadHTML( $text );
-
-		// this works in PHP 5.3.3. What about 5.1?
-		$doc = @DOMDocument::loadHTML($text);
+		// FIXME: this works in PHP 5.3.3. What about 5.1?
+		$doc = @DOMDocument::loadHTML( $text );
 
 		//Find all text in HTML.
 		$xpath = new DOMXpath( $doc );
@@ -167,7 +164,7 @@ class SemanticGlossaryParser {
 
 			//Split node text into words, putting offset and text into $offsets[0] array
 //			preg_match_all( "/\b[^\b\s\.,;:]+/", $el -> nodeValue, $offsets, PREG_OFFSET_CAPTURE );
-			preg_match_all( "/[^\s$sggSettings->punctuationCharacters]+/", $el -> nodeValue, $offsets, PREG_OFFSET_CAPTURE );
+			preg_match_all( "/[^\s{$sggSettings -> punctuationCharacters}]+/", $el -> nodeValue, $offsets, PREG_OFFSET_CAPTURE );
 
 			//Search and replace words in reverse order (from end of string backwards),
 			//This way we don't mess up the offsets of the words as we iterate
@@ -209,7 +206,13 @@ class SemanticGlossaryParser {
 
 		if ( $changed ) {
 			$body = $xpath -> query( '/html/body' );
-			$text = $doc -> saveHTML();
+//			$text = $doc -> saveXML( $body -> item( 0 ) );
+
+			$text = '';
+			foreach ( $body -> item( 0 ) -> childNodes as $child ) {
+				$text .= $doc -> saveXML( $child );
+			}
+
 			$this -> loadModules( $parser );
 		}
 
@@ -218,7 +221,7 @@ class SemanticGlossaryParser {
 		return true;
 	}
 
-	protected function loadModules( &$parser ) {
+	protected function loadModules ( &$parser ) {
 
 		global $wgOut, $wgScriptPath;
 
