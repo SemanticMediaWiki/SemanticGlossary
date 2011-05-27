@@ -91,7 +91,7 @@ class SemanticGlossaryParser {
 
 				if ( $messages ) {
 					$messages -> addMessage(
-						wfMsg( 'semanticglossary-termdefinedtwice', array( $subject -> getPrefixedText() ) ),
+						wfMsg( 'semanticglossary-termdefinedtwice', array( $subject -> getTitle() -> getPrefixedText() ) ),
 						SemanticGlossaryMessageLog::SG_WARNING );
 				}
 

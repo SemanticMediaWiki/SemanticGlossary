@@ -52,9 +52,12 @@ class SemanticGlossaryElement {
 			foreach ( $this -> mDefinitions as $definition ) {
 				$element = $doc -> createElement( 'span', html_entity_decode( $definition[ self::SG_DEFINITION ], ENT_COMPAT, 'UTF-8' ) . ' ' );
 				if ( $definition[ self::SG_LINK ] ) {
-					$link = $this -> getLinkTemplate( $doc );
-					$link -> setAttribute( 'href', Title::newFromText( $definition[ self::SG_LINK ] ) -> getFullURL() );
-					$element -> appendChild( $link );
+					$linkedTitle = Title::newFromText( $definition[ self::SG_LINK ] );
+					if ( $linkedTitle ) {
+						$link = $this -> getLinkTemplate( $doc );
+						$link -> setAttribute( 'href', $linkedTitle -> getFullURL() );
+						$element -> appendChild( $link );
+					}
 				}
 				$this -> mFullDefinition -> appendChild( $element );
 			}
