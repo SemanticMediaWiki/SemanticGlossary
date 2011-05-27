@@ -248,6 +248,19 @@ $messages['fr'] = array(
 	'semanticglossary-prop-gll' => 'Lien du glossaire',
 );
 
+/** Franco-Provençal (Arpetan)
+ * @author ChrisPtDe
+ */
+$messages['frp'] = array(
+	'semanticglossary-browsertitle' => 'Glossèro',
+	'semanticglossary-deleteselected' => 'Suprimar lo chouèx',
+	'semanticglossary-savechanges' => 'Sôvar los changements',
+	'semanticglossary-createnew' => 'Fâre un mot novél',
+	'semanticglossary-messageheader' => 'Mèssâjos :',
+	'semanticglossary-termdeleted' => '$1 suprimâ.',
+	'semanticglossary-termchanged' => '$1 changiê.',
+);
+
 /** Galician (Galego)
  * @author Toliño
  */
