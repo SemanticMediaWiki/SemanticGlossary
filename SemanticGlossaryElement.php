@@ -50,7 +50,7 @@ class SemanticGlossaryElement {
 			$this -> mFullDefinition = $doc -> createElement( 'span' );
 
 			foreach ( $this -> mDefinitions as $definition ) {
-				$element = $doc -> createElement( 'span', $definition[ self::SG_DEFINITION ] . ' ' );
+				$element = $doc -> createElement( 'span', html_entity_decode( $definition[ self::SG_DEFINITION ], ENT_COMPAT, 'UTF-8' ) . ' ' );
 				if ( $definition[ self::SG_LINK ] ) {
 					$link = $this -> getLinkTemplate( $doc );
 					$link -> setAttribute( 'href', Title::newFromText( $definition[ self::SG_LINK ] ) -> getFullURL() );

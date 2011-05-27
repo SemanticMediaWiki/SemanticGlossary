@@ -139,13 +139,11 @@ class SemanticGlossaryParser {
 		//Get the minimum length abbreviation so we don't bother checking against words shorter than that
 		$min = min( array_map( 'strlen', array_keys( $terms ) ) );
 
-//		var_export($text);
 		//Parse HTML from page
-//		$doc = new DOMDocument();
-//		@$doc -> loadHTML( '<html><meta http-equiv="content-type" content="charset=utf-8"/>' . $text . '</html>' );
-//		$doc -> loadHTML( $text );
 		// FIXME: this works in PHP 5.3.3. What about 5.1?
-		$doc = @DOMDocument::loadHTML( $text );
+		wfSuppressWarnings();
+		$doc = DOMDocument::loadHTML( '<html><meta http-equiv="content-type" content="charset=utf-8"/>' . $text . '</html>' );
+		wfRestoreWarnings();
 
 		//Find all text in HTML.
 		$xpath = new DOMXpath( $doc );
@@ -182,11 +180,11 @@ class SemanticGlossaryParser {
 					$afterMatchNode = $doc -> createTextNode( substr( $el -> nodeValue, $offset[ 1 ] + strlen( $offset[ 0 ] ), strlen( $el -> nodeValue ) - 1 ) );
 
 					//Wrap abbreviation in <span> tags
-					$span = @$doc -> createElement( 'span' );
+					$span = $doc -> createElement( 'span' );
 					$span -> setAttribute( 'class', "tooltip" );
 
 					//Wrap abbreviation in <span> tags, hidden
-					$spanAbr = @$doc -> createElement( 'span', $offset[ 0 ] );
+					$spanAbr = $doc -> createElement( 'span', $offset[ 0 ] );
 					$spanAbr -> setAttribute( 'class', "tooltip_abbr" );
 
 					//Wrap definition in <span> tags, hidden
