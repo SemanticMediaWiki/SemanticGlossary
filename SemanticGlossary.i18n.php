@@ -259,6 +259,10 @@ $messages['frp'] = array(
 	'semanticglossary-messageheader' => 'Mèssâjos :',
 	'semanticglossary-termdeleted' => '$1 suprimâ.',
 	'semanticglossary-termchanged' => '$1 changiê.',
+	'semanticglossary-termadded' => '$1 apondu.',
+	'semanticglossary-prop-glt' => 'Mot du glossèro',
+	'semanticglossary-prop-gld' => 'Dèfinicion du glossèro',
+	'semanticglossary-prop-gll' => 'Lim du glossèro',
 );
 
 /** Galician (Galego)
