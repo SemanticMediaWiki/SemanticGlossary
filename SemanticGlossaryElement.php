@@ -67,10 +67,10 @@ class SemanticGlossaryElement {
 		return key( $this -> mDefinitions );
 	}
 
-//	public function getTerm ( $key ) {
-//		return $this -> mDefinitions[ $key ][ self::SG_TERM ];
-//	}
-//
+	public function getTerm ( $key ) {
+		return $this -> mDefinitions[ $key ][ self::SG_TERM ];
+	}
+
 	public function getSource ( &$key ) {
 		return $this -> mDefinitions[ $key ][ self::SG_SOURCE ];
 	}

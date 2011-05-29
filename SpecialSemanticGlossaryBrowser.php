@@ -418,7 +418,6 @@ class SpecialSemanticGlossaryBrowser extends SpecialPage {
 				// set new data if defined, else ignore property (i.e. delete property from page)
 				if ( $data[ $propertyID ] != null ) {
 
-//					$value = SMWDataValueFactory::newPropertyObjectValue( $property, $data[ $propertyID ] );
 					$newData -> addPropertyObjectValue( $property, $data[ $propertyID ] );
 				}
 
@@ -440,7 +439,6 @@ class SpecialSemanticGlossaryBrowser extends SpecialPage {
 			if ( $data[ $propertyID ] != null ) {
 
 				$property = new SMWDIProperty( $propertyID );
-//				$value = SMWDataValueFactory::newPropertyObjectValue( $property, $data[ $propertyID ] );
 				$newData -> addPropertyObjectValue( $property, $data[ $propertyID ] );
 			}
 

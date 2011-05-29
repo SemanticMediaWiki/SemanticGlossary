@@ -35,7 +35,6 @@ class SemanticGlossaryParser {
 	static function parse ( &$parser, &$text ) {
 
 		wfProfileIn( __METHOD__ );
-//		echo( __METHOD__ );
 
 		if ( !self::$parserSingleton ) {
 			self::$parserSingleton = new SemanticGlossaryParser();
@@ -157,7 +156,6 @@ class SemanticGlossaryParser {
 			$this -> mGlossaryTree -> addTerm( $term, $elementData );
 		}
 
-		var_export($this->mGlossaryTree);
 		wfProfileOut( __METHOD__ );
 	}
 
@@ -175,7 +173,6 @@ class SemanticGlossaryParser {
 		global $wgRequest, $sggSettings;
 
 		wfProfileIn( __METHOD__ );
-//		echo( __METHOD__ );
 
 		$action = $wgRequest -> getVal( 'action', 'view' );
 
@@ -192,16 +189,13 @@ class SemanticGlossaryParser {
 
 		// Get array of terms
 		$glossary = $this -> getGlossaryTree();
-//
-//		if ( empty( $terms ) ) {
+
 		if ( $glossary == null ) {
 
 			wfProfileOut( __METHOD__ );
 			return true;
 		}
 
-		//Get the minimum length abbreviation so we don't bother checking against words shorter than that
-//		$min = min( array_map( 'strlen', array_keys( $terms ) ) );
 		//Parse HTML from page
 		// FIXME: this works in PHP 5.3.3. What about 5.1?
 		wfProfileIn( __METHOD__ . " 1 loadHTML" );
@@ -249,15 +243,11 @@ class SemanticGlossaryParser {
 			$index = 0;
 			$changedElem = false;
 
-//			echo("\nrealParse: nodeValue: {$el->nodeValue}\n");
 			while ( $index < $countLexemes ) {
 
 				wfProfileIn( __METHOD__ . " 4 findNextTerm" );
 				list( $skipped, $used, $definition ) = $glossary -> findNextTerm( $lexemes, $index, $countLexemes );
 				wfProfileOut( __METHOD__ . " 4 findNextTerm" );
-
-//				echo("realParse: skipped: $skipped  used: $used\n");
-//				var_export($definition);
 
 				wfProfileIn( __METHOD__ . " 5 insert" );
 				if ( $used > 0 ) { // found a term
@@ -331,66 +321,10 @@ class SemanticGlossaryParser {
 				$changedDoc = true;
 			}
 
-			//Split node text into words, putting offset and text into $offsets[0] array
-//			preg_match_all(
-//				"/[^\s{$sggSettings -> punctuationCharacters}]+/",
-//				$el -> nodeValue,
-//				$offsets,
-//				PREG_OFFSET_CAPTURE
-//			);
-//
-//			var_export($offsets);
-//
-//			//Search and replace words in reverse order (from end of string backwards),
-//			//This way we don't mess up the offsets of the words as we iterate
-//			$len = count( $offsets[ 0 ] );
-//
-//			for ( $i = $len - 1; $i >= 0; $i-- ) {
-//
-//				$offset = $offsets[ 0 ][ $i ];
-//
-//				//Check if word is an abbreviation from the terminologies
-//				if ( !is_numeric( $offset[ 0 ] ) && isset( $terms[ $offset[ 0 ] ] ) ) {
-//					//Word matches, replace with appropriate span tag
-//
-//					$changed = true;
-//
-//					$beforeMatchNode = $doc -> createTextNode(
-//							substr( $el -> nodeValue, 0, $offset[ 1 ] )
-//					);
-//
-//					$afterMatchNode = $doc -> createTextNode(
-//							substr( $el -> nodeValue,
-//								$offset[ 1 ] + strlen( $offset[ 0 ] ),
-//								strlen( $el -> nodeValue ) - 1 )
-//					);
-//
-//					//Wrap abbreviation in <span> tags
-//					$span = $doc -> createElement( 'span' );
-//					$span -> setAttribute( 'class', "tooltip" );
-//
-//					//Wrap abbreviation in <span> tags, hidden
-//					$spanAbr = $doc -> createElement( 'span', $offset[ 0 ] );
-//					$spanAbr -> setAttribute( 'class', "tooltip_abbr" );
-//
-//					//Wrap definition in <span> tags, hidden
-//					$spanTip = $terms[ $offset[ 0 ] ] -> getFullDefinition( $doc );
-//					$spanTip -> setAttribute( 'class', "tooltip_tip" );
-//
-//					$el -> parentNode -> insertBefore( $beforeMatchNode, $el );
-//					$el -> parentNode -> insertBefore( $span, $el );
-//					$span -> appendChild( $spanAbr );
-//					$span -> appendChild( $spanTip );
-//					$el -> parentNode -> insertBefore( $afterMatchNode, $el );
-//					$el -> parentNode -> removeChild( $el );
-//					$el = $beforeMatchNode; //Set new element to the text before the match for next iteration
-//				}
-//			}
 		}
 
 		if ( $changedDoc ) {
 			$body = $xpath -> query( '/html/body' );
-//			$text = $doc -> saveXML( $body -> item( 0 ) );
 
 			$text = '';
 			foreach ( $body -> item( 0 ) -> childNodes as $child ) {

@@ -56,7 +56,6 @@ class SemanticGlossaryMessageLog {
 
 		foreach ( $this -> mMessages as $message ) {
 			if ( $message[ 1 ] <= $severity ) {
-//				$ret .= Html::element( 'li', null, $message[ 0 ] );
 				$ret .= "* " . $message[ 0 ] . "\n";
 			}
 		}
