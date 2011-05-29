@@ -157,6 +157,7 @@ class SemanticGlossaryParser {
 			$this -> mGlossaryTree -> addTerm( $term, $elementData );
 		}
 
+		var_export($this->mGlossaryTree);
 		wfProfileOut( __METHOD__ );
 	}
 
@@ -235,7 +236,7 @@ class SemanticGlossaryParser {
 
 			wfProfileIn( __METHOD__ . " 3 lexer" );
 			$matches = array( );
-			preg_match_all( '/[[:alpha:]]+|[^[:alpha:]]/', $el -> nodeValue, $matches, PREG_OFFSET_CAPTURE | PREG_PATTERN_ORDER );
+			preg_match_all( '/[[:alpha:]]+|[^[:alpha:]]/u', $el -> nodeValue, $matches, PREG_OFFSET_CAPTURE | PREG_PATTERN_ORDER );
 			wfProfileOut( __METHOD__ . " 3 lexer" );
 
 			if ( count( $matches ) == 0 || count( $matches[ 0 ] ) == 0 ) {

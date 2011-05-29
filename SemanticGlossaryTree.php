@@ -39,7 +39,7 @@ class SemanticGlossaryTree {
 		}
 
 		$matches;
-		preg_match_all( '/[[:alpha:]]+|[^[:alpha:]]/', $term, $matches );
+		preg_match_all( '/[[:alpha:]]+|[^[:alpha:]]/u', $term, $matches );
 
 		$this -> addElement( $matches[ 0 ], $definition );
 
