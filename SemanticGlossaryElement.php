@@ -19,38 +19,35 @@ if ( !defined( 'SG_VERSION' ) ) {
  * @ingroup SemanticGlossary
  */
 class SemanticGlossaryElement {
+	const SG_TERM = 0;
 	const SG_DEFINITION = 1;
 	const SG_SOURCE = 2;
 	const SG_LINK = 3;
 
-	private $mTerm;
 	private $mFullDefinition = null;
 	private $mDefinitions = array( );
 	static private $mLinkTemplate = null;
 
-	public function __construct ( $term=null, $definition=null, $link=null, $source=null ) {
-		$this -> mTerm = $term;
-		$this -> addDefinition( $definition, $link, $source );
+	public function __construct ( &$definition=null ) {
+		if ( $definition ) {
+			$this -> addDefinition( $definition );
+		}
 	}
 
-	public function addDefinition ( $definition=null, $link=null, $source=null ) {
+	public function addDefinition ( &$definition ) {
 
-		$this -> mDefinitions[ ] = array(
-			self::SG_DEFINITION => $definition,
-			self::SG_SOURCE => $source,
-			self::SG_LINK => $link,
-		);
+			$this ->mDefinitions[] = $definition;
 	}
 
 	public function getFullDefinition ( DOMDocument &$doc ) {
 
 		// only create if not yet created
-		if ( $this -> mFullDefinition == null ) {
+		if ( $this -> mFullDefinition == null || $this -> mFullDefinition -> ownerDocument !== $doc ) {
 
 			$this -> mFullDefinition = $doc -> createElement( 'span' );
 
 			foreach ( $this -> mDefinitions as $definition ) {
-				$element = $doc -> createElement( 'span', html_entity_decode( $definition[ self::SG_DEFINITION ], ENT_COMPAT, 'UTF-8' ) . ' ' );
+				$element = $doc -> createElement( 'span', htmlentities( $definition[ self::SG_DEFINITION ], ENT_COMPAT, 'UTF-8' ) . ' ' );
 				if ( $definition[ self::SG_LINK ] ) {
 					$linkedTitle = Title::newFromText( $definition[ self::SG_LINK ] );
 					if ( $linkedTitle ) {
@@ -70,15 +67,19 @@ class SemanticGlossaryElement {
 		return key( $this -> mDefinitions );
 	}
 
-	public function getSource ( $key ) {
+//	public function getTerm ( $key ) {
+//		return $this -> mDefinitions[ $key ][ self::SG_TERM ];
+//	}
+//
+	public function getSource ( &$key ) {
 		return $this -> mDefinitions[ $key ][ self::SG_SOURCE ];
 	}
 
-	public function getDefinition ( $key ) {
+	public function getDefinition ( &$key ) {
 		return $this -> mDefinitions[ $key ][ self::SG_DEFINITION ];
 	}
 
-	public function getLink ( $key ) {
+	public function getLink ( &$key ) {
 		return $this -> mDefinitions[ $key ][ self::SG_LINK ];
 	}
 
@@ -87,7 +88,7 @@ class SemanticGlossaryElement {
 	}
 
 	private function getLinkTemplate ( DOMDocument &$doc ) {
-		
+
 		// create template if it does not yet exist
 		if ( !self::$mLinkTemplate || ( self::$mLinkTemplate -> ownerDocument !== $doc ) ) {
 

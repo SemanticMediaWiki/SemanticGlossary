@@ -53,6 +53,7 @@ $wgExtensionMessagesFiles[ 'SemanticGlossaryAlias' ] = $dir . '/SemanticGlossary
 // register class files with the Autoloader
 $wgAutoloadClasses[ 'SemanticGlossarySettings' ] = $dir . '/SemanticGlossarySettings.php';
 $wgAutoloadClasses[ 'SemanticGlossaryParser' ] = $dir . '/SemanticGlossaryParser.php';
+$wgAutoloadClasses[ 'SemanticGlossaryTree' ] = $dir . '/SemanticGlossaryTree.php';
 $wgAutoloadClasses[ 'SemanticGlossaryElement' ] = $dir . '/SemanticGlossaryElement.php';
 $wgAutoloadClasses[ 'SemanticGlossaryMessageLog' ] = $dir . '/SemanticGlossaryMessageLog.php';
 $wgAutoloadClasses[ 'SpecialSemanticGlossaryBrowser' ] = $dir . '/SpecialSemanticGlossaryBrowser.php';

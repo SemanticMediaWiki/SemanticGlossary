@@ -22,6 +22,10 @@ if ( !defined( 'SG_VERSION' ) ) {
  */
 class SemanticGlossaryParser {
 
+	private $mGlossaryArray = null;
+	private $mGlossaryTree = null;
+	private static $parserSingleton = null;
+
 	/**
 	 *
 	 * @param $parser
@@ -31,9 +35,13 @@ class SemanticGlossaryParser {
 	static function parse ( &$parser, &$text ) {
 
 		wfProfileIn( __METHOD__ );
+//		echo( __METHOD__ );
 
-		$sl = new SemanticGlossaryParser();
-		$sl -> realParse( $parser, $text );
+		if ( !self::$parserSingleton ) {
+			self::$parserSingleton = new SemanticGlossaryParser();
+		}
+
+		self::$parserSingleton -> realParse( $parser, $text );
 
 		wfProfileOut( __METHOD__ );
 
@@ -42,14 +50,47 @@ class SemanticGlossaryParser {
 
 	/**
 	 * Returns the list of terms applicable in the current context
-	 * 
+	 *
 	 * @return Array an array mapping terms (keys) to descriptions (values)
 	 */
 	function getGlossaryArray ( SemanticGlossaryMessageLog &$messages = null ) {
 
-		global $smwgQDefaultNamespaces;
+		wfProfileIn( __METHOD__ );
+
+		// build glossary array only once per request
+		if ( !$this -> mGlossaryArray ) {
+			$this -> buildGlossary( $messages );
+		}
+
+		wfProfileOut( __METHOD__ );
+
+		return $this -> mGlossaryArray;
+	}
+
+	/**
+	 * Returns the list of terms applicable in the current context
+	 *
+	 * @return Array an array mapping terms (keys) to descriptions (values)
+	 */
+	function getGlossaryTree ( SemanticGlossaryMessageLog &$messages = null ) {
 
 		wfProfileIn( __METHOD__ );
+
+		// build glossary array only once per request
+		if ( !$this -> mGlossaryTree ) {
+			$this -> buildGlossary( $messages );
+		}
+
+		wfProfileOut( __METHOD__ );
+
+		return $this -> mGlossaryTree;
+	}
+
+	protected function buildGlossary ( SemanticGlossaryMessageLog &$messages = null ) {
+
+		wfProfileIn( __METHOD__ );
+
+		$this -> mGlossaryTree = new SemanticGlossaryTree();
 
 		$store = smwfGetStore(); // default store
 		// Create query
@@ -69,7 +110,7 @@ class SemanticGlossaryParser {
 		$queryresult = $store -> getQueryResult( $query );
 
 		// assemble the result array
-		$result = array( );
+		$this -> mGlossaryArray = array( );
 		while ( ( $resultline = $queryresult -> getNext() ) ) {
 
 			$term = $resultline[ 0 ] -> getNextText( SMW_OUTPUT_HTML );
@@ -98,18 +139,25 @@ class SemanticGlossaryParser {
 				continue;
 			}
 
-			$source = array( $subject -> getDBkey(), $subject -> getNamespace(), $subject -> getInterwiki(), $subject -> getDBkey() );
+			$source = array( $subject -> getDBkey(), $subject -> getNamespace(), $subject -> getInterwiki() );
 
-			if ( array_key_exists( $term, $result ) ) {
-				$result[ $term ] -> addDefinition( $definition, $link, $source );
+			$elementData = array(
+				SemanticGlossaryElement::SG_TERM => $term,
+				SemanticGlossaryElement::SG_DEFINITION => $definition,
+				SemanticGlossaryElement::SG_LINK => $link,
+				SemanticGlossaryElement::SG_SOURCE => $source
+			);
+
+			if ( array_key_exists( $term, $this -> mGlossaryArray ) ) {
+				$this -> mGlossaryArray[ $term ] -> addDefinition( $elementData );
 			} else {
-				$result[ $term ] = new SemanticGlossaryElement( $term, $definition, $link, $source );
+				$this -> mGlossaryArray[ $term ] = new SemanticGlossaryElement( $elementData );
 			}
+
+			$this -> mGlossaryTree -> addTerm( $term, $elementData );
 		}
 
 		wfProfileOut( __METHOD__ );
-
-		return $result;
 	}
 
 	/**
@@ -126,83 +174,220 @@ class SemanticGlossaryParser {
 		global $wgRequest, $sggSettings;
 
 		wfProfileIn( __METHOD__ );
+//		echo( __METHOD__ );
 
 		$action = $wgRequest -> getVal( 'action', 'view' );
-		if ( $text == null || $text == '' || $action == "edit" || $action == "ajax" || isset( $_POST[ 'wpPreview' ] ) )
-			return true;
-		// Get array of terms
-		$terms = $this -> getGlossaryArray();
 
-		if ( empty( $terms ) )
+		if ( $text == null ||
+			$text == '' ||
+			$action == "edit" ||
+			$action == "ajax" ||
+			isset( $_POST[ 'wpPreview' ] )
+		) {
+
+			wfProfileOut( __METHOD__ );
 			return true;
+		}
+
+		// Get array of terms
+		$glossary = $this -> getGlossaryTree();
+//
+//		if ( empty( $terms ) ) {
+		if ( $glossary == null ) {
+
+			wfProfileOut( __METHOD__ );
+			return true;
+		}
 
 		//Get the minimum length abbreviation so we don't bother checking against words shorter than that
-		$min = min( array_map( 'strlen', array_keys( $terms ) ) );
-
+//		$min = min( array_map( 'strlen', array_keys( $terms ) ) );
 		//Parse HTML from page
 		// FIXME: this works in PHP 5.3.3. What about 5.1?
+		wfProfileIn( __METHOD__ . " 1 loadHTML" );
 		wfSuppressWarnings();
-		$doc = DOMDocument::loadHTML( '<html><meta http-equiv="content-type" content="charset=utf-8"/>' . $text . '</html>' );
-		wfRestoreWarnings();
 
+		$doc = DOMDocument::loadHTML(
+				'<html><meta http-equiv="content-type" content="charset=utf-8"/>' . $text . '</html>'
+		);
+
+		wfRestoreWarnings();
+		wfProfileOut( __METHOD__ . " 1 loadHTML" );
+
+		wfProfileIn( __METHOD__ . " 2 xpath" );
 		//Find all text in HTML.
 		$xpath = new DOMXpath( $doc );
-		$elements = $xpath -> query( "//*[not(ancestor-or-self::*[@class='noglossary'] or ancestor-or-self::a)][text()!=' ']/text()" );
+		$elements = $xpath -> query(
+				"//*[not(ancestor-or-self::*[@class='noglossary'] or ancestor-or-self::a)][text()!=' ']/text()"
+		);
+		wfProfileOut( __METHOD__ . " 2 xpath" );
 
 		//Iterate all HTML text matches
 		$nb = $elements -> length;
-		$changed = false;
+		$changedDoc = false;
 
 		for ( $pos = 0; $pos < $nb; $pos++ ) {
 
 			$el = $elements -> item( $pos );
 
-			if ( strlen( $el -> nodeValue ) < $min )
+			if ( strlen( $el -> nodeValue ) < $glossary -> getMinTermLength() ) {
 				continue;
+			}
 
-			//Split node text into words, putting offset and text into $offsets[0] array
-//			preg_match_all( "/\b[^\b\s\.,;:]+/", $el -> nodeValue, $offsets, PREG_OFFSET_CAPTURE );
-			preg_match_all( "/[^\s{$sggSettings -> punctuationCharacters}]+/", $el -> nodeValue, $offsets, PREG_OFFSET_CAPTURE );
+			wfProfileIn( __METHOD__ . " 3 lexer" );
+			$matches = array( );
+			preg_match_all( '/[[:alpha:]]+|[^[:alpha:]]/', $el -> nodeValue, $matches, PREG_OFFSET_CAPTURE | PREG_PATTERN_ORDER );
+			wfProfileOut( __METHOD__ . " 3 lexer" );
 
-			//Search and replace words in reverse order (from end of string backwards),
-			//This way we don't mess up the offsets of the words as we iterate
-			$len = count( $offsets[ 0 ] );
+			if ( count( $matches ) == 0 || count( $matches[ 0 ] ) == 0 ) {
+				continue;
+			}
 
-			for ( $i = $len - 1; $i >= 0; $i-- ) {
+			$lexemes = &$matches[ 0 ];
+			$countLexemes = count( $lexemes );
+			$parent = &$el -> parentNode;
+			$index = 0;
+			$changedElem = false;
 
-				$offset = $offsets[ 0 ][ $i ];
+//			echo("\nrealParse: nodeValue: {$el->nodeValue}\n");
+			while ( $index < $countLexemes ) {
 
-				//Check if word is an abbreviation from the terminologies
-				if ( !is_numeric( $offset[ 0 ] ) && isset( $terms[ $offset[ 0 ] ] ) ) { //Word matches, replace with appropriate span tag
-					$changed = true;
+				wfProfileIn( __METHOD__ . " 4 findNextTerm" );
+				list( $skipped, $used, $definition ) = $glossary -> findNextTerm( $lexemes, $index, $countLexemes );
+				wfProfileOut( __METHOD__ . " 4 findNextTerm" );
 
-					$beforeMatchNode = $doc -> createTextNode( substr( $el -> nodeValue, 0, $offset[ 1 ] ) );
-					$afterMatchNode = $doc -> createTextNode( substr( $el -> nodeValue, $offset[ 1 ] + strlen( $offset[ 0 ] ), strlen( $el -> nodeValue ) - 1 ) );
+//				echo("realParse: skipped: $skipped  used: $used\n");
+//				var_export($definition);
+
+				wfProfileIn( __METHOD__ . " 5 insert" );
+				if ( $used > 0 ) { // found a term
+					if ( $skipped > 0 ) { // skipped some text, insert it as is
+
+						$parent -> insertBefore(
+							$doc -> createTextNode(
+								substr( $el -> nodeValue,
+									$currLexIndex = $lexemes[ $index ][ 1 ],
+									$lexemes[ $index + $skipped ][ 1 ] - $currLexIndex )
+							),
+							$el
+						);
+					}
+
+					$index += $skipped;
 
 					//Wrap abbreviation in <span> tags
 					$span = $doc -> createElement( 'span' );
 					$span -> setAttribute( 'class', "tooltip" );
 
 					//Wrap abbreviation in <span> tags, hidden
-					$spanAbr = $doc -> createElement( 'span', $offset[ 0 ] );
-					$spanAbr -> setAttribute( 'class', "tooltip_abbr" );
+					$lastLex = $lexemes[ $index + $used - 1 ];
+					$spanTerm = $doc -> createElement( 'span',
+							substr( $el -> nodeValue,
+								$currLexIndex = $lexemes[ $index ][ 1 ],
+								$lastLex[ 1 ] - $currLexIndex + strlen( $lastLex[ 0 ] ) )
+					);
+					$spanTerm -> setAttribute( 'class', "tooltip_abbr" );
 
 					//Wrap definition in <span> tags, hidden
-					$spanTip = $terms[ $offset[ 0 ] ] -> getFullDefinition( $doc );
-					$spanTip -> setAttribute( 'class', "tooltip_tip" );
+					$spanDefinition = $definition -> getFullDefinition( $doc );
+					$spanDefinition -> setAttribute( 'class', "tooltip_tip" );
 
-					$el -> parentNode -> insertBefore( $beforeMatchNode, $el );
-					$el -> parentNode -> insertBefore( $span, $el );
-					$span -> appendChild( $spanAbr );
-					$span -> appendChild( $spanTip );
-					$el -> parentNode -> insertBefore( $afterMatchNode, $el );
-					$el -> parentNode -> removeChild( $el );
-					$el = $beforeMatchNode; //Set new element to the text before the match for next iteration
+					// insert term and definition
+					$span -> appendChild( $spanTerm );
+					$span -> appendChild( $spanDefinition );
+					$parent -> insertBefore( $span, $el );
+
+					$changedElem = true;
+				} else { // did not find term, just use the rest of the text
+					// If we found no term now and no term before, there was no
+					// term in the whole element. Might as well not change the
+					// element at all.
+					// Only change element if found term before
+					if ( $changedElem ) {
+						$parent -> insertBefore(
+							$doc -> createTextNode(
+								substr( $el -> nodeValue, $lexemes[ $index ][ 1 ] )
+							),
+							$el
+						);
+					} else {
+
+						wfProfileOut( __METHOD__ . " 5 insert" );
+						// In principle superfluous, the loop would run out
+						// anyway. Might save a bit of time.
+						break;
+					}
+
+					$index += $skipped;
 				}
+				wfProfileOut( __METHOD__ . " 5 insert" );
+
+
+				$index += $used;
 			}
+
+			if ( $changedElem ) {
+				$parent -> removeChild( $el );
+				$changedDoc = true;
+			}
+
+			//Split node text into words, putting offset and text into $offsets[0] array
+//			preg_match_all(
+//				"/[^\s{$sggSettings -> punctuationCharacters}]+/",
+//				$el -> nodeValue,
+//				$offsets,
+//				PREG_OFFSET_CAPTURE
+//			);
+//
+//			var_export($offsets);
+//
+//			//Search and replace words in reverse order (from end of string backwards),
+//			//This way we don't mess up the offsets of the words as we iterate
+//			$len = count( $offsets[ 0 ] );
+//
+//			for ( $i = $len - 1; $i >= 0; $i-- ) {
+//
+//				$offset = $offsets[ 0 ][ $i ];
+//
+//				//Check if word is an abbreviation from the terminologies
+//				if ( !is_numeric( $offset[ 0 ] ) && isset( $terms[ $offset[ 0 ] ] ) ) {
+//					//Word matches, replace with appropriate span tag
+//
+//					$changed = true;
+//
+//					$beforeMatchNode = $doc -> createTextNode(
+//							substr( $el -> nodeValue, 0, $offset[ 1 ] )
+//					);
+//
+//					$afterMatchNode = $doc -> createTextNode(
+//							substr( $el -> nodeValue,
+//								$offset[ 1 ] + strlen( $offset[ 0 ] ),
+//								strlen( $el -> nodeValue ) - 1 )
+//					);
+//
+//					//Wrap abbreviation in <span> tags
+//					$span = $doc -> createElement( 'span' );
+//					$span -> setAttribute( 'class', "tooltip" );
+//
+//					//Wrap abbreviation in <span> tags, hidden
+//					$spanAbr = $doc -> createElement( 'span', $offset[ 0 ] );
+//					$spanAbr -> setAttribute( 'class', "tooltip_abbr" );
+//
+//					//Wrap definition in <span> tags, hidden
+//					$spanTip = $terms[ $offset[ 0 ] ] -> getFullDefinition( $doc );
+//					$spanTip -> setAttribute( 'class', "tooltip_tip" );
+//
+//					$el -> parentNode -> insertBefore( $beforeMatchNode, $el );
+//					$el -> parentNode -> insertBefore( $span, $el );
+//					$span -> appendChild( $spanAbr );
+//					$span -> appendChild( $spanTip );
+//					$el -> parentNode -> insertBefore( $afterMatchNode, $el );
+//					$el -> parentNode -> removeChild( $el );
+//					$el = $beforeMatchNode; //Set new element to the text before the match for next iteration
+//				}
+//			}
 		}
 
-		if ( $changed ) {
+		if ( $changedDoc ) {
 			$body = $xpath -> query( '/html/body' );
 //			$text = $doc -> saveXML( $body -> item( 0 ) );
 
@@ -219,7 +404,9 @@ class SemanticGlossaryParser {
 		return true;
 	}
 
-	protected function loadModules ( &$parser ) {
+	protected
+
+	function loadModules ( &$parser ) {
 
 		global $wgOut, $wgScriptPath;
 
@@ -240,3 +427,4 @@ class SemanticGlossaryParser {
 	}
 
 }
+
