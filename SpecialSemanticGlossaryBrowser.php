@@ -73,8 +73,7 @@ class SpecialSemanticGlossaryBrowser extends SpecialPage {
 		foreach ( $glossaryarray as $term => $glossaryElement ) {
 			// One term may have several definitions. Include them all.
 			while ( ( $key = $glossaryElement->getCurrentKey() ) !== null ) {
-				$sourceArray = $glossaryElement->getSource( $key );
-				$source = $sourceArray[2] . ':' . $sourceArray[1] . ':' . $sourceArray[0];
+				$source = $glossaryElement->getSource( $key );
 				$definition = $glossaryElement->getDefinition( $key );
 				$link = $glossaryElement->getLink( $key );
 

@@ -35,7 +35,7 @@ define( 'SG_VERSION', '0.1 alpha' );
 $wgExtensionCredits[defined( 'SEMANTIC_EXTENSION_TYPE' ) ? 'semantic' : 'other'][] = array(
 	'path' => __FILE__,
 	'name' => 'Semantic Glossary',
-	'author' => '[http://www.mediawiki.org/wiki/User:F.trott Stephan Gambke]',
+	'author' => '[[mw:User:F.trott|Stephan Gambke]]',
 	'url' => 'http://www.mediawiki.org/wiki/Extension:Semantic_Glossary',
 	'descriptionmsg' => 'semanticglossary-desc',
 	'version' => SG_VERSION,
@@ -53,6 +53,7 @@ $wgAutoloadClasses['SemanticGlossarySettings'] = $dir . '/SemanticGlossarySettin
 $wgAutoloadClasses['SemanticGlossaryParser'] = $dir . '/SemanticGlossaryParser.php';
 $wgAutoloadClasses['SemanticGlossaryTree'] = $dir . '/SemanticGlossaryTree.php';
 $wgAutoloadClasses['SemanticGlossaryElement'] = $dir . '/SemanticGlossaryElement.php';
+$wgAutoloadClasses['SemanticGlossaryBackend'] = $dir . '/SemanticGlossaryBackend.php';
 $wgAutoloadClasses['SemanticGlossaryMessageLog'] = $dir . '/SemanticGlossaryMessageLog.php';
 $wgAutoloadClasses['SpecialSemanticGlossaryBrowser'] = $dir . '/SpecialSemanticGlossaryBrowser.php';
 
@@ -95,9 +96,6 @@ $wgResourceModules['ext.SemanticGlossary.Browser'] = array(
 
 // Create new permission 'editglossary' and assign it to usergroup 'user' by default
 $wgGroupPermissions['user']['editglossary'] = true;
-
-// create and initialize settings object
-$sggSettings = new SemanticGlossarySettings();
 
 /**
  * Handler for late setup of Semantic Glossary
