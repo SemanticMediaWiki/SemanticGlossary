@@ -24,7 +24,7 @@ if ( !defined( 'SG_VERSION' ) ) {
  */
 class SemanticGlossaryTree {
 
-	private $mTree = array( );
+	private $mTree = array();
 	private $mDefinition = null;
 	private $mMinLength = -1;
 
@@ -32,8 +32,7 @@ class SemanticGlossaryTree {
 	 * Adds a string to the Glossary Tree
 	 * @param String $term
 	 */
-	function addTerm ( &$term, $definition ) {
-
+	function addTerm( &$term, $definition ) {
 		if ( !$term ) {
 			return;
 		}
@@ -41,37 +40,33 @@ class SemanticGlossaryTree {
 		$matches;
 		preg_match_all( '/[[:alpha:]]+|[^[:alpha:]]/u', $term, $matches );
 
-		$this -> addElement( $matches[ 0 ], $definition );
+		$this->addElement( $matches[0], $definition );
 
-		if ( $this -> mMinLength > -1 ) {
-			$this -> mMinLength = min( array( $this -> mMinLength, strlen( $term ) ) );
+		if ( $this->mMinLength > -1 ) {
+			$this->mMinLength = min( array( $this->mMinLength, strlen( $term ) ) );
 		} else {
-			$this -> mMinLength = strlen( $term );
+			$this->mMinLength = strlen( $term );
 		}
 	}
 
 	/**
-	 * 	Recursively adds an element to the Glossary Tree
+	 * Recursively adds an element to the Glossary Tree
 	 *
 	 * @param array $path
 	 * @param <type> $index
 	 */
-	protected function addElement ( Array &$path, &$definition ) {
-
+	protected function addElement( Array &$path, &$definition ) {
 		// end of path, store description; end of recursion
 		if ( $path == null ) {
-
 			$this -> addDefinition( $definition );
 		} else {
-
 			$step = array_shift( $path );
 
-			if ( !array_key_exists( $step, $this -> mTree ) ) {
-
-				$this -> mTree[ $step ] = new SemanticGlossaryTree();
+			if ( !array_key_exists( $step, $this->mTree ) ) {
+				$this->mTree[$step] = new SemanticGlossaryTree();
 			}
 
-			$this -> mTree[ $step ] -> addElement( $path, $definition );
+			$this->mTree[$step]->addElement( $path, $definition );
 		}
 	}
 
@@ -79,21 +74,19 @@ class SemanticGlossaryTree {
 	 * Adds a defintion to the treenodes list of definitions
 	 * @param <type> $definition
 	 */
-	protected function addDefinition ( &$definition ) {
-
-		if ( $this -> mDefinition ) {
-			$this -> mDefinition -> addDefinition( $definition );
+	protected function addDefinition( &$definition ) {
+		if ( $this->mDefinition ) {
+			$this->mDefinition->addDefinition( $definition );
 		} else {
-			$this -> mDefinition = new SemanticGlossaryElement( $definition );
+			$this->mDefinition = new SemanticGlossaryElement( $definition );
 		}
 	}
 
-	function getMinTermLength () {
-		return $this -> mMinLength;
+	function getMinTermLength() {
+		return $this->mMinLength;
 	}
 
-	function findNextTerm ( &$lexemes, $index, $countLexemes ) {
-
+	function findNextTerm( &$lexemes, $index, $countLexemes ) {
 		wfProfileIn( __METHOD__ );
 
 		$start = $lastindex = $index;
@@ -101,13 +94,11 @@ class SemanticGlossaryTree {
 
 		// skip until ther start of a term is found
 		while ( $index < $countLexemes && !$definition ) {
-
-			$currLex = &$lexemes[ $index ][ 0 ];
+			$currLex = &$lexemes[$index][0];
 			
 			// Did we find the start of a term?
-			if ( array_key_exists( $currLex, $this -> mTree ) ) {
-
-				list( $lastindex, $definition) = $this -> mTree[ $currLex ] -> findNextTermNoSkip( $lexemes, $index, $countLexemes );
+			if ( array_key_exists( $currLex, $this->mTree ) ) {
+				list( $lastindex, $definition ) = $this->mTree[$currLex]->findNextTermNoSkip( $lexemes, $index, $countLexemes );
 			}
 
 			// this will increase the index even if we found something;
@@ -123,15 +114,13 @@ class SemanticGlossaryTree {
 		}
 	}
 
-	function findNextTermNoSkip ( &$lexemes, $index, $countLexemes ) {
+	function findNextTermNoSkip( &$lexemes, $index, $countLexemes ) {
 		wfProfileIn( __METHOD__ );
 
-		if ( $index + 1 < $countLexemes && array_key_exists( $currLex = $lexemes[ $index + 1 ][ 0 ], $this -> mTree ) ) {
-
-			$ret = $this -> mTree[ $currLex ] -> findNextTermNoSkip( $lexemes, $index + 1, $countLexemes );
+		if ( $index + 1 < $countLexemes && array_key_exists( $currLex = $lexemes[$index + 1][0], $this->mTree ) ) {
+			$ret = $this->mTree[$currLex]->findNextTermNoSkip( $lexemes, $index + 1, $countLexemes );
 		} else {
-
-			$ret = array( $index, &$this -> mDefinition );
+			$ret = array( $index, &$this->mDefinition );
 		}
 		wfProfileOut( __METHOD__ );
 		return $ret;

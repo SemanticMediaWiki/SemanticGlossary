@@ -27,41 +27,36 @@ class SpecialSemanticGlossaryBrowser extends SpecialPage {
 
 	private $mMessages;
 
-	function __construct () {
+	function __construct() {
 		parent::__construct( 'SemanticGlossaryBrowser' );
 		$this -> mMessages = new SemanticGlossaryMessageLog();
 	}
 
-	function execute ( $subpage ) {
-
+	function execute( $subpage ) {
 		global $wgRequest, $wgOut, $wgUser;
 
 		// preparation stuff
-		$this -> setHeaders();
-		$this -> loadModules();
+		$this->setHeaders();
+		$this->loadModules();
 
-		$hasEditRights = $wgUser -> isAllowed( 'editglossary' );
+		$hasEditRights = $wgUser->isAllowed( 'editglossary' );
 
-		if ( $this -> isActionAllowed() ) {
-
-			if ( $wgRequest -> getText( 'submit' ) != null ) {
-
+		if ( $this->isActionAllowed() ) {
+			if ( $wgRequest->getText( 'submit' ) != null ) {
 				// if the form was submitted, store the data
-				$this -> actionStoreData();
-			} else if ( $wgRequest -> getText( 'createnew' ) != null ) {
-
+				$this->actionStoreData();
+			} elseif ( $wgRequest->getText( 'createnew' ) != null ) {
 				// if a new term was defined, create it
-				$this -> actionCreateNewTerm();
-			} else if ( $wgRequest -> getText( 'delete' ) != null ) {
-
+				$this->actionCreateNewTerm();
+			} elseif ( $wgRequest->getText( 'delete' ) != null ) {
 				// if a new term was defined, create it
-				$this -> actionDeleteData();
+				$this->actionDeleteData();
 			}
 		}
 
 		// get the glossary data
 		$parser = new SemanticGlossaryParser();
-		$glossaryarray = $parser -> getGlossaryArray( $this -> mMessages );
+		$glossaryarray = $parser->getGlossaryArray( $this->mMessages );
 
 		// set function to create a table row (textareas when editing is
 		// allowed, else normal text)
@@ -72,23 +67,20 @@ class SpecialSemanticGlossaryBrowser extends SpecialPage {
 		}
 
 		// create HTML fragment for table rows
-
 		$tablerows = '';
 
 		// loop through all terms
 		foreach ( $glossaryarray as $term => $glossaryElement ) {
-
 			// One term may have several definitions. Include them all.
-			while ( ( $key = $glossaryElement -> getCurrentKey() ) !== null ) {
+			while ( ( $key = $glossaryElement->getCurrentKey() ) !== null ) {
+				$sourceArray = $glossaryElement->getSource( $key );
+				$source = $sourceArray[2] . ':' . $sourceArray[1] . ':' . $sourceArray[0];
+				$definition = $glossaryElement->getDefinition( $key );
+				$link = $glossaryElement->getLink( $key );
 
-				$sourceArray = $glossaryElement -> getSource( $key );
-				$source = $sourceArray[ 2 ] . ':' . $sourceArray[ 1 ] . ':' . $sourceArray[ 0 ];
-				$definition = $glossaryElement -> getDefinition( $key );
-				$link = $glossaryElement -> getLink( $key );
+				$tablerows .= $this->$createTableRowMethod( $source, $term, $definition, $link );
 
-				$tablerows .= $this -> $createTableRowMethod( $source, $term, $definition, $link );
-
-				$glossaryElement -> next();
+				$glossaryElement->next();
 			}
 		}
 
@@ -118,14 +110,13 @@ class SpecialSemanticGlossaryBrowser extends SpecialPage {
 		}
 
 		// From here on no more errors should occur. Create list of errors.
-		$errorsFragment = $this -> mMessages -> getMessagesFormatted( SemanticGlossaryMessageLog::SG_NOTICE );
+		$errorsFragment = $this->mMessages->getMessagesFormatted( SemanticGlossaryMessageLog::SG_NOTICE );
 
 		if ( $errorsFragment ) {
 			$errorsFragment .= Html::rawElement( 'hr' );
 		}
 
 		if ( $hasEditRights ) {
-
 			// create form fragment to allow input of a new term
 			$newTermFragment =
 				Html::rawElement( 'hr' ) .
@@ -165,7 +156,6 @@ class SpecialSemanticGlossaryBrowser extends SpecialPage {
 					)
 			);
 		} else {
-
 			// assemble output
 			$output =
 				Html::rawElement( 'div', array( 'class' => 'glossarybrowser' ),
@@ -174,7 +164,7 @@ class SpecialSemanticGlossaryBrowser extends SpecialPage {
 			);
 		}
 
-		$wgOut -> addHTML( $output );
+		$wgOut->addHTML( $output );
 	}
 
 	/**
@@ -183,29 +173,27 @@ class SpecialSemanticGlossaryBrowser extends SpecialPage {
 	 *
 	 * @return String
 	 */
-	function getDescription () {
+	function getDescription() {
 		return wfMsg( 'semanticglossary-browsertitle' );
 	}
 
 	/**
 	 * Loads the CSS file for the GlossaryBrowser Special page
 	 */
-	protected function loadModules () {
-
+	protected function loadModules() {
 		global $wgOut, $wgScriptPath;
 
 		if ( defined( 'MW_SUPPORTS_RESOURCE_MODULES' ) ) {
-			$wgOut -> addModules( 'ext.SemanticGlossary.Browser' );
+			$wgOut->addModules( 'ext.SemanticGlossary.Browser' );
 		} else {
-			$wgOut -> addHeadItem( 'ext.SemanticGlossary.Browser.css', '<link rel="stylesheet" href="' . $wgScriptPath . '/extensions/SemanticGlossary/skins/SemanticGlossaryBrowser.css" />' );
+			$wgOut->addHeadItem( 'ext.SemanticGlossary.Browser.css', '<link rel="stylesheet" href="' . $wgScriptPath . '/extensions/SemanticGlossary/skins/SemanticGlossaryBrowser.css" />' );
 		}
 	}
 
 	/**
 	 * Gets data from wgRequest and stores it
 	 */
-	protected function actionStoreData () {
-
+	protected function actionStoreData() {
 		global $wgRequest;
 
 		// get ass array of input values
@@ -216,139 +204,141 @@ class SpecialSemanticGlossaryBrowser extends SpecialPage {
 
 			// only consider terms here, other parameters are accessed by name
 			if ( substr( $key, -5 ) == ':term' ) {
-
 				// cut off ':term'
 				$pageString = substr( $key, 0, -5 );
 
 				// new data
 				$newTerm = $value;
-				$newDefinition = $inputdata[ $pageString . ':definition' ];
-				$newLink = $inputdata[ $pageString . ':link' ];
+				$newDefinition = $inputdata[$pageString . ':definition'];
+				$newLink = $inputdata[$pageString . ':link'];
 
-				$page = $this -> getPageObjectFromInputName( $pageString );
+				$page = $this->getPageObjectFromInputName( $pageString );
 
 				// get its data
-				$pageData = smwfGetStore() -> getSemanticData( $page );
+				$pageData = smwfGetStore()->getSemanticData( $page );
 
 
 				// get old values
-				$oldTerm = $this -> getPropertyFromData( $pageData, '___glt' );
-				if ( $oldTerm === false )
+				$oldTerm = $this->getPropertyFromData( $pageData, '___glt' );
+				if ( $oldTerm === false ) {
 					continue;
+				}
 
-				$oldDefinition = $this -> getPropertyFromData( $pageData, '___gld' );
-				if ( $oldDefinition === false )
+				$oldDefinition = $this->getPropertyFromData( $pageData, '___gld' );
+				if ( $oldDefinition === false ) {
 					continue;
+				}
 
-				$oldLink = $this -> getPropertyFromData( $pageData, '___gll' );
-				if ( $oldLink === false )
+				$oldLink = $this->getPropertyFromData( $pageData, '___gll' );
+				if ( $oldLink === false ) {
 					continue;
+				}
 
 				// only store data if anything changed
 				if ( $newTerm != $oldTerm ||
 					$newDefinition != $oldDefinition ||
 					$newLink != $oldLink
 				) {
-
 					$this -> updateData( $page, array(
-						'___glt' => ($newTerm ? new SMWDIString( $newTerm ) : null),
-						'___gld' => ($newDefinition ? new SMWDIBlob( $newDefinition ) : null),
-						'___gll' => ($newLink ? new SMWDIString( $newLink ) : null)
+						'___glt' => ( $newTerm ? new SMWDIString( $newTerm ) : null ),
+						'___gld' => ( $newDefinition ? new SMWDIBlob( $newDefinition ) : null ),
+						'___gll' => ( $newLink ? new SMWDIString( $newLink ) : null )
 						) );
 
 					// issue a warning if the original definition is on a real page
-
-					$title = $page -> getTitle();
-					if ( $title -> isKnown() ) {
-						$this -> mMessages -> addMessage(
-							wfMsg( 'semanticglossary-storedtermdefinedinarticle', array( $oldTerm, $title -> getPrefixedText() ) ),
+					$title = $page->getTitle();
+					if ( $title->isKnown() ) {
+						$this->mMessages->addMessage(
+							wfMsg( 'semanticglossary-storedtermdefinedinarticle', array( $oldTerm, $title->getPrefixedText() ) ),
 							SemanticGlossaryMessageLog::SG_WARNING
 						);
 					} else {
-						$this -> mMessages -> addMessage( wfMsg( 'semanticglossary-termchanged', array( $oldTerm ) ), SemanticGlossaryMessageLog::SG_NOTICE );
+						$this->mMessages->addMessage(
+							wfMsg( 'semanticglossary-termchanged', array( $oldTerm ) ),
+							SemanticGlossaryMessageLog::SG_NOTICE
+						);
 					}
 				}
 			}
 		}
 	}
 
-	protected function actionCreateNewTerm () {
-
+	protected function actionCreateNewTerm() {
 		global $wgRequest;
 
-		$newTerm = $wgRequest -> getText( 'newterm' );
+		$newTerm = $wgRequest->getText( 'newterm' );
 
 		if ( $newTerm == null || $newTerm == '' ) {
-			$this -> mMessages -> addMessage( 'Term was empty. Nothing created.', SemanticGlossaryMessageLog::SG_WARNING );
+			$this->mMessages->addMessage( 'Term was empty. Nothing created.', SemanticGlossaryMessageLog::SG_WARNING );
 			return;
 		}
 
-		$newDefinition = $wgRequest -> getText( 'newdefinition' );
-		$newLink = $wgRequest -> getText( 'newlink' );
+		$newDefinition = $wgRequest->getText( 'newdefinition' );
+		$newLink = $wgRequest->getText( 'newlink' );
 
-		$page = $this -> findNextPageName();
+		$page = $this->findNextPageName();
 
 		// store data
 		$this -> updateData( $page, array(
-			'___glt' => ($newTerm ? new SMWDIString( $newTerm ) : null),
-			'___gld' => ($newDefinition ? new SMWDIBlob( $newDefinition ) : null),
-			'___gll' => ($newLink ? new SMWDIString( $newLink ) : null)
+			'___glt' => ( $newTerm ? new SMWDIString( $newTerm ) : null ),
+			'___gld' => ( $newDefinition ? new SMWDIBlob( $newDefinition ) : null ),
+			'___gll' => ( $newLink ? new SMWDIString( $newLink ) : null )
 			) );
 
-		$this -> mMessages -> addMessage( wfMsg( 'semanticglossary-termadded', array( $newTerm ) ), SemanticGlossaryMessageLog::SG_NOTICE );
+		$this->mMessages->addMessage(
+			wfMsg( 'semanticglossary-termadded', array( $newTerm ) ),
+			SemanticGlossaryMessageLog::SG_NOTICE
+		);
 	}
 
-	protected function actionDeleteData () {
-
+	protected function actionDeleteData() {
 		global $wgRequest;
 
 		// get ass array of input values
-		$inputdata = $wgRequest -> getValues();
+		$inputdata = $wgRequest->getValues();
 
 		foreach ( $inputdata as $key => $value ) {
-
 			// only consider checkboxes here
 			if ( substr( $key, -8 ) == ':checked' ) {
-
 				// cut off ':checked'
 				$pageString = substr( $key, 0, -8 );
 
-				$page = $this -> getPageObjectFromInputName( $pageString );
+				$page = $this->getPageObjectFromInputName( $pageString );
 
-				$this -> updateData( $page, array(
+				$this->updateData( $page, array(
 					'___glt' => null,
 					'___gld' => null,
 					'___gll' => null,
-					) );
+				) );
 
-				$oldTerm = $wgRequest -> getVal( $pageString . ':term' );
+				$oldTerm = $wgRequest->getVal( $pageString . ':term' );
 
-				$title = $page -> getTitle();
-				if ( $title && $title -> isKnown() ) {
-
-					$this -> mMessages -> addMessage(
-						wfMsg( 'semanticglossary-deletedtermdefinedinarticle', array( $oldTerm, $title -> getPrefixedText() ) ),
+				$title = $page->getTitle();
+				if ( $title && $title->isKnown() ) {
+					$this->mMessages->addMessage(
+						wfMsg( 'semanticglossary-deletedtermdefinedinarticle', array( $oldTerm, $title->getPrefixedText() ) ),
 						SemanticGlossaryMessageLog::SG_WARNING
 					);
 				} else {
-					$this -> mMessages -> addMessage( wfMsg( 'semanticglossary-termdeleted', array( $oldTerm ) ), SemanticGlossaryMessageLog::SG_NOTICE );
+					$this->mMessages->addMessage(
+						wfMsg( 'semanticglossary-termdeleted', array( $oldTerm ) ),
+						SemanticGlossaryMessageLog::SG_NOTICE
+					);
 				}
 			}
 		}
 	}
 
-	protected function getPropertyFromData ( SMWSemanticData &$pageData, $propertyName ) {
-
+	protected function getPropertyFromData( SMWSemanticData &$pageData, $propertyName ) {
 		$property = new SMWDIProperty( $propertyName );
-		$propertyValues = $pageData -> getPropertyValues( $property );
+		$propertyValues = $pageData->getPropertyValues( $property );
 
 		if ( count( $propertyValues ) == 1 ) {
-
-			return $propertyValues[ 0 ] -> getString();
-		} else if ( count( $propertyValues ) > 1 ) {
-
+			return $propertyValues[0]->getString();
+		} elseif ( count( $propertyValues ) > 1 ) {
 			if ( count( $propertyValues ) > 1 ) {
-				$this -> mMessages -> addMessage( wfMsg( 'semanticglossary-storedtermdefinedtwice', array( $pageData -> getSubject() -> getPrefixedText(), $propertyName, $newTerm ) ),
+				$this->mMessages->addMessage(
+					wfMsg( 'semanticglossary-storedtermdefinedtwice', array( $pageData->getSubject()->getPrefixedText(), $propertyName, $newTerm ) ),
 					SemanticGlossaryMessageLog::SG_ERROR
 				);
 			}
@@ -358,35 +348,33 @@ class SpecialSemanticGlossaryBrowser extends SpecialPage {
 		}
 	}
 
-	protected function getPageObjectFromInputName ( $pageString ) {
-
+	protected function getPageObjectFromInputName( $pageString ) {
 		// split the source string into interwiki reference, namespace and page title
-		$matches = array( );
+		$matches = array();
 		preg_match( '/^(.*):(.*):(.*)$/', $pageString, $matches );
 
 		// create SMWWikiPageValue (SMW's wiki page representation)
-		return new SMWDIWikiPage( $matches[ 3 ], $matches[ 2 ], $matches[ 1 ] );
+		return new SMWDIWikiPage( $matches[3], $matches[2], $matches[1] );
 	}
 
 	// find unused SMW page
-	protected function findNextPageName () {
+	protected function findNextPageName() {
+		$termPages = smwfGetStore()->getAllPropertySubjects( new SMWDIProperty( '___glt' ) );
+		$defPages = smwfGetStore()->getAllPropertySubjects( new SMWDIProperty( '___gld' ) );
+		$linkPages = smwfGetStore()->getAllPropertySubjects( new SMWDIProperty( '___gll' ) );
 
-		$termPages = smwfGetStore() -> getAllPropertySubjects( new SMWDIProperty( '___glt' ) );
-		$defPages = smwfGetStore() -> getAllPropertySubjects( new SMWDIProperty( '___gld' ) );
-		$linkPages = smwfGetStore() -> getAllPropertySubjects( new SMWDIProperty( '___gll' ) );
-
-		$pages = array( );
+		$pages = array();
 
 		foreach ( $termPages as $page ) {
-			$pages[ $page -> getDBkey() ] = $page -> getDBkey();
+			$pages[$page->getDBkey()] = $page->getDBkey();
 		}
 
 		foreach ( $defPages as $page ) {
-			$pages[ $page -> getDBkey() ] = $page -> getDBkey();
+			$pages[$page->getDBkey()] = $page->getDBkey();
 		}
 
 		foreach ( $linkPages as $page ) {
-			$pages[ $page -> getDBkey() ] = $page -> getDBkey();
+			$pages[$page->getDBkey()] = $page->getDBkey();
 		}
 
 		$termNumber = count( $pages );
@@ -398,35 +386,30 @@ class SpecialSemanticGlossaryBrowser extends SpecialPage {
 
 		return new SMWDIWikiPage( "GlossaryTerm#$termNumber", NS_MAIN, '' );
 
-		exit ();
+		exit();
 	}
 
-	protected function updateData ( SMWDIWikiPage &$page, array $data ) {
-
+	protected function updateData( SMWDIWikiPage &$page, array $data ) {
 		$newData = new SMWSemanticData( $page, false );
 
-		$oldData = smwfGetStore() -> getSemanticData( $page );
-		$oldProps = $oldData -> getProperties();
+		$oldData = smwfGetStore()->getSemanticData( $page );
+		$oldProps = $oldData->getProperties();
 
 		// get properties, replace as requested, retain other properties
 		foreach ( $oldProps as $property ) {
-
-			$propertyID = $property -> getKey();
+			$propertyID = $property->getKey();
 
 			if ( array_key_exists( $propertyID, $data ) ) {
-
 				// set new data if defined, else ignore property (i.e. delete property from page)
-				if ( $data[ $propertyID ] != null ) {
-
-					$newData -> addPropertyObjectValue( $property, $data[ $propertyID ] );
+				if ( $data[$propertyID] != null ) {
+					$newData->addPropertyObjectValue( $property, $data[$propertyID] );
 				}
 
-				unset( $data[ $propertyID ] );
+				unset( $data[$propertyID] );
 			} else {
-
-				$values = $oldData -> getPropertyValues( $property );
+				$values = $oldData->getPropertyValues( $property );
 				foreach ( $values as $value ) {
-					$newData -> addPropertyObjectValue( $property, $value );
+					$newData->addPropertyObjectValue( $property, $value );
 				}
 			}
 		}
@@ -434,23 +417,20 @@ class SpecialSemanticGlossaryBrowser extends SpecialPage {
 		// store properties that were not present before, i.e. properties
 		// remaining in $data
 		foreach ( $data as $propertyID => $propertyValue ) {
-
 			// set new data if defined, else ignore property (i.e. do not set property on this page)
-			if ( $data[ $propertyID ] != null ) {
-
+			if ( $data[$propertyID] != null ) {
 				$property = new SMWDIProperty( $propertyID );
-				$newData -> addPropertyObjectValue( $property, $data[ $propertyID ] );
+				$newData -> addPropertyObjectValue( $property, $data[$propertyID] );
 			}
 
-			unset( $data[ $propertyID ] );
+			unset( $data[$propertyID] );
 		}
 
 		// finally store the updated page data
-		smwfGetStore() -> doDataUpdate( $newData );
+		smwfGetStore()->doDataUpdate( $newData );
 	}
 
-	private function createTableRowForEdit ( $source, $term, $definition, $link ) {
-
+	private function createTableRowForEdit( $source, $term, $definition, $link ) {
 		return
 		Html::rawElement( 'tr', array( 'class' => 'row' ),
 			Html::rawElement( 'td', array( 'class' => 'actioncell' ),
@@ -470,8 +450,7 @@ class SpecialSemanticGlossaryBrowser extends SpecialPage {
 		);
 	}
 
-	private function createTableRowForDisplay ( $source, $term, $definition, $link ) {
-
+	private function createTableRowForDisplay( $source, $term, $definition, $link ) {
 		return
 		Html::rawElement( 'tr', array( 'class' => 'row' ),
 			Html::rawElement( 'td', array( 'class' => 'termcell' ), $term ) .
@@ -486,25 +465,33 @@ class SpecialSemanticGlossaryBrowser extends SpecialPage {
 	 * 
 	 * @return Boolean
 	 */
-	private function isActionAllowed () {
-
+	private function isActionAllowed() {
 		global $wgRequest, $wgUser;
 
-		$editTokenWithSalt = $wgRequest -> getText( 'editToken' );
+		$editTokenWithSalt = $wgRequest->getText( 'editToken' );
 		$actionRequested = ( $editTokenWithSalt != null );
 
 		if ( $actionRequested ) { // user wants to perform an action
-			if ( $wgUser -> isAllowed( 'editglossary' ) ) { // user has the necessary right
+			if ( $wgUser->isAllowed( 'editglossary' ) ) { // user has the necessary right
 				$editTokenAndSaltArray = explode( EDIT_TOKEN_SUFFIX, $editTokenWithSalt );
-				$tokenValid = $wgUser -> matchEditTokenNoSuffix( $editTokenAndSaltArray[ 0 ], $editTokenAndSaltArray[ 1 ] );
+				$tokenValid = $wgUser->matchEditTokenNoSuffix(
+					$editTokenAndSaltArray[0],
+					$editTokenAndSaltArray[1]
+				);
 
 				if ( $tokenValid ) { // edit token is valid
 					return true;
 				} else {
-					$this -> mMessages -> addMessage( wfMsg( 'semanticglossary-brokensession' ), SemanticGlossaryMessageLog::SG_ERROR );
+					$this->mMessages->addMessage(
+						wfMsg( 'semanticglossary-brokensession' ),
+						SemanticGlossaryMessageLog::SG_ERROR
+					);
 				}
 			} else {
-				$this -> mMessages -> addMessage( wfMsg( 'semanticglossary-norights' ), SemanticGlossaryMessageLog::SG_ERROR );
+				$this->mMessages->addMessage(
+					wfMsg( 'semanticglossary-norights' ),
+					SemanticGlossaryMessageLog::SG_ERROR
+				);
 			}
 		}
 

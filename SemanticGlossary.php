@@ -31,12 +31,11 @@ if ( !defined( 'SMW_VERSION' ) ) {
  */
 define( 'SG_VERSION', '0.1 alpha' );
 
-
 // register the extension
-$wgExtensionCredits[ defined( 'SEMANTIC_EXTENSION_TYPE' ) ? 'semantic' : 'other' ][ ] = array(
+$wgExtensionCredits[defined( 'SEMANTIC_EXTENSION_TYPE' ) ? 'semantic' : 'other'][] = array(
 	'path' => __FILE__,
 	'name' => 'Semantic Glossary',
-	'author' => array( '[http://www.mediawiki.org/wiki/User:F.trott Stephan Gambke]' ),
+	'author' => '[http://www.mediawiki.org/wiki/User:F.trott Stephan Gambke]',
 	'url' => 'http://www.mediawiki.org/wiki/Extension:Semantic_Glossary',
 	'descriptionmsg' => 'semanticglossary-desc',
 	'version' => SG_VERSION,
@@ -46,33 +45,30 @@ $wgExtensionCredits[ defined( 'SEMANTIC_EXTENSION_TYPE' ) ? 'semantic' : 'other'
 $dir = dirname( __FILE__ );
 
 // register message file
-$wgExtensionMessagesFiles[ 'SemanticGlossary' ] = $dir . '/SemanticGlossary.i18n.php';
-$wgExtensionMessagesFiles[ 'SemanticGlossaryAlias' ] = $dir . '/SemanticGlossary.alias.php';
-
+$wgExtensionMessagesFiles['SemanticGlossary'] = $dir . '/SemanticGlossary.i18n.php';
+$wgExtensionMessagesFiles['SemanticGlossaryAlias'] = $dir . '/SemanticGlossary.alias.php';
 
 // register class files with the Autoloader
-$wgAutoloadClasses[ 'SemanticGlossarySettings' ] = $dir . '/SemanticGlossarySettings.php';
-$wgAutoloadClasses[ 'SemanticGlossaryParser' ] = $dir . '/SemanticGlossaryParser.php';
-$wgAutoloadClasses[ 'SemanticGlossaryTree' ] = $dir . '/SemanticGlossaryTree.php';
-$wgAutoloadClasses[ 'SemanticGlossaryElement' ] = $dir . '/SemanticGlossaryElement.php';
-$wgAutoloadClasses[ 'SemanticGlossaryMessageLog' ] = $dir . '/SemanticGlossaryMessageLog.php';
-$wgAutoloadClasses[ 'SpecialSemanticGlossaryBrowser' ] = $dir . '/SpecialSemanticGlossaryBrowser.php';
-
+$wgAutoloadClasses['SemanticGlossarySettings'] = $dir . '/SemanticGlossarySettings.php';
+$wgAutoloadClasses['SemanticGlossaryParser'] = $dir . '/SemanticGlossaryParser.php';
+$wgAutoloadClasses['SemanticGlossaryTree'] = $dir . '/SemanticGlossaryTree.php';
+$wgAutoloadClasses['SemanticGlossaryElement'] = $dir . '/SemanticGlossaryElement.php';
+$wgAutoloadClasses['SemanticGlossaryMessageLog'] = $dir . '/SemanticGlossaryMessageLog.php';
+$wgAutoloadClasses['SpecialSemanticGlossaryBrowser'] = $dir . '/SpecialSemanticGlossaryBrowser.php';
 
 // register Special pages
-$wgSpecialPages[ 'SemanticGlossaryBrowser' ] = 'SpecialSemanticGlossaryBrowser'; # Tell MediaWiki about the new special page and its class name
-$wgSpecialPageGroups[ 'SemanticGlossaryBrowser' ] = 'other';
+$wgSpecialPages['SemanticGlossaryBrowser'] = 'SpecialSemanticGlossaryBrowser';
+$wgSpecialPageGroups['SemanticGlossaryBrowser'] = 'other';
 
 // register hook handlers
 //$wgHooks['ParserFirstCallInit'][] = 'SemanticGlossarySetup';  // Define a setup function
-$wgHooks[ 'ParserAfterTidy' ][ ] = array( 'SemanticGlossaryParser::parse' );
+$wgHooks['ParserAfterTidy'][] = 'SemanticGlossaryParser::parse';
 
-
-$wgHooks[ 'smwInitProperties' ][] = 'SemanticGlossaryRegisterProperties';
-$wgHooks[ 'smwInitDatatypes'][] = 'SemanticGlossaryRegisterPropertyAliases';
+$wgHooks['smwInitProperties'][] = 'SemanticGlossaryRegisterProperties';
+$wgHooks['smwInitDatatypes'][] = 'SemanticGlossaryRegisterPropertyAliases';
 
 // register resource modules with the Resource Loader
-$wgResourceModules[ 'ext.SemanticGlossary' ] = array(
+$wgResourceModules['ext.SemanticGlossary'] = array(
 	// JavaScript and CSS styles. To combine multiple file, just list them as an array.
 	//'scripts' => 'js/ext.myExtension.js',
 	'styles' => 'css/SemanticGlossary.css',
@@ -91,14 +87,14 @@ $wgResourceModules[ 'ext.SemanticGlossary' ] = array(
 	'remoteExtPath' => 'SemanticGlossary'
 );
 
-$wgResourceModules[ 'ext.SemanticGlossary.Browser' ] = array(
+$wgResourceModules['ext.SemanticGlossary.Browser'] = array(
 	'styles' => 'css/SemanticGlossaryBrowser.css',
 	'localBasePath' => dirname( __FILE__ ),
 	'remoteExtPath' => 'SemanticGlossary'
 );
 
 // Create new permission 'editglossary' and assign it to usergroup 'user' by default
-$wgGroupPermissions[ 'user' ][ 'editglossary' ] = true;
+$wgGroupPermissions['user']['editglossary'] = true;
 
 // create and initialize settings object
 $sggSettings = new SemanticGlossarySettings();
@@ -116,14 +112,14 @@ define( 'SG_PROP_GLD', 'Glossary-Definition' );
 define( 'SG_PROP_GLL', 'Glossary-Link' );
 
 
-function SemanticGlossaryRegisterProperties () {
+function SemanticGlossaryRegisterProperties() {
 	SMWDIProperty::registerProperty( '___glt', '_str', SG_PROP_GLT, true );
 	SMWDIProperty::registerProperty( '___gld', '_txt', SG_PROP_GLD, true );
 	SMWDIProperty::registerProperty( '___gll', '_str', SG_PROP_GLL, true );
 	return true;
 }
 
-function SemanticGlossaryRegisterPropertyAliases () {
+function SemanticGlossaryRegisterPropertyAliases() {
 	SMWDIProperty::registerPropertyAlias( '___glt', wfMsg( 'semanticglossary-prop-glt' ) );
 	SMWDIProperty::registerPropertyAlias( '___gld', wfMsg( 'semanticglossary-prop-gld' ) );
 	SMWDIProperty::registerPropertyAlias( '___gll', wfMsg( 'semanticglossary-prop-gll' ) );
