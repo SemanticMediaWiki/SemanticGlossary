@@ -461,7 +461,7 @@ class SpecialSemanticGlossaryBrowser extends SpecialPage {
 	/**
 	 * Checks if the user wants to perform an action, has the necessary right
 	 * and submitted a valid edit token.
-	 * 
+	 *
 	 * @return Boolean
 	 */
 	private function isActionAllowed() {

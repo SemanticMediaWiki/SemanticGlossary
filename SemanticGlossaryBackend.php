@@ -2,7 +2,7 @@
 
 /**
  * File holding the SemanticGlossaryBackend class
- * 
+ *
  * @author Stephan Gambke
  * @file
  * @ingroup SemanticGlossary

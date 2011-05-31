@@ -2,7 +2,7 @@
 
 /**
  * File holding the SemanticGlossaryTree class
- * 
+ *
  * @author Stephan Gambke
  * @file
  * @ingroup SemanticGlossary
@@ -40,7 +40,7 @@ class SemanticGlossaryTree {
 		$matches;
 		preg_match_all( '/[[:alpha:]]+|[^[:alpha:]]/u', $term, $matches );
 
-		$this->addElement( $matches[0], $definition );
+		$this->addElement( $matches[0], $term, $definition );
 
 		if ( $this->mMinLength > -1 ) {
 			$this->mMinLength = min( array( $this->mMinLength, strlen( $term ) ) );
@@ -55,10 +55,10 @@ class SemanticGlossaryTree {
 	 * @param array $path
 	 * @param <type> $index
 	 */
-	protected function addElement( Array &$path, &$definition ) {
+	protected function addElement( Array &$path, &$term, &$definition ) {
 		// end of path, store description; end of recursion
 		if ( $path == null ) {
-			$this -> addDefinition( $definition );
+			$this -> addDefinition( $term, $definition );
 		} else {
 			$step = array_shift( $path );
 
@@ -66,7 +66,7 @@ class SemanticGlossaryTree {
 				$this->mTree[$step] = new SemanticGlossaryTree();
 			}
 
-			$this->mTree[$step]->addElement( $path, $definition );
+			$this->mTree[$step]->addElement( $path, $term, $definition );
 		}
 	}
 
@@ -74,11 +74,11 @@ class SemanticGlossaryTree {
 	 * Adds a defintion to the treenodes list of definitions
 	 * @param <type> $definition
 	 */
-	protected function addDefinition( &$definition ) {
+	protected function addDefinition( &$term, &$definition ) {
 		if ( $this->mDefinition ) {
 			$this->mDefinition->addDefinition( $definition );
 		} else {
-			$this->mDefinition = new SemanticGlossaryElement( $definition );
+			$this->mDefinition = new SemanticGlossaryElement( $term, $definition );
 		}
 	}
 
@@ -95,7 +95,7 @@ class SemanticGlossaryTree {
 		// skip until ther start of a term is found
 		while ( $index < $countLexemes && !$definition ) {
 			$currLex = &$lexemes[$index][0];
-			
+
 			// Did we find the start of a term?
 			if ( array_key_exists( $currLex, $this->mTree ) ) {
 				list( $lastindex, $definition ) = $this->mTree[$currLex]->findNextTermNoSkip( $lexemes, $index, $countLexemes );

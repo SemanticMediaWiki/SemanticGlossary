@@ -4,7 +4,7 @@
 
 .tooltip {
 	display: inline;
-	position: static;
+	position: relative;
 	cursor: help;
 }
 
@@ -12,28 +12,44 @@
     border-bottom: 1px dotted #bbf;
 }
 
-.tooltip_tip {
+.tooltip_tipwrapper {
     display: none;
 
-	border: 1px solid gray;
-	background-color: white;
-	padding: 0.1em 0.2em 0.1em 0.1em;
+	position: absolute;
+	top: 0;
+	left: 0;
+
+	padding: 1.5em 0 0 2em;
+	width: 20em;
+
+	z-index: 2;
+}
+
+.tooltip_tip {
+	display: block;
+
+	position: relative;
+	top: 0em;
+	left: 0em;
+
+	background-color: #F9F9F9;
+	padding: 0.5em;
 	margin: 0;
 	line-height: 1.2em;
 
-	position: absolute;
-	top: 1.1em;
-	left: 1em;
+	border: 1px solid #aaa;
+
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+
+	-webkit-box-shadow: 3px 3px 3px #888;
+	box-shadow: 3px 3px 3px	#888;
 }
 
 .tooltip_tip span {
 	display: block;
 }
 
-.tooltip:hover {
-	position: relative;
-}
-
-.tooltip:hover .tooltip_tip {
+.tooltip:hover .tooltip_tipwrapper {
     display: block;
 }

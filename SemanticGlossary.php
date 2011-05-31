@@ -35,7 +35,7 @@ define( 'SG_VERSION', '0.1 alpha' );
 $wgExtensionCredits[defined( 'SEMANTIC_EXTENSION_TYPE' ) ? 'semantic' : 'other'][] = array(
 	'path' => __FILE__,
 	'name' => 'Semantic Glossary',
-	'author' => '[[mw:User:F.trott|Stephan Gambke]]',
+	'author' => '[http://www.mediawiki.org/wiki/User:F.trott|Stephan Gambke]',
 	'url' => 'http://www.mediawiki.org/wiki/Extension:Semantic_Glossary',
 	'descriptionmsg' => 'semanticglossary-desc',
 	'version' => SG_VERSION,
@@ -62,7 +62,7 @@ $wgSpecialPages['SemanticGlossaryBrowser'] = 'SpecialSemanticGlossaryBrowser';
 $wgSpecialPageGroups['SemanticGlossaryBrowser'] = 'other';
 
 // register hook handlers
-//$wgHooks['ParserFirstCallInit'][] = 'SemanticGlossarySetup';  // Define a setup function
+// $wgHooks['ParserFirstCallInit'][] = 'SemanticGlossarySetup';  // Define a setup function
 $wgHooks['ParserAfterTidy'][] = 'SemanticGlossaryParser::parse';
 
 $wgHooks['smwInitProperties'][] = 'SemanticGlossaryRegisterProperties';
@@ -71,16 +71,16 @@ $wgHooks['smwInitDatatypes'][] = 'SemanticGlossaryRegisterPropertyAliases';
 // register resource modules with the Resource Loader
 $wgResourceModules['ext.SemanticGlossary'] = array(
 	// JavaScript and CSS styles. To combine multiple file, just list them as an array.
-	//'scripts' => 'js/ext.myExtension.js',
+	// 'scripts' => 'js/ext.myExtension.js',
 	'styles' => 'css/SemanticGlossary.css',
 
 	// When your module is loaded, these messages will be available to mediaWiki.msg()
-	//'messages' => array( 'myextension-hello-world', 'myextension-goodbye-world' ),
+	// 'messages' => array( 'myextension-hello-world', 'myextension-goodbye-world' ),
 
 	// If your scripts need code from other modules, list their identifiers as dependencies
 	// and ResourceLoader will make sure they're loaded before you.
 	// You don't need to manually list 'mediawiki' or 'jquery', which are always loaded.
-	//'dependencies' => array( 'jquery.ui.datepicker' ),
+	// 'dependencies' => array( 'jquery.ui.datepicker' ),
 
 	// ResourceLoader needs to know where your files are; specify your
 	// subdir relative to "extensions" or $wgExtensionAssetsPath
@@ -100,10 +100,10 @@ $wgGroupPermissions['user']['editglossary'] = true;
 /**
  * Handler for late setup of Semantic Glossary
  */
-//function SemanticGlossarySetup () {
+// function SemanticGlossarySetup () {
 //
 //	return true;
-//}
+// }
 
 define( 'SG_PROP_GLT', 'Glossary-Term' );
 define( 'SG_PROP_GLD', 'Glossary-Definition' );

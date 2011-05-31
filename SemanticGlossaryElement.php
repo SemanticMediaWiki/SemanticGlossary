@@ -26,9 +26,13 @@ class SemanticGlossaryElement {
 
 	private $mFullDefinition = null;
 	private $mDefinitions = array();
+	private $mTerm = null;
 	static private $mLinkTemplate = null;
 
-	public function __construct( &$definition = null ) {
+	public function __construct( &$term, &$definition = null ) {
+
+		$this->mTerm = $term;
+
 		if ( $definition ) {
 			$this->addDefinition( $definition );
 		}
@@ -41,7 +45,21 @@ class SemanticGlossaryElement {
 	public function getFullDefinition( DOMDocument &$doc ) {
 		// only create if not yet created
 		if ( $this->mFullDefinition == null || $this->mFullDefinition->ownerDocument !== $doc ) {
-			$this->mFullDefinition = $doc->createElement( 'span' );
+
+			// Wrap term and definition in <span> tags
+			$span = $doc->createElement( 'span' );
+			$span->setAttribute( 'class', 'tooltip' );
+
+			// Wrap term in <span> tag, hidden
+			$spanTerm = $doc->createElement( 'span', $this->mTerm );
+			$spanTerm->setAttribute( 'class', 'tooltip_abbr' );
+
+			// Wrap definition in two <span> tags
+			$spanDefinitionOuter = $doc->createElement( 'span' );
+			$spanDefinitionOuter->setAttribute( 'class', 'tooltip_tipwrapper' );
+
+			$spanDefinitionInner = $doc->createElement( 'span' );
+			$spanDefinitionInner->setAttribute( 'class', 'tooltip_tip' );
 
 			foreach ( $this->mDefinitions as $definition ) {
 				$element = $doc->createElement( 'span', htmlentities( $definition[self::SG_DEFINITION], ENT_COMPAT, 'UTF-8' ) . ' ' );
@@ -53,8 +71,16 @@ class SemanticGlossaryElement {
 						$element->appendChild( $link );
 					}
 				}
-				$this->mFullDefinition->appendChild( $element );
+				$spanDefinitionInner->appendChild( $element );
 			}
+
+			// insert term and definition
+			$span->appendChild( $spanTerm );
+			$span->appendChild( $spanDefinitionOuter );
+			$spanDefinitionOuter->appendChild( $spanDefinitionInner );
+
+			$this->mFullDefinition = $span;
+
 		}
 
 		return $this->mFullDefinition->cloneNode( true );

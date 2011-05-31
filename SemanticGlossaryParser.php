@@ -17,7 +17,7 @@ if ( !defined( 'SG_VERSION' ) ) {
  * terms.
  *
  * Contains a static function to initiate the parsing.
- * 
+ *
  * @ingroup SemanticGlossary
  */
 class SemanticGlossaryParser {
@@ -32,21 +32,21 @@ class SemanticGlossaryParser {
 	 * @param $text
 	 * @return Boolean
 	 */
-	static function parse ( &$parser, &$text ) {
+	static function parse( &$parser, &$text ) {
 		wfProfileIn( __METHOD__ );
 
 		if ( !self::$parserSingleton ) {
 			self::$parserSingleton = new SemanticGlossaryParser();
 		}
 
-		self::$parserSingleton -> realParse( $parser, $text );
+		self::$parserSingleton->realParse( $parser, $text );
 
 		wfProfileOut( __METHOD__ );
 
 		return true;
 	}
 
-	function getBackend () {
+	function getBackend() {
 		return new SemanticGlossaryBackend();
 	}
 
@@ -55,17 +55,17 @@ class SemanticGlossaryParser {
 	 *
 	 * @return Array an array mapping terms (keys) to descriptions (values)
 	 */
-	function getGlossaryArray ( SemanticGlossaryMessageLog &$messages = null ) {
+	function getGlossaryArray( SemanticGlossaryMessageLog &$messages = null ) {
 		wfProfileIn( __METHOD__ );
 
 		// build glossary array only once per request
-		if ( !$this -> mGlossaryArray ) {
-			$this -> buildGlossary( $messages );
+		if ( !$this->mGlossaryArray ) {
+			$this->buildGlossary( $messages );
 		}
 
 		wfProfileOut( __METHOD__ );
 
-		return $this -> mGlossaryArray;
+		return $this->mGlossaryArray;
 	}
 
 	/**
@@ -73,44 +73,44 @@ class SemanticGlossaryParser {
 	 *
 	 * @return Array an array mapping terms (keys) to descriptions (values)
 	 */
-	function getGlossaryTree ( SemanticGlossaryMessageLog &$messages = null ) {
+	function getGlossaryTree( SemanticGlossaryMessageLog &$messages = null ) {
 		wfProfileIn( __METHOD__ );
 
 		// build glossary array only once per request
-		if ( !$this -> mGlossaryTree ) {
-			$this -> buildGlossary( $messages );
+		if ( !$this->mGlossaryTree ) {
+			$this->buildGlossary( $messages );
 		}
 
 		wfProfileOut( __METHOD__ );
 
-		return $this -> mGlossaryTree;
+		return $this->mGlossaryTree;
 	}
 
-	protected function buildGlossary ( SemanticGlossaryMessageLog &$messages = null ) {
+	protected function buildGlossary( SemanticGlossaryMessageLog &$messages = null ) {
 		wfProfileIn( __METHOD__ );
 
-		$this -> mGlossaryTree = new SemanticGlossaryTree();
+		$this->mGlossaryTree = new SemanticGlossaryTree();
 
-		$backend = $this -> getBackEnd();
+		$backend = $this->getBackEnd();
 
 		// assemble the result array
-		$this -> mGlossaryArray = array( );
-		while ( $backend -> next() ) {
+		$this->mGlossaryArray = array();
+		while ( $backend->next() ) {
 
 			$elementData = array(
-				SemanticGlossaryElement::SG_TERM => ($term = $backend -> getTerm()),
-				SemanticGlossaryElement::SG_DEFINITION => $backend -> getDefinition(),
-				SemanticGlossaryElement::SG_LINK => $backend -> getLink(),
-				SemanticGlossaryElement::SG_SOURCE => $backend -> getSource()
+				SemanticGlossaryElement::SG_TERM => ( $term = $backend->getTerm() ),
+				SemanticGlossaryElement::SG_DEFINITION => $backend->getDefinition(),
+				SemanticGlossaryElement::SG_LINK => $backend->getLink(),
+				SemanticGlossaryElement::SG_SOURCE => $backend->getSource()
 			);
 
-			if ( array_key_exists( $term, $this -> mGlossaryArray ) ) {
-				$this -> mGlossaryArray[ $term ] -> addDefinition( $elementData );
+			if ( array_key_exists( $term, $this->mGlossaryArray ) ) {
+				$this->mGlossaryArray[$term]->addDefinition( $elementData );
 			} else {
-				$this -> mGlossaryArray[ $term ] = new SemanticGlossaryElement( $elementData );
+				$this->mGlossaryArray[$term] = new SemanticGlossaryElement( $term, $elementData );
 			}
 
-			$this -> mGlossaryTree -> addTerm( $term, $elementData );
+			$this->mGlossaryTree->addTerm( $term, $elementData );
 		}
 
 		wfProfileOut( __METHOD__ );
@@ -125,18 +125,18 @@ class SemanticGlossaryParser {
 	 * @param $text
 	 * @return Boolean
 	 */
-	protected function realParse ( &$parser, &$text ) {
+	protected function realParse( &$parser, &$text ) {
 		global $wgRequest;
 
 		wfProfileIn( __METHOD__ );
 
-		$action = $wgRequest -> getVal( 'action', 'view' );
+		$action = $wgRequest->getVal( 'action', 'view' );
 
 		if ( $text == null ||
 			$text == '' ||
 			$action == 'edit' ||
 			$action == 'ajax' ||
-			isset( $_POST[ 'wpPreview' ] )
+			isset( $_POST['wpPreview'] )
 		) {
 
 			wfProfileOut( __METHOD__ );
@@ -144,7 +144,7 @@ class SemanticGlossaryParser {
 		}
 
 		// Get array of terms
-		$glossary = $this -> getGlossaryTree();
+		$glossary = $this->getGlossaryTree();
 
 		if ( $glossary == null ) {
 			wfProfileOut( __METHOD__ );
@@ -166,83 +166,62 @@ class SemanticGlossaryParser {
 		wfProfileIn( __METHOD__ . ' 2 xpath' );
 		// Find all text in HTML.
 		$xpath = new DOMXpath( $doc );
-		$elements = $xpath -> query(
+		$elements = $xpath->query(
 				"//*[not(ancestor-or-self::*[@class='noglossary'] or ancestor-or-self::a)][text()!=' ']/text()"
 		);
 		wfProfileOut( __METHOD__ . ' 2 xpath' );
 
 		// Iterate all HTML text matches
-		$nb = $elements -> length;
+		$nb = $elements->length;
 		$changedDoc = false;
 
 		for ( $pos = 0; $pos < $nb; $pos++ ) {
-			$el = $elements -> item( $pos );
+			$el = $elements->item( $pos );
 
-			if ( strlen( $el -> nodeValue ) < $glossary -> getMinTermLength() ) {
+			if ( strlen( $el->nodeValue ) < $glossary->getMinTermLength() ) {
 				continue;
 			}
 
 			wfProfileIn( __METHOD__ . ' 3 lexer' );
-			$matches = array( );
+			$matches = array();
 			preg_match_all(
 				'/[[:alpha:]]+|[^[:alpha:]]/u',
-				$el -> nodeValue,
+				$el->nodeValue,
 				$matches,
 				PREG_OFFSET_CAPTURE | PREG_PATTERN_ORDER
 			);
 			wfProfileOut( __METHOD__ . ' 3 lexer' );
 
-			if ( count( $matches ) == 0 || count( $matches[ 0 ] ) == 0 ) {
+			if ( count( $matches ) == 0 || count( $matches[0] ) == 0 ) {
 				continue;
 			}
 
-			$lexemes = &$matches[ 0 ];
+			$lexemes = &$matches[0];
 			$countLexemes = count( $lexemes );
-			$parent = &$el -> parentNode;
+			$parent = &$el->parentNode;
 			$index = 0;
 			$changedElem = false;
 
 			while ( $index < $countLexemes ) {
 				wfProfileIn( __METHOD__ . ' 4 findNextTerm' );
-				list( $skipped, $used, $definition ) = $glossary -> findNextTerm( $lexemes, $index, $countLexemes );
+				list( $skipped, $used, $definition ) =
+					$glossary->findNextTerm( $lexemes, $index, $countLexemes );
 				wfProfileOut( __METHOD__ . ' 4 findNextTerm' );
 
 				wfProfileIn( __METHOD__ . ' 5 insert' );
 				if ( $used > 0 ) { // found a term
 					if ( $skipped > 0 ) { // skipped some text, insert it as is
-						$parent -> insertBefore(
-							$doc -> createTextNode(
-								substr( $el -> nodeValue,
-									$currLexIndex = $lexemes[ $index ][ 1 ],
-									$lexemes[ $index + $skipped ][ 1 ] - $currLexIndex )
+						$parent->insertBefore(
+							$doc->createTextNode(
+								substr( $el->nodeValue,
+									$currLexIndex = $lexemes[$index][1],
+									$lexemes[$index + $skipped][1] - $currLexIndex )
 							),
 							$el
 						);
 					}
 
-					$index += $skipped;
-
-					// Wrap abbreviation in <span> tags
-					$span = $doc -> createElement( 'span' );
-					$span -> setAttribute( 'class', 'tooltip' );
-
-					// Wrap abbreviation in <span> tags, hidden
-					$lastLex = $lexemes[ $index + $used - 1 ];
-					$spanTerm = $doc -> createElement( 'span',
-							substr( $el -> nodeValue,
-								$currLexIndex = $lexemes[ $index ][ 1 ],
-								$lastLex[ 1 ] - $currLexIndex + strlen( $lastLex[ 0 ] ) )
-					);
-					$spanTerm -> setAttribute( 'class', 'tooltip_abbr' );
-
-					// Wrap definition in <span> tags, hidden
-					$spanDefinition = $definition -> getFullDefinition( $doc );
-					$spanDefinition -> setAttribute( 'class', 'tooltip_tip' );
-
-					// insert term and definition
-					$span -> appendChild( $spanTerm );
-					$span -> appendChild( $spanDefinition );
-					$parent -> insertBefore( $span, $el );
+					$parent->insertBefore( $definition->getFullDefinition( $doc ), $el );
 
 					$changedElem = true;
 				} else { // did not find term, just use the rest of the text
@@ -251,9 +230,9 @@ class SemanticGlossaryParser {
 					// element at all.
 					// Only change element if found term before
 					if ( $changedElem ) {
-						$parent -> insertBefore(
-							$doc -> createTextNode(
-								substr( $el -> nodeValue, $lexemes[ $index ][ 1 ] )
+						$parent->insertBefore(
+							$doc->createTextNode(
+								substr( $el->nodeValue, $lexemes[$index][1] )
 							),
 							$el
 						);
@@ -263,30 +242,27 @@ class SemanticGlossaryParser {
 						// anyway. Might save a bit of time.
 						break;
 					}
-
-					$index += $skipped;
 				}
 				wfProfileOut( __METHOD__ . ' 5 insert' );
 
-
-				$index += $used;
+				$index += $used + $skipped;
 			}
 
 			if ( $changedElem ) {
-				$parent -> removeChild( $el );
+				$parent->removeChild( $el );
 				$changedDoc = true;
 			}
 		}
 
 		if ( $changedDoc ) {
-			$body = $xpath -> query( '/html/body' );
+			$body = $xpath->query( '/html/body' );
 
 			$text = '';
-			foreach ( $body -> item( 0 ) -> childNodes as $child ) {
-				$text .= $doc -> saveXML( $child );
+			foreach ( $body->item( 0 )->childNodes as $child ) {
+				$text .= $doc->saveXML( $child );
 			}
 
-			$this -> loadModules( $parser );
+			$this->loadModules( $parser );
 		}
 
 		wfProfileOut( __METHOD__ );
@@ -294,20 +270,20 @@ class SemanticGlossaryParser {
 		return true;
 	}
 
-	protected function loadModules ( &$parser ) {
+	protected function loadModules( &$parser ) {
 		global $wgOut, $wgScriptPath;
 
 		if ( defined( 'MW_SUPPORTS_RESOURCE_MODULES' ) ) {
 			if ( !is_null( $parser ) ) {
-				$parser -> getOutput() -> addModules( 'ext.SemanticGlossary' );
+				$parser->getOutput()->addModules( 'ext.SemanticGlossary' );
 			} else {
-				$wgOut -> addModules( 'ext.SemanticGlossary' );
+				$wgOut->addModules( 'ext.SemanticGlossary' );
 			}
 		} else {
-			if ( !is_null( $parser ) && ( $wgOut -> isArticle() ) ) {
-				$parser -> getOutput() -> addHeadItem( '<link rel="stylesheet" href="' . $wgScriptPath . '/extensions/SemanticGlossary/skins/SemanticGlossary.css" />', 'ext.SemanticGlossary.css' );
+			if ( !is_null( $parser ) && ( $wgOut->isArticle() ) ) {
+				$parser->getOutput()->addHeadItem( '<link rel="stylesheet" href="' . $wgScriptPath . '/extensions/SemanticGlossary/skins/SemanticGlossary.css" />', 'ext.SemanticGlossary.css' );
 			} else {
-				$wgOut -> addHeadItem( 'ext.SemanticGlossary.css', '<link rel="stylesheet" href="' . $wgScriptPath . '/extensions/SemanticGlossary/skins/SemanticGlossary.css" />' );
+				$wgOut->addHeadItem( 'ext.SemanticGlossary.css', '<link rel="stylesheet" href="' . $wgScriptPath . '/extensions/SemanticGlossary/skins/SemanticGlossary.css" />' );
 			}
 		}
 	}
