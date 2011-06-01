@@ -19,8 +19,12 @@
 	top: 0;
 	left: 0;
 
-	padding: 1.5em 0 0 2em;
-	width: 20em;
+	height: 3em;
+	width: 23em;
+
+	font-weight: normal;
+	font-size: medium;
+	line-height: 1.2em;
 
 	z-index: 2;
 }
@@ -28,15 +32,16 @@
 .tooltip_tip {
 	display: block;
 
-	position: relative;
-	top: 0em;
-	left: 0em;
+	position: absolute;
+	top: 1.5em;
+	left: 2em;
 
-	background-color: #F9F9F9;
+	width: 20em;
+
 	padding: 0.5em;
 	margin: 0;
-	line-height: 1.2em;
 
+	background-color: #F9F9F9;
 	border: 1px solid #aaa;
 
 	-moz-border-radius: 5px;
@@ -48,6 +53,10 @@
 
 .tooltip_tip span {
 	display: block;
+}
+
+.tooltip:hover .tooltip_abbr {
+    background-color:rgba(0,0,0,0.1);
 }
 
 .tooltip:hover .tooltip_tipwrapper {

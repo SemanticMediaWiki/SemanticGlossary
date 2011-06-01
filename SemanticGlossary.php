@@ -35,7 +35,7 @@ define( 'SG_VERSION', '0.1 alpha' );
 $wgExtensionCredits[defined( 'SEMANTIC_EXTENSION_TYPE' ) ? 'semantic' : 'other'][] = array(
 	'path' => __FILE__,
 	'name' => 'Semantic Glossary',
-	'author' => '[http://www.mediawiki.org/wiki/User:F.trott|Stephan Gambke]',
+	'author' => '[http://www.mediawiki.org/wiki/User:F.trott Stephan Gambke]',
 	'url' => 'http://www.mediawiki.org/wiki/Extension:Semantic_Glossary',
 	'descriptionmsg' => 'semanticglossary-desc',
 	'version' => SG_VERSION,
@@ -49,7 +49,7 @@ $wgExtensionMessagesFiles['SemanticGlossary'] = $dir . '/SemanticGlossary.i18n.p
 $wgExtensionMessagesFiles['SemanticGlossaryAlias'] = $dir . '/SemanticGlossary.alias.php';
 
 // register class files with the Autoloader
-$wgAutoloadClasses['SemanticGlossarySettings'] = $dir . '/SemanticGlossarySettings.php';
+//$wgAutoloadClasses['SemanticGlossarySettings'] = $dir . '/SemanticGlossarySettings.php';
 $wgAutoloadClasses['SemanticGlossaryParser'] = $dir . '/SemanticGlossaryParser.php';
 $wgAutoloadClasses['SemanticGlossaryTree'] = $dir . '/SemanticGlossaryTree.php';
 $wgAutoloadClasses['SemanticGlossaryElement'] = $dir . '/SemanticGlossaryElement.php';
