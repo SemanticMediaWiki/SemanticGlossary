@@ -29,7 +29,7 @@ class SpecialSemanticGlossaryBrowser extends SpecialPage {
 
 	function __construct() {
 		parent::__construct( 'SemanticGlossaryBrowser' );
-		$this -> mMessages = new SemanticGlossaryMessageLog();
+		$this->mMessages = new LingoMessageLog();
 	}
 
 	function execute( $subpage ) {
@@ -55,8 +55,8 @@ class SpecialSemanticGlossaryBrowser extends SpecialPage {
 		}
 
 		// get the glossary data
-		$parser = new SemanticGlossaryParser();
-		$glossaryarray = $parser->getGlossaryArray( $this->mMessages );
+		$parser = new LingoParser( $this->mMessages );
+		$glossaryarray = $parser->getLingoArray();
 
 		// set function to create a table row (textareas when editing is
 		// allowed, else normal text)
@@ -92,24 +92,24 @@ class SpecialSemanticGlossaryBrowser extends SpecialPage {
 			if ( $hasEditRights ) {
 				// append action buttons
 				$listOfTermsFragment .=
-					Html::element( 'input', array( 'type' => 'submit', 'name' => 'delete', 'value' => wfMsg( 'semanticglossary-deleteselected' ), 'accesskey' => 'd' ) ) .
-					Html::element( 'input', array( 'type' => 'submit', 'name' => 'submit', 'value' => wfMsg( 'semanticglossary-savechanges' ), 'accesskey' => 's' ) );
+					Html::element( 'input', array('type' => 'submit', 'name' => 'delete', 'value' => wfMsg( 'semanticglossary-deleteselected' ), 'accesskey' => 'd') ) .
+					Html::element( 'input', array('type' => 'submit', 'name' => 'submit', 'value' => wfMsg( 'semanticglossary-savechanges' ), 'accesskey' => 's') );
 			}
 
 			$listOfTermsFragment =
-				Html::rawElement( 'div', array( 'class' => 'termslist' ),
-					Html::element( 'div', array( 'class' => 'heading' ), wfMsg( 'semanticglossary-termsdefined' ) ) .
+				Html::rawElement( 'div', array('class' => 'termslist'),
+					Html::element( 'div', array('class' => 'heading'), wfMsg( 'semanticglossary-termsdefined' ) ) .
 					$listOfTermsFragment
 			);
 		} else {
 			$listOfTermsFragment =
-				Html::rawElement( 'div', array( 'class' => 'termslist' ),
-					Html::element( 'div', array( 'class' => 'heading' ), wfMsg( 'semanticglossary-notermsdefined' ) )
+				Html::rawElement( 'div', array('class' => 'termslist'),
+					Html::element( 'div', array('class' => 'heading'), wfMsg( 'semanticglossary-notermsdefined' ) )
 			);
 		}
 
 		// From here on no more errors should occur. Create list of errors.
-		$errorsFragment = $this->mMessages->getMessagesFormatted( SemanticGlossaryMessageLog::SG_NOTICE );
+		$errorsFragment = $this->mMessages->getMessagesFormatted( LingoMessageLog::MESSAGE_NOTICE );
 
 		if ( $errorsFragment ) {
 			$errorsFragment .= Html::rawElement( 'hr' );
@@ -119,36 +119,36 @@ class SpecialSemanticGlossaryBrowser extends SpecialPage {
 			// create form fragment to allow input of a new term
 			$newTermFragment =
 				Html::rawElement( 'hr' ) .
-				Html::rawElement( 'div', array( 'class' => 'newterm' ),
-					Html::rawElement( 'div', array( 'class' => 'heading' ), wfMsg( 'semanticglossary-enternewterm' ) ) .
+				Html::rawElement( 'div', array('class' => 'newterm'),
+					Html::rawElement( 'div', array('class' => 'heading'), wfMsg( 'semanticglossary-enternewterm' ) ) .
 					Html::rawElement( 'table', null,
 						Html::rawElement( 'tbody', null,
-							Html::rawElement( 'tr', array( 'class' => 'row' ),
-								Html::rawElement( 'td', array( 'class' => 'termcell' ),
-									Html::element( 'textarea', array( 'name' => 'newterm' ) )
+							Html::rawElement( 'tr', array('class' => 'row'),
+								Html::rawElement( 'td', array('class' => 'termcell'),
+									Html::element( 'textarea', array('name' => 'newterm') )
 								) .
-								Html::rawElement( 'td', array( 'class' => 'definitioncell' ),
-									Html::rawElement( 'div', array( 'class' => 'definitionareawrapper' ),
-										Html::element( 'textarea', array( 'name' => 'newdefinition' ) )
+								Html::rawElement( 'td', array('class' => 'definitioncell'),
+									Html::rawElement( 'div', array('class' => 'definitionareawrapper'),
+										Html::element( 'textarea', array('name' => 'newdefinition') )
 									)
 								) .
-								Html::rawElement( 'td', array( 'class' => 'linkcell' ),
-									Html::element( 'textarea', array( 'name' => 'newlink' ) )
+								Html::rawElement( 'td', array('class' => 'linkcell'),
+									Html::element( 'textarea', array('name' => 'newlink') )
 								)
 							)
 						)
 					) .
-					Html::element( 'input', array( 'type' => 'submit', 'name' => 'createnew', 'value' => wfMsg( 'semanticglossary-createnew' ), 'accesskey' => 'n' ) )
+					Html::element( 'input', array('type' => 'submit', 'name' => 'createnew', 'value' => wfMsg( 'semanticglossary-createnew' ), 'accesskey' => 'n') )
 			);
 
 			$salt = rand( 10000, 99999 );
-			$editTokenFragment = Html::rawElement( 'input', array( 'type' => 'hidden', 'name' => 'editToken', 'value' => $wgUser -> editToken( $salt ) . $salt ) );
+			$editTokenFragment = Html::rawElement( 'input', array('type' => 'hidden', 'name' => 'editToken', 'value' => $wgUser->editToken( $salt ) . $salt) );
 
 			// assemble output
 			$output =
-				Html::rawElement( 'div', array( 'class' => 'glossarybrowser' ),
+				Html::rawElement( 'div', array('class' => 'glossarybrowser'),
 					$errorsFragment .
-					Html::rawElement( 'form', array( 'method' => 'POST' ),
+					Html::rawElement( 'form', array('method' => 'POST'),
 						$listOfTermsFragment .
 						$newTermFragment .
 						$editTokenFragment
@@ -157,7 +157,7 @@ class SpecialSemanticGlossaryBrowser extends SpecialPage {
 		} else {
 			// assemble output
 			$output =
-				Html::rawElement( 'div', array( 'class' => 'glossarybrowser' ),
+				Html::rawElement( 'div', array('class' => 'glossarybrowser'),
 					$errorsFragment .
 					$listOfTermsFragment
 			);
@@ -196,7 +196,7 @@ class SpecialSemanticGlossaryBrowser extends SpecialPage {
 		global $wgRequest;
 
 		// get ass array of input values
-		$inputdata = $wgRequest -> getValues();
+		$inputdata = $wgRequest->getValues();
 
 		// loop through all input values
 		foreach ( $inputdata as $key => $value ) {
@@ -238,7 +238,7 @@ class SpecialSemanticGlossaryBrowser extends SpecialPage {
 					$newDefinition != $oldDefinition ||
 					$newLink != $oldLink
 				) {
-					$this -> updateData( $page, array(
+					$this->updateData( $page, array(
 						'___glt' => ( $newTerm ? new SMWDIString( $newTerm ) : null ),
 						'___gld' => ( $newDefinition ? new SMWDIBlob( $newDefinition ) : null ),
 						'___gll' => ( $newLink ? new SMWDIString( $newLink ) : null )
@@ -248,13 +248,13 @@ class SpecialSemanticGlossaryBrowser extends SpecialPage {
 					$title = $page->getTitle();
 					if ( $title->isKnown() ) {
 						$this->mMessages->addMessage(
-							wfMsg( 'semanticglossary-storedtermdefinedinarticle', array( $oldTerm, $title->getPrefixedText() ) ),
-							SemanticGlossaryMessageLog::SG_WARNING
+							wfMsg( 'semanticglossary-storedtermdefinedinarticle', array($oldTerm, $title->getPrefixedText()) ),
+							LingoMessageLog::MESSAGE_WARNING
 						);
 					} else {
 						$this->mMessages->addMessage(
-							wfMsg( 'semanticglossary-termchanged', array( $oldTerm ) ),
-							SemanticGlossaryMessageLog::SG_NOTICE
+							wfMsg( 'semanticglossary-termchanged', array($oldTerm) ),
+							LingoMessageLog::MESSAGE_NOTICE
 						);
 					}
 				}
@@ -268,7 +268,7 @@ class SpecialSemanticGlossaryBrowser extends SpecialPage {
 		$newTerm = $wgRequest->getText( 'newterm' );
 
 		if ( $newTerm == null || $newTerm == '' ) {
-			$this->mMessages->addMessage( 'Term was empty. Nothing created.', SemanticGlossaryMessageLog::SG_WARNING );
+			$this->mMessages->addMessage( 'Term was empty. Nothing created.', LingoMessageLog::MESSAGE_WARNING );
 			return;
 		}
 
@@ -278,15 +278,15 @@ class SpecialSemanticGlossaryBrowser extends SpecialPage {
 		$page = $this->findNextPageName();
 
 		// store data
-		$this -> updateData( $page, array(
+		$this->updateData( $page, array(
 			'___glt' => ( $newTerm ? new SMWDIString( $newTerm ) : null ),
 			'___gld' => ( $newDefinition ? new SMWDIBlob( $newDefinition ) : null ),
 			'___gll' => ( $newLink ? new SMWDIString( $newLink ) : null )
 			) );
 
 		$this->mMessages->addMessage(
-			wfMsg( 'semanticglossary-termadded', array( $newTerm ) ),
-			SemanticGlossaryMessageLog::SG_NOTICE
+			wfMsg( 'semanticglossary-termadded', array($newTerm) ),
+			LingoMessageLog::MESSAGE_NOTICE
 		);
 	}
 
@@ -308,20 +308,20 @@ class SpecialSemanticGlossaryBrowser extends SpecialPage {
 					'___glt' => null,
 					'___gld' => null,
 					'___gll' => null,
-				) );
+					) );
 
 				$oldTerm = $wgRequest->getVal( $pageString . ':term' );
 
 				$title = $page->getTitle();
 				if ( $title && $title->isKnown() ) {
 					$this->mMessages->addMessage(
-						wfMsg( 'semanticglossary-deletedtermdefinedinarticle', array( $oldTerm, $title->getPrefixedText() ) ),
-						SemanticGlossaryMessageLog::SG_WARNING
+						wfMsg( 'semanticglossary-deletedtermdefinedinarticle', array($oldTerm, $title->getPrefixedText()) ),
+						LingoMessageLog::MESSAGE_WARNING
 					);
 				} else {
 					$this->mMessages->addMessage(
-						wfMsg( 'semanticglossary-termdeleted', array( $oldTerm ) ),
-						SemanticGlossaryMessageLog::SG_NOTICE
+						wfMsg( 'semanticglossary-termdeleted', array($oldTerm) ),
+						LingoMessageLog::MESSAGE_NOTICE
 					);
 				}
 			}
@@ -337,8 +337,8 @@ class SpecialSemanticGlossaryBrowser extends SpecialPage {
 		} elseif ( count( $propertyValues ) > 1 ) {
 			if ( count( $propertyValues ) > 1 ) {
 				$this->mMessages->addMessage(
-					wfMsg( 'semanticglossary-storedtermdefinedtwice', array( $pageData->getSubject()->getPrefixedText(), $propertyName, $newTerm ) ),
-					SemanticGlossaryMessageLog::SG_ERROR
+					wfMsg( 'semanticglossary-storedtermdefinedtwice', array($pageData->getSubject()->getPrefixedText(), $propertyName, $newTerm) ),
+					LingoMessageLog::MESSAGE_ERROR
 				);
 			}
 			return false;
@@ -419,7 +419,7 @@ class SpecialSemanticGlossaryBrowser extends SpecialPage {
 			// set new data if defined, else ignore property (i.e. do not set property on this page)
 			if ( $data[$propertyID] != null ) {
 				$property = new SMWDIProperty( $propertyID );
-				$newData -> addPropertyObjectValue( $property, $data[$propertyID] );
+				$newData->addPropertyObjectValue( $property, $data[$propertyID] );
 			}
 
 			unset( $data[$propertyID] );
@@ -431,19 +431,19 @@ class SpecialSemanticGlossaryBrowser extends SpecialPage {
 
 	private function createTableRowForEdit( $source, $term, $definition, $link ) {
 		return
-		Html::rawElement( 'tr', array( 'class' => 'row' ),
-			Html::rawElement( 'td', array( 'class' => 'actioncell' ),
+		Html::rawElement( 'tr', array('class' => 'row'),
+			Html::rawElement( 'td', array('class' => 'actioncell'),
 				Html::input( "$source:checked", 'true', 'checkbox' )
 			) .
-			Html::rawElement( 'td', array( 'class' => 'termcell' ),
+			Html::rawElement( 'td', array('class' => 'termcell'),
 				Html::textarea( "$source:term", $term )
 			) .
-			Html::rawElement( 'td', array( 'class' => 'definitioncell' ),
-				Html::rawElement( 'div', array( 'class' => 'definitionareawrapper' ),
+			Html::rawElement( 'td', array('class' => 'definitioncell'),
+				Html::rawElement( 'div', array('class' => 'definitionareawrapper'),
 					Html::textarea( "$source:definition", $definition )
 				)
 			) .
-			Html::rawElement( 'td', array( 'class' => 'linkcell' ),
+			Html::rawElement( 'td', array('class' => 'linkcell'),
 				Html::textarea( "$source:link", $link )
 			)
 		);
@@ -451,10 +451,10 @@ class SpecialSemanticGlossaryBrowser extends SpecialPage {
 
 	private function createTableRowForDisplay( $source, $term, $definition, $link ) {
 		return
-		Html::rawElement( 'tr', array( 'class' => 'row' ),
-			Html::rawElement( 'td', array( 'class' => 'termcell' ), $term ) .
-			Html::rawElement( 'td', array( 'class' => 'definitioncell' ), $definition ) .
-			Html::rawElement( 'td', array( 'class' => 'linkcell' ), $link )
+		Html::rawElement( 'tr', array('class' => 'row'),
+			Html::rawElement( 'td', array('class' => 'termcell'), $term ) .
+			Html::rawElement( 'td', array('class' => 'definitioncell'), $definition ) .
+			Html::rawElement( 'td', array('class' => 'linkcell'), $link )
 		);
 	}
 
@@ -474,8 +474,8 @@ class SpecialSemanticGlossaryBrowser extends SpecialPage {
 			if ( $wgUser->isAllowed( 'editglossary' ) ) { // user has the necessary right
 				$editTokenAndSaltArray = explode( EDIT_TOKEN_SUFFIX, $editTokenWithSalt );
 				$tokenValid = $wgUser->matchEditTokenNoSuffix(
-					$editTokenAndSaltArray[0],
-					$editTokenAndSaltArray[1]
+						$editTokenAndSaltArray[0],
+						$editTokenAndSaltArray[1]
 				);
 
 				if ( $tokenValid ) { // edit token is valid
@@ -483,13 +483,13 @@ class SpecialSemanticGlossaryBrowser extends SpecialPage {
 				} else {
 					$this->mMessages->addMessage(
 						wfMsg( 'semanticglossary-brokensession' ),
-						SemanticGlossaryMessageLog::SG_ERROR
+						LingoMessageLog::MESSAGE_ERROR
 					);
 				}
 			} else {
 				$this->mMessages->addMessage(
 					wfMsg( 'semanticglossary-norights' ),
-					SemanticGlossaryMessageLog::SG_ERROR
+					LingoMessageLog::MESSAGE_ERROR
 				);
 			}
 		}

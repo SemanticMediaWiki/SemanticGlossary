@@ -26,6 +26,10 @@ if ( !defined( 'SMW_VERSION' ) ) {
 	die( 'Semantic Glossary depends on the Semantic MediaWiki extension. You need to install Semantic MediaWiki first.' );
 }
 
+if ( !defined( 'LINGO_VERSION' ) ) {
+	die( 'Semantic Glossary depends on the Lingo extension. You need to install Lingo first.' );
+}
+
 /**
  * The Semantic Glossary version
  */
@@ -41,6 +45,10 @@ $wgExtensionCredits[defined( 'SEMANTIC_EXTENSION_TYPE' ) ? 'semantic' : 'other']
 	'version' => SG_VERSION,
 );
 
+
+// set SemanticGlossaryBackend as the backend to access the glossary
+$wgexLingoBackend = 'SemanticGlossaryBackend';
+
 // server-local path to this file
 $dir = dirname( __FILE__ );
 
@@ -49,12 +57,7 @@ $wgExtensionMessagesFiles['SemanticGlossary'] = $dir . '/SemanticGlossary.i18n.p
 $wgExtensionMessagesFiles['SemanticGlossaryAlias'] = $dir . '/SemanticGlossary.alias.php';
 
 // register class files with the Autoloader
-//$wgAutoloadClasses['SemanticGlossarySettings'] = $dir . '/SemanticGlossarySettings.php';
-$wgAutoloadClasses['SemanticGlossaryParser'] = $dir . '/SemanticGlossaryParser.php';
-$wgAutoloadClasses['SemanticGlossaryTree'] = $dir . '/SemanticGlossaryTree.php';
-$wgAutoloadClasses['SemanticGlossaryElement'] = $dir . '/SemanticGlossaryElement.php';
 $wgAutoloadClasses['SemanticGlossaryBackend'] = $dir . '/SemanticGlossaryBackend.php';
-$wgAutoloadClasses['SemanticGlossaryMessageLog'] = $dir . '/SemanticGlossaryMessageLog.php';
 $wgAutoloadClasses['SpecialSemanticGlossaryBrowser'] = $dir . '/SpecialSemanticGlossaryBrowser.php';
 
 // register Special pages
@@ -62,53 +65,22 @@ $wgSpecialPages['SemanticGlossaryBrowser'] = 'SpecialSemanticGlossaryBrowser';
 $wgSpecialPageGroups['SemanticGlossaryBrowser'] = 'other';
 
 // register hook handlers
-// $wgHooks['ParserFirstCallInit'][] = 'SemanticGlossarySetup';  // Define a setup function
-$wgHooks['ParserAfterTidy'][] = 'SemanticGlossaryParser::parse';
-
 $wgHooks['smwInitProperties'][] = 'SemanticGlossaryRegisterProperties';
 $wgHooks['smwInitDatatypes'][] = 'SemanticGlossaryRegisterPropertyAliases';
 
 // register resource modules with the Resource Loader
-$wgResourceModules['ext.SemanticGlossary'] = array(
-	// JavaScript and CSS styles. To combine multiple file, just list them as an array.
-	// 'scripts' => 'js/ext.myExtension.js',
-	'styles' => 'css/SemanticGlossary.css',
-
-	// When your module is loaded, these messages will be available to mediaWiki.msg()
-	// 'messages' => array( 'myextension-hello-world', 'myextension-goodbye-world' ),
-
-	// If your scripts need code from other modules, list their identifiers as dependencies
-	// and ResourceLoader will make sure they're loaded before you.
-	// You don't need to manually list 'mediawiki' or 'jquery', which are always loaded.
-	// 'dependencies' => array( 'jquery.ui.datepicker' ),
-
-	// ResourceLoader needs to know where your files are; specify your
-	// subdir relative to "extensions" or $wgExtensionAssetsPath
-	'localBasePath' => dirname( __FILE__ ),
-	'remoteExtPath' => 'SemanticGlossary'
-);
-
 $wgResourceModules['ext.SemanticGlossary.Browser'] = array(
+	'localBasePath' => $dir,
 	'styles' => 'css/SemanticGlossaryBrowser.css',
-	'localBasePath' => dirname( __FILE__ ),
 	'remoteExtPath' => 'SemanticGlossary'
 );
 
 // Create new permission 'editglossary' and assign it to usergroup 'user' by default
 $wgGroupPermissions['user']['editglossary'] = true;
 
-/**
- * Handler for late setup of Semantic Glossary
- */
-// function SemanticGlossarySetup () {
-//
-//	return true;
-// }
-
 define( 'SG_PROP_GLT', 'Glossary-Term' );
 define( 'SG_PROP_GLD', 'Glossary-Definition' );
 define( 'SG_PROP_GLL', 'Glossary-Link' );
-
 
 function SemanticGlossaryRegisterProperties() {
 	SMWDIProperty::registerProperty( '___glt', '_str', SG_PROP_GLT, true );

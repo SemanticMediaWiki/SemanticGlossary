@@ -16,47 +16,55 @@ if ( !defined( 'SG_VERSION' ) ) {
  *
  * @ingroup SemanticGlossary
  */
-class SemanticGlossaryBackend {
+class SemanticGlossaryBackend extends LingoBackend {
 
 	protected $mQueryResult;
-	protected $mResultLine;
-	protected $mMessageLog;
-	protected $mTerm;
-	protected $mDefinition;
-	protected $mLink;
-	protected $mSource;
 
-	public function __construct ( SemanticGlossaryMessageLog &$messages = null ) {
+	public function __construct( LingoMessageLog &$messages = null ) {
 
-		$this -> mMessageLog = $messages;
+		parent::__construct( $messages );
 
-		$store = smwfGetStore(); // default store
+		// get the store
+		$store = smwfGetStore();
+
 		// Create query
 		$desc = new SMWSomeProperty( new SMWDIProperty( '___glt' ), new SMWThingDescription() );
-		$desc -> addPrintRequest( new SMWPrintRequest( SMWPrintRequest::PRINT_PROP, null, SMWPropertyValue::makeProperty( '___glt' ) ) );
-		$desc -> addPrintRequest( new SMWPrintRequest( SMWPrintRequest::PRINT_PROP, null, SMWPropertyValue::makeProperty( '___gld' ) ) );
-		$desc -> addPrintRequest( new SMWPrintRequest( SMWPrintRequest::PRINT_PROP, null, SMWPropertyValue::makeProperty( '___gll' ) ) );
+		$desc->addPrintRequest( new SMWPrintRequest( SMWPrintRequest::PRINT_PROP, null, SMWPropertyValue::makeProperty( '___glt' ) ) );
+		$desc->addPrintRequest( new SMWPrintRequest( SMWPrintRequest::PRINT_PROP, null, SMWPropertyValue::makeProperty( '___gld' ) ) );
+		$desc->addPrintRequest( new SMWPrintRequest( SMWPrintRequest::PRINT_PROP, null, SMWPropertyValue::makeProperty( '___gll' ) ) );
 
 		$query = new SMWQuery( $desc, false, false );
-		$query -> sort = true;
-		$query -> sortkeys[ '___glt' ] = 'ASC';
+		$query->sort = true;
+		$query->sortkeys['___glt'] = 'ASC';
 
 		// get the query result
-		$this -> mQueryResult = $store -> getQueryResult( $query );
+		$this->mQueryResult = $store->getQueryResult( $query );
 	}
 
-	public function next () {
+	/**
+	 * This function returns the next element. The element is an array of four
+	 * strings: Term, Definition, Link, Source. If there is no next element the
+	 * function returns null.
+	 *
+	 * @return the next element or null
+	 */
+	public function next() {
+
+		$ret = null;
 
 		// find next line
-		while ( $resultline = $this -> mQueryResult -> getNext() ) {
-			$this -> mTerm = $resultline[ 0 ] -> getNextText( SMW_OUTPUT_HTML );
-			$this -> mDefinition = $resultline[ 1 ] -> getNextText( SMW_OUTPUT_HTML );
-			$this -> mLink = $resultline[ 2 ] -> getNextText( SMW_OUTPUT_HTML );
-			$this -> mSource = $resultline[ 0 ] -> getResultSubject() -> getTitle() -> getPrefixedText();
+		while ( !$ret && ( $resultline = $this->mQueryResult->getNext() ) ) {
 
-			$nextTerm = $resultline[ 0 ] -> getNextText( SMW_OUTPUT_HTML );
-			$nextDefinition = $resultline[ 1 ] -> getNextText( SMW_OUTPUT_HTML );
-			$nextLink = $resultline[ 2 ] -> getNextText( SMW_OUTPUT_HTML );
+			$term = $resultline[0]->getNextText( SMW_OUTPUT_HTML );
+			$definition = $resultline[1]->getNextText( SMW_OUTPUT_HTML );
+			$link = $resultline[2]->getNextText( SMW_OUTPUT_HTML );
+
+			// FIXME: By not checking for 2nd term defined on the same page some
+			// time could be saved. However, no message could then be generated.
+			// Introduce a setting?
+			$nextTerm = $resultline[0]->getNextText( SMW_OUTPUT_HTML );
+			$nextDefinition = $resultline[1]->getNextText( SMW_OUTPUT_HTML );
+			$nextLink = $resultline[2]->getNextText( SMW_OUTPUT_HTML );
 
 
 			// FIXME: SMW has a bug that right after storing data this data
@@ -65,38 +73,26 @@ class SemanticGlossaryBackend {
 			// it is because of the bug. (2nd condition in the if below)
 			// skip if more then one term or more than one definition present
 			if ( ( $nextTerm || $nextDefinition || $nextLink ) &&
-				!( $nextTerm == $this -> mTerm && $nextDefinition == $this -> mDefinition && $nextLink == $this -> mLink ) ) {
+				!( $nextTerm == $term && $nextDefinition == $definition && $nextLink == $link ) ) {
 
-				if ( $this -> mMessageLog ) {
-					$this -> mMessageLog -> addMessage(
-						wfMsg( 'semanticglossary-termdefinedtwice', array( $subject -> getTitle() -> getPrefixedText() ) ),
+				if ( $ml = $this->getMessageLog() ) {
+					$ml->addMessage(
+						wfMsg( 'semanticglossary-termdefinedtwice', array($subject->getTitle()->getPrefixedText()) ),
 						SemanticGlossaryMessageLog::SG_WARNING );
 				}
 
 				continue;
 			}
 
-			return true;
+			$ret = array(
+				LingoElement::ELEMENT_TERM => $term,
+				LingoElement::ELEMENT_DEFINITION => $definition,
+				LingoElement::ELEMENT_LINK => $link,
+				LingoElement::ELEMENT_SOURCE => $resultline[0]->getResultSubject()->getTitle()->getPrefixedText()
+			);
 		}
 
-		return $resultline != null;
-	}
-
-	function &getTerm () {
-		return $this -> mTerm;
-	}
-
-	function &getDefinition () {
-		return $this -> mDefinition;
-	}
-
-	function &getLink () {
-		return $this -> mLink;
-	}
-
-	function &getSource () {
-		return $this -> mSource;
+		return $ret;
 	}
 
 }
-
