@@ -109,7 +109,7 @@ class SpecialSemanticGlossaryBrowser extends SpecialPage {
 		}
 
 		// From here on no more errors should occur. Create list of errors.
-		$errorsFragment = $this->mMessages->getMessagesFormatted( LingoMessageLog::MESSAGE_NOTICE );
+		$errorsFragment = $this->mMessages->getMessagesFormatted( LingoMessageLog::MESSAGE_NOTICE, wfMsg( 'semanticglossary-messageheader' ) );
 
 		if ( $errorsFragment ) {
 			$errorsFragment .= Html::rawElement( 'hr' );
