@@ -183,7 +183,7 @@ class SpecialSemanticGlossaryBrowser extends SpecialPage {
 		global $wgOut, $wgScriptPath;
 
 		if ( defined( 'MW_SUPPORTS_RESOURCE_MODULES' ) ) {
-			$wgOut->addModules( 'ext.SemanticGlossary.Browser' );
+			$wgOut->addModuleStyles( 'ext.SemanticGlossary.Browser' );
 		} else {
 			$wgOut->addHeadItem( 'ext.SemanticGlossary.Browser.css', '<link rel="stylesheet" href="' . $wgScriptPath . '/extensions/SemanticGlossary/skins/SemanticGlossaryBrowser.css" />' );
 		}

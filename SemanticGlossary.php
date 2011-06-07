@@ -71,7 +71,7 @@ $wgHooks['smwInitDatatypes'][] = 'SemanticGlossaryRegisterPropertyAliases';
 // register resource modules with the Resource Loader
 $wgResourceModules['ext.SemanticGlossary.Browser'] = array(
 	'localBasePath' => $dir,
-	'styles' => 'css/SemanticGlossaryBrowser.css',
+	'styles' => 'skins/SemanticGlossaryBrowser.css',
 	'remoteExtPath' => 'SemanticGlossary'
 );
 
