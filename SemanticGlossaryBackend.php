@@ -88,7 +88,7 @@ class SemanticGlossaryBackend extends LingoBackend {
 				LingoElement::ELEMENT_TERM => $term,
 				LingoElement::ELEMENT_DEFINITION => $definition,
 				LingoElement::ELEMENT_LINK => $link,
-				LingoElement::ELEMENT_SOURCE => $resultline[0]->getResultSubject()->getTitle()->getPrefixedText()
+				LingoElement::ELEMENT_SOURCE => $resultline[0]->getResultSubject()
 			);
 		}
 

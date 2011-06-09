@@ -77,7 +77,8 @@ class SpecialSemanticGlossaryBrowser extends SpecialPage {
 				$definition = $glossaryElement->getDefinition( $key );
 				$link = $glossaryElement->getLink( $key );
 
-				$tablerows .= $this->$createTableRowMethod( $source, $term, $definition, $link );
+				$tablerows .= $this->$createTableRowMethod( $source->getInterwiki() . ":" . $source->getNamespace() . ":" . $source->getDBkey(),
+						$term, $definition, $link );
 
 				$glossaryElement->next();
 			}
