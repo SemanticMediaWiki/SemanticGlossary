@@ -77,8 +77,9 @@ class SemanticGlossaryBackend extends LingoBackend {
 
 				if ( $ml = $this->getMessageLog() ) {
 					$ml->addMessage(
-						wfMsg( 'semanticglossary-termdefinedtwice', array($subject->getTitle()->getPrefixedText()) ),
-						SemanticGlossaryMessageLog::SG_WARNING );
+						wfMsg( 'semanticglossary-termdefinedtwice',
+							array($resultline[0]->getResultSubject()->getTitle()->getPrefixedText()) ),
+							LingoMessageLog::MESSAGE_WARNING );
 				}
 
 				continue;
