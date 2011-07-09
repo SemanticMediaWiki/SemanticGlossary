@@ -646,3 +646,10 @@ $messages['tl'] = array(
 	'semanticglossary-prop-gll' => 'Kawing sa Glosaryo',
 );
 
+/** Simplified Chinese (‪中文(简体)‬)
+ * @author Xiaomingyan
+ */
+$messages['zh-hans'] = array(
+	'semanticglossary-messageheader' => '信息：',
+);
+
