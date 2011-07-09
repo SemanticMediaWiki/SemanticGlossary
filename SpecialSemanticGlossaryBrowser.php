@@ -387,7 +387,7 @@ class SpecialSemanticGlossaryBrowser extends SpecialPage {
 			$termNumber++;
 		}
 
-		return new SMWDIWikiPage( "GlossaryTerm#$termNumber", NS_MAIN, '' );
+		return new SMWDIWikiPage( "GlossaryTerm#$termNumber", NS_MAIN, '', '#SemanticGlossary#' );
 
 		exit();
 	}
