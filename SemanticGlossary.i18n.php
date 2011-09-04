@@ -383,6 +383,14 @@ $messages['id'] = array(
 	'semanticglossary-prop-gll' => 'Glosarium-Tautan',
 );
 
+/** Japanese (日本語)
+ * @author Schu
+ */
+$messages['ja'] = array(
+	'semanticglossary-desc' => '[http://semantic-mediawiki.org セマンティックMediaWiki] バックエンドでの用語集拡張機能',
+	'semanticglossary-browsertitle' => '用語集',
+);
+
 /** Colognian (Ripoarisch)
  * @author Purodha
  */
@@ -490,30 +498,31 @@ $messages['nl'] = array(
 );
 
 /** Piedmontese (Piemontèis)
+ * @author Borichèt
  * @author Dragonòt
  */
 $messages['pms'] = array(
-	'semanticglossary-desc' => "N'estension ëd glossari con un backend [http://semantic-mediawiki.org Semantic MediaWiki]",
+	'semanticglossary-desc' => "N'estension ëd glossari ch'a deuvra [http://semantic-mediawiki.org Semantic MediaWiki]",
 	'semanticglossary-browsertitle' => 'Glossari',
-	'semanticglossary-deleteselected' => 'Scansela le selessionà',
+	'semanticglossary-deleteselected' => 'Scancelé la selession',
 	'semanticglossary-savechanges' => 'Salvé ij cangiament',
-	'semanticglossary-createnew' => 'Creé termo neuv',
-	'semanticglossary-termsdefined' => 'Costi-sì a son ij termo definì ant la wiki:',
-	'semanticglossary-notermsdefined' => 'A-i é pa al moment gnun termo definì ant la wiki.',
-	'semanticglossary-enternewterm' => 'It peule anserì un termo neuv e la definission ambelessì:',
-	'semanticglossary-messageheader' => 'Messagi:',
-	'semanticglossary-storedtermdefinedinarticle' => 'Ël termo "$1" a l\'era originariament definì ant la pagina [[$2]]. La definission a l\'é stàita cangià com ciamà për adess. An tùit ij cas, com la pagina originaria a l\'é torna modificà, la definission antlora a pija la precedensa.',
-	'semanticglossary-deletedtermdefinedinarticle' => 'Ël termo "$1" a l\'era originariament definì ant la pagina [[$2]]. La definission a l\'é stàita scanselà com ciamà për adess. An tùit ij cas, com la pagina originaria a l\'é torna modificà, la definission antlora a pija la precedensa.',
-	'semanticglossary-termdeleted' => 'Scanselà $1.',
+	'semanticglossary-createnew' => 'Creé na paròla neuva',
+	'semanticglossary-termsdefined' => 'Coste-sì a son le paròle definìe an sla wiki:',
+	'semanticglossary-notermsdefined' => 'Al moment a-i é gnun-a espression definìa an sla wiki.',
+	'semanticglossary-enternewterm' => 'A peul anserì na neuva espression e soa definission ambelessì:',
+	'semanticglossary-messageheader' => 'Mëssagi:',
+	'semanticglossary-storedtermdefinedinarticle' => 'L\'espression "$1" a l\'era originariament definìa ant la pàgina [[$2]]. La definission a l\'é stàita modificà com ciamà për adess. Comsëssìa, pen-a che la pàgina originaria a sarà torna modificà, la definission ambelelà a l\'avrà la precedensa.',
+	'semanticglossary-deletedtermdefinedinarticle' => 'L\'espression "$1" a l\'era originariament definìa ant la pàgina [[$2]]. La definission a l\'é stàita scancelà com ciamà për adess. Comsëssìa, pen-a che la pàgina originaria a sarà torna modificà, la definission ambelelà a l\'avrà la precedensa.',
+	'semanticglossary-termdeleted' => 'Scancelà $1.',
 	'semanticglossary-termchanged' => 'Cangià $1.',
 	'semanticglossary-termadded' => 'Giontà $1.',
-	'semanticglossary-storedtermdefinedtwice' => 'La pagina [[$1]] a conten pi che na proprietà ciamà $2. A memoriserà pa dat për ël termo "$3".',
-	'semanticglossary-termdefinedtwice' => "La pagina [[$1]] a conten pi che un termo e/o pi che na definission. J'intrade a saran pa disponìbij për ël glossari.",
+	'semanticglossary-storedtermdefinedtwice' => 'La pàgina [[$1]] a conten pi che na proprietà ciamà $2. A memoriserà pa ëd dat për l\'espression "$3".',
+	'semanticglossary-termdefinedtwice' => "La pàgina [[$1]] a conten pi che n'espresson e/o pi che na definission. Le vos a saran pa disponìbij për ël glossari.",
 	'semanticglossary-brokensession' => 'Assion pa përmëttùa. Dat ëd session përdù.',
-	'semanticglossary-norights' => 'Assion pa përmëttùa. Pa basta drit.',
-	'semanticglossary-prop-glt' => 'Glossari-Termo',
+	'semanticglossary-norights' => 'Assion pa përmëttùa. Pa basta ëd drit.',
+	'semanticglossary-prop-glt' => 'Espression dël glossari',
 	'semanticglossary-prop-gld' => 'Glossari-Definission',
-	'semanticglossary-prop-gll' => 'Glossari-Colegament',
+	'semanticglossary-prop-gll' => 'Liura dël glossari',
 );
 
 /** Pashto (پښتو)
