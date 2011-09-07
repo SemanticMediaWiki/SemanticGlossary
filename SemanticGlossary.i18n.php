@@ -655,6 +655,21 @@ $messages['tl'] = array(
 	'semanticglossary-prop-gll' => 'Kawing sa Glosaryo',
 );
 
+/** Vietnamese (Tiếng Việt)
+ * @author Minh Nguyen
+ */
+$messages['vi'] = array(
+	'semanticglossary-desc' => 'Phần mở rộng bảng thuật ngữ dựa trên [http://semantic-mediawiki.org Semantic MediaWiki]',
+	'semanticglossary-browsertitle' => 'Thuật ngữ',
+	'semanticglossary-deleteselected' => 'Xóa lựa chọn',
+	'semanticglossary-savechanges' => 'Lưu các thay đổi',
+	'semanticglossary-createnew' => 'Tạo thuật ngữ mới',
+	'semanticglossary-messageheader' => 'Thông điệp:',
+	'semanticglossary-termdeleted' => 'Đã xóa “$1”.',
+	'semanticglossary-termchanged' => 'Đã thay đổi “$1”.',
+	'semanticglossary-termadded' => 'Đã thêm “$1”.',
+);
+
 /** Simplified Chinese (‪中文(简体)‬)
  * @author Xiaomingyan
  */
