@@ -87,6 +87,13 @@ $messages['ar'] = array(
 	'semanticglossary-createnew' => 'أنشئ مصطلحا جديدا',
 );
 
+/** Azerbaijani (Azərbaycanca)
+ * @author Cekli829
+ */
+$messages['az'] = array(
+	'semanticglossary-messageheader' => 'Mesajlar:',
+);
+
 /** Belarusian (Taraškievica orthography) (‪Беларуская (тарашкевіца)‬)
  * @author EugeneZelenko
  * @author Jim-by
