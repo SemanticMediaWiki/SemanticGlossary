@@ -440,6 +440,7 @@ $messages['lb'] = array(
 	'semanticglossary-createnew' => 'Neie Begrëff uleeën',
 	'semanticglossary-termsdefined' => 'Dës Begrëffer sinn an dëser Wiki definéiert:',
 	'semanticglossary-notermsdefined' => 'Et sinn elo keng Begrëffer an dëser Wiki definéiert.',
+	'semanticglossary-enternewterm' => 'Dir kënnt en neie Begrëff mat senger Definitioun hei aginn:',
 	'semanticglossary-messageheader' => 'Messagen:',
 	'semanticglossary-termdeleted' => '$1 ass geläscht.',
 	'semanticglossary-termchanged' => '$1 ass geännert.',
