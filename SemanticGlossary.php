@@ -5,7 +5,7 @@
  *
  * @defgroup SemanticGlossary Semantic Glossary
  * @author Stephan Gambke
- * @version 0.1 alpha
+ * @version 0.1
  */
 
 /**
@@ -33,7 +33,7 @@ if ( !defined( 'LINGO_VERSION' ) ) {
 /**
  * The Semantic Glossary version
  */
-define( 'SG_VERSION', '0.1 alpha' );
+define( 'SG_VERSION', '0.1' );
 
 // register the extension
 $wgExtensionCredits[defined( 'SEMANTIC_EXTENSION_TYPE' ) ? 'semantic' : 'other'][] = array(
@@ -54,29 +54,13 @@ $dir = dirname( __FILE__ );
 
 // register message file
 $wgExtensionMessagesFiles['SemanticGlossary'] = $dir . '/SemanticGlossary.i18n.php';
-$wgExtensionMessagesFiles['SemanticGlossaryAlias'] = $dir . '/SemanticGlossary.alias.php';
 
 // register class files with the Autoloader
 $wgAutoloadClasses['SemanticGlossaryBackend'] = $dir . '/SemanticGlossaryBackend.php';
-$wgAutoloadClasses['SpecialSemanticGlossaryBrowser'] = $dir . '/SpecialSemanticGlossaryBrowser.php';
-
-// register Special pages
-$wgSpecialPages['SemanticGlossaryBrowser'] = 'SpecialSemanticGlossaryBrowser';
-$wgSpecialPageGroups['SemanticGlossaryBrowser'] = 'other';
 
 // register hook handlers
 $wgHooks['smwInitProperties'][] = 'SemanticGlossaryRegisterProperties';
 $wgHooks['smwInitDatatypes'][] = 'SemanticGlossaryRegisterPropertyAliases';
-
-// register resource modules with the Resource Loader
-$wgResourceModules['ext.SemanticGlossary.Browser'] = array(
-	'localBasePath' => $dir,
-	'styles' => 'skins/SemanticGlossaryBrowser.css',
-	'remoteExtPath' => 'SemanticGlossary'
-);
-
-// Create new permission 'editglossary' and assign it to usergroup 'user' by default
-$wgGroupPermissions['user']['editglossary'] = true;
 
 define( 'SG_PROP_GLT', 'Glossary-Term' );
 define( 'SG_PROP_GLD', 'Glossary-Definition' );

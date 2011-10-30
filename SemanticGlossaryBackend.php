@@ -55,16 +55,16 @@ class SemanticGlossaryBackend extends LingoBackend {
 		// find next line
 		while ( !$ret && ( $resultline = $this->mQueryResult->getNext() ) ) {
 
-			$term = $resultline[0]->getNextText( SMW_OUTPUT_HTML );
-			$definition = $resultline[1]->getNextText( SMW_OUTPUT_HTML );
-			$link = $resultline[2]->getNextText( SMW_OUTPUT_HTML );
+			$term = $resultline[0]->getNextText( SMW_OUTPUT_WIKI );
+			$definition = $resultline[1]->getNextText( SMW_OUTPUT_WIKI );
+			$link = $resultline[2]->getNextText( SMW_OUTPUT_WIKI );
 
 			// FIXME: By not checking for 2nd term defined on the same page some
 			// time could be saved. However, no message could then be generated.
 			// Introduce a setting?
-			$nextTerm = $resultline[0]->getNextText( SMW_OUTPUT_HTML );
-			$nextDefinition = $resultline[1]->getNextText( SMW_OUTPUT_HTML );
-			$nextLink = $resultline[2]->getNextText( SMW_OUTPUT_HTML );
+			$nextTerm = $resultline[0]->getNextText( SMW_OUTPUT_WIKI );
+			$nextDefinition = $resultline[1]->getNextText( SMW_OUTPUT_WIKI );
+			$nextLink = $resultline[2]->getNextText( SMW_OUTPUT_WIKI );
 
 
 			// FIXME: SMW has a bug that right after storing data this data

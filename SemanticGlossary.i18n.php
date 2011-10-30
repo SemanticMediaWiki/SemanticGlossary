@@ -10,25 +10,8 @@ $messages = array();
  */
 $messages['en'] = array(
 	'semanticglossary-desc' => 'A glossary extension with a [http://semantic-mediawiki.org Semantic MediaWiki] backend',
-	'semanticglossary-browsertitle' => 'Glossary',
-	'semanticglossary-deleteselected' => 'Delete selected',
-	'semanticglossary-savechanges' => 'Save changes',
-	'semanticglossary-createnew' => 'Create new term',
 
-	'semanticglossary-termsdefined' => 'These are the terms defined in the wiki:',
-	'semanticglossary-notermsdefined' => 'There are currently no terms defined in the wiki.',
-	'semanticglossary-enternewterm' => 'You can enter a new term and definition here:',
-
-	'semanticglossary-messageheader' => 'Messages:',
-	'semanticglossary-storedtermdefinedinarticle' => 'The term "$1" was originally defined in page [[$2]]. The definition was changed as required for now. However, as soon as the original page is edited again, the definition there takes precedence.',
-	'semanticglossary-deletedtermdefinedinarticle' => 'The term "$1" was originally defined in page [[$2]]. The definition was deleted as required for now. However, as soon as the original page is edited again, the definition there takes precedence.',
-	'semanticglossary-termdeleted' => 'Deleted $1.',
-	'semanticglossary-termchanged' => 'Changed $1.',
-	'semanticglossary-termadded' => 'Added $1.',
-	'semanticglossary-storedtermdefinedtwice' => 'The page [[$1]] contains more than one property named $2. Will not store data for term "$3".',
 	'semanticglossary-termdefinedtwice' => 'The page [[$1]] contains more than one term and/or more than one definition. The entries will not be available for the glossary.',
-	'semanticglossary-brokensession' => 'Action not allowed. Broken session data.',
-	'semanticglossary-norights' => 'Action not allowed. Insufficient rights.',
 
 	'semanticglossary-prop-glt' => 'Glossary-Term',
 	'semanticglossary-prop-gld' => 'Glossary-Definition',
@@ -43,10 +26,7 @@ $messages['en'] = array(
  */
 $messages['qqq'] = array(
 	'semanticglossary-desc' => '{{desc}}',
-	'semanticglossary-deleteselected' => 'This is the label of a button.',
-	'semanticglossary-savechanges' => 'This is the label of a button.',
-	'semanticglossary-createnew' => 'This is the label of a button.',
-	'semanticglossary-messageheader' => '{{Identical|Message}}',
+
 	'semanticglossary-prop-glt' => 'This is the name of a [http://semantic-mediawiki.org/wiki/Property property] in the sense of [http://semantic-mediawiki.org/ Semantic MediaWiki].',
 	'semanticglossary-prop-gld' => 'This is the name of a [http://semantic-mediawiki.org/wiki/Property property] in the sense of [http://semantic-mediawiki.org/ Semantic MediaWiki].',
 	'semanticglossary-prop-gll' => 'This is the name of a [http://semantic-mediawiki.org/wiki/Property property] in the sense of [http://semantic-mediawiki.org/ Semantic MediaWiki].',
