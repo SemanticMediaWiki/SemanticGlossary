@@ -67,6 +67,17 @@ $messages['ar'] = array(
 	'semanticglossary-createnew' => 'أنشئ مصطلحا جديدا',
 );
 
+/** Asturian (Asturianu)
+ * @author Xuacu
+ */
+$messages['ast'] = array(
+	'semanticglossary-desc' => 'Una estensión de glosariu basada en [http://semantic-mediawiki.org Semantic MediaWiki]',
+	'semanticglossary-termdefinedtwice' => 'La páxina "[[$1]]" contién más d\'un términu y/o más d\'una definición. Les entraes nun tarán disponibles pal glosariu.',
+	'semanticglossary-prop-glt' => 'Glosariu-Términu',
+	'semanticglossary-prop-gld' => 'Glosariu-Definición',
+	'semanticglossary-prop-gll' => 'Glosariu-Enllaz',
+);
+
 /** Azerbaijani (Azərbaycanca)
  * @author Cekli829
  */
