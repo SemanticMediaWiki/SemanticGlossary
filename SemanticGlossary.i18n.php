@@ -317,6 +317,17 @@ $messages['he'] = array(
 	'semanticglossary-prop-gll' => 'קישור-במונחון',
 );
 
+/** Upper Sorbian (Hornjoserbsce)
+ * @author Michawiki
+ */
+$messages['hsb'] = array(
+	'semanticglossary-desc' => 'Glosarowe rozšěrjenje z [http://semantic-mediawiki.org Semantic MediaWiki] jako zakład',
+	'semanticglossary-termdefinedtwice' => 'Strona [[$1]] wobsahuje wjace hač jedne zapřijeće a/abo wjace hač jednu definiciju. Zapiski njebudu za glosar k dispoziciji stać.',
+	'semanticglossary-prop-glt' => 'Glosar (zapřijeće)',
+	'semanticglossary-prop-gld' => 'Glosar (definicija)',
+	'semanticglossary-prop-gll' => 'Glosar (wotkaz)',
+);
+
 /** Hungarian (Magyar)
  * @author Dani
  */
