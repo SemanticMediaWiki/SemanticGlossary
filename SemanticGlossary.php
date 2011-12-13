@@ -40,7 +40,7 @@ $wgExtensionCredits[defined( 'SEMANTIC_EXTENSION_TYPE' ) ? 'semantic' : 'other']
 	'path' => __FILE__,
 	'name' => 'Semantic Glossary',
 	'author' => '[http://www.mediawiki.org/wiki/User:F.trott Stephan Gambke]',
-	'url' => 'http://www.mediawiki.org/wiki/Extension:Semantic_Glossary',
+	'url' => 'https://www.mediawiki.org/wiki/Extension:Semantic_Glossary',
 	'descriptionmsg' => 'semanticglossary-desc',
 	'version' => SG_VERSION,
 );
