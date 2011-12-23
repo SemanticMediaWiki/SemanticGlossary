@@ -275,6 +275,11 @@ $messages['sr-ec'] = array(
 	'semanticglossary-termdefinedtwice' => 'Страница [[$1]] садржи више од једног појма и дефиниције. Уноси неће бити доступни речнику.',
 );
 
+/** Serbian (Latin script) (‪Srpski (latinica)‬) */
+$messages['sr-el'] = array(
+	'semanticglossary-termdefinedtwice' => 'Stranica [[$1]] sadrži više od jednog pojma i definicije. Unosi neće biti dostupni rečniku.',
+);
+
 /** Tagalog (Tagalog)
  * @author AnakngAraw
  */
