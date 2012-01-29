@@ -299,3 +299,14 @@ $messages['vi'] = array(
 	'semanticglossary-desc' => 'Phần mở rộng bảng thuật ngữ dựa trên [http://semantic-mediawiki.org Semantic MediaWiki]',
 );
 
+/** Simplified Chinese (‪中文(简体)‬)
+ * @author Linforest
+ */
+$messages['zh-hans'] = array(
+	'semanticglossary-desc' => '带有[http://semantic-mediawiki.org Semantic MediaWiki]后端的词汇表扩展',
+	'semanticglossary-termdefinedtwice' => '该页面[[$1]]之中含有不止一条术语和/或不止一个定义。这些条目对词汇表来说不可用。',
+	'semanticglossary-prop-glt' => '词汇表-术语',
+	'semanticglossary-prop-gld' => '词汇表-定义',
+	'semanticglossary-prop-gll' => '词汇表-链接',
+);
+
