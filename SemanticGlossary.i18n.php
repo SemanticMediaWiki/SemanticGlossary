@@ -233,6 +233,17 @@ $messages['nl'] = array(
 	'semanticglossary-prop-gll' => 'Begrippenlijstverwijzing',
 );
 
+/** Polish (Polski)
+ * @author BeginaFelicysym
+ */
+$messages['pl'] = array(
+	'semanticglossary-desc' => 'Rozszerzenie słownika z zapleczem w [http://semantic-mediawiki.org Semantycznej MediaWiki]',
+	'semanticglossary-termdefinedtwice' => 'Strona [[$1]] zawiera więcej niż jedno pojęcie i/lub więcej niż jedną definicję. Wpisy nie będą dostępne dla słownika.',
+	'semanticglossary-prop-glt' => 'Pojęcie słownika',
+	'semanticglossary-prop-gld' => 'Definicja słownika',
+	'semanticglossary-prop-gll' => 'Łącze słownika',
+);
+
 /** Piedmontese (Piemontèis)
  * @author Borichèt
  * @author Dragonòt
