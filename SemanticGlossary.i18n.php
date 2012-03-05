@@ -107,6 +107,17 @@ $messages['de'] = array(
 	'semanticglossary-prop-gll' => 'Glossar (Link)',
 );
 
+/** Spanish (Español)
+ * @author Armando-Martin
+ */
+$messages['es'] = array(
+	'semanticglossary-desc' => 'Una extensión de glosario basada en [http://semantic-mediawiki.org Semantic MediaWiki]',
+	'semanticglossary-termdefinedtwice' => 'La página [[$1]] contiene más de un término y/o más de una definición. Las entradas no estarán disponibles para el glosario.',
+	'semanticglossary-prop-glt' => 'Término del glosario',
+	'semanticglossary-prop-gld' => 'Definición del glosario',
+	'semanticglossary-prop-gll' => 'Enlace del glosario',
+);
+
 /** French (Français)
  * @author IAlex
  */
