@@ -193,6 +193,17 @@ $messages['id'] = array(
 	'semanticglossary-prop-gll' => 'Glosarium-Tautan',
 );
 
+/** Italian (Italiano)
+ * @author Beta16
+ */
+$messages['it'] = array(
+	'semanticglossary-desc' => "Un'estensione per un glossario con un backend di [http://semantic-mediawiki.org Semantic MediaWiki]",
+	'semanticglossary-termdefinedtwice' => 'La pagina [[$1]] contiene più di un termine e\\o più di una definizione. Le voci non saranno disponibili per il glossario.',
+	'semanticglossary-prop-glt' => 'Glossario-Termine',
+	'semanticglossary-prop-gld' => 'Glossario-Definizione',
+	'semanticglossary-prop-gll' => 'Glossario-Collegamento',
+);
+
 /** Japanese (日本語)
  * @author Schu
  */
