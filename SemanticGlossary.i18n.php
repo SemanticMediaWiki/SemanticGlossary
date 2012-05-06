@@ -107,6 +107,17 @@ $messages['de'] = array(
 	'semanticglossary-prop-gll' => 'Glossar (Link)',
 );
 
+/** Lower Sorbian (Dolnoserbski)
+ * @author Michawiki
+ */
+$messages['dsb'] = array(
+	'semanticglossary-desc' => 'Glosarowe rozšyrjenje z [http://semantic-mediawiki.org Semantic MediaWiki] ako zakład',
+	'semanticglossary-termdefinedtwice' => 'Bok [[$1]] wopśimujo wěcej ako jadno zapśimjeśe a/abo wěcej ako jadnu definiciju. Zapiski njebudu za glosar k dispoziciji stojaś.',
+	'semanticglossary-prop-glt' => 'Glosar (zapśimjeśe)',
+	'semanticglossary-prop-gld' => 'Glosar (definicija)',
+	'semanticglossary-prop-gll' => 'Glosar (wótkaz)',
+);
+
 /** Spanish (Español)
  * @author Armando-Martin
  */
