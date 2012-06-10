@@ -25,7 +25,9 @@ $messages['en'] = array(
  * @author Purodha
  */
 $messages['qqq'] = array(
-	'semanticglossary-desc' => '{{desc}}',
+	'semanticglossary-desc' => '{{desc}}
+
+A "[[:wikipedia:Front and back ends|backend]]" is a system or component that ordinary users don\'t interact with directly and don\'t need to know about, and that is responsible for a distinct task or service - for example, a storage back-end is a generic system for storing data which other applications can use. Possible alternatives for back-end are "system" or "service", or (depending on context and language) even leave it untranslated.',
 	'semanticglossary-prop-glt' => 'This is the name of a [http://semantic-mediawiki.org/wiki/Property property] in the sense of [http://semantic-mediawiki.org/ Semantic MediaWiki].',
 	'semanticglossary-prop-gld' => 'This is the name of a [http://semantic-mediawiki.org/wiki/Property property] in the sense of [http://semantic-mediawiki.org/ Semantic MediaWiki].',
 	'semanticglossary-prop-gll' => 'This is the name of a [http://semantic-mediawiki.org/wiki/Property property] in the sense of [http://semantic-mediawiki.org/ Semantic MediaWiki].',
@@ -217,9 +219,10 @@ $messages['it'] = array(
 
 /** Japanese (日本語)
  * @author Schu
+ * @author Shirayuki
  */
 $messages['ja'] = array(
-	'semanticglossary-desc' => '[http://semantic-mediawiki.org セマンティックMediaWiki] バックエンドでの用語集拡張機能',
+	'semanticglossary-desc' => '[http://semantic-mediawiki.org Semantic MediaWiki] バックエンドでの用語集拡張機能',
 );
 
 /** Colognian (Ripoarisch)
