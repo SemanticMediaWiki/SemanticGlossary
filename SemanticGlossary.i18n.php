@@ -44,7 +44,7 @@ $messages['ang'] = array(
 	'semanticglossary-prop-gll' => 'Ƿordȝetælhlence',
 );
 
-/** Asturian (Asturianu)
+/** Asturian (asturianu)
  * @author Xuacu
  */
 $messages['ast'] = array(
@@ -67,7 +67,7 @@ $messages['be-tarask'] = array(
 	'semanticglossary-prop-gll' => 'Глясарый-Спасылка',
 );
 
-/** Breton (Brezhoneg)
+/** Breton (brezhoneg)
  * @author Fulup
  */
 $messages['br'] = array(
@@ -78,7 +78,7 @@ $messages['br'] = array(
 	'semanticglossary-prop-gll' => "Liamm eus ar c'heriaoueg",
 );
 
-/** Bosnian (Bosanski)
+/** Bosnian (bosanski)
  * @author CERminator
  */
 $messages['bs'] = array(
@@ -86,7 +86,7 @@ $messages['bs'] = array(
 	'semanticglossary-prop-gld' => 'Rječnička-Definicija',
 );
 
-/** Catalan (Català)
+/** Catalan (català)
  * @author Dvdgmz
  */
 $messages['ca'] = array(
@@ -120,7 +120,7 @@ $messages['dsb'] = array(
 	'semanticglossary-prop-gll' => 'Glosar (wótkaz)',
 );
 
-/** Spanish (Español)
+/** Spanish (español)
  * @author Armando-Martin
  */
 $messages['es'] = array(
@@ -131,7 +131,7 @@ $messages['es'] = array(
 	'semanticglossary-prop-gll' => 'Enlace del glosario',
 );
 
-/** French (Français)
+/** French (français)
  * @author IAlex
  */
 $messages['fr'] = array(
@@ -142,7 +142,7 @@ $messages['fr'] = array(
 	'semanticglossary-prop-gll' => 'Lien du glossaire',
 );
 
-/** Franco-Provençal (Arpetan)
+/** Franco-Provençal (arpetan)
  * @author ChrisPtDe
  */
 $messages['frp'] = array(
@@ -184,7 +184,7 @@ $messages['hsb'] = array(
 	'semanticglossary-prop-gll' => 'Glosar (wotkaz)',
 );
 
-/** Interlingua (Interlingua)
+/** Interlingua (interlingua)
  * @author McDutchie
  */
 $messages['ia'] = array(
@@ -206,7 +206,7 @@ $messages['id'] = array(
 	'semanticglossary-prop-gll' => 'Glosarium-Tautan',
 );
 
-/** Italian (Italiano)
+/** Italian (italiano)
  * @author Beta16
  */
 $messages['it'] = array(
@@ -247,7 +247,7 @@ $messages['lb'] = array(
 	'semanticglossary-prop-gll' => 'Glossaire-Link',
 );
 
-/** Macedonian (Македонски)
+/** Macedonian (македонски)
  * @author Bjankuloski06
  */
 $messages['mk'] = array(
@@ -269,7 +269,7 @@ $messages['nl'] = array(
 	'semanticglossary-prop-gll' => 'Begrippenlijstverwijzing',
 );
 
-/** Polish (Polski)
+/** Polish (polski)
  * @author BeginaFelicysym
  */
 $messages['pl'] = array(
@@ -292,7 +292,7 @@ $messages['pms'] = array(
 	'semanticglossary-prop-gll' => 'Liura dël glossari',
 );
 
-/** Portuguese (Português)
+/** Portuguese (português)
  * @author Hamilton Abreu
  */
 $messages['pt'] = array(
@@ -303,7 +303,7 @@ $messages['pt'] = array(
 	'semanticglossary-prop-gll' => 'Glossário-Link',
 );
 
-/** Russian (Русский)
+/** Russian (русский)
  * @author Lockal
  * @author Александр Сигачёв
  * @author Ичи
@@ -316,14 +316,14 @@ $messages['ru'] = array(
 	'semanticglossary-prop-gll' => 'Глоссарий-Ссылка',
 );
 
-/** Serbian (Cyrillic script) (‪Српски (ћирилица)‬)
+/** Serbian (Cyrillic script) (‪српски (ћирилица)‬)
  * @author Rancher
  */
 $messages['sr-ec'] = array(
 	'semanticglossary-termdefinedtwice' => 'Страница [[$1]] садржи више од једног појма и дефиниције. Уноси неће бити доступни речнику.',
 );
 
-/** Serbian (Latin script) (‪Srpski (latinica)‬) */
+/** Serbian (Latin script) (‪srpski (latinica)‬) */
 $messages['sr-el'] = array(
 	'semanticglossary-termdefinedtwice' => 'Stranica [[$1]] sadrži više od jednog pojma i definicije. Unosi neće biti dostupni rečniku.',
 );
@@ -346,7 +346,7 @@ $messages['vi'] = array(
 	'semanticglossary-desc' => 'Phần mở rộng bảng thuật ngữ dựa trên [http://semantic-mediawiki.org Semantic MediaWiki]',
 );
 
-/** Simplified Chinese (‪中文(简体)‬)
+/** Simplified Chinese (‪中文（简体）‬)
  * @author Linforest
  */
 $messages['zh-hans'] = array(
