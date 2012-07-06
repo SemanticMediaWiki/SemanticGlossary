@@ -57,10 +57,15 @@ $wgExtensionMessagesFiles['SemanticGlossary'] = $dir . '/SemanticGlossary.i18n.p
 
 // register class files with the Autoloader
 $wgAutoloadClasses['SemanticGlossaryBackend'] = $dir . '/SemanticGlossaryBackend.php';
+$wgAutoloadClasses['SemanticGlossaryCacheHandling'] = $dir . '/SemanticGlossaryCacheHandling.php';
 
 // register hook handlers
 $wgHooks['smwInitProperties'][] = 'SemanticGlossaryRegisterProperties';
 $wgHooks['smwInitDatatypes'][] = 'SemanticGlossaryRegisterPropertyAliases';
+
+$wgHooks['SMWStore::updateDataBefore'][] = 'SemanticGlossaryCacheHandling::purgeCacheForData'; // invalidate on update
+$wgHooks['smwDeleteSemanticData'][] ='SemanticGlossaryCacheHandling::purgeCacheForSubject'; // invalidate on delete
+$wgHooks['TitleMoveComplete'][] = 'SemanticGlossaryCacheHandling::purgeCacheForTitle'; // move annotations
 
 define( 'SG_PROP_GLT', 'Glossary-Term' );
 define( 'SG_PROP_GLD', 'Glossary-Definition' );
@@ -79,3 +84,4 @@ function SemanticGlossaryRegisterPropertyAliases() {
 	SMWDIProperty::registerPropertyAlias( '___gll', wfMsg( 'semanticglossary-prop-gll' ) );
 	return true;
 }
+

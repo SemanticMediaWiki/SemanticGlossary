@@ -18,27 +18,65 @@ if ( !defined( 'SG_VERSION' ) ) {
  */
 class SemanticGlossaryBackend extends LingoBackend {
 
-	protected $mQueryResult;
+	//array of SMWDIWikiPage
+	protected $mQueryResults;
+
+	protected $mDiTerm;
+	protected $mDiDefinition;
+	protected $mDiLink;
+
+	protected $mDvTerm;
+	protected $mDvDefinition;
+	protected $mDvLink;
+
+	protected $mStore;
 
 	public function __construct( LingoMessageLog &$messages = null ) {
 
 		parent::__construct( $messages );
 
 		// get the store
-		$store = smwfGetStore();
+		$this->mStore = smwfGetStore();
+
+		// build term data item and data value for later use
+		$this->mDiTerm = new SMWDIProperty( '___glt' );
+		$this->mDvTerm = new SMWStringValue( '_str' );
+		$this->mDvTerm->setProperty( $this->mDiTerm );
+
+		$pvTerm = new SMWPropertyValue( '__pro' );
+		$pvTerm->setDataItem( $this->mDiTerm );
+		$prTerm = new SMWPrintRequest( SMWPrintRequest::PRINT_PROP, null, $pvTerm );
+
+		// build definition data item and data value for later use
+		$this->mDiDefinition = new SMWDIProperty( '___gld' );
+		$this->mDvDefinition = new SMWStringValue( '_txt' );
+		$this->mDvDefinition->setProperty( $this->mDiDefinition );
+
+		$pvDefinition = new SMWPropertyValue( '__pro' );
+		$pvDefinition->setDataItem( $this->mDiDefinition );
+		$prDefinition = new SMWPrintRequest( SMWPrintRequest::PRINT_PROP, null, $pvDefinition );
+
+		// build link data item and data value for later use
+		$this->mDiLink = new SMWDIProperty( '___gll' );
+		$this->mDvLink = new SMWStringValue( '_str' );
+		$this->mDvLink->setProperty( $this->mDiLink );
+
+		$pvLink = new SMWPropertyValue( '__pro' );
+		$pvLink->setDataItem( $this->mDiLink );
+		$prLink = new SMWPrintRequest( SMWPrintRequest::PRINT_PROP, null, $pvLink );
 
 		// Create query
 		$desc = new SMWSomeProperty( new SMWDIProperty( '___glt' ), new SMWThingDescription() );
-		$desc->addPrintRequest( new SMWPrintRequest( SMWPrintRequest::PRINT_PROP, null, SMWPropertyValue::makeProperty( '___glt' ) ) );
-		$desc->addPrintRequest( new SMWPrintRequest( SMWPrintRequest::PRINT_PROP, null, SMWPropertyValue::makeProperty( '___gld' ) ) );
-		$desc->addPrintRequest( new SMWPrintRequest( SMWPrintRequest::PRINT_PROP, null, SMWPropertyValue::makeProperty( '___gll' ) ) );
+		$desc->addPrintRequest( $prTerm );
+		$desc->addPrintRequest( $prDefinition );
+		$desc->addPrintRequest( $prLink );
 
 		$query = new SMWQuery( $desc, false, false );
 		$query->sort = true;
 		$query->sortkeys['___glt'] = 'ASC';
 
 		// get the query result
-		$this->mQueryResult = $store->getQueryResult( $query );
+		$this->mQueryResults = $this->mStore->getQueryResult( $query )->getResults();
 	}
 
 	/**
@@ -50,50 +88,79 @@ class SemanticGlossaryBackend extends LingoBackend {
 	 */
 	public function next() {
 
+		wfProfileIn( __METHOD__ );
 		$ret = null;
 
 		// find next line
-		while ( !$ret && ( $resultline = $this->mQueryResult->getNext() ) ) {
+		$page = current( $this->mQueryResults );
 
-			$term = $resultline[0]->getNextText( SMW_OUTPUT_WIKI );
-			$definition = $resultline[1]->getNextText( SMW_OUTPUT_WIKI );
-			$link = $resultline[2]->getNextText( SMW_OUTPUT_WIKI );
+		if ( $page ) {
 
-			// FIXME: By not checking for 2nd term defined on the same page some
-			// time could be saved. However, no message could then be generated.
-			// Introduce a setting?
-			$nextTerm = $resultline[0]->getNextText( SMW_OUTPUT_WIKI );
-			$nextDefinition = $resultline[1]->getNextText( SMW_OUTPUT_WIKI );
-			$nextLink = $resultline[2]->getNextText( SMW_OUTPUT_WIKI );
+			next( $this->mQueryResults );
 
+			// Try cache first
+			global $wgexLingoCacheType;
+			$cache = ($wgexLingoCacheType !== null) ? wfGetCache( $wgexLingoCacheType ) : wfGetMainCache();
+			$cachekey = wfMemcKey( 'ext', 'semanticglossary', $page->getSerialization() );
+			$cachedResult = $cache->get( $cachekey );
 
-			// FIXME: SMW has a bug that right after storing data this data
-			// might be available twice. The workaround here is to compare the
-			// first and second result and if they are identical assume that
-			// it is because of the bug. (2nd condition in the if below)
-			// skip if more then one term or more than one definition present
-			if ( ( $nextTerm || $nextDefinition || $nextLink ) &&
-				!( $nextTerm == $term && $nextDefinition == $definition && $nextLink == $link ) ) {
+			// cache hit?
+			if ( $cachedResult !== false && $cachedResult !== null ) {
 
-				if ( $ml = $this->getMessageLog() ) {
-					$ml->addMessage(
-						wfMsg( 'semanticglossary-termdefinedtwice',
-							array($resultline[0]->getResultSubject()->getTitle()->getPrefixedText()) ),
-							LingoMessageLog::MESSAGE_WARNING );
+				wfDebug( "Cache hit: Got glossary entry $cachekey from cache.\n" );
+				$ret = &$cachedResult;
+			} else {
+
+				wfDebug( "Cache miss: Glossary entry $cachekey not found in cache.\n" );
+
+				$terms = $this->mStore->getPropertyValues( $page, $this->mDiTerm );
+				$definitions = $this->mStore->getPropertyValues( $page, $this->mDiDefinition );
+				$links = $this->mStore->getPropertyValues( $page, $this->mDiLink );
+
+				if ( empty( $terms ) ) {
+					$term = null;
+				} else {
+					$this->mDvTerm->setDataItem( $terms[0] );
+					$term = $this->mDvTerm->getShortWikiText();
 				}
 
-				continue;
+				if ( empty( $definitions ) ) {
+					$definition = null;
+				} else {
+					$this->mDvDefinition->setDataItem( $definitions[0] );
+					$definition = $this->mDvDefinition->getShortWikiText();
+				}
+
+				if ( empty( $links ) ) {
+					$link = null;
+				} else {
+					$this->mDvLink->setDataItem( $links[0] );
+					$link = $this->mDvLink->getShortWikiText();
+				}
+
+				$ret = array(
+					LingoElement::ELEMENT_TERM => $term,
+					LingoElement::ELEMENT_DEFINITION => $definition,
+					LingoElement::ELEMENT_LINK => $link,
+					LingoElement::ELEMENT_SOURCE => $page
+				);
+				$cache->set( $cachekey, $ret );
+				wfDebug( "Cached glossary entry $cachekey.\n" );
 			}
-
-			$ret = array(
-				LingoElement::ELEMENT_TERM => $term,
-				LingoElement::ELEMENT_DEFINITION => $definition,
-				LingoElement::ELEMENT_LINK => $link,
-				LingoElement::ELEMENT_SOURCE => $resultline[0]->getResultSubject()
-			);
 		}
-
+		wfProfileOut( __METHOD__ );
 		return $ret;
 	}
 
+	/**
+	 * This backend is cache-enabled so this function returns true.
+	 *
+	 * Actual caching is done by the parser, the backend just calls
+	 * LingoParser::purgeCache when necessary.
+	 *
+	 * @return boolean
+	 */
+	public function useCache() {
+		return true;
+	}
 }
