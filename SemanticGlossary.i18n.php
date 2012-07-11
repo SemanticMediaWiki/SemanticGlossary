@@ -258,6 +258,17 @@ $messages['mk'] = array(
 	'semanticglossary-prop-gll' => 'Поимник-Врска',
 );
 
+/** Norwegian Bokmål (‪norsk (bokmål)‬)
+ * @author Event
+ */
+$messages['nb'] = array(
+	'semanticglossary-desc' => 'En ordlisteutvidelse basert på [http://semantic-mediawiki.org Semantic MediaWiki]',
+	'semanticglossary-termdefinedtwice' => 'Siden [[$1]] inneholder flere enn en term og/eller flere enn en definisjon. Den kan derfor ikke legges inn i ordlisten.',
+	'semanticglossary-prop-glt' => 'Ordlisteterm',
+	'semanticglossary-prop-gld' => 'Ordlistedefinisjon',
+	'semanticglossary-prop-gll' => 'Ordlistelenke',
+);
+
 /** Dutch (Nederlands)
  * @author Siebrand
  */
