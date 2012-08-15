@@ -223,6 +223,10 @@ $messages['it'] = array(
  */
 $messages['ja'] = array(
 	'semanticglossary-desc' => '[http://semantic-mediawiki.org Semantic MediaWiki] バックエンドでの用語集拡張機能',
+	'semanticglossary-termdefinedtwice' => 'ページ [[$1]] は複数の用語または定義を含んでいます。これらのエントリーは用語集では利用できなくなります。',
+	'semanticglossary-prop-glt' => '用語集-用語',
+	'semanticglossary-prop-gld' => '用語集-定義',
+	'semanticglossary-prop-gll' => '用語集-リンク',
 );
 
 /** Colognian (Ripoarisch)
