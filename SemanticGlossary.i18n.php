@@ -358,7 +358,7 @@ $messages['tl'] = array(
  * @author Minh Nguyen
  */
 $messages['vi'] = array(
-	'semanticglossary-desc' => 'Phần mở rộng bảng thuật ngữ dựa trên [http://semantic-mediawiki.org Semantic MediaWiki]',
+	'semanticglossary-desc' => 'Phần mở rộng bảng thuật ngữ dựa trên [http://semantic-mediawiki.org/?uselang=vi MediaWiki Ngữ nghĩa]',
 );
 
 /** Simplified Chinese (‪中文（简体）‬)
