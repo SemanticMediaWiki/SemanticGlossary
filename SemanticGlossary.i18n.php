@@ -55,7 +55,7 @@ $messages['ast'] = array(
 	'semanticglossary-prop-gll' => 'Glosariu-Enllaz',
 );
 
-/** Belarusian (Taraškievica orthography) (‪беларуская (тарашкевіца)‬)
+/** Belarusian (Taraškievica orthography) (беларуская (тарашкевіца)‎)
  * @author EugeneZelenko
  * @author Jim-by
  */
@@ -262,7 +262,7 @@ $messages['mk'] = array(
 	'semanticglossary-prop-gll' => 'Поимник-Врска',
 );
 
-/** Norwegian Bokmål (‪norsk (bokmål)‬)
+/** Norwegian Bokmål (norsk (bokmål)‎)
  * @author Event
  */
 $messages['nb'] = array(
@@ -331,14 +331,14 @@ $messages['ru'] = array(
 	'semanticglossary-prop-gll' => 'Глоссарий-Ссылка',
 );
 
-/** Serbian (Cyrillic script) (‪српски (ћирилица)‬)
+/** Serbian (Cyrillic script) (српски (ћирилица)‎)
  * @author Rancher
  */
 $messages['sr-ec'] = array(
 	'semanticglossary-termdefinedtwice' => 'Страница [[$1]] садржи више од једног појма и дефиниције. Уноси неће бити доступни речнику.',
 );
 
-/** Serbian (Latin script) (‪srpski (latinica)‬) */
+/** Serbian (Latin script) (srpski (latinica)‎) */
 $messages['sr-el'] = array(
 	'semanticglossary-termdefinedtwice' => 'Stranica [[$1]] sadrži više od jednog pojma i definicije. Unosi neće biti dostupni rečniku.',
 );
@@ -361,7 +361,7 @@ $messages['vi'] = array(
 	'semanticglossary-desc' => 'Phần mở rộng bảng thuật ngữ dựa trên [http://semantic-mediawiki.org/?uselang=vi MediaWiki Ngữ nghĩa]',
 );
 
-/** Simplified Chinese (‪中文（简体）‬)
+/** Simplified Chinese (中文（简体）‎)
  * @author Linforest
  */
 $messages['zh-hans'] = array(
