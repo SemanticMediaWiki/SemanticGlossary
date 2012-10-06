@@ -343,6 +343,17 @@ $messages['sr-el'] = array(
 	'semanticglossary-termdefinedtwice' => 'Stranica [[$1]] sadrži više od jednog pojma i definicije. Unosi neće biti dostupni rečniku.',
 );
 
+/** Swedish (svenska)
+ * @author Martinwiss
+ */
+$messages['sv'] = array(
+	'semanticglossary-desc' => 'Ett tillägg för ordlistor som använder [http://semantic-mediawiki.org Semantic MediaWiki]',
+	'semanticglossary-termdefinedtwice' => 'Sidan [[$1]] innehåller mer än ett uppslagsord och mer än en definition och kommer därför inte vara tillgänglig för den semantiska ordlistan.',
+	'semanticglossary-prop-glt' => 'Ordliste-ord',
+	'semanticglossary-prop-gld' => 'Ordliste-definition',
+	'semanticglossary-prop-gll' => 'Ordliste-länk',
+);
+
 /** Tagalog (Tagalog)
  * @author AnakngAraw
  */
