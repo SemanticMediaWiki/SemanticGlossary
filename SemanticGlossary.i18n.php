@@ -338,7 +338,8 @@ $messages['sr-ec'] = array(
 	'semanticglossary-termdefinedtwice' => 'Страница [[$1]] садржи више од једног појма и дефиниције. Уноси неће бити доступни речнику.',
 );
 
-/** Serbian (Latin script) (srpski (latinica)‎) */
+/** Serbian (Latin script) (srpski (latinica)‎)
+ */
 $messages['sr-el'] = array(
 	'semanticglossary-termdefinedtwice' => 'Stranica [[$1]] sadrži više od jednog pojma i definicije. Unosi neće biti dostupni rečniku.',
 );
@@ -383,7 +384,8 @@ $messages['zh-hans'] = array(
 	'semanticglossary-prop-gll' => '词汇表-链接',
 );
 
-/** Traditional Chinese (中文（繁體）‎) */
+/** Traditional Chinese (中文（繁體）‎)
+ */
 $messages['zh-hant'] = array(
 	'semanticglossary-desc' => '帶有[http://semantic-mediawiki.org Semantic MediaWiki]後端的詞彙表擴展',
 	'semanticglossary-termdefinedtwice' => '該頁面[[$1]]之中含有不止一條術語和/或不止一個定義。這些條目對詞彙表來說不可用。',
@@ -391,4 +393,3 @@ $messages['zh-hant'] = array(
 	'semanticglossary-prop-gld' => '詞彙表-定義',
 	'semanticglossary-prop-gll' => '詞彙表-鏈接',
 );
-
