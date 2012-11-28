@@ -131,6 +131,17 @@ $messages['es'] = array(
 	'semanticglossary-prop-gll' => 'Enlace del glosario',
 );
 
+/** Finnish (suomi)
+ * @author Nedergard
+ */
+$messages['fi'] = array(
+	'semanticglossary-desc' => '[http://semantic-mediawiki.org Semantic MediaWikin] sanastolaajennus',
+	'semanticglossary-termdefinedtwice' => 'Sivulla [[$1]] on monta termiä ja/tai määritelmää. Niitä ei siksi ole sanastossa.',
+	'semanticglossary-prop-glt' => 'Sanastotermi',
+	'semanticglossary-prop-gld' => 'Sanastomääritelmä',
+	'semanticglossary-prop-gll' => 'Sanastolinkki',
+);
+
 /** French (français)
  * @author IAlex
  */
