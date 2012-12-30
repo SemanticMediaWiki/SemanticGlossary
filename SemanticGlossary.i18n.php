@@ -342,6 +342,15 @@ $messages['ru'] = array(
 	'semanticglossary-prop-gll' => 'Глоссарий-Ссылка',
 );
 
+/** Sinhala (සිංහල)
+ * @author පසිඳු කාවින්ද
+ */
+$messages['si'] = array(
+	'semanticglossary-prop-glt' => 'පදමාලාව-පදය',
+	'semanticglossary-prop-gld' => 'පදමාලාව-නිර්වචනය',
+	'semanticglossary-prop-gll' => 'පදමාලාව-සබැඳිය',
+);
+
 /** Serbian (Cyrillic script) (српски (ћирилица)‎)
  * @author Rancher
  */
