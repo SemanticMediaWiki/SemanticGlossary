@@ -292,7 +292,7 @@ $messages['nl'] = array(
 	'semanticglossary-termdefinedtwice' => 'De pagina [[$1]] bevat meerdere begrippen of definities van/voor hetzelfde. De gegevens zijn niet beschikbaar in de begrippenlijst.',
 	'semanticglossary-prop-glt' => 'Begrippenlijstbegrip',
 	'semanticglossary-prop-gld' => 'Begrippenlijstdefinitie',
-	'semanticglossary-prop-gll' => 'Begrippenlijstverwijzing',
+	'semanticglossary-prop-gll' => 'Begrippenlijstkoppeling',
 );
 
 /** Polish (polski)
