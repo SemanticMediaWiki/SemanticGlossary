@@ -240,6 +240,17 @@ $messages['ja'] = array(
 	'semanticglossary-prop-gll' => '用語集-リンク',
 );
 
+/** Korean (한국어)
+ * @author 아라
+ */
+$messages['ko'] = array(
+	'semanticglossary-desc' => '[http://semantic-mediawiki.org Semantic MediaWiki] 백엔드로의 용어집 확장 기능',
+	'semanticglossary-termdefinedtwice' => '[[$1]] 문서에는 하나 이상의 용어이고/나 하나 이상의 정의를 포함합니다. 항목은 용어집에 사용할 수 없습니다.',
+	'semanticglossary-prop-glt' => '용어집-용어',
+	'semanticglossary-prop-gld' => '용어집-정의',
+	'semanticglossary-prop-gll' => '용어집-링크',
+);
+
 /** Colognian (Ripoarisch)
  * @author Purodha
  */
