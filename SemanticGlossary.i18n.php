@@ -340,6 +340,15 @@ $messages['pt'] = array(
 	'semanticglossary-prop-gll' => 'Glossário-Link',
 );
 
+/** tarandíne (tarandíne)
+ * @author Joetaras
+ */
+$messages['roa-tara'] = array(
+	'semanticglossary-prop-glt' => 'Termine de glossarie',
+	'semanticglossary-prop-gld' => 'Definizione de glossarie',
+	'semanticglossary-prop-gll' => 'Collegamende de glossarie',
+);
+
 /** Russian (русский)
  * @author Lockal
  * @author Александр Сигачёв
@@ -395,6 +404,17 @@ $messages['tl'] = array(
 	'semanticglossary-prop-glt' => 'Kataga sa Glosaryo',
 	'semanticglossary-prop-gld' => 'Kahulugan sa Glosaryo',
 	'semanticglossary-prop-gll' => 'Kawing sa Glosaryo',
+);
+
+/** Ukrainian (українська)
+ * @author Base
+ */
+$messages['uk'] = array(
+	'semanticglossary-desc' => 'Розширення-глосарій на основі [http://semantic-mediawiki.org Semantic MediaWiki]',
+	'semanticglossary-termdefinedtwice' => 'Сторінка [[$1]] включає більше ніж один термін і/або більше ніж одне визначення. Записи на будуть доступні для глосарію.',
+	'semanticglossary-prop-glt' => 'Глосарій-Термін',
+	'semanticglossary-prop-gld' => 'Глосарій-Визначення',
+	'semanticglossary-prop-gll' => 'Глосарій-Посилання',
 );
 
 /** Vietnamese (Tiếng Việt)
