@@ -344,6 +344,8 @@ $messages['pt'] = array(
  * @author Joetaras
  */
 $messages['roa-tara'] = array(
+	'semanticglossary-desc' => "'N'estenzione d'u glossarie cu 'a [http://semantic-mediawiki.org Semandiche MediaUicchi] de rrete",
+	'semanticglossary-termdefinedtwice' => "'A pàgene [[$1]] tène cchiù de 'nu termine e/o cchiù de 'na definizione. Le vôsce non ge sò disponibbile pu glossarie.",
 	'semanticglossary-prop-glt' => 'Termine de glossarie',
 	'semanticglossary-prop-gld' => 'Definizione de glossarie',
 	'semanticglossary-prop-gll' => 'Collegamende de glossarie',
