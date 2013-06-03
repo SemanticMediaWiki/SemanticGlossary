@@ -286,7 +286,7 @@ $messages['mk'] = array(
 	'semanticglossary-prop-gll' => 'Поимник-Врска',
 );
 
-/** Norwegian Bokmål (norsk (bokmål)‎)
+/** Norwegian Bokmål (norsk bokmål)
  * @author Event
  */
 $messages['nb'] = array(
