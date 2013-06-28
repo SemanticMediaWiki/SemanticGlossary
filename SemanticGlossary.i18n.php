@@ -39,11 +39,11 @@ A "[[:wikipedia:Front and back ends|backend]]" is a system or component that ord
  * @author Gott wisst
  */
 $messages['ang'] = array(
-	'semanticglossary-desc' => 'Ȝetæl ƿorda mid [http://semantic-mediawiki.org Semantic MediaǷiki] bæcende',
-	'semanticglossary-termdefinedtwice' => 'Se tramet [[$1]] innaþ mā þonne ān ƿord oþþe mā þonne āne amearcunȝe. Þā ȝeƿritu ne bēoþ ȝearu on þǣm ȝetæle ƿorda.',
-	'semanticglossary-prop-glt' => 'Ƿordȝetælƿord',
-	'semanticglossary-prop-gld' => 'Ƿordȝetælamearcunȝ',
-	'semanticglossary-prop-gll' => 'Ƿordȝetælhlence',
+	'semanticglossary-desc' => 'Getæl worda mid [http://semantic-mediawiki.org Semantic MediaWiki] staðole',
+	'semanticglossary-termdefinedtwice' => 'Se tramet [[$1]] befēhþ mā þonne ān word oþþe mā þonne āne amearcunge. Þā gewritu ne bēoþ gearu on þǣm worda getæle.',
+	'semanticglossary-prop-glt' => 'Wordgetælword',
+	'semanticglossary-prop-gld' => 'Wordgetælamearcung',
+	'semanticglossary-prop-gll' => 'Wordgetælhlenca',
 );
 
 /** Asturian (asturianu)
