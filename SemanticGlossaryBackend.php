@@ -89,12 +89,12 @@ class SemanticGlossaryBackend extends LingoBackend {
 	public function next() {
 
 		wfProfileIn( __METHOD__ );
-		$ret = null;
+		static $ret = array();
 
 		// find next line
 		$page = current( $this->mQueryResults );
 
-		if ( $page ) {
+		if ( $page && count( $ret ) == 0 ) {
 
 			next( $this->mQueryResults );
 
@@ -117,13 +117,6 @@ class SemanticGlossaryBackend extends LingoBackend {
 				$definitions = $this->mStore->getPropertyValues( $page, $this->mDiDefinition );
 				$links = $this->mStore->getPropertyValues( $page, $this->mDiLink );
 
-				if ( empty( $terms ) ) {
-					$term = null;
-				} else {
-					$this->mDvTerm->setDataItem( $terms[0] );
-					$term = $this->mDvTerm->getShortWikiText();
-				}
-
 				if ( empty( $definitions ) ) {
 					$definition = null;
 				} else {
@@ -138,18 +131,33 @@ class SemanticGlossaryBackend extends LingoBackend {
 					$link = $this->mDvLink->getShortWikiText();
 				}
 
-				$ret = array(
-					LingoElement::ELEMENT_TERM => $term,
-					LingoElement::ELEMENT_DEFINITION => $definition,
-					LingoElement::ELEMENT_LINK => $link,
-					LingoElement::ELEMENT_SOURCE => $page
-				);
+				$tmp_terms = array();
+
+				if ( !empty( $terms ) ) {
+					foreach ( $terms as $term ) {
+						$this->mDvTerm->setDataItem( $term );
+						$tmp_terms[] = $this->mDvTerm->getShortWikiText();
+					}
+				}
+
+				foreach ( $tmp_terms as $tmp_term ) {
+						$tmp_ret = array(
+							LingoElement::ELEMENT_TERM => $tmp_term,
+							LingoElement::ELEMENT_DEFINITION => $definition,
+							LingoElement::ELEMENT_LINK => $link,
+							LingoElement::ELEMENT_SOURCE => $page
+						);
+
+						wfDebug( "Cached glossary entry $cachekey.\n" );
+						$ret[] = $tmp_ret;
+				}
+
 				$cache->set( $cachekey, $ret );
-				wfDebug( "Cached glossary entry $cachekey.\n" );
 			}
 		}
+
 		wfProfileOut( __METHOD__ );
-		return $ret;
+		return array_pop($ret);
 	}
 
 	/**

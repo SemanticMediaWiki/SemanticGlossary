@@ -36,7 +36,7 @@ class SemanticGlossaryCacheHandling {
 		// first handle subobjects recursively
 		if ( array_key_exists( '_SOBJ', $properties ) ) {
 			foreach ( $data->getPropertyValues( $properties['_SOBJ'] ) as $so ) {
-				self::purgeCacheForData( $store, $so->getSemanticData(), false );
+				self::purgeCacheForData( $store, $store->getSemanticData($so), false );
 			}
 		}
 
