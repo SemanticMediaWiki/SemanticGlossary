@@ -342,6 +342,17 @@ $messages['pt'] = array(
 	'semanticglossary-prop-gll' => 'Glossário-Link',
 );
 
+/** Brazilian Portuguese (português do Brasil)
+ * @author Cainamarques
+ */
+$messages['pt-br'] = array(
+	'semanticglossary-desc' => 'Uma extensão de glossário com base no [http://semantic-mediawiki.org MediaWiki Semântico]',
+	'semanticglossary-termdefinedtwice' => 'A página [[$1]] contém mais do que um termo ou definição. As entradas não estarão disponíveis no glossário.',
+	'semanticglossary-prop-glt' => 'Glossário-Termo',
+	'semanticglossary-prop-gld' => 'Glossário-Definição',
+	'semanticglossary-prop-gll' => 'Glossário-Link',
+);
+
 /** tarandíne (tarandíne)
  * @author Joetaras
  */
