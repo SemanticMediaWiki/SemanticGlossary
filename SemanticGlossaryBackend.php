@@ -24,10 +24,12 @@ class SemanticGlossaryBackend extends LingoBackend {
 	protected $mDiTerm;
 	protected $mDiDefinition;
 	protected $mDiLink;
+	protected $mDiStyle;
 
 	protected $mDvTerm;
 	protected $mDvDefinition;
 	protected $mDvLink;
+	protected $mDvStyle;
 
 	protected $mStore;
 
@@ -65,11 +67,21 @@ class SemanticGlossaryBackend extends LingoBackend {
 		$pvLink->setDataItem( $this->mDiLink );
 		$prLink = new SMWPrintRequest( SMWPrintRequest::PRINT_PROP, null, $pvLink );
 
+    // build style data item and data value for later use
+    $this->mDiStyle = new SMWDIProperty( '___gls' );
+		$this->mDvStyle = new SMWStringValue( '_txt' );
+		$this->mDvStyle->setProperty( $this->mDiStyle );
+
+		$pvStyle = new SMWPropertyValue( '__pro' );
+		$pvStyle->setDataItem( $this->mDiStyle );
+		$prStyle = new SMWPrintRequest( SMWPrintRequest::PRINT_PROP, null, $pvStyle );
+
 		// Create query
 		$desc = new SMWSomeProperty( new SMWDIProperty( '___glt' ), new SMWThingDescription() );
 		$desc->addPrintRequest( $prTerm );
 		$desc->addPrintRequest( $prDefinition );
 		$desc->addPrintRequest( $prLink );
+		$desc->addPrintRequest( $prStyle );
 
 		$query = new SMWQuery( $desc, false, false );
 		$query->sort = true;
@@ -81,8 +93,8 @@ class SemanticGlossaryBackend extends LingoBackend {
 
 	/**
 	 * This function returns the next element. The element is an array of four
-	 * strings: Term, Definition, Link, Source. If there is no next element the
-	 * function returns null.
+	 * strings: Term, Definition, Link, Source, Style. If there is no next element 
+	 * the function returns null.
 	 *
 	 * @return the next element or null
 	 */
@@ -116,6 +128,7 @@ class SemanticGlossaryBackend extends LingoBackend {
 				$terms = $this->mStore->getPropertyValues( $page, $this->mDiTerm );
 				$definitions = $this->mStore->getPropertyValues( $page, $this->mDiDefinition );
 				$links = $this->mStore->getPropertyValues( $page, $this->mDiLink );
+				$styles = $this->mStore->getPropertyValues( $page, $this->mDiStyle );
 
 				if ( empty( $definitions ) ) {
 					$definition = null;
@@ -131,6 +144,13 @@ class SemanticGlossaryBackend extends LingoBackend {
 					$link = $this->mDvLink->getShortWikiText();
 				}
 
+				if ( empty( $styles ) ) {
+				  $style = null;
+				} else {
+				  $this->mDvStyle->setDataItem( $styles[0] );
+				  $style = $this->mDvStyle->getShortWikiText();
+				}
+
 				$tmp_terms = array();
 
 				if ( !empty( $terms ) ) {
@@ -139,12 +159,13 @@ class SemanticGlossaryBackend extends LingoBackend {
 						$tmp_terms[] = $this->mDvTerm->getShortWikiText();
 					}
 				}
-
+				
 				foreach ( $tmp_terms as $tmp_term ) {
 						$tmp_ret = array(
 							LingoElement::ELEMENT_TERM => $tmp_term,
 							LingoElement::ELEMENT_DEFINITION => $definition,
 							LingoElement::ELEMENT_LINK => $link,
+							LingoElement::ELEMENT_STYLE => $style,
 							LingoElement::ELEMENT_SOURCE => $page
 						);
 

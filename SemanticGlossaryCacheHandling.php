@@ -43,7 +43,8 @@ class SemanticGlossaryCacheHandling {
 		// check if terms, definitions or links changed
 		if ( self::propValuesChanged( $store, $data, $subject, $properties, '___glt' ) ||
 			self::propValuesChanged( $store, $data, $subject, $properties, '___gld' ) ||
-			self::propValuesChanged( $store, $data, $subject, $properties, '___gll' )
+			self::propValuesChanged( $store, $data, $subject, $properties, '___gll' ) ||
+			self::propValuesChanged( $store, $data, $subject, $properties, '___gls' )
 		) {
 			self::purgeSubjectFromCache( $subject );
 			LingoParser::purgeCache();

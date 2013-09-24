@@ -16,6 +16,7 @@ $messages['en'] = array(
 	'semanticglossary-prop-glt' => 'Glossary-Term',
 	'semanticglossary-prop-gld' => 'Glossary-Definition',
 	'semanticglossary-prop-gll' => 'Glossary-Link',
+	'semanticglossary-prop-gls' => 'Glossary-Style',
 
 );
 
@@ -33,6 +34,7 @@ A "[[:wikipedia:Front and back ends|backend]]" is a system or component that ord
 	'semanticglossary-prop-glt' => 'This is the name of a [http://semantic-mediawiki.org/wiki/Property property] in the sense of [http://semantic-mediawiki.org/ Semantic MediaWiki].',
 	'semanticglossary-prop-gld' => 'This is the name of a [http://semantic-mediawiki.org/wiki/Property property] in the sense of [http://semantic-mediawiki.org/ Semantic MediaWiki].',
 	'semanticglossary-prop-gll' => 'This is the name of a [http://semantic-mediawiki.org/wiki/Property property] in the sense of [http://semantic-mediawiki.org/ Semantic MediaWiki].',
+	'semanticglossary-prop-gls' => 'This is the name of a [http://semantic-mediawiki.org/wiki/Property property] in the sense of [http://semantic-mediawiki.org/ Semantic MediaWiki].',
 );
 
 /** Old English (Ænglisc)
