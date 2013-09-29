@@ -104,6 +104,7 @@ $messages['ca'] = array(
 /** German (Deutsch)
  * @author F.trott
  * @author Kghbln
+ * @author Metalhead64
  */
 $messages['de'] = array(
 	'semanticglossary-desc' => 'Ermöglicht die Erstellung und Nutzung eines Glossars mit [http://semantic-mediawiki.org/wiki/Semantic_MediaWiki_–_Startseite Semantic MediaWiki] als Basis',
@@ -111,6 +112,7 @@ $messages['de'] = array(
 	'semanticglossary-prop-glt' => 'Glossar (Begriff)',
 	'semanticglossary-prop-gld' => 'Glossar (Definition)',
 	'semanticglossary-prop-gll' => 'Glossar (Link)',
+	'semanticglossary-prop-gls' => 'Glossarstil',
 );
 
 /** Lower Sorbian (dolnoserbski)
@@ -147,6 +149,7 @@ $messages['fi'] = array(
 );
 
 /** French (français)
+ * @author Gomoko
  * @author IAlex
  */
 $messages['fr'] = array(
@@ -155,6 +158,7 @@ $messages['fr'] = array(
 	'semanticglossary-prop-glt' => 'Terme du glossaire',
 	'semanticglossary-prop-gld' => 'Définition du glossaire',
 	'semanticglossary-prop-gll' => 'Lien du glossaire',
+	'semanticglossary-prop-gls' => 'Style de glossaire',
 );
 
 /** Franco-Provençal (arpetan)
@@ -175,6 +179,7 @@ $messages['gl'] = array(
 	'semanticglossary-prop-glt' => 'Termo do glosario',
 	'semanticglossary-prop-gld' => 'Definición do glosario',
 	'semanticglossary-prop-gll' => 'Ligazón do glosario',
+	'semanticglossary-prop-gls' => 'Estilo do glosario',
 );
 
 /** Hebrew (עברית)
@@ -242,6 +247,7 @@ $messages['ja'] = array(
 	'semanticglossary-prop-glt' => '用語集-用語',
 	'semanticglossary-prop-gld' => '用語集-定義',
 	'semanticglossary-prop-gll' => '用語集-リンク',
+	'semanticglossary-prop-gls' => '用語集-スタイル',
 );
 
 /** Korean (한국어)
@@ -286,6 +292,14 @@ $messages['mk'] = array(
 	'semanticglossary-prop-glt' => 'Поимник-Поим',
 	'semanticglossary-prop-gld' => 'Поимник-Толкување',
 	'semanticglossary-prop-gll' => 'Поимник-Врска',
+	'semanticglossary-prop-gls' => 'Поимнички стил',
+);
+
+/** Malay (Bahasa Melayu)
+ * @author Anakmalaysia
+ */
+$messages['ms'] = array(
+	'semanticglossary-prop-gls' => 'Glosari-Gaya',
 );
 
 /** Norwegian Bokmål (norsk bokmål)
@@ -364,6 +378,7 @@ $messages['roa-tara'] = array(
 	'semanticglossary-prop-glt' => 'Termine de glossarie',
 	'semanticglossary-prop-gld' => 'Definizione de glossarie',
 	'semanticglossary-prop-gll' => 'Collegamende de glossarie',
+	'semanticglossary-prop-gls' => 'Stile glossarie',
 );
 
 /** Russian (русский)
@@ -424,6 +439,7 @@ $messages['tl'] = array(
 );
 
 /** Ukrainian (українська)
+ * @author Andriykopanytsia
  * @author Base
  */
 $messages['uk'] = array(
@@ -432,6 +448,7 @@ $messages['uk'] = array(
 	'semanticglossary-prop-glt' => 'Глосарій-Термін',
 	'semanticglossary-prop-gld' => 'Глосарій-Визначення',
 	'semanticglossary-prop-gll' => 'Глосарій-Посилання',
+	'semanticglossary-prop-gls' => 'Стиль-Глосарій',
 );
 
 /** Vietnamese (Tiếng Việt)
@@ -443,6 +460,7 @@ $messages['vi'] = array(
 
 /** Simplified Chinese (中文（简体）‎)
  * @author Linforest
+ * @author Liuxinyu970226
  */
 $messages['zh-hans'] = array(
 	'semanticglossary-desc' => '带有[http://semantic-mediawiki.org Semantic MediaWiki]后端的词汇表扩展',
@@ -450,6 +468,7 @@ $messages['zh-hans'] = array(
 	'semanticglossary-prop-glt' => '词汇表-术语',
 	'semanticglossary-prop-gld' => '词汇表-定义',
 	'semanticglossary-prop-gll' => '词汇表-链接',
+	'semanticglossary-prop-gls' => '词汇表样式',
 );
 
 /** Traditional Chinese (中文（繁體）‎)
