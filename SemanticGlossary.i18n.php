@@ -57,6 +57,7 @@ $messages['ast'] = array(
 	'semanticglossary-prop-glt' => 'Glosariu-Términu',
 	'semanticglossary-prop-gld' => 'Glosariu-Definición',
 	'semanticglossary-prop-gll' => 'Glosariu-Enllaz',
+	'semanticglossary-prop-gls' => 'Estilu de glosariu',
 );
 
 /** Belarusian (Taraškievica orthography) (беларуская (тарашкевіца)‎)
