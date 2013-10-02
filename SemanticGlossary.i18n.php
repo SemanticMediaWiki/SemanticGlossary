@@ -404,6 +404,13 @@ $messages['si'] = array(
 	'semanticglossary-prop-gll' => 'පදමාලාව-සබැඳිය',
 );
 
+/** Slovenian (slovenščina)
+ * @author Eleassar
+ */
+$messages['sl'] = array(
+	'semanticglossary-prop-gls' => 'Slog pojmovnika',
+);
+
 /** Serbian (Cyrillic script) (српски (ћирилица)‎)
  * @author Rancher
  */
