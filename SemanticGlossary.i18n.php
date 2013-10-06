@@ -384,6 +384,7 @@ $messages['roa-tara'] = array(
 
 /** Russian (русский)
  * @author Lockal
+ * @author Okras
  * @author Александр Сигачёв
  * @author Ичи
  */
@@ -393,6 +394,7 @@ $messages['ru'] = array(
 	'semanticglossary-prop-glt' => 'Глоссарий-Термин',
 	'semanticglossary-prop-gld' => 'Глоссарий-Определение',
 	'semanticglossary-prop-gll' => 'Глоссарий-Ссылка',
+	'semanticglossary-prop-gls' => 'Глоссарий-Стиль',
 );
 
 /** Sinhala (සිංහල)
