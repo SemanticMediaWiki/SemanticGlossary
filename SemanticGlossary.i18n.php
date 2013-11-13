@@ -236,6 +236,7 @@ $messages['it'] = array(
 	'semanticglossary-prop-glt' => 'Glossario-Termine',
 	'semanticglossary-prop-gld' => 'Glossario-Definizione',
 	'semanticglossary-prop-gll' => 'Glossario-Collegamento',
+	'semanticglossary-prop-gls' => 'Glossario-Stile',
 );
 
 /** Japanese (日本語)
