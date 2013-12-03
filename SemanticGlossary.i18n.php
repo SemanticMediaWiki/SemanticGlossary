@@ -324,6 +324,7 @@ $messages['nl'] = array(
 	'semanticglossary-prop-glt' => 'Begrippenlijstbegrip',
 	'semanticglossary-prop-gld' => 'Begrippenlijstdefinitie',
 	'semanticglossary-prop-gll' => 'Begrippenlijstkoppeling',
+	'semanticglossary-prop-gls' => 'Woordenlijststijl',
 );
 
 /** Polish (polski)
