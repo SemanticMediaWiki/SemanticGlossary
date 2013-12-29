@@ -125,6 +125,7 @@ $messages['dsb'] = array(
 	'semanticglossary-prop-glt' => 'Glosar (zapśimjeśe)',
 	'semanticglossary-prop-gld' => 'Glosar (definicija)',
 	'semanticglossary-prop-gll' => 'Glosar (wótkaz)',
+	'semanticglossary-prop-gls' => 'Glosarowy stil',
 );
 
 /** Spanish (español)
@@ -203,6 +204,7 @@ $messages['hsb'] = array(
 	'semanticglossary-prop-glt' => 'Glosar (zapřijeće)',
 	'semanticglossary-prop-gld' => 'Glosar (definicija)',
 	'semanticglossary-prop-gll' => 'Glosar (wotkaz)',
+	'semanticglossary-prop-gls' => 'Glosarowy stil',
 );
 
 /** Interlingua (interlingua)
