@@ -255,6 +255,7 @@ $messages['ja'] = array(
 );
 
 /** Korean (한국어)
+ * @author Priviet
  * @author 아라
  */
 $messages['ko'] = array(
@@ -263,6 +264,7 @@ $messages['ko'] = array(
 	'semanticglossary-prop-glt' => '용어집-용어',
 	'semanticglossary-prop-gld' => '용어집-정의',
 	'semanticglossary-prop-gll' => '용어집-링크',
+	'semanticglossary-prop-gls' => '용어집-스타일',
 );
 
 /** Colognian (Ripoarisch)
