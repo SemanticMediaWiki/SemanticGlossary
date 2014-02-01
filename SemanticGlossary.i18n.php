@@ -413,10 +413,16 @@ $messages['si'] = array(
 );
 
 /** Slovenian (slovenščina)
+ * @author Dbc334
  * @author Eleassar
  */
 $messages['sl'] = array(
-	'semanticglossary-prop-gls' => 'Slog pojmovnika',
+	'semanticglossary-desc' => 'Razširitev pojmovnika, podprta s [http://semantic-mediawiki.org Semantičnim MediaWiki]',
+	'semanticglossary-termdefinedtwice' => 'Stran [[$1]] vsebuje več kot en izraz in/ali več kot eno opredelitev. Vnosi ne bodo na voljo za pojmovnik.',
+	'semanticglossary-prop-glt' => 'Pojmovnik-Izraz',
+	'semanticglossary-prop-gld' => 'Pojmovnik-Opredelitev',
+	'semanticglossary-prop-gll' => 'Pojmovnik-Povezava',
+	'semanticglossary-prop-gls' => 'Pojmovnik-Slog',
 );
 
 /** Serbian (Cyrillic script) (српски (ћирилица)‎)
