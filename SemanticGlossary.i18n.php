@@ -139,6 +139,16 @@ $messages['es'] = array(
 	'semanticglossary-prop-gll' => 'Enlace del glosario',
 );
 
+/** Persian (فارسی)
+ * @author Armin1392
+ */
+$messages['fa'] = array(
+	'semanticglossary-prop-glt' => 'اصطلاح واژه‌نامه',
+	'semanticglossary-prop-gld' => 'تعریف واژه‌نامه',
+	'semanticglossary-prop-gll' => 'لینک واژه‌نامه',
+	'semanticglossary-prop-gls' => 'سبک واژه نامه',
+);
+
 /** Finnish (suomi)
  * @author Nedergard
  */
