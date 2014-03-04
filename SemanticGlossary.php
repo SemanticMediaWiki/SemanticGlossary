@@ -5,7 +5,7 @@
  *
  * @defgroup SemanticGlossary Semantic Glossary
  * @author Stephan Gambke
- * @version 0.1
+ * @version 1.0.0
  */
 
 /**
@@ -17,74 +17,68 @@
  * @ingroup SemanticGlossary
  */
 
+call_user_func( function () {
 
-if ( !defined( 'MEDIAWIKI' ) ) {
-	die( 'This file is part of a MediaWiki extension, it is not a valid entry point.' );
-}
+	if ( !defined( 'MEDIAWIKI' ) ) {
+		die( 'This file is part of a MediaWiki extension, it is not a valid entry point.' );
+	}
 
-if ( !defined( 'SMW_VERSION' ) ) {
-	die( 'Semantic Glossary depends on the Semantic MediaWiki extension. You need to install Semantic MediaWiki first.' );
-}
+	if ( !defined( 'SMW_VERSION' ) ) {
+		die( 'Semantic Glossary depends on the Semantic MediaWiki extension. You need to install Semantic MediaWiki first.' );
+	}
 
-if ( !defined( 'LINGO_VERSION' ) ) {
-	die( 'Semantic Glossary depends on the Lingo extension. You need to install Lingo first.' );
-}
+	if ( !defined( 'LINGO_VERSION' ) ) {
+		die( 'Semantic Glossary depends on the Lingo extension. You need to install Lingo first.' );
+	}
 
-/**
- * The Semantic Glossary version
- */
-define( 'SG_VERSION', '0.1' );
+	/**
+	 * The Semantic Glossary version
+	 */
+	define( 'SG_VERSION', '1.0.0' );
 
-// register the extension
-$wgExtensionCredits[defined( 'SEMANTIC_EXTENSION_TYPE' ) ? 'semantic' : 'other'][] = array(
-	'path' => __FILE__,
-	'name' => 'Semantic Glossary',
-	'author' => '[http://www.mediawiki.org/wiki/User:F.trott Stephan Gambke]',
-	'url' => 'https://www.mediawiki.org/wiki/Extension:Semantic_Glossary',
-	'descriptionmsg' => 'semanticglossary-desc',
-	'version' => SG_VERSION,
-);
+	// register the extension
+	$GLOBALS[ 'wgExtensionCredits' ][ 'semantic' ][] = array(
+		'path' => __FILE__,
+		'name' => 'Semantic Glossary',
+		'author' => '[http://www.mediawiki.org/wiki/User:F.trott Stephan Gambke]',
+		'url' => 'https://www.mediawiki.org/wiki/Extension:Semantic_Glossary',
+		'descriptionmsg' => 'semanticglossary-desc',
+		'version' => SG_VERSION,
+	);
 
 
-// set SemanticGlossaryBackend as the backend to access the glossary
-$wgexLingoBackend = 'SemanticGlossaryBackend';
+	// set SemanticGlossaryBackend as the backend to access the glossary
+	$GLOBALS[ 'wgexLingoBackend' ] = 'SemanticGlossaryBackend';
 
-// server-local path to this file
-$dir = dirname( __FILE__ );
+	// server-local path to this file
+	$dir = dirname( __FILE__ );
 
-// register message file
-$wgExtensionMessagesFiles['SemanticGlossary'] = $dir . '/SemanticGlossary.i18n.php';
+	// register message file
+	$GLOBALS[ 'wgExtensionMessagesFiles' ]['SemanticGlossary'] = $dir . '/SemanticGlossary.i18n.php';
 
-// register class files with the Autoloader
-$wgAutoloadClasses['SemanticGlossaryBackend'] = $dir . '/SemanticGlossaryBackend.php';
-$wgAutoloadClasses['SemanticGlossaryCacheHandling'] = $dir . '/SemanticGlossaryCacheHandling.php';
+	// register class files with the Autoloader
+	$autoloadClasses = array(
+		'SemanticGlossaryBackend' => $dir . '/SemanticGlossaryBackend.php',
+		'SemanticGlossaryCacheHandling' => $dir . '/SemanticGlossaryCacheHandling.php',
+	);
 
-// register hook handlers
-$wgHooks['smwInitProperties'][] = 'SemanticGlossaryRegisterProperties';
-$wgHooks['smwInitDatatypes'][] = 'SemanticGlossaryRegisterPropertyAliases';
+	$GLOBALS[ 'wgAutoloadClasses' ] = array_merge( $GLOBALS[ 'wgAutoloadClasses' ], $autoloadClasses );
 
-$wgHooks['SMWStore::updateDataBefore'][] = 'SemanticGlossaryCacheHandling::purgeCacheForData'; // invalidate on update
-$wgHooks['smwDeleteSemanticData'][] ='SemanticGlossaryCacheHandling::purgeCacheForSubject'; // invalidate on delete
-$wgHooks['TitleMoveComplete'][] = 'SemanticGlossaryCacheHandling::purgeCacheForTitle'; // move annotations
+	// register hook handlers
+	$hooks = array(
+		'smwInitProperties' => array( 'SemanticGlossaryBackend::registerProperties' ),
+		'smwInitDatatypes' => array( 'SemanticGlossaryBackend::registerPropertyAliases' ),
 
-define( 'SG_PROP_GLT', 'Glossary-Term' );
-define( 'SG_PROP_GLD', 'Glossary-Definition' );
-define( 'SG_PROP_GLL', 'Glossary-Link' );
-define( 'SG_PROP_GLS', 'Glossary-Style' );
+		'SMWStore::updateDataBefore' => array( 'SemanticGlossaryCacheHandling::purgeCacheForData' ), // invalidate on update
+		'smwDeleteSemanticData' => array( 'SemanticGlossaryCacheHandling::purgeCacheForSubject' ), // invalidate on delete
+		'TitleMoveComplete' => array( 'SemanticGlossaryCacheHandling::purgeCacheForTitle' ), // move annotations
+	);
 
-function SemanticGlossaryRegisterProperties() {
-	SMWDIProperty::registerProperty( '___glt', '_str', SG_PROP_GLT, true );
-	SMWDIProperty::registerProperty( '___gld', '_txt', SG_PROP_GLD, true );
-	SMWDIProperty::registerProperty( '___gll', '_str', SG_PROP_GLL, true );
-	SMWDIProperty::registerProperty( '___gls', '_txt', SG_PROP_GLS, true );
-	return true;
-}
+	$GLOBALS[ 'wgHooks' ] = array_merge_recursive( $GLOBALS[ 'wgHooks' ], $hooks );
 
-function SemanticGlossaryRegisterPropertyAliases() {
-	SMWDIProperty::registerPropertyAlias( '___glt', wfMsg( 'semanticglossary-prop-glt' ) );
-	SMWDIProperty::registerPropertyAlias( '___gld', wfMsg( 'semanticglossary-prop-gld' ) );
-	SMWDIProperty::registerPropertyAlias( '___gll', wfMsg( 'semanticglossary-prop-gll' ) );
-	SMWDIProperty::registerPropertyAlias( '___gls', wfMsg( 'semanticglossary-prop-gls' ) );
-	return true;
-}
+	define( 'SG_PROP_GLT', 'Glossary-Term' );
+	define( 'SG_PROP_GLD', 'Glossary-Definition' );
+	define( 'SG_PROP_GLL', 'Glossary-Link' );
+	define( 'SG_PROP_GLS', 'Glossary-Style' );
 
+} );
