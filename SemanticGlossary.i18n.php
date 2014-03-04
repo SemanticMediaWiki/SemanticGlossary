@@ -139,6 +139,18 @@ $messages['es'] = array(
 	'semanticglossary-prop-gll' => 'Enlace del glosario',
 );
 
+/** Persian (فارسی)
+ * @author Armin1392
+ */
+$messages['fa'] = array(
+	'semanticglossary-desc' => 'فرمت واژه‌نامه با یک باطن [http://semantic-mediawiki.org معنایی مدیاویکی]',
+	'semanticglossary-termdefinedtwice' => 'صفحه [[$1]] حاوی بیش از یک عبارت و/یا بیش از یک تعریف است. مدخل‌ها برای واژه‌نامه در دسترس نخواهند‌بود.',
+	'semanticglossary-prop-glt' => 'اصطلاح واژه‌نامه',
+	'semanticglossary-prop-gld' => 'تعریف واژه‌نامه',
+	'semanticglossary-prop-gll' => 'لینک واژه‌نامه',
+	'semanticglossary-prop-gls' => 'سبک واژه نامه',
+);
+
 /** Finnish (suomi)
  * @author Nedergard
  */
