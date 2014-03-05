@@ -113,7 +113,7 @@ $messages['de'] = array(
 	'semanticglossary-prop-glt' => 'Glossar (Begriff)',
 	'semanticglossary-prop-gld' => 'Glossar (Definition)',
 	'semanticglossary-prop-gll' => 'Glossar (Link)',
-	'semanticglossary-prop-gls' => 'Glossarstil',
+	'semanticglossary-prop-gls' => 'Glossar (Stil)',
 );
 
 /** Lower Sorbian (dolnoserbski)
