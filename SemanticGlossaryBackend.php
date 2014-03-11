@@ -111,9 +111,8 @@ class SemanticGlossaryBackend extends LingoBackend {
 			next( $this->mQueryResults );
 
 			// Try cache first
-			global $wgexLingoCacheType;
-			$cache = ($wgexLingoCacheType !== null) ? wfGetCache( $wgexLingoCacheType ) : wfGetMainCache();
-			$cachekey = wfMemcKey( 'ext', 'semanticglossary', $page->getSerialization() );
+			$cache = \SG\CacheHelper::getCache(); // Needs to be injected to allow for proper unit testing
+			$cachekey = \SG\CacheHelper::getKey( $page );
 			$cachedResult = $cache->get( $cachekey );
 
 			// cache hit?

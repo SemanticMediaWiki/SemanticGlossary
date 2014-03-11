@@ -58,21 +58,14 @@ call_user_func( function () {
 
 	// register class files with the Autoloader
 	$autoloadClasses = array(
-		'SemanticGlossaryBackend' => $dir . '/SemanticGlossaryBackend.php',
-		'SemanticGlossaryCacheHandling' => $dir . '/SemanticGlossaryCacheHandling.php',
-		'SG\PropertyRegistry' => $dir . '/src/PropertyRegistry.php',
+		'SemanticGlossaryBackend'  => $dir . '/SemanticGlossaryBackend.php',
+		'SG\PropertyRegistry'      => $dir . '/src/PropertyRegistry.php',
+		'SG\CacheInvalidator'      => $dir . '/src/CacheInvalidator.php',
+		'SG\CacheHelper'           => $dir . '/src/CacheHelper.php',
+		'SG\DataComparator'        => $dir . '/src/DataComparator.php',
 	);
 
 	$GLOBALS[ 'wgAutoloadClasses' ] = array_merge( $GLOBALS[ 'wgAutoloadClasses' ], $autoloadClasses );
-
-	// register hook handlers
-	$hooks = array(
-		'SMWStore::updateDataBefore' => array( 'SemanticGlossaryCacheHandling::purgeCacheForData' ), // invalidate on update
-		'smwDeleteSemanticData' => array( 'SemanticGlossaryCacheHandling::purgeCacheForSubject' ), // invalidate on delete
-		'TitleMoveComplete' => array( 'SemanticGlossaryCacheHandling::purgeCacheForTitle' ), // move annotations
-	);
-
-	$GLOBALS[ 'wgHooks' ] = array_merge_recursive( $GLOBALS[ 'wgHooks' ], $hooks );
 
 	define( 'SG_PROP_GLT', 'Glossary-Term' );
 	define( 'SG_PROP_GLD', 'Glossary-Definition' );
@@ -86,6 +79,33 @@ call_user_func( function () {
 	 */
 	$GLOBALS['wgHooks']['smwInitProperties'][] = function () {
 		return \SG\PropertyRegistry::getInstance()->registerPropertiesAndAliases();
+	};
+
+	/**
+	 * Invalidate on update
+	 *
+	 * @since 1.0
+	 */
+	$GLOBALS['wgHooks']['SMWStore::updateDataBefore'][] = function ( SMWStore $store, SMWSemanticData $semanticData ) {
+		return \SG\CacheInvalidator::getInstance()->invalidateCacheOnStoreUpdate( $store, $semanticData );
+	};
+
+	/**
+	 * Invalidate on delete
+	 *
+	 * @since 1.0
+	 */
+	$GLOBALS['wgHooks']['smwDeleteSemanticData'][] = function ( SMWDIWikiPage $subject ) {
+		return \SG\CacheInvalidator::getInstance()->invalidateCacheOnPageDelete( smwfGetStore(), $subject );
+	};
+
+	/**
+	 * Invalidate on title move
+	 *
+	 * @since 1.0
+	 */
+	$GLOBALS['wgHooks']['TitleMoveComplete'][] = function ( &$old_title, &$new_title, &$user, $pageid, $redirid ) {
+		return \SG\CacheInvalidator::getInstance()->invalidateCacheOnPageMove( $old_title );
 	};
 
 } );
