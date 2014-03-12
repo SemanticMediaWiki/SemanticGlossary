@@ -38,6 +38,10 @@
 	"autoload"   : {
 		"files": [
 			"SemanticGlossary.php"
+		],
+		"classmap": [
+			"src/",
+			"tests/phpunit/"
 		]
 	}
 }

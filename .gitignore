@@ -3,3 +3,10 @@
 *~
 *.kate-swp
 .*.swp
+
+vendor/
+extensions/
+build/
+
+composer.phar
+composer.lock

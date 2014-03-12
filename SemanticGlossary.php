@@ -34,7 +34,7 @@ call_user_func( function () {
 	/**
 	 * The Semantic Glossary version
 	 */
-	define( 'SG_VERSION', '1.0.0' );
+	define( 'SG_VERSION', '1.0.1-dev' );
 
 	// register the extension
 	$GLOBALS[ 'wgExtensionCredits' ][ 'semantic' ][] = array(
@@ -60,15 +60,13 @@ call_user_func( function () {
 	$autoloadClasses = array(
 		'SemanticGlossaryBackend' => $dir . '/SemanticGlossaryBackend.php',
 		'SemanticGlossaryCacheHandling' => $dir . '/SemanticGlossaryCacheHandling.php',
+		'SG\PropertyRegistry' => $dir . '/src/PropertyRegistry.php',
 	);
 
 	$GLOBALS[ 'wgAutoloadClasses' ] = array_merge( $GLOBALS[ 'wgAutoloadClasses' ], $autoloadClasses );
 
 	// register hook handlers
 	$hooks = array(
-		'smwInitProperties' => array( 'SemanticGlossaryBackend::registerProperties' ),
-		'smwInitDatatypes' => array( 'SemanticGlossaryBackend::registerPropertyAliases' ),
-
 		'SMWStore::updateDataBefore' => array( 'SemanticGlossaryCacheHandling::purgeCacheForData' ), // invalidate on update
 		'smwDeleteSemanticData' => array( 'SemanticGlossaryCacheHandling::purgeCacheForSubject' ), // invalidate on delete
 		'TitleMoveComplete' => array( 'SemanticGlossaryCacheHandling::purgeCacheForTitle' ), // move annotations
@@ -80,5 +78,14 @@ call_user_func( function () {
 	define( 'SG_PROP_GLD', 'Glossary-Definition' );
 	define( 'SG_PROP_GLL', 'Glossary-Link' );
 	define( 'SG_PROP_GLS', 'Glossary-Style' );
+
+	/**
+	 * Register properties
+	 *
+	 * @since 1.0
+	 */
+	$GLOBALS['wgHooks']['smwInitProperties'][] = function () {
+		return \SG\PropertyRegistry::getInstance()->registerPropertiesAndAliases();
+	};
 
 } );

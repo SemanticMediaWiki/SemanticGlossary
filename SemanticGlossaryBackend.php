@@ -193,29 +193,4 @@ class SemanticGlossaryBackend extends LingoBackend {
 		return true;
 	}
 
-	/**
-	 * Hook handler for registering semantic properties
-	 *
-	 * @return bool
-	 */
-	static function registerProperties() {
-		SMWDIProperty::registerProperty( '___glt', '_str', SG_PROP_GLT, true );
-		SMWDIProperty::registerProperty( '___gld', '_txt', SG_PROP_GLD, true );
-		SMWDIProperty::registerProperty( '___gll', '_str', SG_PROP_GLL, true );
-		SMWDIProperty::registerProperty( '___gls', '_txt', SG_PROP_GLS, true );
-		return true;
-	}
-
-	/**
-	 * Hook handler for registering property aliases
-	 *
-	 * @return bool
-	 */
-	static function registerPropertyAliases() {
-		SMWDIProperty::registerPropertyAlias( '___glt', wfMsg( 'semanticglossary-prop-glt' ) );
-		SMWDIProperty::registerPropertyAlias( '___gld', wfMsg( 'semanticglossary-prop-gld' ) );
-		SMWDIProperty::registerPropertyAlias( '___gll', wfMsg( 'semanticglossary-prop-gll' ) );
-		SMWDIProperty::registerPropertyAlias( '___gls', wfMsg( 'semanticglossary-prop-gls' ) );
-		return true;
-	}
 }
