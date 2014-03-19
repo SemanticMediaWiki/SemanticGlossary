@@ -141,13 +141,14 @@ $messages['es'] = array(
 
 /** Persian (فارسی)
  * @author Armin1392
+ * @author Ebraminio
  */
 $messages['fa'] = array(
 	'semanticglossary-desc' => 'فرمت واژه‌نامه با یک باطن [http://semantic-mediawiki.org معنایی مدیاویکی]',
 	'semanticglossary-termdefinedtwice' => 'صفحه [[$1]] حاوی بیش از یک عبارت و/یا بیش از یک تعریف است. مدخل‌ها برای واژه‌نامه در دسترس نخواهند‌بود.',
 	'semanticglossary-prop-glt' => 'اصطلاح واژه‌نامه',
 	'semanticglossary-prop-gld' => 'تعریف واژه‌نامه',
-	'semanticglossary-prop-gll' => 'لینک واژه‌نامه',
+	'semanticglossary-prop-gll' => 'پیوند واژه‌نامه',
 	'semanticglossary-prop-gls' => 'سبک واژه نامه',
 );
 
@@ -198,6 +199,7 @@ $messages['gl'] = array(
 
 /** Hebrew (עברית)
  * @author Amire80
+ * @author Yona b
  */
 $messages['he'] = array(
 	'semanticglossary-desc' => 'הרחבה ליצירת מונחון עם מנוע של [http://semantic-mediawiki.org מדיה־ויקי סמנטית]',
@@ -205,6 +207,7 @@ $messages['he'] = array(
 	'semanticglossary-prop-glt' => 'מונח-במונחון',
 	'semanticglossary-prop-gld' => 'הגדרה-במונחון',
 	'semanticglossary-prop-gll' => 'קישור-במונחון',
+	'semanticglossary-prop-gls' => 'סגנון-במונחון',
 );
 
 /** Upper Sorbian (hornjoserbsce)
