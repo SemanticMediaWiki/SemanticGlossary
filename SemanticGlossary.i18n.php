@@ -381,6 +381,7 @@ $messages['pt'] = array(
 );
 
 /** Brazilian Portuguese (português do Brasil)
+ * @author Amgauna
  * @author Cainamarques
  */
 $messages['pt-br'] = array(
@@ -389,6 +390,7 @@ $messages['pt-br'] = array(
 	'semanticglossary-prop-glt' => 'Glossário-Termo',
 	'semanticglossary-prop-gld' => 'Glossário-Definição',
 	'semanticglossary-prop-gll' => 'Glossário-Link',
+	'semanticglossary-prop-gls' => 'Glossário-Estilo',
 );
 
 /** tarandíne (tarandíne)
