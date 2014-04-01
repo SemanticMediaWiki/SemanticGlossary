@@ -1,11 +1,9 @@
 <?php
-
 /**
  * A terminology markup extension with a Semantic MediaWiki backend
  *
  * @defgroup SemanticGlossary Semantic Glossary
  * @author Stephan Gambke
- * @version 1.0.0
  */
 
 /**
@@ -34,7 +32,7 @@ call_user_func( function () {
 	/**
 	 * The Semantic Glossary version
 	 */
-	define( 'SG_VERSION', '1.0.1-dev' );
+	define( 'SG_VERSION', '1.1.0-dev' );
 
 	// register the extension
 	$GLOBALS[ 'wgExtensionCredits' ][ 'semantic' ][] = array(
@@ -51,9 +49,10 @@ call_user_func( function () {
 	$GLOBALS[ 'wgexLingoBackend' ] = 'SemanticGlossaryBackend';
 
 	// server-local path to this file
-	$dir = dirname( __FILE__ );
+	$dir = __DIR__;
 
 	// register message file
+	$GLOBALS[ 'wgMessagesDirs' ]['SemanticGlossary'] = $dir . '/i18n';
 	$GLOBALS[ 'wgExtensionMessagesFiles' ]['SemanticGlossary'] = $dir . '/SemanticGlossary.i18n.php';
 
 	// register class files with the Autoloader

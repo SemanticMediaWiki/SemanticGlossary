@@ -1,0 +1,13 @@
+{
+    "@metadata": {
+        "authors": [
+            "F.trott"
+        ]
+    },
+    "semanticglossary-desc": "A glossary extension with a [http://semantic-mediawiki.org Semantic MediaWiki] backend",
+    "semanticglossary-termdefinedtwice": "The page [[$1]] contains more than one term and/or more than one definition. The entries will not be available for the glossary.",
+    "semanticglossary-prop-glt": "Glossary-Term",
+    "semanticglossary-prop-gld": "Glossary-Definition",
+    "semanticglossary-prop-gll": "Glossary-Link",
+    "semanticglossary-prop-gls": "Glossary-Style"
+}

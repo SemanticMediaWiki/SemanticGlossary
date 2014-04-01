@@ -1,0 +1,16 @@
+{
+    "@metadata": {
+        "authors": [
+            "Lockal",
+            "Okras",
+            "Александр Сигачёв",
+            "Ичи"
+        ]
+    },
+    "semanticglossary-desc": "Расширение-глоссарий на основе [http://semantic-mediawiki.org Semantic MediaWiki]",
+    "semanticglossary-termdefinedtwice": "Страница [[$1]] содержит более одного термина и/или более одного определения. Записи не будут доступны в глоссарии.",
+    "semanticglossary-prop-glt": "Глоссарий-Термин",
+    "semanticglossary-prop-gld": "Глоссарий-Определение",
+    "semanticglossary-prop-gll": "Глоссарий-Ссылка",
+    "semanticglossary-prop-gls": "Глоссарий-Стиль"
+}

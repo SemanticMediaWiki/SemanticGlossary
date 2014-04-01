@@ -1,0 +1,13 @@
+{
+    "@metadata": {
+        "authors": [
+            "EugeneZelenko",
+            "Jim-by"
+        ]
+    },
+    "semanticglossary-desc": "Пашырэньне-глясарый з выкарыстаньнем [http://semantic-mediawiki.org Semantic MediaWiki]",
+    "semanticglossary-termdefinedtwice": "Старонка [[$1]] утрымлівае больш чым адзін тэрмін і/ці больш чым адно вызначэньне. Уведзеныя зьвесткі ня будуць даступныя для глясарыя.",
+    "semanticglossary-prop-glt": "Глясарый-Тэрмін",
+    "semanticglossary-prop-gld": "Глясарый-Вызначэньне",
+    "semanticglossary-prop-gll": "Глясарый-Спасылка"
+}

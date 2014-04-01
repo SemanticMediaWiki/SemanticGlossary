@@ -1,0 +1,14 @@
+{
+    "@metadata": {
+        "authors": [
+            "Dbc334",
+            "Eleassar"
+        ]
+    },
+    "semanticglossary-desc": "Razširitev pojmovnika, podprta s [http://semantic-mediawiki.org Semantičnim MediaWiki]",
+    "semanticglossary-termdefinedtwice": "Stran [[$1]] vsebuje več kot en izraz in/ali več kot eno opredelitev. Vnosi ne bodo na voljo za pojmovnik.",
+    "semanticglossary-prop-glt": "Pojmovnik-Izraz",
+    "semanticglossary-prop-gld": "Pojmovnik-Opredelitev",
+    "semanticglossary-prop-gll": "Pojmovnik-Povezava",
+    "semanticglossary-prop-gls": "Pojmovnik-Slog"
+}
