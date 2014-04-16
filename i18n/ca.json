@@ -1,12 +1,12 @@
 {
-    "@metadata": {
-        "authors": [
-            "Dvdgmz"
-        ]
-    },
-    "semanticglossary-desc": "Una extensió de glossari sobre la base de [http://semantic-mediawiki.org Semantic MediaWiki]",
-    "semanticglossary-termdefinedtwice": "La pàgina [[$1]] conté més d'un terme i/o més d'una definició. Les entrades no estaran disponibles per el glossari.",
-    "semanticglossary-prop-glt": "Terme de glossari",
-    "semanticglossary-prop-gld": "Definició de glossari",
-    "semanticglossary-prop-gll": "Enllaç de glossari"
+	"@metadata": {
+		"authors": [
+			"Dvdgmz"
+		]
+	},
+	"semanticglossary-desc": "Una extensió de glossari sobre la base de [http://semantic-mediawiki.org Semantic MediaWiki]",
+	"semanticglossary-termdefinedtwice": "La pàgina [[$1]] conté més d'un terme i/o més d'una definició. Les entrades no estaran disponibles per el glossari.",
+	"semanticglossary-prop-glt": "Terme de glossari",
+	"semanticglossary-prop-gld": "Definició de glossari",
+	"semanticglossary-prop-gll": "Enllaç de glossari"
 }

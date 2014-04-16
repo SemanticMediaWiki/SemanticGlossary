@@ -1,12 +1,12 @@
 {
-    "@metadata": {
-        "authors": [
-            "McDutchie"
-        ]
-    },
-    "semanticglossary-desc": "Un extension pro glossarios a base de [http://semantic-mediawiki.org Semantic MediaWiki]",
-    "semanticglossary-termdefinedtwice": "Le pagina [[$1]] contine plus de un termino e/o plus de un definition. Le entratas non essera disponibile in le glossario.",
-    "semanticglossary-prop-glt": "Termino de glossario",
-    "semanticglossary-prop-gld": "Definition de glossario",
-    "semanticglossary-prop-gll": "Ligamine-a-glossario"
+	"@metadata": {
+		"authors": [
+			"McDutchie"
+		]
+	},
+	"semanticglossary-desc": "Un extension pro glossarios a base de [http://semantic-mediawiki.org Semantic MediaWiki]",
+	"semanticglossary-termdefinedtwice": "Le pagina [[$1]] contine plus de un termino e/o plus de un definition. Le entratas non essera disponibile in le glossario.",
+	"semanticglossary-prop-glt": "Termino de glossario",
+	"semanticglossary-prop-gld": "Definition de glossario",
+	"semanticglossary-prop-gll": "Ligamine-a-glossario"
 }

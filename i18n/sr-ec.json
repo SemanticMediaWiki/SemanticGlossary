@@ -1,8 +1,8 @@
 {
-    "@metadata": {
-        "authors": [
-            "Rancher"
-        ]
-    },
-    "semanticglossary-termdefinedtwice": "Страница [[$1]] садржи више од једног појма и дефиниције. Уноси неће бити доступни речнику."
+	"@metadata": {
+		"authors": [
+			"Rancher"
+		]
+	},
+	"semanticglossary-termdefinedtwice": "Страница [[$1]] садржи више од једног појма и дефиниције. Уноси неће бити доступни речнику."
 }

@@ -1,13 +1,13 @@
 {
-    "@metadata": {
-        "authors": [
-            "Toliño"
-        ]
-    },
-    "semanticglossary-desc": "Unha extensión de glosario baseada en [http://semantic-mediawiki.org Semantic MediaWiki]",
-    "semanticglossary-termdefinedtwice": "A páxina \"[[$1]]\" contén máis dun termo e/ou máis dunha definición. As entradas non estarán dispoñibles para o glosario.",
-    "semanticglossary-prop-glt": "Termo do glosario",
-    "semanticglossary-prop-gld": "Definición do glosario",
-    "semanticglossary-prop-gll": "Ligazón do glosario",
-    "semanticglossary-prop-gls": "Estilo do glosario"
+	"@metadata": {
+		"authors": [
+			"Toliño"
+		]
+	},
+	"semanticglossary-desc": "Unha extensión de glosario baseada en [http://semantic-mediawiki.org Semantic MediaWiki]",
+	"semanticglossary-termdefinedtwice": "A páxina \"[[$1]]\" contén máis dun termo e/ou máis dunha definición. As entradas non estarán dispoñibles para o glosario.",
+	"semanticglossary-prop-glt": "Termo do glosario",
+	"semanticglossary-prop-gld": "Definición do glosario",
+	"semanticglossary-prop-gll": "Ligazón do glosario",
+	"semanticglossary-prop-gls": "Estilo do glosario"
 }

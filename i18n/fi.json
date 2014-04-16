@@ -1,12 +1,12 @@
 {
-    "@metadata": {
-        "authors": [
-            "Nedergard"
-        ]
-    },
-    "semanticglossary-desc": "[http://semantic-mediawiki.org Semantic MediaWikin] sanastolaajennus",
-    "semanticglossary-termdefinedtwice": "Sivulla [[$1]] on monta termiä ja/tai määritelmää. Niitä ei siksi ole sanastossa.",
-    "semanticglossary-prop-glt": "Sanastotermi",
-    "semanticglossary-prop-gld": "Sanastomääritelmä",
-    "semanticglossary-prop-gll": "Sanastolinkki"
+	"@metadata": {
+		"authors": [
+			"Nedergard"
+		]
+	},
+	"semanticglossary-desc": "[http://semantic-mediawiki.org Semantic MediaWikin] sanastolaajennus",
+	"semanticglossary-termdefinedtwice": "Sivulla [[$1]] on monta termiä ja/tai määritelmää. Niitä ei siksi ole sanastossa.",
+	"semanticglossary-prop-glt": "Sanastotermi",
+	"semanticglossary-prop-gld": "Sanastomääritelmä",
+	"semanticglossary-prop-gll": "Sanastolinkki"
 }

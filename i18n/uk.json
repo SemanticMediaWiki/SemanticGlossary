@@ -1,14 +1,14 @@
 {
-    "@metadata": {
-        "authors": [
-            "Andriykopanytsia",
-            "Base"
-        ]
-    },
-    "semanticglossary-desc": "Розширення-глосарій на основі [http://semantic-mediawiki.org Semantic MediaWiki]",
-    "semanticglossary-termdefinedtwice": "Сторінка [[$1]] включає більше ніж один термін і/або більше ніж одне визначення. Записи на будуть доступні для глосарію.",
-    "semanticglossary-prop-glt": "Глосарій-Термін",
-    "semanticglossary-prop-gld": "Глосарій-Визначення",
-    "semanticglossary-prop-gll": "Глосарій-Посилання",
-    "semanticglossary-prop-gls": "Стиль-Глосарій"
+	"@metadata": {
+		"authors": [
+			"Andriykopanytsia",
+			"Base"
+		]
+	},
+	"semanticglossary-desc": "Розширення-глосарій на основі [http://semantic-mediawiki.org Semantic MediaWiki]",
+	"semanticglossary-termdefinedtwice": "Сторінка [[$1]] включає більше ніж один термін і/або більше ніж одне визначення. Записи на будуть доступні для глосарію.",
+	"semanticglossary-prop-glt": "Глосарій-Термін",
+	"semanticglossary-prop-gld": "Глосарій-Визначення",
+	"semanticglossary-prop-gll": "Глосарій-Посилання",
+	"semanticglossary-prop-gls": "Стиль-Глосарій"
 }

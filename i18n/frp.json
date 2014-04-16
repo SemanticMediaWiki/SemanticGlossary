@@ -1,10 +1,10 @@
 {
-    "@metadata": {
-        "authors": [
-            "ChrisPtDe"
-        ]
-    },
-    "semanticglossary-prop-glt": "Mot du glossèro",
-    "semanticglossary-prop-gld": "Dèfinicion du glossèro",
-    "semanticglossary-prop-gll": "Lim du glossèro"
+	"@metadata": {
+		"authors": [
+			"ChrisPtDe"
+		]
+	},
+	"semanticglossary-prop-glt": "Mot du glossèro",
+	"semanticglossary-prop-gld": "Dèfinicion du glossèro",
+	"semanticglossary-prop-gll": "Lim du glossèro"
 }

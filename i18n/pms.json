@@ -1,13 +1,13 @@
 {
-    "@metadata": {
-        "authors": [
-            "Borichèt",
-            "Dragonòt"
-        ]
-    },
-    "semanticglossary-desc": "N'estension ëd glossari ch'a deuvra [http://semantic-mediawiki.org Semantic MediaWiki]",
-    "semanticglossary-termdefinedtwice": "La pàgina [[$1]] a conten pi che n'espresson e/o pi che na definission. Le vos a saran pa disponìbij për ël glossari.",
-    "semanticglossary-prop-glt": "Espression dël glossari",
-    "semanticglossary-prop-gld": "Glossari-Definission",
-    "semanticglossary-prop-gll": "Liura dël glossari"
+	"@metadata": {
+		"authors": [
+			"Borichèt",
+			"Dragonòt"
+		]
+	},
+	"semanticglossary-desc": "N'estension ëd glossari ch'a deuvra [http://semantic-mediawiki.org Semantic MediaWiki]",
+	"semanticglossary-termdefinedtwice": "La pàgina [[$1]] a conten pi che n'espresson e/o pi che na definission. Le vos a saran pa disponìbij për ël glossari.",
+	"semanticglossary-prop-glt": "Espression dël glossari",
+	"semanticglossary-prop-gld": "Glossari-Definission",
+	"semanticglossary-prop-gll": "Liura dël glossari"
 }

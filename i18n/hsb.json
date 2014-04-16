@@ -1,13 +1,13 @@
 {
-    "@metadata": {
-        "authors": [
-            "Michawiki"
-        ]
-    },
-    "semanticglossary-desc": "Glosarowe rozšěrjenje z [http://semantic-mediawiki.org Semantic MediaWiki] jako zakład",
-    "semanticglossary-termdefinedtwice": "Strona [[$1]] wobsahuje wjace hač jedne zapřijeće a/abo wjace hač jednu definiciju. Zapiski njebudu za glosar k dispoziciji stać.",
-    "semanticglossary-prop-glt": "Glosar (zapřijeće)",
-    "semanticglossary-prop-gld": "Glosar (definicija)",
-    "semanticglossary-prop-gll": "Glosar (wotkaz)",
-    "semanticglossary-prop-gls": "Glosarowy stil"
+	"@metadata": {
+		"authors": [
+			"Michawiki"
+		]
+	},
+	"semanticglossary-desc": "Glosarowe rozšěrjenje z [http://semantic-mediawiki.org Semantic MediaWiki] jako zakład",
+	"semanticglossary-termdefinedtwice": "Strona [[$1]] wobsahuje wjace hač jedne zapřijeće a/abo wjace hač jednu definiciju. Zapiski njebudu za glosar k dispoziciji stać.",
+	"semanticglossary-prop-glt": "Glosar (zapřijeće)",
+	"semanticglossary-prop-gld": "Glosar (definicija)",
+	"semanticglossary-prop-gll": "Glosar (wotkaz)",
+	"semanticglossary-prop-gls": "Glosarowy stil"
 }

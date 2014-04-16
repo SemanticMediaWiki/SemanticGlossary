@@ -1,12 +1,12 @@
 {
-    "@metadata": {
-        "authors": [
-            "Robby"
-        ]
-    },
-    "semanticglossary-desc": "Eng Erweiderung fir e Glossaire op Basis vu [http://semantic-mediawiki.org Semantic MediaWiki]",
-    "semanticglossary-termdefinedtwice": "Op der Säit [[$1]] steet méi wéi e Begrëff an/oder méi wéi eng Definitioun. D'Donnéeë sinn dowéinst am Glossaire net disponibel.",
-    "semanticglossary-prop-glt": "Begrëff am Glossaire",
-    "semanticglossary-prop-gld": "Glossaire-Definitioun",
-    "semanticglossary-prop-gll": "Glossaire-Link"
+	"@metadata": {
+		"authors": [
+			"Robby"
+		]
+	},
+	"semanticglossary-desc": "Eng Erweiderung fir e Glossaire op Basis vu [http://semantic-mediawiki.org Semantic MediaWiki]",
+	"semanticglossary-termdefinedtwice": "Op der Säit [[$1]] steet méi wéi e Begrëff an/oder méi wéi eng Definitioun. D'Donnéeë sinn dowéinst am Glossaire net disponibel.",
+	"semanticglossary-prop-glt": "Begrëff am Glossaire",
+	"semanticglossary-prop-gld": "Glossaire-Definitioun",
+	"semanticglossary-prop-gll": "Glossaire-Link"
 }

@@ -1,13 +1,13 @@
 {
-    "@metadata": {
-        "authors": [
-            "Bjankuloski06"
-        ]
-    },
-    "semanticglossary-desc": "Додаток со поимник за [http://semantic-mediawiki.org Семантички МедијаВики]",
-    "semanticglossary-termdefinedtwice": "Оваа страница [[$1]] содржи повеќе од еден поим и/или повеќе од едно толкување. Овие записи нема да бидат достапни во поимникот.",
-    "semanticglossary-prop-glt": "Поимник-Поим",
-    "semanticglossary-prop-gld": "Поимник-Толкување",
-    "semanticglossary-prop-gll": "Поимник-Врска",
-    "semanticglossary-prop-gls": "Поимнички стил"
+	"@metadata": {
+		"authors": [
+			"Bjankuloski06"
+		]
+	},
+	"semanticglossary-desc": "Додаток со поимник за [http://semantic-mediawiki.org Семантички МедијаВики]",
+	"semanticglossary-termdefinedtwice": "Оваа страница [[$1]] содржи повеќе од еден поим и/или повеќе од едно толкување. Овие записи нема да бидат достапни во поимникот.",
+	"semanticglossary-prop-glt": "Поимник-Поим",
+	"semanticglossary-prop-gld": "Поимник-Толкување",
+	"semanticglossary-prop-gll": "Поимник-Врска",
+	"semanticglossary-prop-gls": "Поимнички стил"
 }

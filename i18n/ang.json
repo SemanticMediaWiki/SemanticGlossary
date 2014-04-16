@@ -1,12 +1,12 @@
 {
-    "@metadata": {
-        "authors": [
-            "Gott wisst"
-        ]
-    },
-    "semanticglossary-desc": "Getæl worda mid [http://semantic-mediawiki.org Semantic MediaWiki] staðole",
-    "semanticglossary-termdefinedtwice": "Se tramet [[$1]] befēhþ mā þonne ān word oþþe mā þonne āne amearcunge. Þā gewritu ne bēoþ gearu on þǣm worda getæle.",
-    "semanticglossary-prop-glt": "Wordgetælword",
-    "semanticglossary-prop-gld": "Wordgetælamearcung",
-    "semanticglossary-prop-gll": "Wordgetælhlenca"
+	"@metadata": {
+		"authors": [
+			"Gott wisst"
+		]
+	},
+	"semanticglossary-desc": "Getæl worda mid [http://semantic-mediawiki.org Semantic MediaWiki] staðole",
+	"semanticglossary-termdefinedtwice": "Se tramet [[$1]] befēhþ mā þonne ān word oþþe mā þonne āne amearcunge. Þā gewritu ne bēoþ gearu on þǣm worda getæle.",
+	"semanticglossary-prop-glt": "Wordgetælword",
+	"semanticglossary-prop-gld": "Wordgetælamearcung",
+	"semanticglossary-prop-gll": "Wordgetælhlenca"
 }

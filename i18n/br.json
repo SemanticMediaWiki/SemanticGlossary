@@ -1,12 +1,12 @@
 {
-    "@metadata": {
-        "authors": [
-            "Fulup"
-        ]
-    },
-    "semanticglossary-desc": "Un astenn geriaoueg diazezet war [http://semantic-mediawiki.org Semantic MediaWiki]",
-    "semanticglossary-termdefinedtwice": "Muioc'h eget un termen ha/pe un termenadur zo er bajenn [[$1]]. N'hallo ket ar pennger-se bezañ implijet er c'heriaoueg.",
-    "semanticglossary-prop-glt": "Geriaoueg-Termen",
-    "semanticglossary-prop-gld": "Geriaoueg-Termenadur",
-    "semanticglossary-prop-gll": "Liamm eus ar c'heriaoueg"
+	"@metadata": {
+		"authors": [
+			"Fulup"
+		]
+	},
+	"semanticglossary-desc": "Un astenn geriaoueg diazezet war [http://semantic-mediawiki.org Semantic MediaWiki]",
+	"semanticglossary-termdefinedtwice": "Muioc'h eget un termen ha/pe un termenadur zo er bajenn [[$1]]. N'hallo ket ar pennger-se bezañ implijet er c'heriaoueg.",
+	"semanticglossary-prop-glt": "Geriaoueg-Termen",
+	"semanticglossary-prop-gld": "Geriaoueg-Termenadur",
+	"semanticglossary-prop-gll": "Liamm eus ar c'heriaoueg"
 }

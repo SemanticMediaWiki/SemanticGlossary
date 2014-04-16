@@ -1,14 +1,14 @@
 {
-    "@metadata": {
-        "authors": [
-            "Amire80",
-            "Yona b"
-        ]
-    },
-    "semanticglossary-desc": "הרחבה ליצירת מונחון עם מנוע של [http://semantic-mediawiki.org מדיה־ויקי סמנטית]",
-    "semanticglossary-termdefinedtwice": "הדף [[$1]] מכיל יותר ממונח אחד או יותר מהגדרה אחת. הערכים לא יהיו זמינים למונחון.",
-    "semanticglossary-prop-glt": "מונח-במונחון",
-    "semanticglossary-prop-gld": "הגדרה-במונחון",
-    "semanticglossary-prop-gll": "קישור-במונחון",
-    "semanticglossary-prop-gls": "סגנון-במונחון"
+	"@metadata": {
+		"authors": [
+			"Amire80",
+			"Yona b"
+		]
+	},
+	"semanticglossary-desc": "הרחבה ליצירת מונחון עם מנוע של [http://semantic-mediawiki.org מדיה־ויקי סמנטית]",
+	"semanticglossary-termdefinedtwice": "הדף [[$1]] מכיל יותר ממונח אחד או יותר מהגדרה אחת. הערכים לא יהיו זמינים למונחון.",
+	"semanticglossary-prop-glt": "מונח-במונחון",
+	"semanticglossary-prop-gld": "הגדרה-במונחון",
+	"semanticglossary-prop-gll": "קישור-במונחון",
+	"semanticglossary-prop-gls": "סגנון-במונחון"
 }

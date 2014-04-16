@@ -1,12 +1,12 @@
 {
-    "@metadata": {
-        "authors": [
-            "IvanLanin"
-        ]
-    },
-    "semanticglossary-desc": "Ekstensi glosarium yang didukung oleh [http://semantic-mediawiki.org Semantic MediaWiki]",
-    "semanticglossary-termdefinedtwice": "Halaman [[$1]] berisi lebih dari satu istilah dan/atau lebih dari satu definisi. Entri tersebut tidak akan tersedia untuk glosarium.",
-    "semanticglossary-prop-glt": "Glosarium-Istilah",
-    "semanticglossary-prop-gld": "Glosarium-Definisi",
-    "semanticglossary-prop-gll": "Glosarium-Tautan"
+	"@metadata": {
+		"authors": [
+			"IvanLanin"
+		]
+	},
+	"semanticglossary-desc": "Ekstensi glosarium yang didukung oleh [http://semantic-mediawiki.org Semantic MediaWiki]",
+	"semanticglossary-termdefinedtwice": "Halaman [[$1]] berisi lebih dari satu istilah dan/atau lebih dari satu definisi. Entri tersebut tidak akan tersedia untuk glosarium.",
+	"semanticglossary-prop-glt": "Glosarium-Istilah",
+	"semanticglossary-prop-gld": "Glosarium-Definisi",
+	"semanticglossary-prop-gll": "Glosarium-Tautan"
 }

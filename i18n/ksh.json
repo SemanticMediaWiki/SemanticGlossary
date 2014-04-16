@@ -1,12 +1,12 @@
 {
-    "@metadata": {
-        "authors": [
-            "Purodha"
-        ]
-    },
-    "semanticglossary-desc": "E Zohsazprojramm för e Verzeishneß met makeerte Bejreffe met [http://semantic-mediawiki.org Semantesch MediaWiki] dohenger.",
-    "semanticglossary-termdefinedtwice": "En dä Sigg „[[$1]]“ es mieh wie eine Bejreff, udder miehj wi ein Bedüggdeneß usseneijn possemänteert, udder beeds. Di wääde nit em Wööter_Verzeishneß faßjehallde.",
-    "semanticglossary-prop-glt": "Bejreff em Wööterverzeijschneß",
-    "semanticglossary-prop-gld": "Bedüggdeneß em Wööterverzeischneß",
-    "semanticglossary-prop-gll": "Lenk en et Wööterverzeischneß"
+	"@metadata": {
+		"authors": [
+			"Purodha"
+		]
+	},
+	"semanticglossary-desc": "E Zohsazprojramm för e Verzeishneß met makeerte Bejreffe met [http://semantic-mediawiki.org Semantesch MediaWiki] dohenger.",
+	"semanticglossary-termdefinedtwice": "En dä Sigg „[[$1]]“ es mieh wie eine Bejreff, udder miehj wi ein Bedüggdeneß usseneijn possemänteert, udder beeds. Di wääde nit em Wööter_Verzeishneß faßjehallde.",
+	"semanticglossary-prop-glt": "Bejreff em Wööterverzeijschneß",
+	"semanticglossary-prop-gld": "Bedüggdeneß em Wööterverzeischneß",
+	"semanticglossary-prop-gll": "Lenk en et Wööterverzeischneß"
 }

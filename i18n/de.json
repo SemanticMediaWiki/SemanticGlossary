@@ -1,15 +1,15 @@
 {
-    "@metadata": {
-        "authors": [
-            "F.trott",
-            "Kghbln",
-            "Metalhead64"
-        ]
-    },
-    "semanticglossary-desc": "Ermöglicht die Erstellung und Nutzung eines Glossars mit [http://semantic-mediawiki.org/wiki/Semantic_MediaWiki_–_Startseite Semantic MediaWiki] als Basis",
-    "semanticglossary-termdefinedtwice": "Die Seite [[$1]] enthält mehr als einen Begriff und/oder mehr als eine Definition. Die Eingaben werden daher nicht im Glossar verfügbar sein.",
-    "semanticglossary-prop-glt": "Glossar (Begriff)",
-    "semanticglossary-prop-gld": "Glossar (Definition)",
-    "semanticglossary-prop-gll": "Glossar (Link)",
-    "semanticglossary-prop-gls": "Glossar (Stil)"
+	"@metadata": {
+		"authors": [
+			"F.trott",
+			"Kghbln",
+			"Metalhead64"
+		]
+	},
+	"semanticglossary-desc": "Ermöglicht die Erstellung und Nutzung eines Glossars mit [http://semantic-mediawiki.org/wiki/Semantic_MediaWiki_–_Startseite Semantic MediaWiki] als Basis",
+	"semanticglossary-termdefinedtwice": "Die Seite [[$1]] enthält mehr als einen Begriff und/oder mehr als eine Definition. Die Eingaben werden daher nicht im Glossar verfügbar sein.",
+	"semanticglossary-prop-glt": "Glossar (Begriff)",
+	"semanticglossary-prop-gld": "Glossar (Definition)",
+	"semanticglossary-prop-gll": "Glossar (Link)",
+	"semanticglossary-prop-gls": "Glossar (Stil)"
 }

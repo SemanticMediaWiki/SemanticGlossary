@@ -1,12 +1,12 @@
 {
-    "@metadata": {
-        "authors": [
-            "AnakngAraw"
-        ]
-    },
-    "semanticglossary-desc": "Isang dugtong ng glosaryo na may isang dulong panlikod na [http://semantic-mediawiki.org Semantikong MediaWiki]",
-    "semanticglossary-termdefinedtwice": "Ang pahinang [[$1]] ay naglalaman ng mas mahigit kaysa isang kataga at/o mas mahigit pa sa isang kahulugan.  Ang mga pagpapasok ay hindi makukuha para sa glosaryo.",
-    "semanticglossary-prop-glt": "Kataga sa Glosaryo",
-    "semanticglossary-prop-gld": "Kahulugan sa Glosaryo",
-    "semanticglossary-prop-gll": "Kawing sa Glosaryo"
+	"@metadata": {
+		"authors": [
+			"AnakngAraw"
+		]
+	},
+	"semanticglossary-desc": "Isang dugtong ng glosaryo na may isang dulong panlikod na [http://semantic-mediawiki.org Semantikong MediaWiki]",
+	"semanticglossary-termdefinedtwice": "Ang pahinang [[$1]] ay naglalaman ng mas mahigit kaysa isang kataga at/o mas mahigit pa sa isang kahulugan.  Ang mga pagpapasok ay hindi makukuha para sa glosaryo.",
+	"semanticglossary-prop-glt": "Kataga sa Glosaryo",
+	"semanticglossary-prop-gld": "Kahulugan sa Glosaryo",
+	"semanticglossary-prop-gll": "Kawing sa Glosaryo"
 }
