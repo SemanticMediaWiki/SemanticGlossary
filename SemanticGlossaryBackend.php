@@ -133,21 +133,21 @@ class SemanticGlossaryBackend extends LingoBackend {
 					$definition = null;
 				} else {
 					$this->mDvDefinition->setDataItem( $definitions[0] );
-					$definition = $this->mDvDefinition->getShortWikiText();
+					$definition = trim( $this->mDvDefinition->getShortWikiText() );
 				}
 
 				if ( empty( $links ) ) {
 					$link = null;
 				} else {
 					$this->mDvLink->setDataItem( $links[0] );
-					$link = $this->mDvLink->getShortWikiText();
+					$link = trim( $this->mDvLink->getShortWikiText() );
 				}
 
 				if ( empty( $styles ) ) {
 				  $style = null;
 				} else {
 				  $this->mDvStyle->setDataItem( $styles[0] );
-				  $style = $this->mDvStyle->getShortWikiText();
+				  $style = trim( $this->mDvStyle->getShortWikiText() );
 				}
 
 				$tmp_terms = array();
@@ -155,7 +155,7 @@ class SemanticGlossaryBackend extends LingoBackend {
 				if ( !empty( $terms ) ) {
 					foreach ( $terms as $term ) {
 						$this->mDvTerm->setDataItem( $term );
-						$tmp_terms[] = $this->mDvTerm->getShortWikiText();
+						$tmp_terms[] = trim( $this->mDvTerm->getShortWikiText() );
 					}
 				}
 
