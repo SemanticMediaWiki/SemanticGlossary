@@ -60,6 +60,7 @@ call_user_func( function () {
 		'SG\CacheInvalidator'      => $dir . '/src/CacheInvalidator.php',
 		'SG\CacheHelper'           => $dir . '/src/CacheHelper.php',
 		'SG\DataComparator'        => $dir . '/src/DataComparator.php',
+		'SG\Maintenance\GlossaryCacheRebuilder' => $dir . '/src/Maintenance/GlossaryCacheRebuilder.php',
 		'SG\LingoBackendAdapter'   => $dir . '/src/LingoBackendAdapter.php',
 		'SG\Cache\ElementsCacheBuilder'    => $dir . '/src/Cache/ElementsCacheBuilder.php'
 	);
