@@ -44,9 +44,8 @@ call_user_func( function () {
 		'version' => SG_VERSION,
 	);
 
-
 	// set SemanticGlossaryBackend as the backend to access the glossary
-	$GLOBALS[ 'wgexLingoBackend' ] = 'SemanticGlossaryBackend';
+	$GLOBALS[ 'wgexLingoBackend' ] = 'SG\LingoBackendAdapter';
 
 	// server-local path to this file
 	$dir = __DIR__;
@@ -57,11 +56,12 @@ call_user_func( function () {
 
 	// register class files with the Autoloader
 	$autoloadClasses = array(
-		'SemanticGlossaryBackend'  => $dir . '/SemanticGlossaryBackend.php',
 		'SG\PropertyRegistry'      => $dir . '/src/PropertyRegistry.php',
 		'SG\CacheInvalidator'      => $dir . '/src/CacheInvalidator.php',
 		'SG\CacheHelper'           => $dir . '/src/CacheHelper.php',
 		'SG\DataComparator'        => $dir . '/src/DataComparator.php',
+		'SG\LingoBackendAdapter'   => $dir . '/src/LingoBackendAdapter.php',
+		'SG\Cache\ElementsCacheBuilder'    => $dir . '/src/Cache/ElementsCacheBuilder.php'
 	);
 
 	$GLOBALS[ 'wgAutoloadClasses' ] = array_merge( $GLOBALS[ 'wgAutoloadClasses' ], $autoloadClasses );
