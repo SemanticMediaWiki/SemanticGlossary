@@ -57,12 +57,12 @@ call_user_func( function () {
 	// register class files with the Autoloader
 	$autoloadClasses = array(
 		'SG\PropertyRegistry'      => $dir . '/src/PropertyRegistry.php',
-		'SG\CacheInvalidator'      => $dir . '/src/CacheInvalidator.php',
-		'SG\CacheHelper'           => $dir . '/src/CacheHelper.php',
-		'SG\DataComparator'        => $dir . '/src/DataComparator.php',
 		'SG\Maintenance\GlossaryCacheRebuilder' => $dir . '/src/Maintenance/GlossaryCacheRebuilder.php',
-		'SG\LingoBackendAdapter'   => $dir . '/src/LingoBackendAdapter.php',
-		'SG\Cache\ElementsCacheBuilder'    => $dir . '/src/Cache/ElementsCacheBuilder.php'
+		'SG\LingoBackendAdapter'         => $dir . '/src/LingoBackendAdapter.php',
+		'SG\SemanticDataComparator'      => $dir . '/src/SemanticDataComparator.php',
+		'SG\Cache\ElementsCacheBuilder'  => $dir . '/src/Cache/ElementsCacheBuilder.php',
+		'SG\Cache\CacheInvalidator'      => $dir . '/src/Cache/CacheInvalidator.php',
+		'SG\Cache\GlossaryCache'         => $dir . '/src/Cache/GlossaryCache.php',
 	);
 
 	$GLOBALS[ 'wgAutoloadClasses' ] = array_merge( $GLOBALS[ 'wgAutoloadClasses' ], $autoloadClasses );
@@ -87,7 +87,7 @@ call_user_func( function () {
 	 * @since 1.0
 	 */
 	$GLOBALS['wgHooks']['SMWStore::updateDataBefore'][] = function ( SMWStore $store, SMWSemanticData $semanticData ) {
-		return \SG\CacheInvalidator::getInstance()->invalidateCacheOnStoreUpdate( $store, $semanticData );
+		return \SG\Cache\CacheInvalidator::getInstance()->invalidateCacheOnStoreUpdate( $store, $semanticData );
 	};
 
 	/**
@@ -96,7 +96,7 @@ call_user_func( function () {
 	 * @since 1.0
 	 */
 	$GLOBALS['wgHooks']['smwDeleteSemanticData'][] = function ( SMWDIWikiPage $subject ) {
-		return \SG\CacheInvalidator::getInstance()->invalidateCacheOnPageDelete( smwfGetStore(), $subject );
+		return \SG\Cache\CacheInvalidator::getInstance()->invalidateCacheOnPageDelete( smwfGetStore(), $subject );
 	};
 
 	/**
@@ -105,7 +105,7 @@ call_user_func( function () {
 	 * @since 1.0
 	 */
 	$GLOBALS['wgHooks']['TitleMoveComplete'][] = function ( &$old_title, &$new_title, &$user, $pageid, $redirid ) {
-		return \SG\CacheInvalidator::getInstance()->invalidateCacheOnPageMove( $old_title );
+		return \SG\Cache\CacheInvalidator::getInstance()->invalidateCacheOnPageMove( $old_title );
 	};
 
 } );

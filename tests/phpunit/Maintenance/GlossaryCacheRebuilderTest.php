@@ -3,6 +3,7 @@
 namespace SG\Tests\Maintenance;
 
 use SG\Maintenance\GlossaryCacheRebuilder;
+use SG\Cache\GlossaryCache;
 
 use Title;
 
@@ -24,11 +25,14 @@ class GlossaryCacheRebuilderTest extends \PHPUnit_Framework_TestCase {
 	public function testCanConstruct() {
 
 		$store = $this->getMockForAbstractClass( '\SMW\Store' );
-		$cache = $this->getMockForAbstractClass( 'BagOStuff' );
+
+		$glossaryCache = $this->getMockBuilder( '\SG\Cache\GlossaryCache' )
+			->disableOriginalConstructor()
+			->getMock();
 
 		$this->assertInstanceOf(
 			'\SG\Maintenance\GlossaryCacheRebuilder',
-			new GlossaryCacheRebuilder( $store, $cache )
+			new GlossaryCacheRebuilder( $store, $glossaryCache )
 		);
 	}
 
@@ -58,23 +62,27 @@ class GlossaryCacheRebuilderTest extends \PHPUnit_Framework_TestCase {
 			->method( 'getQueryResult' )
 			->will( $this->returnValue( $queryResult ) );
 
-		$cache = $this->getMockBuilder( 'BagOStuff' )
+		$bagOStuff = $this->getMockBuilder( 'BagOStuff' )
 			->disableOriginalConstructor()
 			->getMockForAbstractClass();
 
-		$cache->expects( $this->at( 0 ) )
+		$bagOStuff->expects( $this->at( 0 ) )
 			->method( 'delete' )
 			->with( $this->stringContains( 'lingotree' ) );
 
-		$cache->expects( $this->at( 1 ) )
+		$bagOStuff->expects( $this->at( 1 ) )
 			->method( 'delete' )
 			->with( $this->stringContains( 'semanticglossary' ) );
 
-		$cache->expects( $this->at( 2 ) )
+		$bagOStuff->expects( $this->at( 2 ) )
 			->method( 'delete' )
 			->with( $this->stringContains( 'semanticglossary' ) );
 
-		$instance = new GlossaryCacheRebuilder( $store, $cache );
+		$instance = new GlossaryCacheRebuilder(
+			$store,
+			new GlossaryCache( $bagOStuff )
+		);
+
 		$instance->setParameters( array() );
 
 		$this->assertTrue( $instance->rebuild() );

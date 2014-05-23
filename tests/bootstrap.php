@@ -9,7 +9,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 }
 
 function registerAutoloaderPath( $identifier, $path ) {
-	print( "\nUsing the {$identifier} vendor autoloader ...\n" );
+	print( "\nUsing the {$identifier} vendor autoloader ...\n\n" );
 	return require $path;
 }
 
@@ -29,6 +29,10 @@ function runTestAutoLoader() {
 	}
 
 	$autoLoader->addPsr4( 'SG\\Tests\\', __DIR__ . '/phpunit' );
+
+	$autoLoader->addClassMap( array(
+		'SG\Maintenance\RebuildGlossaryCache' => __DIR__ . '/../maintenance/rebuildGlossaryCache.php',
+	) );
 
 	return true;
 }

@@ -1,15 +1,24 @@
 <?php
 
-namespace SG;
+namespace SG\Cache;
+
+use SG\SemanticDataComparator;
+use SG\PropertyRegistry;
+
+use SMW\Store;
+use SMW\SemanticData;
+use SMW\DIWikiPage;
+use SMW\DIProperty;
 
 use LingoParser;
-use BagOStuff;
+
 use Title;
 
 /**
  * @ingroup SG
+ * @ingroup SemanticGlossary
  *
- * @licence GNU GPL v2+
+ * @license GNU GPL v2+
  * @since 1.0
  *
  * @author Stephan Gambke
@@ -18,6 +27,8 @@ use Title;
 class CacheInvalidator {
 
 	protected static $instance = null;
+
+	/* @var GlossaryCache */
 	protected $cache = null;
 
 	/**
@@ -30,7 +41,7 @@ class CacheInvalidator {
 		if ( self::$instance === null ) {
 
 			$instance = new self();
-			$instance->setCache( CacheHelper::getCache() );
+			$instance->setCache( new GlossaryCache() );
 
 			self::$instance = $instance;
 		}
@@ -48,10 +59,10 @@ class CacheInvalidator {
 	/**
 	 * @since 1.0
 	 *
-	 * @param BagOStuff $cache
+	 * @param GlossaryCache $glossaryCache
 	 */
-	public function setCache( BagOStuff $cache ) {
-		$this->cache = $cache;
+	public function setCache( GlossaryCache $glossaryCache ) {
+		$this->glossaryCache = $glossaryCache;
 	}
 
 	/**
@@ -62,7 +73,7 @@ class CacheInvalidator {
 	 *
 	 * @return boolean
 	 */
-	public function invalidateCacheOnStoreUpdate( \SMWStore $store, \SMWSemanticData $semanticData ) {
+	public function invalidateCacheOnStoreUpdate( Store $store, SemanticData $semanticData ) {
 
 		wfProfileIn( __METHOD__ );
 
@@ -80,13 +91,13 @@ class CacheInvalidator {
 	/**
 	 * @since 1.0
 	 *
-	 * @param SMWStore $store
-	 * @param SMWDIWikiPage $subject
+	 * @param Store $store
+	 * @param DIWikiPage $subject
 	 * @param boolean|true $purgeLingo
 	 *
 	 * @return boolean
 	 */
-	public function invalidateCacheOnPageDelete( \SMWStore $store, \SMWDIWikiPage $subject, $purgeLingo = true ) {
+	public function invalidateCacheOnPageDelete( Store $store, DIWikiPage $subject, $purgeLingo = true ) {
 
 		wfProfileIn( __METHOD__ );
 
@@ -109,16 +120,16 @@ class CacheInvalidator {
 	 * @return boolean
 	 */
 	public function invalidateCacheOnPageMove( Title $title ) {
-		$this->purgeCache( \SMWDIWikiPage::newFromTitle( $title ) );
+		$this->purgeCache( DIWikiPage::newFromTitle( $title ) );
 		return true;
 	}
 
-	protected function matchAllSubobjects( \SMWStore $store, \SMWSemanticData $semanticData ) {
+	protected function matchAllSubobjects( Store $store, SemanticData $semanticData ) {
 
 		$properties = $semanticData->getProperties();
 
-		if ( array_key_exists( '_SOBJ', $properties ) ) {
-			foreach ( $semanticData->getPropertyValues( $properties['_SOBJ'] ) as $subobject ) {
+		if ( array_key_exists( DIProperty::TYPE_SUBOBJECT, $properties ) ) {
+			foreach ( $semanticData->getPropertyValues( $properties[ DIProperty::TYPE_SUBOBJECT ] ) as $subobject ) {
 				$this->invalidateCacheOnStoreUpdate(
 					$store,
 					$semanticData->findSubSemanticData( $subobject->getSubobjectName() ),
@@ -128,12 +139,12 @@ class CacheInvalidator {
 		}
 	}
 
-	protected function matchSubobjectsToSubject( \SMWStore $store, \SMWDIWikiPage $subject ) {
+	protected function matchSubobjectsToSubject( Store $store, DIWikiPage $subject ) {
 
 		$properties = $store->getProperties( $subject );
 
-		if ( array_key_exists( '_SOBJ', $properties ) ) {
-			foreach ( $store->getPropertyValues( $subject, $properties['_SOBJ'] ) as $subobject ) {
+		if ( array_key_exists( DIProperty::TYPE_SUBOBJECT, $properties ) ) {
+			foreach ( $store->getPropertyValues( $subject, $properties[ DIProperty::TYPE_SUBOBJECT ] ) as $subobject ) {
 				$this->invalidateCacheOnPageDelete(
 					$store,
 					$subobject->getSubject(),
@@ -143,9 +154,9 @@ class CacheInvalidator {
 		}
 	}
 
-	protected function hasSemanticDataDeviation( \SMWStore $store, \SMWSemanticData $semanticData ) {
+	protected function hasSemanticDataDeviation( Store $store, SemanticData $semanticData ) {
 
-		$dataComparator = new DataComparator( $store, $semanticData );
+		$dataComparator = new SemanticDataComparator( $store, $semanticData );
 
 		return $dataComparator->byPropertyId( PropertyRegistry::SG_TERM ) ||
 			$dataComparator->byPropertyId( PropertyRegistry::SG_DEFINITION ) ||
@@ -153,10 +164,12 @@ class CacheInvalidator {
 			$dataComparator->byPropertyId( PropertyRegistry::SG_STYLE );
 	}
 
-	protected function purgeCache( \SMWDIWikiPage $subject ) {
+	protected function purgeCache( DIWikiPage $subject ) {
 		wfProfileIn( __METHOD__ );
 
-		$this->cache->delete( CacheHelper::getKey( $subject ) );
+		$this->glossaryCache->getCache()->delete(
+			$this->glossaryCache->getKeyForSubject( $subject )
+		);
 
 		wfProfileOut( __METHOD__ );
 		return true;

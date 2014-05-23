@@ -6,8 +6,9 @@ use SMW\DIProperty;
 
 /**
  * @ingroup SG
+ * @ingroup SemanticGlossary
  *
- * @licence GNU GPL v2+
+ * @license GNU GPL v2+
  * @since 1.0
  *
  * @author mwjames

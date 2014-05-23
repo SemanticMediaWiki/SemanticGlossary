@@ -3,7 +3,7 @@
 /**
  * Lazy script to invoke the MediaWiki phpunit runner
  *
- * php <mw-phpunit-runner.php> [--coverage-clover|--coverage-html]
+ * php mw-phpunit-runner.php [options]
  */
 
 if ( php_sapi_name() !== 'cli' ) {
@@ -21,16 +21,17 @@ function isReadablePath( $path ) {
 	throw new RuntimeException( "Expected an accessible {$path} path" );
 }
 
-function addArguments() {
+function addArguments( $args ) {
 
-	$arguments = null;
-	$args = $GLOBALS['argv'];
+	$arguments = array();
 
 	for ( $arg = reset( $args ); $arg !== false; $arg = next( $args ) ) {
 
-		if ( $arg === '--coverage-clover' || $arg === '--coverage-html' ) {
-			$arguments = $arg . ' ' . escapeshellarg( next( $args ) );
+		if ( $arg === basename( __FILE__ ) ) {
+			continue;
 		}
+
+		$arguments[] = $arg;
 	}
 
 	return $arguments;
@@ -39,4 +40,4 @@ function addArguments() {
 $mw = isReadablePath( __DIR__ . "/../../../tests/phpunit/phpunit.php" );
 $config = isReadablePath( __DIR__ . "/../phpunit.xml.dist" );
 
-passthru( "php {$mw} -c {$config} ". addArguments() );
+passthru( "php {$mw} -c {$config} " . implode( ' ', addArguments( $GLOBALS['argv'] ) ) );

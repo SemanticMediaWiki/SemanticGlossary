@@ -3,12 +3,13 @@
 namespace SG\Tests\Cache;
 
 use SG\Cache\ElementsCacheBuilder;
-use SG\CacheHelper;
+use SG\Cache\GlossaryCache;
 
 use LingoElement;
 
 use SMWDIWikiPage as DIWikiPage;
 use SMWDIBlob as DIBlob;
+
 use Title;
 use HashBagOStuff;
 
@@ -30,13 +31,15 @@ class ElementsCacheBuilderTest extends \PHPUnit_Framework_TestCase {
 
 	public function testCanConstruct() {
 
-		$store = $this->getMockBuilder( 'SMWStore' )
+		$store = $this->getMockBuilder( '\SMW\Store' )
 			->disableOriginalConstructor()
 			->getMockForAbstractClass();
 
+		$glossaryCache = $this->getMock( '\SG\Cache\GlossaryCache' );
+
 		$this->assertInstanceOf(
 			'\SG\Cache\ElementsCacheBuilder',
-			new ElementsCacheBuilder( $store )
+			new ElementsCacheBuilder( $store, $glossaryCache )
 		);
 	}
 
@@ -71,15 +74,18 @@ class ElementsCacheBuilderTest extends \PHPUnit_Framework_TestCase {
 			->method( 'getPropertyValues' )
 			->will( $this->returnValue( array( new DIBlob( ' some Definition ' ) ) ) );
 
-		$cache = new HashBagOStuff();
+		$glossaryCache = new GlossaryCache( new HashBagOStuff() );
 
-		$instance = new ElementsCacheBuilder( $store, $cache );
+		$instance = new ElementsCacheBuilder(
+			$store,
+			$glossaryCache
+		);
 
 		$results = $instance->getElements();
 
 		$this->assertEquals(
 			$results,
-			$cache->get( CacheHelper::getKey( $page ) )
+			$glossaryCache->getCache()->get( $glossaryCache->getKeyForSubject( $page ) )
 		);
 
 		$this->assertLingoElement(

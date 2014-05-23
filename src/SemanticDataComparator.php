@@ -2,26 +2,34 @@
 
 namespace SG;
 
+use SMW\Store;
+use SMW\SemanticData;
+use SMW\DIProperty;
+
 /**
  * @ingroup SG
+ * @ingroup SemanticGlossary
  *
- * @licence GNU GPL v2+
+ * @license GNU GPL v2+
  * @since 1.0
  *
  * @author Stephan Gambke
  */
-class DataComparator {
+class SemanticDataComparator {
 
+	/* @var Store */
 	protected $store = null;
+
+	/* @var SemanticData */
 	protected $semanticData = null;
 
 	/**
 	 * @since 1.0
 	 *
-	 * @param SMWStore $store
-	 * @param SMWSemanticData $semanticData
+	 * @param Store $store
+	 * @param SemanticData $semanticData
 	 */
-	public function __construct( \SMWStore $store, \SMWSemanticData $semanticData ) {
+	public function __construct( Store $store, SemanticData $semanticData ) {
 		$this->store = $store;
 		$this->semanticData = $semanticData;
 	}
@@ -69,7 +77,7 @@ class DataComparator {
 		$newEntries = array();
 		$oldEntries = $this->store->getPropertyValues(
 			$this->semanticData->getSubject(),
-			new \SMWDIProperty( $propertId )
+			new DIProperty( $propertId )
 		);
 
 		return array(

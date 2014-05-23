@@ -3,6 +3,9 @@
 namespace SG;
 
 use SG\Cache\ElementsCacheBuilder;
+use SG\Cache\GlossaryCache;
+
+use SMW\StoreFactory;
 
 use LingoBackend;
 use LingoMessageLog;
@@ -18,7 +21,7 @@ use LingoMessageLog;
  */
 class LingoBackendAdapter extends LingoBackend {
 
-	/* ElementsCacheBuilder */
+	/* @var ElementsCacheBuilder */
 	protected $elementsCacheBuilder = null;
 
 	protected $elements = array();
@@ -34,7 +37,10 @@ class LingoBackendAdapter extends LingoBackend {
 		$this->elementsCacheBuilder = $elementsCacheBuilder;
 
 		if ( $this->elementsCacheBuilder === null ) {
-			$this->elementsCacheBuilder = new ElementsCacheBuilder( smwfGetStore() );
+			$this->elementsCacheBuilder = new ElementsCacheBuilder(
+				StoreFactory::getStore(),
+				new GlossaryCache()
+			);
 		}
 	}
 

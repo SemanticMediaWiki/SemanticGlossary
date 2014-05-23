@@ -1,10 +1,10 @@
 <?php
 
-namespace SG\Tests;
+namespace SG\Tests\Cache;
 
 use SG\PropertyRegistry;
-use SG\CacheInvalidator;
-use SG\CacheHelper;
+use SG\Cache\CacheInvalidator;
+use SG\Cache\GlossaryCache;
 
 use SMW\Subobject;
 use SMW\SemanticData;
@@ -16,14 +16,15 @@ use HashBagOStuff;
 use Title;
 
 /**
- * @covers \SG\CacheInvalidator
+ * @covers \SG\Cache\CacheInvalidator
  *
  * @ingroup Test
  *
  * @group SG
  * @group SGExtension
+ * @group extension-semantic-glossary
  *
- * @licence GNU GPL v2+
+ * @license GNU GPL v2+
  * @since 1.0
  *
  * @author mwjames
@@ -32,21 +33,25 @@ class CacheInvalidatorTest extends \PHPUnit_Framework_TestCase {
 
 	public function testCanConstruct() {
 		CacheInvalidator::clear();
-		$this->assertInstanceOf( '\SG\CacheInvalidator', CacheInvalidator::getInstance() );
+
+		$this->assertInstanceOf(
+			'\SG\Cache\CacheInvalidator',
+			CacheInvalidator::getInstance()
+		);
 	}
 
 	public function testInvalidateOnUpdateWithEmptyData() {
 
-		$store = $this->getMockBuilder( 'SMWStore' )
+		$store = $this->getMockBuilder( '\SMW\Store' )
 			->disableOriginalConstructor()
 			->getMockForAbstractClass();
 
-		$semanticData = $this->getMockBuilder( 'SMWSemanticData' )
+		$semanticData = $this->getMockBuilder( '\SMW\SemanticData' )
 			->disableOriginalConstructor()
 			->getMockForAbstractClass();
 
-		$instance = new CacheInvalidator;
-		$instance->setCache( new HashBagOStuff );
+		$instance = new CacheInvalidator();
+		$instance->setCache( new GlossaryCache( new HashBagOStuff() ) );
 
 		$this->assertTrue( $instance->invalidateCacheOnStoreUpdate( $store, $semanticData ) );
 	}
@@ -78,25 +83,28 @@ class CacheInvalidatorTest extends \PHPUnit_Framework_TestCase {
 			$subobject->getContainer()
 		);
 
-		$itemId = CacheHelper::getKey( $subobject->getSemanticData()->getSubject() );
+		$glossaryCache = new GlossaryCache( new HashBagOStuff() );
 
-		$cache = new HashBagOStuff;
-		$cache->set( $itemId, 'preset.cacheitem' );
+		$itemId = $glossaryCache->getKeyForSubject(
+			$subobject->getSemanticData()->getSubject()
+		);
 
-		$instance = new CacheInvalidator;
-		$instance->setCache( $cache );
+		$glossaryCache->getCache()->set( $itemId, 'preset.cacheitem' );
+
+		$instance = new CacheInvalidator();
+		$instance->setCache( $glossaryCache );
 
 		$this->assertTrue( $instance->invalidateCacheOnStoreUpdate( $store, $semanticData ) );
 
 		$this->assertFalse(
-			$cache->get( $itemId ),
+			$glossaryCache->getCache()->get( $itemId ),
 			'Asserts that the preset item has been removed from cache'
 		);
 	}
 
 	public function testInvalidateOnDeleteWithEmptyData() {
 
-		$subject = \SMWDIWikiPage::newFromTitle( \Title::newFromText( __METHOD__ ) );
+		$subject = DIWikiPage::newFromTitle( Title::newFromText( __METHOD__ ) );
 
 		$store = $this->getMockBuilder( 'SMWStore' )
 			->disableOriginalConstructor()
@@ -107,17 +115,17 @@ class CacheInvalidatorTest extends \PHPUnit_Framework_TestCase {
 			->with( $this->equalTo( $subject ) )
 			->will( $this->returnValue( array() ) );
 
-		$instance = new CacheInvalidator;
-		$instance->setCache( new HashBagOStuff );
+		$instance = new CacheInvalidator();
+		$instance->setCache( new GlossaryCache( new HashBagOStuff() ) );
 
 		$this->assertTrue( $instance->invalidateCacheOnPageDelete( $store, $subject ) );
 	}
 
 	public function testInvalidateOnDeleteWithSubobject() {
 
-		$subobject  = new \SMWDIProperty( '_SOBJ' );
-		$subject    = \SMWDIWikiPage::newFromTitle( \Title::newFromText( __METHOD__ ) );
-		$newSubject = \SMWDIWikiPage::newFromTitle( \Title::newFromText( 'Subobject' ) );
+		$subobject  = new DIProperty( '_SOBJ' );
+		$subject    = DIWikiPage::newFromTitle( Title::newFromText( __METHOD__ ) );
+		$newSubject = DIWikiPage::newFromTitle( Title::newFromText( 'Subobject' ) );
 
 		$store = $this->getMockBuilder( 'SMWStore' )
 			->disableOriginalConstructor()
@@ -135,28 +143,29 @@ class CacheInvalidatorTest extends \PHPUnit_Framework_TestCase {
 				$this->equalTo( $subobject ) )
 			->will( $this->returnValue( $newSubject ) );
 
-		$itemId = CacheHelper::getKey( $subject );
+		$glossaryCache = new GlossaryCache( new HashBagOStuff() );
 
-		$cache = new HashBagOStuff;
-		$cache->set( $itemId, 'preset.cacheitem' );
+		$itemId = $glossaryCache->getKeyForSubject( $subject );
 
-		$instance = new CacheInvalidator;
-		$instance->setCache( $cache );
+		$glossaryCache->getCache()->set( $itemId, 'preset.cacheitem' );
+
+		$instance = new CacheInvalidator();
+		$instance->setCache( $glossaryCache );
 
 		$this->assertTrue( $instance->invalidateCacheOnPageDelete( $store, $subject ) );
 
 		$this->assertFalse(
-			$cache->get( $itemId ),
+			$glossaryCache->getCache()->get( $itemId ),
 			'Asserts that the preset item has been removed from cache'
 		);
 	}
 
 	public function testInvalidateOnMove() {
 
-		$title = \Title::newFromText( __METHOD__ );
+		$title = Title::newFromText( __METHOD__ );
 
-		$instance = new CacheInvalidator;
-		$instance->setCache( new HashBagOStuff );
+		$instance = new CacheInvalidator();
+		$instance->setCache( new GlossaryCache( new HashBagOStuff() ) );
 
 		$this->assertTrue( $instance->invalidateCacheOnPageMove( $title ) );
 	}

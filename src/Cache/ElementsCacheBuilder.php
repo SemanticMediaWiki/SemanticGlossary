@@ -2,19 +2,20 @@
 
 namespace SG\Cache;
 
-use SG\CacheHelper;
+use SG\Cache\GlossaryCache;
+use SG\PropertyRegistry;
 
-use SMWStore;
-use SMWDIProperty;
-use SMWStringValue;
-use SMWPrintRequest;
-use SMWPropertyValue;
-use SMWThingDescription;
-use SMWSomeProperty;
-use SMWQuery;
+use SMW\Store;
+use SMW\DIProperty;
+
+use SMWStringValue as StringValue;
+use SMWPrintRequest as PrintRequest;
+use SMWPropertyValue as PropertyValue;
+use SMWThingDescription as ThingDescription;
+use SMWSomeProperty as SomeProperty;
+use SMWQuery as Query;
+
 use LingoElement;
-
-use BagOStuff;
 
 /**
  * @ingroup SG
@@ -31,8 +32,8 @@ class ElementsCacheBuilder {
 	/* @var Store */
 	protected $store;
 
-	/* @var BagOStuff */
-	protected $cache;
+	/* @var GlossaryCache */
+	protected $glossaryCache;
 
 	protected $mDiTerm;
 	protected $mDiDefinition;
@@ -50,15 +51,11 @@ class ElementsCacheBuilder {
 	 * @since  1.1
 	 *
 	 * @param SMWStore $store
-	 * @param BagOStuff|null $cache
+	 * @param GlossaryCache $cache
 	 */
-	public function __construct( SMWStore $store, BagOStuff $cache = null ) {
+	public function __construct( Store $store, GlossaryCache $glossaryCache ) {
 		$this->store = $store;
-		$this->cache = $cache;
-
-		if ( $this->cache === null ) {
-			$this->cache = CacheHelper::getCache();
-		}
+		$this->glossaryCache = $glossaryCache;
 	}
 
 	/**
@@ -82,8 +79,8 @@ class ElementsCacheBuilder {
 
 			next( $this->queryResults );
 
-			$cachekey = CacheHelper::getKey( $page );
-			$cachedResult = $this->cache->get( $cachekey );
+			$cachekey = $this->glossaryCache->getKeyForSubject( $page );
+			$cachedResult = $this->glossaryCache->getCache()->get( $cachekey );
 
 			// cache hit?
 			if ( $cachedResult !== false && $cachedResult !== null ) {
@@ -103,7 +100,7 @@ class ElementsCacheBuilder {
 				);
 
 				wfDebug( "Cached glossary entry $cachekey.\n" );
-				$this->cache->set( $cachekey, $ret );
+				$this->glossaryCache->getCache()->set( $cachekey, $ret );
 			}
 		}
 
@@ -132,49 +129,49 @@ class ElementsCacheBuilder {
 
 	protected function buildQuery() {
 		// build term data item and data value for later use
-		$this->mDiTerm = new SMWDIProperty( '___glt' );
-		$this->mDvTerm = new SMWStringValue( '_str' );
+		$this->mDiTerm = new DIProperty( PropertyRegistry::SG_TERM );
+		$this->mDvTerm = new StringValue( '_str' );
 		$this->mDvTerm->setProperty( $this->mDiTerm );
 
-		$pvTerm = new SMWPropertyValue( '__pro' );
+		$pvTerm = new PropertyValue( '__pro' );
 		$pvTerm->setDataItem( $this->mDiTerm );
-		$prTerm = new SMWPrintRequest( SMWPrintRequest::PRINT_PROP, null, $pvTerm );
+		$prTerm = new PrintRequest( PrintRequest::PRINT_PROP, null, $pvTerm );
 
 		// build definition data item and data value for later use
-		$this->mDiDefinition = new SMWDIProperty( '___gld' );
-		$this->mDvDefinition = new SMWStringValue( '_txt' );
+		$this->mDiDefinition = new DIProperty( PropertyRegistry::SG_DEFINITION );
+		$this->mDvDefinition = new StringValue( '_txt' );
 		$this->mDvDefinition->setProperty( $this->mDiDefinition );
 
-		$pvDefinition = new SMWPropertyValue( '__pro' );
+		$pvDefinition = new PropertyValue( '__pro' );
 		$pvDefinition->setDataItem( $this->mDiDefinition );
-		$prDefinition = new SMWPrintRequest( SMWPrintRequest::PRINT_PROP, null, $pvDefinition );
+		$prDefinition = new PrintRequest( PrintRequest::PRINT_PROP, null, $pvDefinition );
 
 		// build link data item and data value for later use
-		$this->mDiLink = new SMWDIProperty( '___gll' );
-		$this->mDvLink = new SMWStringValue( '_str' );
+		$this->mDiLink = new DIProperty( PropertyRegistry::SG_LINK );
+		$this->mDvLink = new StringValue( '_str' );
 		$this->mDvLink->setProperty( $this->mDiLink );
 
-		$pvLink = new SMWPropertyValue( '__pro' );
+		$pvLink = new PropertyValue( '__pro' );
 		$pvLink->setDataItem( $this->mDiLink );
-		$prLink = new SMWPrintRequest( SMWPrintRequest::PRINT_PROP, null, $pvLink );
+		$prLink = new PrintRequest( PrintRequest::PRINT_PROP, null, $pvLink );
 
 		// build style data item and data value for later use
-		$this->mDiStyle = new SMWDIProperty( '___gls' );
-		$this->mDvStyle = new SMWStringValue( '_txt' );
+		$this->mDiStyle = new DIProperty( PropertyRegistry::SG_STYLE );
+		$this->mDvStyle = new StringValue( '_txt' );
 		$this->mDvStyle->setProperty( $this->mDiStyle );
 
-		$pvStyle = new SMWPropertyValue( '__pro' );
+		$pvStyle = new PropertyValue( '__pro' );
 		$pvStyle->setDataItem( $this->mDiStyle );
-		$prStyle = new SMWPrintRequest( SMWPrintRequest::PRINT_PROP, null, $pvStyle );
+		$prStyle = new PrintRequest( PrintRequest::PRINT_PROP, null, $pvStyle );
 
 		// Create query
-		$desc = new SMWSomeProperty( new SMWDIProperty( '___glt' ), new SMWThingDescription() );
+		$desc = new SomeProperty( new DIProperty( '___glt' ), new ThingDescription() );
 		$desc->addPrintRequest( $prTerm );
 		$desc->addPrintRequest( $prDefinition );
 		$desc->addPrintRequest( $prLink );
 		$desc->addPrintRequest( $prStyle );
 
-		$query = new SMWQuery( $desc, false, false );
+		$query = new Query( $desc, false, false );
 		$query->sort = true;
 		$query->sortkeys['___glt'] = 'ASC';
 

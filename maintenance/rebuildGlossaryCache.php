@@ -3,7 +3,7 @@
 namespace SG\Maintenance;
 
 use SG\Maintenance\GlossaryCacheRebuilder;
-use SG\CacheHelper;
+use SG\Cache\GlossaryCache;
 
 use SMW\StoreFactory;
 
@@ -18,6 +18,7 @@ require_once $basePath . '/maintenance/Maintenance.php';
  * php rebuildGlossaryCache.php [options...]
  *
  * @ingroup SG
+ * @ingroup SemanticGlossary
  * @ingroup Maintenance
  *
  * @license GNU GPL v2+
@@ -54,7 +55,7 @@ class RebuildGlossaryCache extends \Maintenance {
 
 		$glossaryCacheRebuilder = new GlossaryCacheRebuilder(
 			StoreFactory::getStore(),
-			CacheHelper::getCache(),
+			new GlossaryCache(),
 			array( $this, 'reportMessage' )
 		);
 

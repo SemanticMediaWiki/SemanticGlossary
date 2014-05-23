@@ -2,22 +2,23 @@
 
 namespace SG\Tests;
 
-use SG\DataComparator;
+use SG\SemanticDataComparator;
 
 /**
- * @covers \SG\DataComparator
+ * @covers \SG\SemanticDataComparator
  *
  * @ingroup Test
  *
  * @group SG
  * @group SGExtension
+ * @group extension-semantic-glossary
  *
- * @licence GNU GPL v2+
+ * @license GNU GPL v2+
  * @since 1.0
  *
  * @author mwjames
  */
-class DataComparatorTest extends \PHPUnit_Framework_TestCase {
+class SemanticDataComparatorTest extends \PHPUnit_Framework_TestCase {
 
 	public function testCanConstruct() {
 
@@ -29,9 +30,9 @@ class DataComparatorTest extends \PHPUnit_Framework_TestCase {
 			->disableOriginalConstructor()
 			->getMockForAbstractClass();
 
-		$instance = new DataComparator( $store, $semanticData );
+		$instance = new SemanticDataComparator( $store, $semanticData );
 
-		$this->assertInstanceOf( '\SG\DataComparator', $instance );
+		$this->assertInstanceOf( '\SG\SemanticDataComparator', $instance );
 	}
 
 	public function testInspectWithoutData() {
@@ -44,7 +45,7 @@ class DataComparatorTest extends \PHPUnit_Framework_TestCase {
 			->disableOriginalConstructor()
 			->getMockForAbstractClass();
 
-		$instance = new DataComparator( $store, $semanticData );
+		$instance = new SemanticDataComparator( $store, $semanticData );
 
 		$this->assertFalse( $instance->byPropertyId( 'foo' ) );
 	}

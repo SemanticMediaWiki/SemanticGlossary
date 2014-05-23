@@ -2,7 +2,7 @@
 
 namespace SG\Tests;
 
-use SG\CacheHelper;
+use SG\Cache\GlossaryCache;
 
 /**
  * @ingroup Test
@@ -23,7 +23,7 @@ class ConfigurationIntegrityTest extends \PHPUnit_Framework_TestCase {
 			$this->assertCacheType( $GLOBAL['wgexLingoCacheType'] );
 		}
 
-		$this->assertCacheType( CacheHelper::getCacheType() );
+		$this->assertCacheType( GlossaryCache::getCacheType() );
 	}
 
 	protected function assertCacheType( $cacheType ) {

@@ -3,7 +3,7 @@
 namespace SG\Maintenance;
 
 use SG\PropertyRegistry;
-use SG\CacheHelper;
+use SG\Cache\GlossaryCache;
 
 use SMWUpdateJob as UpdateJob;
 use SMW\Store;
@@ -12,8 +12,6 @@ use SMWQuery as Query;
 use SMWSomeProperty as SomeProperty;
 use SMWDIProperty as DIProperty;
 use SMWThingDescription as ThingDescription;
-
-use BagOStuff;
 
 /**
  * Part of the `rebuildGlossaryCache.php` maintenance script
@@ -30,8 +28,8 @@ class GlossaryCacheRebuilder {
 	/** @var Store */
 	protected $store;
 
-	/** @var BagOStuff */
-	protected $cache;
+	/** @var GlossaryCache */
+	protected $glossaryCache;
 
 	protected $reporter = null;
 	protected $rebuildCount = 0;
@@ -41,12 +39,12 @@ class GlossaryCacheRebuilder {
 	 * @since 1.1
 	 *
 	 * @param Store $store
-	 * @param BagOStuff $cache
+	 * @param GlossaryCache $glossaryCache
 	 * @param $reporter
 	 */
-	public function __construct( Store $store, BagOStuff $cache, $reporter = null ) {
+	public function __construct( Store $store, GlossaryCache $glossaryCache, $reporter = null ) {
 		$this->store = $store;
-		$this->cache = $cache;
+		$this->glossaryCache = $glossaryCache;
 		$this->reporter = $reporter; // Should be a MessageReporter instance
 	}
 
@@ -138,11 +136,12 @@ class GlossaryCacheRebuilder {
 
 	protected function removeEntitiesFromCache( array $pages ) {
 
-		// FIXME Need access to the key from a method, this is a hack
-		$this->cache->delete( wfMemcKey( 'ext', 'lingo', 'lingotree' ) );
+		$cache = $this->glossaryCache->getCache();
+
+		$cache->delete( $this->glossaryCache->getKeyForLingo() );
 
 		foreach ( $pages as $page ) {
-			$this->cache->delete( CacheHelper::getKey( $page ) );
+			$cache->delete( $this->glossaryCache->getKeyForSubject( $page ) );
 		}
 
 		$this->reportMessage( "\n" . ( count( $pages ) + 1 ) . " cache entities deleted.\n\n" );
