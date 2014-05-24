@@ -1,0 +1,19 @@
+language: php
+
+env:
+  - THENEEDFORTHIS=FAIL
+
+matrix:
+  include:
+    - env: DB=mysql; MW=master
+      php: 5.5
+    - env: DB=sqlite; MW=1.22.0
+      php: 5.3
+  exclude:
+    - env: THENEEDFORTHIS=FAIL
+
+before_script:
+  - bash ./build/travis/before_script.sh
+
+script:
+  - php ../phase3/extensions/SemanticGlossary/tests/mw-phpunit-runner.php

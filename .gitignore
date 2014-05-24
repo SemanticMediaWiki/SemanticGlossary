@@ -6,7 +6,6 @@
 
 vendor/
 extensions/
-build/
 
 composer.phar
 composer.lock
