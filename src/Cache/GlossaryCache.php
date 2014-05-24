@@ -51,7 +51,7 @@ class GlossaryCache {
 	 *
 	 * @return string
 	 */
-	public static function getKeyForSubject( DIWikiPage $subject ) {
+	public function getKeyForSubject( DIWikiPage $subject ) {
 		// FIXME Remove wfMemcKey dep.
 		return wfMemcKey( 'ext', 'semanticglossary', $subject->getSerialization() );
 	}
@@ -61,7 +61,7 @@ class GlossaryCache {
 	 *
 	 * @return string
 	 */
-	public static function getKeyForLingo() {
+	public function getKeyForLingo() {
 		// FIXME Remove wfMemcKey dep.
 		// This key should come from something like LingoCache::getKey()
 		return wfMemcKey( 'ext', 'lingo', 'lingotree' );
@@ -72,7 +72,7 @@ class GlossaryCache {
 	 *
 	 * @return string
 	 */
-	public static function getCacheType() {
+	public function getCacheType() {
 
 		if ( isset( $GLOBAL['wgexLingoCacheType'] ) && $GLOBAL['wgexLingoCacheType'] !== null ) {
 			return $GLOBAL['wgexLingoCacheType'];

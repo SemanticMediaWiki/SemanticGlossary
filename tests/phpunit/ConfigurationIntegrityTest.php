@@ -19,11 +19,13 @@ class ConfigurationIntegrityTest extends \PHPUnit_Framework_TestCase {
 
 	public function testValidityOfCacheTypeSetting() {
 
+		$instance = new GlossaryCache();
+
 		if ( isset( $GLOBAL['wgexLingoCacheType'] ) ) {
 			$this->assertCacheType( $GLOBAL['wgexLingoCacheType'] );
 		}
 
-		$this->assertCacheType( GlossaryCache::getCacheType() );
+		$this->assertCacheType( $instance->getCacheType() );
 	}
 
 	protected function assertCacheType( $cacheType ) {

@@ -22,19 +22,27 @@ class GlossaryCacheTest extends \PHPUnit_Framework_TestCase {
 
 	public function testGetDefaultCache() {
 
-		$glossaryCache = new GlossaryCache();
+		$instance = new GlossaryCache();
 
 		$this->assertInstanceOf(
 			'BagOStuff',
-			$glossaryCache->getCache()
+			$instance->getCache()
 		);
 	}
 
 	public function testGetCacheType() {
-		$this->assertInternalType( 'integer', GlossaryCache::getCacheType() );
+
+		$instance = new GlossaryCache();
+
+		$this->assertInternalType(
+			'integer',
+			$instance->getCacheType()
+		);
 	}
 
 	public function testGetKeys() {
+
+		$instance = new GlossaryCache();
 
 		$subject = $this->getMockBuilder( '\SMW\DIWikiPage' )
 			->disableOriginalConstructor()
@@ -46,12 +54,12 @@ class GlossaryCacheTest extends \PHPUnit_Framework_TestCase {
 
 		$this->assertInternalType(
 			'string',
-			GlossaryCache::getKeyForSubject( $subject )
+			$instance->getKeyForSubject( $subject )
 		);
 
 		$this->assertInternalType(
 			'string',
-			GlossaryCache::getKeyForLingo()
+			$instance->getKeyForLingo()
 		);
 	}
 

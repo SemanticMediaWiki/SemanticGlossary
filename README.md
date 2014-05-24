@@ -34,9 +34,9 @@ php mw-phpunit-runner.php [options]
 
 ## License
 
-[GNU General Public License 2.0 or later][licence] or later.
+[GNU General Public License 2.0][license] or later.
 
-[licence]: https://www.gnu.org/copyleft/gpl.html
+[license]: https://www.gnu.org/copyleft/gpl.html
 [mw-semantic-glossary]: https://www.mediawiki.org/wiki/Extension:Semantic_Glossary
 [mw-lingo]: https://www.mediawiki.org/wiki/Extension:Lingo
 [smw]: https://www.mediawiki.org/wiki/Semantic_MediaWiki
