@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Amgauna",
-			"Cainamarques"
+			"Cainamarques",
+			"Tuliouel"
 		]
 	},
 	"semanticglossary-desc": "Uma extensão de glossário com base no [http://semantic-mediawiki.org MediaWiki Semântico]",
@@ -10,5 +11,5 @@
 	"semanticglossary-prop-glt": "Glossário-Termo",
 	"semanticglossary-prop-gld": "Glossário-Definição",
 	"semanticglossary-prop-gll": "Glossário-Link",
-	"semanticglossary-prop-gls": "Glossário-Estilo"
+	"semanticglossary-prop-gls": "Estilo-Glossário"
 }
