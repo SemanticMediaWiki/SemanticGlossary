@@ -42,6 +42,7 @@ call_user_func( function () {
 		'url' => 'https://www.mediawiki.org/wiki/Extension:Semantic_Glossary',
 		'descriptionmsg' => 'semanticglossary-desc',
 		'version' => SG_VERSION,
+		'license-name' => 'GPL-2.0+'
 	);
 
 	// set SemanticGlossaryBackend as the backend to access the glossary
