@@ -3,7 +3,9 @@
 [![Packagist download count](https://poser.pugx.org/mediawiki/semantic-glossary/d/total.png)](https://packagist.org/packages/mediawiki/semantic-glossary)
 [![Dependency Status](https://www.versioneye.com/php/mediawiki:semantic-glossary/badge.png)](https://www.versioneye.com/php/mediawiki:semantic-glossary)
 
-The [Semantic Glossary][mw-semantic-glossary] (a.k.a SG) is a [Semantic MediaWiki][smw] extension where terms and abbreviations can be defined using semantic properties.
+The [Semantic Glossary][mw-semantic-glossary] (a.k.a SG) is a
+[Semantic MediaWiki][smw] extension where terms and abbreviations can be defined
+using semantic properties.
 
 ## Requirements
 
@@ -14,19 +16,24 @@ The [Semantic Glossary][mw-semantic-glossary] (a.k.a SG) is a [Semantic MediaWik
 
 ## Installation
 
-The recommended way to install this skin is by using [Composer][composer]. Just add the following to the MediaWiki `composer.json` file and run the `php composer.phar install/update` command.
+The recommended way to install this extension is by using [Composer][composer].
+Just add the following to the MediaWiki `composer.json` file and run the `php
+composer.phar install/update` command.
 
 ```json
 {
 	"require": {
-		"mediawiki/semantic-glossary": "~1.0"
+		"mediawiki/semantic-glossary": "~1.1"
 	}
 }
 ```
 
 ## Tests
 
-This extension provides unit tests that can be run by a continues integration platform or manually by executing the `mw-phpunit-runner.php` script or [`phpunit`][mw-testing] together with the PHPUnit configuration file found in the root directory.
+This extension provides unit tests that can be run by a continues integration
+platform or manually by executing the `mw-phpunit-runner.php` script or
+[`phpunit`][mw-testing] together with the PHPUnit configuration file found in
+the root directory.
 
 ```sh
 php mw-phpunit-runner.php [options]
