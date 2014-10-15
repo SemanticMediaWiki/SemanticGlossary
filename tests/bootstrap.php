@@ -4,39 +4,16 @@ if ( php_sapi_name() !== 'cli' ) {
 	die( 'Not an entry point' );
 }
 
-if ( !defined( 'MEDIAWIKI' ) ) {
-	die( 'MediaWiki is not available for the test environment' );
+if ( is_readable( $path = __DIR__ . '/../../SemanticMediaWiki/tests/autoloader.php' ) ) {
+	print( "\nUsing SemanticMediaWiki ...\n" );
+} else {
+	die( 'The SemanticMediaWiki test autoloader is not available' );
 }
 
-function registerAutoloaderPath( $identifier, $path ) {
-	print( "\nUsing the {$identifier} vendor autoloader ...\n\n" );
-	return require $path;
-}
+$autoloader = require $path;
 
-function runTestAutoLoader() {
+$autoloader->addPsr4( 'SG\\Tests\\', __DIR__ . '/phpunit' );
 
-	$mwVendorPath = __DIR__ . '/../../../vendor/autoload.php';
-	$localVendorPath = __DIR__ . '/../vendor/autoload.php';
-
-	if ( is_readable( $localVendorPath ) ) {
-		$autoLoader = registerAutoloaderPath( 'local', $localVendorPath );
-	} elseif ( is_readable( $mwVendorPath ) ) {
-		$autoLoader = registerAutoloaderPath( 'MediaWiki', $mwVendorPath );
-	}
-
-	if ( !$autoLoader instanceof \Composer\Autoload\ClassLoader ) {
-		return false;
-	}
-
-	$autoLoader->addPsr4( 'SG\\Tests\\', __DIR__ . '/phpunit' );
-
-	$autoLoader->addClassMap( array(
-		'SG\Maintenance\RebuildGlossaryCache' => __DIR__ . '/../maintenance/rebuildGlossaryCache.php',
-	) );
-
-	return true;
-}
-
-if ( !runTestAutoLoader() ) {
-	die( 'The required test autoloader was not accessible' );
-}
+$autoloader->addClassMap( array(
+	'SG\Maintenance\RebuildGlossaryCache' => __DIR__ . '/../maintenance/rebuildGlossaryCache.php',
+) );
