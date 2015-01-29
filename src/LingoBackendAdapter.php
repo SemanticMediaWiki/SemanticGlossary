@@ -51,7 +51,7 @@ class LingoBackendAdapter extends LingoBackend {
 	 *
 	 * @since  1.1
 	 *
-	 * @return the next element or null
+	 * @return array|null the next element or null
 	 */
 	public function next() {
 
