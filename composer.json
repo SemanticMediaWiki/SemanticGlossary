@@ -1,8 +1,8 @@
 {
-	"name"       : "mediawiki/semantic-glossary",
-	"type"       : "mediawiki-extension",
+	"name": "mediawiki/semantic-glossary",
+	"type": "mediawiki-extension",
 	"description": "A terminology markup extension with a Semantic MediaWiki back-end",
-	"keywords"   : [
+	"keywords": [
 		"wiki",
 		"MediaWiki",
 		"extension",
@@ -11,31 +11,29 @@
 		"terminology",
         "lingo"
 	],
-	"homepage"   : "https://www.mediawiki.org/wiki/Extension:Semantic_Glossary",
-	"license"    : "GPL-2.0+",
-	"authors"    : [
+	"homepage": "https://www.mediawiki.org/wiki/Extension:Semantic_Glossary",
+	"license": "GPL-2.0+",
+	"authors": [
 		{
-			"name" : "Stephan Gambke",
+			"name": "Stephan Gambke",
 			"email": "s7eph4n@gmail.com",
-			"role" : "Developer"
+			"role": "Developer"
 		}
 	],
 	"support": {
 		"wiki": "https://www.mediawiki.org/wiki/Extension:Semantic_Glossary",
 		"forum": "https://www.mediawiki.org/wiki/Extension_talk:Semantic_Glossary",
-		"source": "https://git.wikimedia.org/tree/mediawiki%2Fextensions%2FSemanticGlossary",
+		"source": "https://github.com/SemanticMediaWiki/SemanticGlossary.git",
 		"issues": "https://bugzilla.wikimedia.org/buglist.cgi?component=SemanticGlossary&product=MediaWiki%20extensions",
 		"irc": "irc://irc.freenode.org/semantic-mediawiki"
 	},
-	"require"    : {
-		"php"    : ">=5.3.0",
+	"require": {
+		"php": ">=5.3.0",
         "composer/installers":"~1.0.8",
         "mediawiki/semantic-media-wiki": "~1.9|~2.0",
         "mediawiki/lingo": "~1.0"
 	},
-	"suggest": {
-	},
-	"autoload"   : {
+	"autoload": {
 		"files": [
 			"SemanticGlossary.php"
 		],
