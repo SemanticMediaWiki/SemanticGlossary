@@ -28,16 +28,18 @@ composer.phar install/update` command.
 }
 ```
 
-## Tests
+## Contribution and support
 
-This extension provides unit tests that can be run by a continues integration
-platform or manually by executing the `mw-phpunit-runner.php` script or
-[`phpunit`][mw-testing] together with the PHPUnit configuration file found in
-the root directory.
+If you want to contribute work to the project please subscribe to the developers mailing list and
+have a look at the contribution guideline.
 
-```sh
-php mw-phpunit-runner.php [options]
-```
+* Ask a question on [the mailing list](https://semantic-mediawiki.org/wiki/Mailing_list)
+* Ask a question on the #semantic-mediawiki IRC channel on Freenode.
+
+### Tests
+
+This extension provides unit and integration tests that are run by a [continues integration platform][travis]
+but can also be executed using `composer phpunit` from the extension base directory.
 
 ## License
 
@@ -49,3 +51,4 @@ php mw-phpunit-runner.php [options]
 [smw]: https://www.mediawiki.org/wiki/Semantic_MediaWiki
 [mw-testing]: https://www.mediawiki.org/wiki/Manual:PHP_unit_testing
 [composer]: https://getcomposer.org/
+[travis]: https://travis-ci.org/SemanticMediaWiki/SemanticGlossary
