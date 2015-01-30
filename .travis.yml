@@ -12,8 +12,9 @@ matrix:
   exclude:
     - env: THENEEDFORTHIS=FAIL
 
-before_script:
-  - bash ./build/travis/before_script.sh
+install:
+  - bash ./tests/travis/install-mediawiki.sh
+  - bash ./tests/travis/install-semantic-glossary.sh
 
 script:
-  - php ../phase3/extensions/SemanticGlossary/tests/mw-phpunit-runner.php
+  - bash ./tests/travis/run-tests.sh
