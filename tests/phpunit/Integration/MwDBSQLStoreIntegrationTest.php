@@ -1,13 +1,11 @@
 <?php
 
-namespace SG\Tests;
+namespace SG\Tests\Integration;
 
 use SG\PropertyRegistry;
 
 use SMW\Tests\MwDBaseUnitTestCase;
-use SMW\Tests\Util\PageCreator;
-use SMW\Tests\Util\PageDeleter;
-use SMW\Tests\Util\MaintenanceRunner;
+use SMW\Tests\Utils\UtilityFactory;
 
 use SMW\DIProperty;
 use SMW\DIWikiPage;
@@ -29,6 +27,17 @@ use Title;
  */
 class MwDBSQLStoreIntegrationTest extends MwDBaseUnitTestCase {
 
+	private $pageCreator;
+	private $pageDeleter;
+	private $runnerFactory;
+
+	protected function setUp() {
+
+		$this->pageCreator = UtilityFactory::getInstance()->newPageCreator();
+		$this->pageDeleter = UtilityFactory::getInstance()->newPageDeleter();
+		$this->runnerFactory = UtilityFactory::getInstance()->newRunnerFactory();
+	}
+
 	public function testPageCreateDeleteStoreIntegration() {
 
 		if ( !$this->isUsableUnitTestDatabase() ) {
@@ -39,8 +48,7 @@ class MwDBSQLStoreIntegrationTest extends MwDBaseUnitTestCase {
 
 		$title = Title::newFromText( __METHOD__ );
 
-		$pageCreator = new PageCreator();
-		$pageCreator
+		$this->pageCreator
 			->createPage( $title )
 			->doEdit( "[[Glossary-Term::testTerm]] [[Glossary-Definition::testDefinition]]" );
 
@@ -51,8 +59,7 @@ class MwDBSQLStoreIntegrationTest extends MwDBaseUnitTestCase {
 
 		$this->assertNotEmpty( $values );
 
-		$pageDeleter = new PageDeleter();
-		$pageDeleter
+		$this->pageDeleter
 			->deletePage( $title );
 
 		$values = $this->getStore()->getPropertyValues(
@@ -71,12 +78,11 @@ class MwDBSQLStoreIntegrationTest extends MwDBaseUnitTestCase {
 			);
 		}
 
-		$pageCreator = new PageCreator();
-		$pageCreator
+		$this->pageCreator
 			->createPage( Title::newFromText( __METHOD__ ) )
 			->doEdit( "[[Glossary-Term::testTerm]] [[Glossary-Definition::testDefinition]]" );
 
-		$maintenanceRunner = new MaintenanceRunner( 'SG\Maintenance\RebuildGlossaryCache' );
+		$maintenanceRunner = $this->runnerFactory->newMaintenanceRunner( 'SG\Maintenance\RebuildGlossaryCache' );
 
 		$this->assertTrue(
 			$maintenanceRunner->setQuiet()->run()
