@@ -19,7 +19,7 @@ use BagOStuff;
 class GlossaryCache {
 
 	/* @var BagOstuff */
-	protected $cache = null;
+	private $cache = null;
 
 	/**
 	 * @since 1.1
