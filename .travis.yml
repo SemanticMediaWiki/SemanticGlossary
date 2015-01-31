@@ -5,7 +5,7 @@ env:
 
 matrix:
   include:
-    - env: DB=mysql; MW=master
+    - env: DB=mysql; MW=master; TYPE=coverage
       php: 5.5
     - env: DB=sqlite; MW=1.22.0
       php: 5.3
@@ -18,3 +18,16 @@ install:
 
 script:
   - bash ./tests/travis/run-tests.sh
+
+after_success:
+  - bash ./tests/travis/upload-coverage-report.sh
+
+notifications:
+  email:
+    on_success: change
+    on_failure: always
+  irc:
+    channels:
+      - "chat.freenode.net#semantic-mediawiki"
+    on_success: change
+    on_failure: always
