@@ -18,10 +18,10 @@ use SMW\DIProperty;
 class SemanticDataComparator {
 
 	/* @var Store */
-	protected $store = null;
+	private $store = null;
 
 	/* @var SemanticData */
-	protected $semanticData = null;
+	private $semanticData = null;
 
 	/**
 	 * @since 1.0
@@ -56,7 +56,7 @@ class SemanticDataComparator {
 		return false;
 	}
 
-	protected function lookupPropertyValues( $propertId ) {
+	private function lookupPropertyValues( $propertId ) {
 
 		$properties = $this->semanticData->getProperties();
 
@@ -86,11 +86,11 @@ class SemanticDataComparator {
 		);
 	}
 
-	protected function hasNotSamePropertyValuesCount( $newEntries, $oldEntries ) {
+	private function hasNotSamePropertyValuesCount( $newEntries, $oldEntries ) {
 		return count( $newEntries ) !== count( $oldEntries );
 	}
 
-	protected function hasUnmatchPropertyValue( $newEntries, $oldEntries ) {
+	private function hasUnmatchPropertyValue( $newEntries, $oldEntries ) {
 
 		foreach ( $newEntries as $newDi ) {
 			$found = false;

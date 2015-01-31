@@ -26,14 +26,14 @@ use SMWThingDescription as ThingDescription;
 class GlossaryCacheRebuilder {
 
 	/** @var Store */
-	protected $store;
+	private $store;
 
 	/** @var GlossaryCache */
-	protected $glossaryCache;
+	private $glossaryCache;
 
-	protected $reporter = null;
-	protected $rebuildCount = 0;
-	protected $verbose = false;
+	private $reporter = null;
+	private $rebuildCount = 0;
+	private $verbose = false;
 
 	/**
 	 * @since 1.1
@@ -81,7 +81,7 @@ class GlossaryCacheRebuilder {
 		return true;
 	}
 
-	protected function updateSelectedPages( array $pages ) {
+	private function updateSelectedPages( array $pages ) {
 
 		$titleCache = array();
 
@@ -110,7 +110,7 @@ class GlossaryCacheRebuilder {
 		return true;
 	}
 
-	protected function buildQuery() {
+	private function buildQuery() {
 
 		$description = new SomeProperty(
 			new DIProperty( PropertyRegistry::SG_TERM ),
@@ -134,7 +134,7 @@ class GlossaryCacheRebuilder {
 		return $resultQuery;
 	}
 
-	protected function removeEntitiesFromCache( array $pages ) {
+	private function removeEntitiesFromCache( array $pages ) {
 
 		$cache = $this->glossaryCache->getCache();
 
@@ -150,7 +150,7 @@ class GlossaryCacheRebuilder {
 	/**
 	 * @codeCoverageIgnore
 	 */
-	protected function reportMessage( $message, $output = true ) {
+	private function reportMessage( $message, $output = true ) {
 		if ( is_callable( $this->reporter ) && $output ) {
 			call_user_func( $this->reporter, $message );
 		}

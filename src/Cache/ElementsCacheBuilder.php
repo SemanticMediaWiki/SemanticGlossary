@@ -30,22 +30,22 @@ use LingoElement;
 class ElementsCacheBuilder {
 
 	/* @var Store */
-	protected $store;
+	private $store;
 
 	/* @var GlossaryCache */
-	protected $glossaryCache;
+	private $glossaryCache;
 
-	protected $mDiTerm;
-	protected $mDiDefinition;
-	protected $mDiLink;
-	protected $mDiStyle;
+	private $mDiTerm;
+	private $mDiDefinition;
+	private $mDiLink;
+	private $mDiStyle;
 
-	protected $mDvTerm;
-	protected $mDvDefinition;
-	protected $mDvLink;
-	protected $mDvStyle;
+	private $mDvTerm;
+	private $mDvDefinition;
+	private $mDvLink;
+	private $mDvStyle;
 
-	protected $queryResults;
+	private $queryResults;
 
 	/**
 	 * @since  1.1
@@ -108,7 +108,7 @@ class ElementsCacheBuilder {
 		return $ret;
 	}
 
-	protected function buildElements( $terms, $definition, $link, $style, $page ) {
+	private function buildElements( $terms, $definition, $link, $style, $page ) {
 
 		$ret = array();
 
@@ -127,7 +127,7 @@ class ElementsCacheBuilder {
 		return $ret;
 	}
 
-	protected function buildQuery() {
+	private function buildQuery() {
 		// build term data item and data value for later use
 		$this->mDiTerm = new DIProperty( PropertyRegistry::SG_TERM );
 		$this->mDvTerm = new StringValue( '_str' );
@@ -178,7 +178,7 @@ class ElementsCacheBuilder {
 		return $query;
 	}
 
-	protected function getDefinitionValue( $page ) {
+	private function getDefinitionValue( $page ) {
 
 		$definition  = null;
 
@@ -195,7 +195,7 @@ class ElementsCacheBuilder {
 		return $definition;
 	}
 
-	protected function getLinkValue( $page ) {
+	private function getLinkValue( $page ) {
 
 		$link  = null;
 
@@ -209,7 +209,7 @@ class ElementsCacheBuilder {
 		return $link;
 	}
 
-	protected function getStyleValue( $page ) {
+	private function getStyleValue( $page ) {
 
 		$style  = null;
 
@@ -223,7 +223,7 @@ class ElementsCacheBuilder {
 		return $style;
 	}
 
-	protected function getTerms( $page ) {
+	private function getTerms( $page ) {
 
 		$collectedTerms = array();
 

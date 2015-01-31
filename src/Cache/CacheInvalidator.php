@@ -26,10 +26,10 @@ use Title;
  */
 class CacheInvalidator {
 
-	protected static $instance = null;
+	private static $instance = null;
 
 	/* @var GlossaryCache */
-	protected $cache = null;
+	private $cache = null;
 
 	/**
 	 * @since 1.0
@@ -124,7 +124,7 @@ class CacheInvalidator {
 		return true;
 	}
 
-	protected function matchAllSubobjects( Store $store, SemanticData $semanticData ) {
+	private function matchAllSubobjects( Store $store, SemanticData $semanticData ) {
 
 		$properties = $semanticData->getProperties();
 
@@ -139,7 +139,7 @@ class CacheInvalidator {
 		}
 	}
 
-	protected function matchSubobjectsToSubject( Store $store, DIWikiPage $subject ) {
+	private function matchSubobjectsToSubject( Store $store, DIWikiPage $subject ) {
 
 		$properties = $store->getProperties( $subject );
 
@@ -154,7 +154,7 @@ class CacheInvalidator {
 		}
 	}
 
-	protected function hasSemanticDataDeviation( Store $store, SemanticData $semanticData ) {
+	private function hasSemanticDataDeviation( Store $store, SemanticData $semanticData ) {
 
 		$dataComparator = new SemanticDataComparator( $store, $semanticData );
 
@@ -164,7 +164,7 @@ class CacheInvalidator {
 			$dataComparator->byPropertyId( PropertyRegistry::SG_STYLE );
 	}
 
-	protected function purgeCache( DIWikiPage $subject ) {
+	private function purgeCache( DIWikiPage $subject ) {
 		wfProfileIn( __METHOD__ );
 
 		$this->glossaryCache->getCache()->delete(
