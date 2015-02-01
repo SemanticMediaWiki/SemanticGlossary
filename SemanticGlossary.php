@@ -15,24 +15,29 @@
  * @ingroup SemanticGlossary
  */
 
+if ( !defined( 'MEDIAWIKI' ) ) {
+	die( 'This file is part of a MediaWiki extension, it is not a valid entry point.' );
+}
+
+if ( defined( 'SG_VERSION' ) ) {
+	// Do not initialize more than once.
+	return 1;
+}
+
+/**
+ * The Semantic Glossary version
+ */
+define( 'SG_VERSION', '1.1.0' );
+
+if ( !defined( 'SMW_VERSION' ) ) {
+	die( 'Semantic Glossary depends on the Semantic MediaWiki extension. You need to install Semantic MediaWiki first.' );
+}
+
+if ( !defined( 'LINGO_VERSION' ) ) {
+	die( 'Semantic Glossary depends on the Lingo extension. You need to install Lingo first.' );
+}
+
 call_user_func( function () {
-
-	if ( !defined( 'MEDIAWIKI' ) ) {
-		die( 'This file is part of a MediaWiki extension, it is not a valid entry point.' );
-	}
-
-	if ( !defined( 'SMW_VERSION' ) ) {
-		die( 'Semantic Glossary depends on the Semantic MediaWiki extension. You need to install Semantic MediaWiki first.' );
-	}
-
-	if ( !defined( 'LINGO_VERSION' ) ) {
-		die( 'Semantic Glossary depends on the Lingo extension. You need to install Lingo first.' );
-	}
-
-	/**
-	 * The Semantic Glossary version
-	 */
-	define( 'SG_VERSION', '1.1.0' );
 
 	// register the extension
 	$GLOBALS[ 'wgExtensionCredits' ][ 'semantic' ][] = array(
