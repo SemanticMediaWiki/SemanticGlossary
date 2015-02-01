@@ -6,11 +6,6 @@ use SG\SemanticDataComparator;
 
 /**
  * @covers \SG\SemanticDataComparator
- *
- * @ingroup Test
- *
- * @group SG
- * @group SGExtension
  * @group extension-semantic-glossary
  *
  * @license GNU GPL v2+
@@ -22,32 +17,60 @@ class SemanticDataComparatorTest extends \PHPUnit_Framework_TestCase {
 
 	public function testCanConstruct() {
 
-		$store = $this->getMockBuilder( 'SMWStore' )
+		$store = $this->getMockBuilder( '\SMW\Store' )
 			->disableOriginalConstructor()
 			->getMockForAbstractClass();
 
-		$semanticData = $this->getMockBuilder( 'SMWSemanticData' )
+		$semanticData = $this->getMockBuilder( '\SMW\SemanticData' )
 			->disableOriginalConstructor()
-			->getMockForAbstractClass();
+			->getMock();
 
-		$instance = new SemanticDataComparator( $store, $semanticData );
+		$instance = new SemanticDataComparator(
+			$store,
+			$semanticData
+		);
 
-		$this->assertInstanceOf( '\SG\SemanticDataComparator', $instance );
+		$this->assertInstanceOf(
+			'\SG\SemanticDataComparator',
+			$instance
+		);
 	}
 
-	public function testInspectWithoutData() {
+	/**
+	 * @dataProvider propertyIdProvider
+	 */
+	public function testInspectForEmptyData( $propertyId ) {
 
-		$store = $this->getMockBuilder( 'SMWStore' )
+		$store = $this->getMockBuilder( '\SMW\Store' )
 			->disableOriginalConstructor()
 			->getMockForAbstractClass();
 
-		$semanticData = $this->getMockBuilder( 'SMWSemanticData' )
+		$semanticData = $this->getMockBuilder( '\SMW\SemanticData' )
 			->disableOriginalConstructor()
-			->getMockForAbstractClass();
+			->getMock();
 
-		$instance = new SemanticDataComparator( $store, $semanticData );
+		$semanticData->expects( $this->once() )
+			->method( 'getProperties' )
+			->will( $this->returnValue( array() ) );
 
-		$this->assertFalse( $instance->byPropertyId( 'foo' ) );
+		$instance = new SemanticDataComparator(
+			$store,
+			$semanticData
+		);
+
+		$this->assertFalse(
+			$instance->compareForProperty( $propertyId )
+		);
+	}
+
+	public function propertyIdProvider() {
+
+		$provider = array(
+			array( 'Foo' ),
+			array( '__Foo' )
+		);
+
+		return $provider;
 	}
 
 }

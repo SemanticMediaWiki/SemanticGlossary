@@ -17,10 +17,14 @@ use SMW\DIProperty;
  */
 class SemanticDataComparator {
 
-	/* @var Store */
+	/**
+	 * @var Store
+	 */
 	private $store = null;
 
-	/* @var SemanticData */
+	/**
+	 * @var SemanticData
+	 */
 	private $semanticData = null;
 
 	/**
@@ -37,13 +41,13 @@ class SemanticDataComparator {
 	/**
 	 * @since 1.0
 	 *
-	 * @param string $propertId
+	 * @param string $propertyId
 	 *
 	 * @return boolean
 	 */
-	public function byPropertyId( $propertId ) {
+	public function compareForProperty( $propertyId ) {
 
-		list( $newEntries, $oldEntries ) = $this->lookupPropertyValues( $propertId );
+		list( $newEntries, $oldEntries ) = $this->lookupPropertyValues( $propertyId );
 
 		if ( $this->hasNotSamePropertyValuesCount( $newEntries, $oldEntries ) ) {
 			return true;
@@ -56,16 +60,16 @@ class SemanticDataComparator {
 		return false;
 	}
 
-	private function lookupPropertyValues( $propertId ) {
+	private function lookupPropertyValues( $propertyId ) {
 
 		$properties = $this->semanticData->getProperties();
 
-		if ( array_key_exists( $propertId, $properties ) ) {
+		if ( array_key_exists( $propertyId, $properties ) ) {
 
-			$newEntries = $this->semanticData->getPropertyValues( $properties[$propertId] );
+			$newEntries = $this->semanticData->getPropertyValues( $properties[$propertyId] );
 			$oldEntries = $this->store->getPropertyValues(
 				$this->semanticData->getSubject(),
-				$properties[$propertId]
+				$properties[$propertyId]
 			);
 
 			return array(
@@ -75,9 +79,20 @@ class SemanticDataComparator {
 		}
 
 		$newEntries = array();
+		$oldEntries = array();
+
+		try{
+			$property = new DIProperty( $propertyId );
+		} catch ( \Exception $e ) {
+			return array(
+				$newEntries,
+				$oldEntries
+			);
+		}
+
 		$oldEntries = $this->store->getPropertyValues(
 			$this->semanticData->getSubject(),
-			new DIProperty( $propertId )
+			$property
 		);
 
 		return array(

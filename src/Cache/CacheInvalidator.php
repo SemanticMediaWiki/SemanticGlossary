@@ -26,9 +26,14 @@ use Title;
  */
 class CacheInvalidator {
 
+	/**
+	 * @var CacheInvalidator
+	 */
 	private static $instance = null;
 
-	/* @var GlossaryCache */
+	/**
+	 * @var GlossaryCache
+	 */
 	private $cache = null;
 
 	/**
@@ -75,8 +80,6 @@ class CacheInvalidator {
 	 */
 	public function invalidateCacheOnStoreUpdate( Store $store, SemanticData $semanticData ) {
 
-		wfProfileIn( __METHOD__ );
-
 		$this->matchAllSubobjects( $store, $semanticData );
 
 		if ( $this->hasSemanticDataDeviation( $store, $semanticData ) ) {
@@ -84,7 +87,6 @@ class CacheInvalidator {
 			LingoParser::purgeCache();
 		}
 
-		wfProfileOut( __METHOD__ );
 		return true;
 	}
 
@@ -99,8 +101,6 @@ class CacheInvalidator {
 	 */
 	public function invalidateCacheOnPageDelete( Store $store, DIWikiPage $subject, $purgeLingo = true ) {
 
-		wfProfileIn( __METHOD__ );
-
 		$this->matchSubobjectsToSubject( $store, $subject );
 		$this->purgeCache( $subject );
 
@@ -108,7 +108,6 @@ class CacheInvalidator {
 			LingoParser::purgeCache();
 		}
 
-		wfProfileOut( __METHOD__ );
 		return true;
 	}
 
@@ -158,20 +157,18 @@ class CacheInvalidator {
 
 		$dataComparator = new SemanticDataComparator( $store, $semanticData );
 
-		return $dataComparator->byPropertyId( PropertyRegistry::SG_TERM ) ||
-			$dataComparator->byPropertyId( PropertyRegistry::SG_DEFINITION ) ||
-			$dataComparator->byPropertyId( PropertyRegistry::SG_LINK ) ||
-			$dataComparator->byPropertyId( PropertyRegistry::SG_STYLE );
+		return $dataComparator->compareForProperty( PropertyRegistry::SG_TERM ) ||
+			$dataComparator->compareForProperty( PropertyRegistry::SG_DEFINITION ) ||
+			$dataComparator->compareForProperty( PropertyRegistry::SG_LINK ) ||
+			$dataComparator->compareForProperty( PropertyRegistry::SG_STYLE );
 	}
 
 	private function purgeCache( DIWikiPage $subject ) {
-		wfProfileIn( __METHOD__ );
 
 		$this->glossaryCache->getCache()->delete(
 			$this->glossaryCache->getKeyForSubject( $subject )
 		);
 
-		wfProfileOut( __METHOD__ );
 		return true;
 	}
 
