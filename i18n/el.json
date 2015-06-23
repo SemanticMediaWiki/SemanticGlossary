@@ -1,0 +1,13 @@
+{
+	"@metadata": {
+		"authors": [
+			"Protnet"
+		]
+	},
+	"semanticglossary-desc": "Επέκταση γλωσσαρίου με υπόβαθρο το [http://semantic-mediawiki.org Σημασιολογικό MediaWiki]",
+	"semanticglossary-termdefinedtwice": "Η σελίδα [[$1]] περιέχει περισσότερους από έναν όρο ή/και περισσότερους από έναν ορισμό. Οι καταχωρήσεις δεν θα είναι διαθέσιμες για το γλωσσάριο.",
+	"semanticglossary-prop-glt": "Όρος-Γλωσσαρίου",
+	"semanticglossary-prop-gld": "Ορισμός-Γλωσσαρίου",
+	"semanticglossary-prop-gll": "Σύνδεσμος-Γλωσσαρίου",
+	"semanticglossary-prop-gls": "Στυλ-Γλωσσαρίου"
+}
