@@ -7,13 +7,9 @@ use SMW\DIProperty;
 
 /**
  * @covers \SG\PropertyRegistry
+ * @group semantic-glossary
  *
- * @ingroup Test
- *
- * @group SG
- * @group SGExtension
- *
- * @licence GNU GPL v2+
+ * @license GNU GPL v2+
  * @since 1.0
  *
  * @author mwjames
@@ -27,9 +23,12 @@ class PropertyRegistryTest extends \PHPUnit_Framework_TestCase {
 		);
 	}
 
-	public function testRegisterPropertiesAndAliases() {
+	public function testRegister() {
 		PropertyRegistry::clear();
-		$this->assertTrue( PropertyRegistry::getInstance()->registerPropertiesAndAliases() );
+
+		$this->assertTrue(
+			PropertyRegistry::getInstance()->register()
+		);
 	}
 
 	/**

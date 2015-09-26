@@ -4,8 +4,12 @@ namespace SG;
 
 use SMW\DIProperty;
 
+define( 'SG_PROP_GLT', 'Glossary-Term' );
+define( 'SG_PROP_GLD', 'Glossary-Definition' );
+define( 'SG_PROP_GLL', 'Glossary-Link' );
+define( 'SG_PROP_GLS', 'Glossary-Style' );
+
 /**
- * @ingroup SG
  * @ingroup SemanticGlossary
  *
  * @license GNU GPL v2+
@@ -48,7 +52,7 @@ class PropertyRegistry {
 	 *
 	 * @return boolean
 	 */
-	public function registerPropertiesAndAliases() {
+	public function register() {
 
 		$propertyDefinitions = array(
 			self::SG_TERM => array(

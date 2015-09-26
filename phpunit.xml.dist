@@ -13,8 +13,11 @@
          stopOnSkipped="false"
          verbose="true">
     <testsuites>
-        <testsuite name="SemanticGlossary">
-            <directory>tests/phpunit</directory>
+        <testsuite name="semantic-glossary-unit">
+            <directory>tests/phpunit/Unit</directory>
+        </testsuite>
+        <testsuite name="semantic-glossary-integration">
+            <directory>tests/phpunit/Integration</directory>
         </testsuite>
     </testsuites>
     <filter>

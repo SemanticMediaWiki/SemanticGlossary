@@ -7,16 +7,15 @@
 [![Packagist download count](https://poser.pugx.org/mediawiki/semantic-glossary/d/total.png)](https://packagist.org/packages/mediawiki/semantic-glossary)
 [![Dependency Status](https://www.versioneye.com/php/mediawiki:semantic-glossary/badge.png)](https://www.versioneye.com/php/mediawiki:semantic-glossary)
 
-The [Semantic Glossary][mw-semantic-glossary] (a.k.a SG) is a
-[Semantic MediaWiki][smw] extension where terms and abbreviations can be defined
-using semantic properties.
+The [Semantic Glossary][mw-semantic-glossary] (a.k.a SG) is a [Semantic MediaWiki][smw] extension where
+terms and abbreviations can be defined using semantic properties.
 
 ## Requirements
 
 - PHP 5.3.2 or later
-- MediaWiki 1.20 or later
-- [Lingo extension][mw-lingo] 1.0 or later
-- [Semantic MediaWiki][smw] 1.9 or later
+- MediaWiki 1.23 or later
+- [Lingo extension][mw-lingo] 1.2 or later
+- [Semantic MediaWiki][smw] 2.2 or later
 
 ## Installation
 
