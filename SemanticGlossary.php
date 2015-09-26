@@ -27,7 +27,7 @@ if ( defined( 'SG_VERSION' ) ) {
 /**
  * The Semantic Glossary version
  */
-define( 'SG_VERSION', '1.1.0' );
+define( 'SG_VERSION', '1.1.2' );
 
 if ( !defined( 'SMW_VERSION' ) ) {
 	die( 'Semantic Glossary depends on the Semantic MediaWiki extension. You need to install Semantic MediaWiki first.' );
