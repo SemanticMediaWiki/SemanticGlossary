@@ -4,9 +4,7 @@ if ( php_sapi_name() !== 'cli' ) {
 	die( 'Not an entry point' );
 }
 
-if ( is_readable( $autoloaderClassPath = __DIR__ . '/../../SemanticMediaWiki/tests/autoloader.php' ) ) {
-	print( "\nSemanticMediaWiki " . SMW_VERSION . " ({$GLOBALS['wgDBtype']}) test autoloader ...\n" );
-} else {
+if ( !is_readable( $autoloaderClassPath = __DIR__ . '/../../SemanticMediaWiki/tests/autoloader.php' ) ) {
 	die( 'The SemanticMediaWiki test autoloader is not available' );
 }
 
@@ -18,3 +16,6 @@ $autoloader->addPsr4( 'SG\\Tests\\Integration\\', __DIR__ . '/phpunit/Integratio
 $autoloader->addClassMap( array(
 	'SG\Maintenance\RebuildGlossaryCache' => __DIR__ . '/../maintenance/rebuildGlossaryCache.php',
 ) );
+
+print( "Semantic MediaWiki: " . SMW_VERSION . " ({$GLOBALS['smwgDefaultStore']}, {$GLOBALS['wgDBtype']})\n" );
+print( "Semantic Glossary: " . SG_VERSION . "\n\n" );

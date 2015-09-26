@@ -120,12 +120,12 @@ class GlossaryCacheRebuilder {
 		$countQuery = new Query( $description, false, false );
 		$countQuery->querymode = Query::MODE_COUNT;
 
-		$numberOfPages = (int)$this->store->getQueryResult( $countQuery );
+		$queryResult = $this->store->getQueryResult( $countQuery );
+		$numberOfPages = $queryResult instanceof \SMWQueryResult ? $queryResult->getCountValue() : $queryResult;
 
 		$resultQuery = new Query( $description, false, false );
 
-		// FIXME SMWQuery setLimit
-		// @see SMW\Store\Maintenance\DataRebuilder
+		// FIXME use Query::setUnboundLimit, SMW 2.0
 		$beforeMaxLimitManipulation = $GLOBALS['smwgQMaxLimit'];
 		$GLOBALS['smwgQMaxLimit'] = $numberOfPages;
 		$resultQuery->setLimit( $numberOfPages, false );
