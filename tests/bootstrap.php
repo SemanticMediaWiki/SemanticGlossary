@@ -8,14 +8,12 @@ if ( !is_readable( $autoloaderClassPath = __DIR__ . '/../../SemanticMediaWiki/te
 	die( 'The SemanticMediaWiki test autoloader is not available' );
 }
 
-$autoloader = require $autoloaderClassPath;
+print sprintf( "\n%-20s%s\n", "Semantic Glossary: ", SG_VERSION );
 
+$autoloader = require $autoloaderClassPath;
 $autoloader->addPsr4( 'SG\\Tests\\', __DIR__ . '/phpunit/Unit' );
 $autoloader->addPsr4( 'SG\\Tests\\Integration\\', __DIR__ . '/phpunit/Integration' );
 
 $autoloader->addClassMap( array(
 	'SG\Maintenance\RebuildGlossaryCache' => __DIR__ . '/../maintenance/rebuildGlossaryCache.php',
 ) );
-
-print( "Semantic MediaWiki: " . SMW_VERSION . " ({$GLOBALS['smwgDefaultStore']}, {$GLOBALS['wgDBtype']})\n" );
-print( "Semantic Glossary: " . SG_VERSION . "\n\n" );
