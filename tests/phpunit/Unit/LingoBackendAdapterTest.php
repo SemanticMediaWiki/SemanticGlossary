@@ -30,7 +30,7 @@ class LingoBackendAdapterTest extends \PHPUnit_Framework_TestCase {
 
 	public function testNextOnEmptyElementsResult() {
 
-		$lingoMessageLog = $this->getMockBuilder( '\LingoMessageLog' )
+		$lingoMessageLog = $this->getMockBuilder( '\Lingo\MessageLog' )
 			->disableOriginalConstructor()
 			->getMock();
 

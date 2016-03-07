@@ -5,7 +5,7 @@ namespace SG\Tests\Cache;
 use SG\Cache\ElementsCacheBuilder;
 use SG\Cache\GlossaryCache;
 
-use LingoElement;
+use Lingo\Element;
 
 use SMWDIWikiPage as DIWikiPage;
 use SMWDIBlob as DIBlob;
@@ -99,14 +99,14 @@ class ElementsCacheBuilderTest extends \PHPUnit_Framework_TestCase {
 
 	protected function assertLingoElement( $term, $definition, $link, $style, $result ) {
 
-		$this->assertEquals( $term, $result[ LingoElement::ELEMENT_TERM ] );
-		$this->assertEquals( $definition, $result[ LingoElement::ELEMENT_DEFINITION ] );
-		$this->assertEquals( $link, $result[ LingoElement::ELEMENT_LINK ] );
-		$this->assertEquals( $style, $result[ LingoElement::ELEMENT_STYLE ] );
+		$this->assertEquals( $term, $result[ Element::ELEMENT_TERM ] );
+		$this->assertEquals( $definition, $result[ Element::ELEMENT_DEFINITION ] );
+		$this->assertEquals( $link, $result[ Element::ELEMENT_LINK ] );
+		$this->assertEquals( $style, $result[ Element::ELEMENT_STYLE ] );
 
 		$this->assertInstanceOf(
 			'SMWDIWikiPage',
-			$result[ LingoElement::ELEMENT_SOURCE ]
+			$result[ Element::ELEMENT_SOURCE ]
 		);
 	}
 
