@@ -12,23 +12,28 @@ terms and abbreviations can be defined using semantic properties.
 
 ## Requirements
 
-- PHP 5.3.2 or later
-- MediaWiki 1.23 or later
-- [Lingo extension][mw-lingo] 1.2 or later
-- [Semantic MediaWiki][smw] 2.2 or later
+- PHP 5.3.3 or later
+- MediaWiki 1.26 or later
+- [Lingo extension][mw-lingo] 2.0 or later
+- [Semantic MediaWiki][smw] 2.3 or later
 
 ## Installation
 
 The recommended way to install this extension is by using [Composer][composer].
-Just add the following to the MediaWiki `composer.json` file and run the `php
-composer.phar install/update` command.
+Just add the following to the MediaWiki `composer.local.json` file and run the
+`php composer.phar install/update mediawiki/semantic-glossary` command.
 
 ```json
 {
 	"require": {
-		"mediawiki/semantic-glossary": "~1.1"
+		"mediawiki/semantic-glossary": "~2.0"
 	}
 }
+```
+
+Then add the following line to your `LocalSettings.php`:
+```php
+wfLoadExtension('SemanticGlossary');
 ```
 
 ## Contribution and support

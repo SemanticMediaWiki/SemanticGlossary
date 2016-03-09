@@ -1,5 +1,13 @@
 This file contains the RELEASE-NOTES of the Semantic Glossary (a.k.a. SG) extension.
 
+### SG 2.0.0 (2016-03-09)
+
+* New minimum required versions:
+  * MediaWiki 1.26
+  * Semantic MediaWiki 2.3
+  * Lingo 2.0
+* Use the new extension registration mechanism introduced in MediwWiki 1.25
+
 ### SG 1.1.2 (2015-09-26)
 
 * Use `QueryResult::getCountValue` where available to make it compliant with Semantic Mediawiki 2.3
