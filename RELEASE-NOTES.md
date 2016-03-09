@@ -7,6 +7,8 @@ This file contains the RELEASE-NOTES of the Semantic Glossary (a.k.a. SG) extens
   * Semantic MediaWiki 2.3
   * Lingo 2.0
 * Use the new extension registration mechanism introduced in MediwWiki 1.25
+* Rework registration of properties and MW hooks
+* Use autoloader provided by Composer (PSR-4)
 
 ### SG 1.1.2 (2015-09-26)
 
