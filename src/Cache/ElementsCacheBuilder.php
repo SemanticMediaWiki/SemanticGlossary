@@ -2,7 +2,6 @@
 
 namespace SG\Cache;
 
-use SG\Cache\GlossaryCache;
 use SG\PropertyRegistry;
 
 use SMW\Store;
@@ -15,7 +14,7 @@ use SMWThingDescription as ThingDescription;
 use SMWSomeProperty as SomeProperty;
 use SMWQuery as Query;
 
-use LingoElement;
+use Lingo\Element;
 
 /**
  * @ingroup SG
@@ -114,11 +113,11 @@ class ElementsCacheBuilder {
 
 		foreach ( $terms as $term ) {
 			$tmp_ret = array(
-				LingoElement::ELEMENT_TERM => $term,
-				LingoElement::ELEMENT_DEFINITION => $definition,
-				LingoElement::ELEMENT_LINK => $link,
-				LingoElement::ELEMENT_STYLE => $style,
-				LingoElement::ELEMENT_SOURCE => $page
+				Element::ELEMENT_TERM => $term,
+				Element::ELEMENT_DEFINITION => $definition,
+				Element::ELEMENT_LINK => $link,
+				Element::ELEMENT_STYLE => $style,
+				Element::ELEMENT_SOURCE => $page
 			);
 
 			$ret[] = $tmp_ret;

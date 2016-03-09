@@ -10,7 +10,7 @@ use SMW\SemanticData;
 use SMW\DIWikiPage;
 use SMW\DIProperty;
 
-use LingoParser;
+use Lingo\LingoParser;
 
 use Title;
 

@@ -8,7 +8,11 @@ if ( !is_readable( $autoloaderClassPath = __DIR__ . '/../../SemanticMediaWiki/te
 	die( 'The SemanticMediaWiki test autoloader is not available' );
 }
 
-print sprintf( "\n%-20s%s\n", "Semantic Glossary: ", SG_VERSION );
+if ( ( $version = SemanticGlossary::getVersion() ) === null ) {
+	die( 'SemanticGlossary is not registered via wfLoadExtension, please adapt your LocalSettings.' );
+}
+
+print sprintf( "\n%-20s%s\n", "Semantic Glossary: ", $version );
 
 $autoloader = require $autoloaderClassPath;
 $autoloader->addPsr4( 'SG\\Tests\\', __DIR__ . '/phpunit/Unit' );

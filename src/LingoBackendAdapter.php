@@ -7,8 +7,8 @@ use SG\Cache\GlossaryCache;
 
 use SMW\StoreFactory;
 
-use LingoBackend;
-use LingoMessageLog;
+use Lingo\Backend;
+use Lingo\MessageLog;
 
 /**
  * @ingroup SG
@@ -19,7 +19,7 @@ use LingoMessageLog;
  *
  * @author mwjames
  */
-class LingoBackendAdapter extends LingoBackend {
+class LingoBackendAdapter extends Backend {
 
 	/* @var ElementsCacheBuilder */
 	protected $elementsCacheBuilder = null;
@@ -29,10 +29,10 @@ class LingoBackendAdapter extends LingoBackend {
 	/**
 	 * @since 1.1
 	 *
-	 * @param LingoMessageLog|null &$messages
+	 * @param MessageLog|null &$messages
 	 * @param ElementsCacheBuilder|null $elementsCacheBuilder
 	 */
-	public function __construct( LingoMessageLog &$messages = null, ElementsCacheBuilder $elementsCacheBuilder = null ) {
+	public function __construct( MessageLog &$messages = null, ElementsCacheBuilder $elementsCacheBuilder = null ) {
 		parent::__construct( $messages );
 		$this->elementsCacheBuilder = $elementsCacheBuilder;
 
@@ -69,7 +69,7 @@ class LingoBackendAdapter extends LingoBackend {
 	 * This backend is cache-enabled so this function returns true.
 	 *
 	 * Actual caching is done by the parser, the backend just calls
-	 * LingoParser::purgeCache when necessary.
+	 * Parser::purgeCache when necessary.
 	 *
 	 * @since  1.1
 	 *

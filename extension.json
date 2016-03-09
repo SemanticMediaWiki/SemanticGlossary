@@ -1,0 +1,23 @@
+{
+	"name": "Semantic Glossary",
+	"version": "2.0-dev",
+	"author": [
+		"[https://www.mediawiki.org/wiki/User:F.trott Stephan Gambke]",
+		"[https://www.semantic-mediawiki.org/wiki/User:MWJames James Hong Kong]",
+		"..."
+	],
+	"url": "https://www.mediawiki.org/wiki/Extension:Semantic_Glossary",
+	"descriptionmsg": "semanticglossary-desc",
+	"license-name": "GPL-2.0+",
+	"type": "semantic",
+	"requires": {
+		"MediaWiki": "~1.26"
+	},
+	"MessagesDirs": {
+		"SemanticGlossary": [
+			"i18n"
+		]
+	},
+	"callback": "SemanticGlossary::initExtension",
+	"manifest_version": 1
+}

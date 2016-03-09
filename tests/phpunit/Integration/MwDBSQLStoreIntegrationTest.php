@@ -32,6 +32,7 @@ class MwDBSQLStoreIntegrationTest extends MwDBaseUnitTestCase {
 	private $runnerFactory;
 
 	protected function setUp() {
+		parent::setUp();
 
 		$this->pageCreator = UtilityFactory::getInstance()->newPageCreator();
 		$this->pageDeleter = UtilityFactory::getInstance()->newPageDeleter();
