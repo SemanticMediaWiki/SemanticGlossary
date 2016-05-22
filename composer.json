@@ -39,9 +39,6 @@
 		}
 	},
 	"autoload": {
-		"files": [
-			"SemanticGlossary.php"
-		],
 		"psr-4": {
 			"SG\\": "src/"
 		}

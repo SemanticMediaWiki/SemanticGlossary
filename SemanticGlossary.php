@@ -15,9 +15,17 @@ class SemanticGlossary {
 	 */
 	public static function initExtension() {
 
+		if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
+			require_once __DIR__ . '/vendor/autoload.php';
+		}
+
 		// must NOT use ExtensionRegistry::getInstance() to avoid recursion!
 		$registry = new ExtensionRegistry();
-		$registry->load( $GLOBALS[ 'wgExtensionDirectory' ] . '/Lingo/extension.json' );
+		if ( file_exists( __DIR__ . '/extensions/Lingo/extension.json' ) ) {
+			$registry->load( __DIR__ . '/extensions/Lingo/extension.json' );
+		} else {
+			$registry->load( $GLOBALS[ 'wgExtensionDirectory' ] . '/Lingo/extension.json' );
+		}
 
 		$GLOBALS[ 'wgexLingoBackend' ] = 'SG\LingoBackendAdapter';
 

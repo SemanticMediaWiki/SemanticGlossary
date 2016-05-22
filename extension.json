@@ -1,6 +1,6 @@
 {
 	"name": "Semantic Glossary",
-	"version": "2.0",
+	"version": "2.0.1-alpha",
 	"author": [
 		"[https://www.mediawiki.org/wiki/User:F.trott Stephan Gambke]",
 		"[https://www.semantic-mediawiki.org/wiki/User:MWJames James Hong Kong]",
@@ -17,6 +17,9 @@
 		"SemanticGlossary": [
 			"i18n"
 		]
+	},
+	"AutoloadClasses": {
+		"SemanticGlossary": "SemanticGlossary.php"
 	},
 	"callback": "SemanticGlossary::initExtension",
 	"manifest_version": 1
