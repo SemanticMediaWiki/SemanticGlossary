@@ -1,5 +1,9 @@
 This file contains the RELEASE-NOTES of the Semantic Glossary (a.k.a. SG) extension.
 
+### SG 2.0.1 (2016-05-24)
+
+* Enable installation from tar ball/zip file
+
 ### SG 2.0.0 (2016-03-09)
 
 * New minimum required versions:

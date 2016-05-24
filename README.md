@@ -14,7 +14,6 @@ terms and abbreviations can be defined using semantic properties.
 
 - PHP 5.3.3 or later
 - MediaWiki 1.26 or later
-- [Lingo extension][mw-lingo] 2.0 or later
 - [Semantic MediaWiki][smw] 2.3 or later
 
 ## Installation
@@ -31,10 +30,17 @@ Just add the following to the MediaWiki `composer.local.json` file and run the
 }
 ```
 
+(Alternatively you can download a tar ball or zip file from
+[GitHub](https://github.com/SemanticMediaWiki/SemanticGlossary/releases/latest)
+and extract it into the `extensions` directory of your MediaWiki installation.)
+
 Then add the following line to your `LocalSettings.php`:
 ```php
 wfLoadExtension('SemanticGlossary');
 ```
+
+It is *NOT* necessary to install the Lingo extension separately. Doing so will
+result in errors.
 
 ## Contribution and support
 
