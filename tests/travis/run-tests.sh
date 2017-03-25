@@ -8,7 +8,7 @@ cd $MW_INSTALL_PATH/extensions/SemanticGlossary
 
 if [ "$TYPE" == "coverage" ]
 then
-	composer phpunit -q -- --coverage-clover $BASE_PATH/build/coverage.clover
+	composer phpunit -- --coverage-clover $BASE_PATH/build/coverage.clover
 else
-	composer phpunit -q
+	composer phpunit
 fi
