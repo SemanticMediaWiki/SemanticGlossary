@@ -14,7 +14,7 @@ terms and abbreviations can be defined using semantic properties.
 
 - PHP 5.3.3 or later
 - MediaWiki 1.26 or later
-- [Semantic MediaWiki][smw] 2.3 or later
+- [Semantic MediaWiki][smw] 2.4 or later
 
 ## Installation
 
@@ -25,7 +25,7 @@ Just add the following to the MediaWiki `composer.local.json` file and run the
 ```json
 {
 	"require": {
-		"mediawiki/semantic-glossary": "~2.0"
+		"mediawiki/semantic-glossary": "~2.1"
 	}
 }
 ```
