@@ -3,17 +3,15 @@
 namespace SG\Cache;
 
 use SG\PropertyRegistry;
-
+use SMW\DataValueFactory;
 use SMW\Store;
 use SMW\DIProperty;
-
 use SMWStringValue as StringValue;
 use SMWPrintRequest as PrintRequest;
 use SMWPropertyValue as PropertyValue;
 use SMWThingDescription as ThingDescription;
 use SMWSomeProperty as SomeProperty;
 use SMWQuery as Query;
-
 use Lingo\Element;
 
 /**
@@ -127,39 +125,42 @@ class ElementsCacheBuilder {
 	}
 
 	private function buildQuery() {
+
+		$dataValueFactory = DataValueFactory::getInstance();
+
 		// build term data item and data value for later use
 		$this->mDiTerm = new DIProperty( PropertyRegistry::SG_TERM );
-		$this->mDvTerm = new StringValue( '_str' );
+		$this->mDvTerm = $dataValueFactory->newDataValueByType( '_txt' );
 		$this->mDvTerm->setProperty( $this->mDiTerm );
 
-		$pvTerm = new PropertyValue( '__pro' );
+		$pvTerm = $dataValueFactory->newDataValueByType( '__pro' );
 		$pvTerm->setDataItem( $this->mDiTerm );
 		$prTerm = new PrintRequest( PrintRequest::PRINT_PROP, null, $pvTerm );
 
 		// build definition data item and data value for later use
 		$this->mDiDefinition = new DIProperty( PropertyRegistry::SG_DEFINITION );
-		$this->mDvDefinition = new StringValue( '_txt' );
+		$this->mDvDefinition = $dataValueFactory->newDataValueByType( '_txt' );
 		$this->mDvDefinition->setProperty( $this->mDiDefinition );
 
-		$pvDefinition = new PropertyValue( '__pro' );
+		$pvDefinition = $dataValueFactory->newDataValueByType( '__pro' );
 		$pvDefinition->setDataItem( $this->mDiDefinition );
 		$prDefinition = new PrintRequest( PrintRequest::PRINT_PROP, null, $pvDefinition );
 
 		// build link data item and data value for later use
 		$this->mDiLink = new DIProperty( PropertyRegistry::SG_LINK );
-		$this->mDvLink = new StringValue( '_str' );
+		$this->mDvLink = $dataValueFactory->newDataValueByType( '_txt' );
 		$this->mDvLink->setProperty( $this->mDiLink );
 
-		$pvLink = new PropertyValue( '__pro' );
+		$pvLink = $dataValueFactory->newDataValueByType( '__pro' );
 		$pvLink->setDataItem( $this->mDiLink );
 		$prLink = new PrintRequest( PrintRequest::PRINT_PROP, null, $pvLink );
 
 		// build style data item and data value for later use
 		$this->mDiStyle = new DIProperty( PropertyRegistry::SG_STYLE );
-		$this->mDvStyle = new StringValue( '_txt' );
+		$this->mDvStyle = $dataValueFactory->newDataValueByType( '_txt' );
 		$this->mDvStyle->setProperty( $this->mDiStyle );
 
-		$pvStyle = new PropertyValue( '__pro' );
+		$pvStyle = $dataValueFactory->newDataValueByType( '__pro' );
 		$pvStyle->setDataItem( $this->mDiStyle );
 		$prStyle = new PrintRequest( PrintRequest::PRINT_PROP, null, $pvStyle );
 
@@ -173,6 +174,10 @@ class ElementsCacheBuilder {
 		$query = new Query( $desc, false, false );
 		$query->sort = true;
 		$query->sortkeys['___glt'] = 'ASC';
+
+		if ( defined( 'SMWQuery::PROC_CONTEXT' ) ) {
+			$query->setOption( Query::PROC_CONTEXT, 'SG.ElementsCacheBuilder' );
+		}
 
 		return $query;
 	}
