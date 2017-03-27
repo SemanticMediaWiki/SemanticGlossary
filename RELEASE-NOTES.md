@@ -1,11 +1,12 @@
 This file contains the RELEASE-NOTES of the Semantic Glossary (a.k.a. SG) extension.
 
-### 2.0.1
+### 2.1.0
 
-Released on 2017-03-26.
+Released on 2017-03-27.
 
-- SMW 2.5.x compatibility
+- Compatibility with Semantic MediaWiki 2.5.x
 - Semantic MediaWiki 2.4 as minimum requirement
+- translation updates from translatewiki.net
 
 ### 2.0.1
 
