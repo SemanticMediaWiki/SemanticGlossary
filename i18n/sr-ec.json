@@ -1,8 +1,14 @@
 {
 	"@metadata": {
 		"authors": [
-			"Rancher"
+			"Rancher",
+			"Obsuser"
 		]
 	},
-	"semanticglossary-termdefinedtwice": "Страница [[$1]] садржи више од једног појма и дефиниције. Уноси неће бити доступни речнику."
+	"semanticglossary-desc": "Глосар проширење са [http://semantic-mediawiki.org Semantic MediaWiki]-јем",
+	"semanticglossary-termdefinedtwice": "Страница [[$1]] садржи више од једног појма и дефиниције. Уноси неће бити доступни речнику.",
+	"semanticglossary-prop-glt": "Глосар-Појам",
+	"semanticglossary-prop-gld": "Глосар-Дефиниција",
+	"semanticglossary-prop-gll": "Глосар-Веза",
+	"semanticglossary-prop-gls": "Глосар-Стил"
 }
