@@ -31,7 +31,7 @@
 		"php": ">=5.3.3",
 		"composer/installers":"^1.0.12",
 		"mediawiki/semantic-media-wiki": "~2.4|~3.0",
-		"mediawiki/lingo": "~2.0"
+		"mediawiki/lingo": "^2.0.3"
 	},
 	"extra": {
 		"branch-alias": {

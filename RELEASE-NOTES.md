@@ -2,15 +2,20 @@ This file contains the RELEASE-NOTES of the Semantic Glossary (a.k.a. SG) extens
 
 ### 2.2.0
 
-This is not a release yet.
+Released on 2017-05-24.
+
+* Requires Lingo 2.0.3 or above
+  * Fixed fatal error: Call to undefined function Lingo\string()
+  * [#24](https://github.com/SemanticMediaWiki/SemanticGlossary/issues/24) Fixed missing link icon
+  * [#25](https://github.com/SemanticMediaWiki/SemanticGlossary/issues/25) Fixed broken Special:Preferences
 
 ### 2.1.0
 
 Released on 2017-03-27.
 
-- Compatibility with Semantic MediaWiki 2.5.x
-- Semantic MediaWiki 2.4 as minimum requirement
-- translation updates from translatewiki.net
+* Compatibility with Semantic MediaWiki 2.5.x
+* Semantic MediaWiki 2.4 as minimum requirement
+* translation updates from translatewiki.net
 
 ### 2.0.1
 
