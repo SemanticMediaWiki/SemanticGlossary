@@ -2,10 +2,11 @@
 	"@metadata": {
 		"authors": [
 			"Gomoko",
-			"IAlex"
+			"IAlex",
+			"Wladek92"
 		]
 	},
-	"semanticglossary-desc": "Une extension de glossaire utilisant [http://semantic-mediawiki.org Semantic MediaWiki]",
+	"semanticglossary-desc": "Une extension de glossaire utilisant l'architecture [http://semantic-mediawiki.org Semantic MediaWiki]",
 	"semanticglossary-termdefinedtwice": "La page [[$1]] contient plus d'un terme et/ou plus d'une définition. Les entrées ne seront pas disponibles pour le glossaire.",
 	"semanticglossary-prop-glt": "Terme du glossaire",
 	"semanticglossary-prop-gld": "Définition du glossaire",
