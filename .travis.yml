@@ -9,7 +9,7 @@ matrix:
     - env: DB=mysql; MW=master;
       php: 5.6
   allow_failures:
-    - env: MW=master
+    - env: DB=mysql; MW=master;
 
 install:
   - bash ./tests/travis/install-mediawiki.sh
