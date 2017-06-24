@@ -8,7 +8,7 @@ if ( !is_readable( $autoloaderClassPath = __DIR__ . '/../../SemanticMediaWiki/te
 	die( 'The SemanticMediaWiki test autoloader is not available' );
 }
 
-if ( ( $version = SemanticGlossary::getVersion() ) === null ) {
+if ( !class_exists( 'SemanticGlossary' ) || ( $version = SemanticGlossary::getVersion() ) === null ) {
 	die( 'SemanticGlossary is not registered via wfLoadExtension, please adapt your LocalSettings.' );
 }
 
