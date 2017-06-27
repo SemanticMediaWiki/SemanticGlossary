@@ -96,7 +96,7 @@ class HookRegistry {
 		 *
 		 * @since 1.0
 		 */
-		$this->handlers['TitleMoveComplete'] = function ( &$old_title, &$new_title, &$user, $pageid, $redirid ) {
+		$this->handlers['TitleMoveComplete'] = function ( &$old_title ) {
 			return \SG\Cache\CacheInvalidator::getInstance()->invalidateCacheOnPageMove( $old_title );
 		};
 
