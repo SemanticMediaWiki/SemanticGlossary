@@ -1,0 +1,13 @@
+{
+	"@metadata": {
+		"authors": [
+			"ديفيد"
+		]
+	},
+	"semanticglossary-desc": "ملحق المصطلحات مع [http://semantic-mediawiki.org ميدياويكي الدلالية] الخلفية",
+	"semanticglossary-termdefinedtwice": "الصفحة [[$1]] تحتوي على أكثر من مصطلح و/أو تعريف، لن تكون متاحة لإدخالات المعجم",
+	"semanticglossary-prop-glt": "معجم-مصطلح",
+	"semanticglossary-prop-gld": "معجم-تعريف",
+	"semanticglossary-prop-gll": "معجم-رابط",
+	"semanticglossary-prop-gls": "معجم-نمط"
+}
