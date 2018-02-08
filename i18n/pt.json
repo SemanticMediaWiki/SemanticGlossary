@@ -1,13 +1,14 @@
 {
 	"@metadata": {
 		"authors": [
-			"Hamilton Abreu"
+			"Hamilton Abreu",
+			"Athena in Wonderland"
 		]
 	},
 	"semanticglossary-desc": "Uma extensão de glossário com base no [http://semantic-mediawiki.org MediaWiki Semântico]",
 	"semanticglossary-termdefinedtwice": "A página [[$1]] contém mais do que um termo ou definição. As entradas não ficarão disponíveis no glossário.",
 	"semanticglossary-prop-glt": "Glossário-Termo",
 	"semanticglossary-prop-gld": "Glossário-Definição",
-	"semanticglossary-prop-gll": "Glossário-Link",
+	"semanticglossary-prop-gll": "Glossário-Hiperligação",
 	"semanticglossary-prop-gls": "Glossário-Estilo"
 }
