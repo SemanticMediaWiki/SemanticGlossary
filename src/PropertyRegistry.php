@@ -80,18 +80,22 @@ class PropertyRegistry {
 		return $this->registerPropertiesFromList( $propertyDefinitions );
 	}
 
-	protected function registerPropertiesFromList( array $propertyList ) {
+    /**
+     * @param array $propertyList
+     * @return bool
+     */
+    protected function registerPropertiesFromList(array $propertyList ) {
 
 		foreach ( $propertyList as $propertyId => $definition ) {
 
-			DIProperty::registerProperty(
+			\SMW\PropertyRegistry::getInstance()->registerProperty(
 				$propertyId,
 				$definition['type'],
 				$definition['label'],
 				true
 			);
 
-			DIProperty::registerPropertyAlias(
+			\SMW\PropertyRegistry::getInstance()->registerPropertyAlias(
 				$propertyId,
 				$definition['alias']
 			);

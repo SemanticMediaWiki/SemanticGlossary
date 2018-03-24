@@ -61,7 +61,6 @@ class ElementsCacheBuilder {
 	 * @return array
 	 */
 	public function getElements() {
-		wfProfileIn( __METHOD__ );
 
 		$ret = array();
 
@@ -101,7 +100,6 @@ class ElementsCacheBuilder {
 			}
 		}
 
-		wfProfileOut( __METHOD__ );
 		return $ret;
 	}
 
