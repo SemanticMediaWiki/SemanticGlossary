@@ -16,7 +16,7 @@ class HookRegistry {
 	/**
 	 * @var array
 	 */
-	private $handlers = [];
+	private $handlers = array();
 
 	/**
 	 * @since 1.0

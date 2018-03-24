@@ -42,28 +42,28 @@ class PropertyRegistrationHelper {
 	 */
 	public function registerProperties() {
 
-		$propertyDefinitions = [
-			self::SG_TERM => [
+		$propertyDefinitions = array(
+			self::SG_TERM => array(
 				'label' => SG_PROP_GLT,
 				'type'  => '_txt',
 				'alias' => wfMessage( 'semanticglossary-prop-glt' )->text()
-			],
-			self::SG_DEFINITION => [
+			),
+			self::SG_DEFINITION => array(
 				'label' => SG_PROP_GLD,
 				'type'  => '_txt',
 				'alias' => wfMessage( 'semanticglossary-prop-gld' )->text()
-			],
-			self::SG_LINK => [
+			),
+			self::SG_LINK => array(
 				'label' => SG_PROP_GLL,
 				'type'  => '_txt',
 				'alias' => wfMessage( 'semanticglossary-prop-gll' )->text()
-			],
-			self::SG_STYLE => [
+			),
+			self::SG_STYLE => array(
 				'label' => SG_PROP_GLS,
 				'type'  => '_txt',
 				'alias' => wfMessage( 'semanticglossary-prop-gls' )->text()
-			]
-		];
+			)
+		);
 
 		return $this->registerPropertiesFromList( $propertyDefinitions );
 	}
