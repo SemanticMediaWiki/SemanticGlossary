@@ -31,9 +31,7 @@ class SemanticGlossary {
 
 		$GLOBALS[ 'wgExtensionFunctions' ][] = function () {
 
-			$hookRegistry = new HookRegistry(
-				ApplicationFactory::getInstance()->getStore()
-			);
+			$hookRegistry = new HookRegistry();
 
 			$hookRegistry->register();
 		};

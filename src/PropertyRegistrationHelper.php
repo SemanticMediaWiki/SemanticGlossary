@@ -2,7 +2,7 @@
 
 namespace SG;
 
-use SMW\DIProperty;
+use SMW\PropertyRegistry;
 
 define( 'SG_PROP_GLT', 'Glossary-Term' );
 define( 'SG_PROP_GLD', 'Glossary-Definition' );
@@ -17,34 +17,22 @@ define( 'SG_PROP_GLS', 'Glossary-Style' );
  *
  * @author mwjames
  */
-class PropertyRegistry {
+class PropertyRegistrationHelper {
 
 	const SG_TERM = '___glt';
 	const SG_DEFINITION = '___gld';
 	const SG_LINK  = '___gll';
 	const SG_STYLE = '___gls';
 
-	protected static $instance = null;
+	private $propertyRegistry;
 
 	/**
-	 * @since 1.0
+	 * PropertyRegistry constructor.
 	 *
-	 * @return PropertyRegistry
+	 * @param PropertyRegistry $propertyRegistry
 	 */
-	public static function getInstance() {
-
-		if ( self::$instance === null ) {
-			self::$instance = new self();
-		}
-
-		return self::$instance;
-	}
-
-	/**
-	 * @since 1.0
-	 */
-	public static function clear() {
-		self::$instance = null;
+	public function __construct( PropertyRegistry $propertyRegistry ) {
+		$this->propertyRegistry = $propertyRegistry;
 	}
 
 	/**
@@ -52,50 +40,50 @@ class PropertyRegistry {
 	 *
 	 * @return boolean
 	 */
-	public function register() {
+	public function registerProperties() {
 
-		$propertyDefinitions = array(
-			self::SG_TERM => array(
+		$propertyDefinitions = [
+			self::SG_TERM => [
 				'label' => SG_PROP_GLT,
 				'type'  => '_txt',
 				'alias' => wfMessage( 'semanticglossary-prop-glt' )->text()
-			),
-			self::SG_DEFINITION => array(
+			],
+			self::SG_DEFINITION => [
 				'label' => SG_PROP_GLD,
 				'type'  => '_txt',
 				'alias' => wfMessage( 'semanticglossary-prop-gld' )->text()
-			),
-			self::SG_LINK => array(
+			],
+			self::SG_LINK => [
 				'label' => SG_PROP_GLL,
 				'type'  => '_txt',
 				'alias' => wfMessage( 'semanticglossary-prop-gll' )->text()
-			),
-			self::SG_STYLE => array(
+			],
+			self::SG_STYLE => [
 				'label' => SG_PROP_GLS,
 				'type'  => '_txt',
 				'alias' => wfMessage( 'semanticglossary-prop-gls' )->text()
-			)
-		);
+			]
+		];
 
 		return $this->registerPropertiesFromList( $propertyDefinitions );
 	}
 
     /**
-     * @param array $propertyList
+     * @param string[][] $propertyList
      * @return bool
      */
-    protected function registerPropertiesFromList(array $propertyList ) {
+    protected function registerPropertiesFromList( array $propertyList ) {
 
 		foreach ( $propertyList as $propertyId => $definition ) {
 
-			\SMW\PropertyRegistry::getInstance()->registerProperty(
+			$this->propertyRegistry->registerProperty(
 				$propertyId,
 				$definition['type'],
 				$definition['label'],
 				true
 			);
 
-			\SMW\PropertyRegistry::getInstance()->registerPropertyAlias(
+			$this->propertyRegistry->registerPropertyAlias(
 				$propertyId,
 				$definition['alias']
 			);

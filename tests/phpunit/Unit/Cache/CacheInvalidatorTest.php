@@ -2,7 +2,7 @@
 
 namespace SG\Tests\Cache;
 
-use SG\PropertyRegistry;
+use SG\PropertyRegistrationHelper;
 use SG\Cache\CacheInvalidator;
 use SG\Cache\GlossaryCache;
 
@@ -64,12 +64,12 @@ class CacheInvalidatorTest extends \PHPUnit_Framework_TestCase {
 		$subobject->setSemanticData( '_999999' );
 
 		$subobject->getSemanticData()->addPropertyObjectValue(
-			new DIProperty( PropertyRegistry::SG_TERM ),
+			new DIProperty( PropertyRegistrationHelper::SG_TERM ),
 			new DIBlob( 'Foo' )
 		);
 
 		$subobject->getSemanticData()->addPropertyObjectValue(
-			new DIProperty( PropertyRegistry::SG_DEFINITION ),
+			new DIProperty( PropertyRegistrationHelper::SG_DEFINITION ),
 			new DIBlob( 'Bar' )
 		);
 
