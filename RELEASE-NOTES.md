@@ -4,6 +4,10 @@ This file contains the RELEASE-NOTES of the Semantic Glossary (a.k.a. SG) extens
 
 Released on 2018-????.
 
+* New minimum required versions:
+  * PHP 5.5
+  * MediaWiki 1.27
+
 * Compatibility with Semantic MediaWiki 3.0
 * Compatibility with MediaWiki 1.31
 * Compatibility with Lingo 3.0

@@ -11,7 +11,7 @@
 	"license-name": "GPL-2.0-or-later",
 	"type": "semantic",
 	"requires": {
-		"MediaWiki": "~1.26"
+		"MediaWiki": "~1.27"
 	},
 	"MessagesDirs": {
 		"SemanticGlossary": [
