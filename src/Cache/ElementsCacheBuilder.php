@@ -2,7 +2,7 @@
 
 namespace SG\Cache;
 
-use SG\PropertyRegistry;
+use SG\PropertyRegistrationHelper;
 use SMW\DataValueFactory;
 use SMW\Store;
 use SMW\DIProperty;
@@ -127,7 +127,7 @@ class ElementsCacheBuilder {
 		$dataValueFactory = DataValueFactory::getInstance();
 
 		// build term data item and data value for later use
-		$this->mDiTerm = new DIProperty( PropertyRegistry::SG_TERM );
+		$this->mDiTerm = new DIProperty( PropertyRegistrationHelper::SG_TERM );
 		$this->mDvTerm = $dataValueFactory->newDataValueByType( '_txt' );
 		$this->mDvTerm->setProperty( $this->mDiTerm );
 
@@ -136,7 +136,7 @@ class ElementsCacheBuilder {
 		$prTerm = new PrintRequest( PrintRequest::PRINT_PROP, null, $pvTerm );
 
 		// build definition data item and data value for later use
-		$this->mDiDefinition = new DIProperty( PropertyRegistry::SG_DEFINITION );
+		$this->mDiDefinition = new DIProperty( PropertyRegistrationHelper::SG_DEFINITION );
 		$this->mDvDefinition = $dataValueFactory->newDataValueByType( '_txt' );
 		$this->mDvDefinition->setProperty( $this->mDiDefinition );
 
@@ -145,7 +145,7 @@ class ElementsCacheBuilder {
 		$prDefinition = new PrintRequest( PrintRequest::PRINT_PROP, null, $pvDefinition );
 
 		// build link data item and data value for later use
-		$this->mDiLink = new DIProperty( PropertyRegistry::SG_LINK );
+		$this->mDiLink = new DIProperty( PropertyRegistrationHelper::SG_LINK );
 		$this->mDvLink = $dataValueFactory->newDataValueByType( '_txt' );
 		$this->mDvLink->setProperty( $this->mDiLink );
 
@@ -154,7 +154,7 @@ class ElementsCacheBuilder {
 		$prLink = new PrintRequest( PrintRequest::PRINT_PROP, null, $pvLink );
 
 		// build style data item and data value for later use
-		$this->mDiStyle = new DIProperty( PropertyRegistry::SG_STYLE );
+		$this->mDiStyle = new DIProperty( PropertyRegistrationHelper::SG_STYLE );
 		$this->mDvStyle = $dataValueFactory->newDataValueByType( '_txt' );
 		$this->mDvStyle->setProperty( $this->mDiStyle );
 

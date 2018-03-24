@@ -3,7 +3,7 @@
 namespace SG\Cache;
 
 use SG\SemanticDataComparator;
-use SG\PropertyRegistry;
+use SG\PropertyRegistrationHelper;
 
 use SMW\Store;
 use SMW\SemanticData;
@@ -157,10 +157,10 @@ class CacheInvalidator {
 
 		$dataComparator = new SemanticDataComparator( $store, $semanticData );
 
-		return $dataComparator->compareForProperty( PropertyRegistry::SG_TERM ) ||
-			$dataComparator->compareForProperty( PropertyRegistry::SG_DEFINITION ) ||
-			$dataComparator->compareForProperty( PropertyRegistry::SG_LINK ) ||
-			$dataComparator->compareForProperty( PropertyRegistry::SG_STYLE );
+		return $dataComparator->compareForProperty( PropertyRegistrationHelper::SG_TERM ) ||
+			$dataComparator->compareForProperty( PropertyRegistrationHelper::SG_DEFINITION ) ||
+			$dataComparator->compareForProperty( PropertyRegistrationHelper::SG_LINK ) ||
+			$dataComparator->compareForProperty( PropertyRegistrationHelper::SG_STYLE );
 	}
 
 	private function purgeCache( DIWikiPage $subject ) {

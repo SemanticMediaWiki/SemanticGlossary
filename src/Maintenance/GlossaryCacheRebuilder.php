@@ -2,7 +2,7 @@
 
 namespace SG\Maintenance;
 
-use SG\PropertyRegistry;
+use SG\PropertyRegistrationHelper;
 use SG\Cache\GlossaryCache;
 
 use SMWUpdateJob as UpdateJob;
@@ -113,7 +113,7 @@ class GlossaryCacheRebuilder {
 	private function buildQuery() {
 
 		$description = new SomeProperty(
-			new DIProperty( PropertyRegistry::SG_TERM ),
+			new DIProperty( PropertyRegistrationHelper::SG_TERM ),
 			new ThingDescription()
 		);
 

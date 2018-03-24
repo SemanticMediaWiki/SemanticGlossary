@@ -2,7 +2,7 @@
 
 namespace SG\Tests\Integration;
 
-use SG\PropertyRegistry;
+use SG\PropertyRegistrationHelper;
 
 use SMW\Tests\MwDBaseUnitTestCase;
 use SMW\Tests\Utils\UtilityFactory;
@@ -55,7 +55,7 @@ class MwDBSQLStoreIntegrationTest extends MwDBaseUnitTestCase {
 
 		$values = $this->getStore()->getPropertyValues(
 			DIWikiPage::newFromTitle( $title ),
-			new DIProperty( PropertyRegistry::SG_TERM )
+			new DIProperty( PropertyRegistrationHelper::SG_TERM )
 		);
 
 		$this->assertNotEmpty( $values );
@@ -65,7 +65,7 @@ class MwDBSQLStoreIntegrationTest extends MwDBaseUnitTestCase {
 
 		$values = $this->getStore()->getPropertyValues(
 			DIWikiPage::newFromTitle( $title ),
-			new DIProperty( PropertyRegistry::SG_TERM )
+			new DIProperty( PropertyRegistrationHelper::SG_TERM )
 		);
 
 		$this->assertEmpty( $values );

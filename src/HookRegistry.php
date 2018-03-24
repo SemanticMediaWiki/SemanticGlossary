@@ -2,7 +2,6 @@
 
 namespace SG;
 
-use SMW\Store;
 use SMW\DIWikiPage;
 use Hooks;
 
@@ -21,11 +20,9 @@ class HookRegistry {
 
 	/**
 	 * @since 1.0
-	 *
-	 * @param Store $store
 	 */
-	public function __construct( Store $store ) {
-		$this->addCallbackHandlers( $store );
+	public function __construct() {
+		$this->addCallbackHandlers();
 	}
 
 	/**
@@ -59,15 +56,16 @@ class HookRegistry {
 		}
 	}
 
-	private function addCallbackHandlers( $store ) {
-
-		$propertyRegistry = new PropertyRegistry();
+	private function addCallbackHandlers() {
 
 		/**
 		 * @see https://github.com/SemanticMediaWiki/SemanticMediaWiki/blob/master/docs/technical/hooks.md
 		 */
-		$this->handlers['SMW::Property::initProperties'] = function () use ( $propertyRegistry ) {
-			return PropertyRegistry::getInstance()->register();
+		$this->handlers['SMW::Property::initProperties'] = function ( $propertyRegistry ) {
+
+			$propertyRegistrationHelper = new PropertyRegistrationHelper( $propertyRegistry );
+			return $propertyRegistrationHelper->registerProperties();
+
 		};
 
 		/**
