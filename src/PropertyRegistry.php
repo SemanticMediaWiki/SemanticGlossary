@@ -95,7 +95,7 @@ class PropertyRegistry {
 				true
 			);
 
-            \SMW\PropertyRegistry::getInstance()->registerPropertyAlias(
+			\SMW\PropertyRegistry::getInstance()->registerPropertyAlias(
 				$propertyId,
 				$definition['alias']
 			);
