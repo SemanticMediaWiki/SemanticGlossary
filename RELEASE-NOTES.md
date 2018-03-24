@@ -6,6 +6,7 @@ Released on 2018-????.
 
 * Compatibility with Semantic MediaWiki 3.0
 * Compatibility with MediaWiki 1.31
+* Compatibility with Lingo 3.0
 
 ### 2.2.0
 
