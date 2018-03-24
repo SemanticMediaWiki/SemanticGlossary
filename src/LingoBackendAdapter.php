@@ -55,13 +55,10 @@ class LingoBackendAdapter extends Backend {
 	 */
 	public function next() {
 
-		wfProfileIn( __METHOD__ );
-
 		if ( $this->elements === array() ) {
 			$this->elements = $this->elementsCacheBuilder->getElements();
 		}
 
-		wfProfileOut( __METHOD__ );
 		return array_pop( $this->elements );
 	}
 
