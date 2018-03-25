@@ -46,6 +46,9 @@ class CacheInvalidatorTest extends \PHPUnit_Framework_TestCase {
 			->disableOriginalConstructor()
 			->getMockForAbstractClass();
 
+		$store->method( 'getPropertyValues' )
+			->willReturn( [] );
+
 		$semanticData = $this->getMockBuilder( '\SMW\SemanticData' )
 			->disableOriginalConstructor()
 			->getMockForAbstractClass();
@@ -76,6 +79,9 @@ class CacheInvalidatorTest extends \PHPUnit_Framework_TestCase {
 		$store = $this->getMockBuilder( 'SMWStore' )
 			->disableOriginalConstructor()
 			->getMockForAbstractClass();
+
+		$store->method( 'getPropertyValues' )
+			->willReturn( [] );
 
 		$semanticData = new SemanticData( $subject );
 		$semanticData->addPropertyObjectValue(

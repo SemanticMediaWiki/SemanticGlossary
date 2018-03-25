@@ -45,6 +45,9 @@ class SemanticDataComparatorTest extends \PHPUnit_Framework_TestCase {
 			->disableOriginalConstructor()
 			->getMockForAbstractClass();
 
+		$store->method( 'getPropertyValues' )
+			->willReturn( [] );
+
 		$semanticData = $this->getMockBuilder( '\SMW\SemanticData' )
 			->disableOriginalConstructor()
 			->getMock();
