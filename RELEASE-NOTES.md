@@ -2,7 +2,7 @@ This file contains the RELEASE-NOTES of the Semantic Glossary (a.k.a. SG) extens
 
 ### 3.0.0
 
-Released on 2018-????.
+Released on 2018-10-09.
 
 * New minimum required versions:
   * PHP 5.6
