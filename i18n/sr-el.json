@@ -1,4 +1,9 @@
 {
 	"@metadata": [],
-	"semanticglossary-termdefinedtwice": "Stranica [[$1]] sadrži više od jednog pojma i definicije. Unosi neće biti dostupni rečniku."
+	"semanticglossary-desc": "Glosar proširenje sa [http://semantic-mediawiki.org Semantic MediaWiki]-jem",
+	"semanticglossary-termdefinedtwice": "Stranica [[$1]] sadrži više od jednog pojma i definicije. Unosi neće biti dostupni rečniku.",
+	"semanticglossary-prop-glt": "Rečnički-Termin",
+	"semanticglossary-prop-gld": "Glosar-Definicija",
+	"semanticglossary-prop-gll": "Glosar-Veza",
+	"semanticglossary-prop-gls": "Glosar-Stil"
 }
