@@ -59,6 +59,20 @@ class CacheInvalidatorTest extends \PHPUnit_Framework_TestCase {
 		$this->assertTrue( $instance->invalidateCacheOnStoreUpdate( $store, $semanticData ) );
 	}
 
+	public function testInvalidateOnUpdateWithNullSemanticData() {
+
+		$store = $this->getMockBuilder( '\SMW\Store' )
+			->disableOriginalConstructor()
+			->getMockForAbstractClass();
+
+		$instance = new CacheInvalidator();
+		$instance->setCache( new GlossaryCache( new HashBagOStuff() ) );
+
+		$this->assertFalse(
+			$instance->invalidateCacheOnStoreUpdate( $store, null )
+		);
+	}
+
 	public function testInvalidateOnUpdateWithDifferentSubobjectData() {
 
 		$subject = DIWikiPage::newFromTitle( Title::newFromText( __METHOD__ ) );
