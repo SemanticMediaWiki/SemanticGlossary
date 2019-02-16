@@ -78,7 +78,11 @@ class CacheInvalidator {
 	 *
 	 * @return boolean
 	 */
-	public function invalidateCacheOnStoreUpdate( Store $store, SemanticData $semanticData ) {
+	public function invalidateCacheOnStoreUpdate( Store $store, SemanticData $semanticData = null ) {
+
+		if ( $semanticData === null ) {
+			return false;
+		}
 
 		$this->matchAllSubobjects( $store, $semanticData );
 
