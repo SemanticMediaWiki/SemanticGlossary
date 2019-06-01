@@ -39,6 +39,7 @@ class RebuildGlossaryCache extends \Maintenance {
 	 * @see Maintenance::addDefaultParams
 	 */
 	protected function addDefaultParams() {
+		parent::addDefaultParams();
 		$this->addOption( 'verbose', 'Be verbose about the progress', false, false, 'v' );
 		$this->addOption( 'quiet', 'Do not give any output', false );
 	}
