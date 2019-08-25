@@ -1,5 +1,8 @@
 language: php
 
+services:
+  - mysql
+
 matrix:
   include:
     - env: DB=mysql; MW=master; PHPUNIT=6.5
