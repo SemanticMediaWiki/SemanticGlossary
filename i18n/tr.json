@@ -1,0 +1,13 @@
+{
+	"@metadata": {
+		"authors": [
+			"BaRaN6161 TURK"
+		]
+	},
+	"semanticglossary-desc": "[https://semantic-mediawiki.org Semantic MediaWiki] arka ucuyla bir sözlük uzantısı",
+	"semanticglossary-termdefinedtwice": "[[$1]] sayfası birden fazla terim ve/veya birden fazla tanım içeriyor. Girişler sözlük için uygun olmayacak.",
+	"semanticglossary-prop-glt": "Sözlük Vadeli",
+	"semanticglossary-prop-gld": "Sözlük Tanımlı",
+	"semanticglossary-prop-gll": "Sözlük Bağlantı",
+	"semanticglossary-prop-gls": "Sözlük Stil"
+}
