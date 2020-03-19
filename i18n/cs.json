@@ -1,0 +1,13 @@
+{
+	"@metadata": {
+		"authors": [
+			"Jaroslav Cerny"
+		]
+	},
+	"semanticglossary-desc": "Slovníkové rozšíření využívající architekturu [http://semantic-mediawiki.org Sémantické MediaWiki]",
+	"semanticglossary-termdefinedtwice": "Stránka [[$1]] obsahuje více než jeden pojem anebo více než jednu definici. Záznamy nebudou pro slovník dostupné.",
+	"semanticglossary-prop-glt": "Slovník-Pojem",
+	"semanticglossary-prop-gld": "Slovník-Definice",
+	"semanticglossary-prop-gll": "Slovník-Odkaz",
+	"semanticglossary-prop-gls": "Slovník-Styl"
+}
