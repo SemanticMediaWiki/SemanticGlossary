@@ -1,9 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
+			"Hudafu",
 			"Linforest",
-			"Liuxinyu970226",
-			"Hudafu"
+			"Liuxinyu970226"
 		]
 	},
 	"semanticglossary-desc": "有[http://semantic-mediawiki.org Semantic MediaWiki]后端的词汇表扩展程序",

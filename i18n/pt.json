@@ -1,8 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Hamilton Abreu",
-			"Athena in Wonderland"
+			"Athena in Wonderland",
+			"Hamilton Abreu"
 		]
 	},
 	"semanticglossary-desc": "Uma extensão de glossário com base no [http://semantic-mediawiki.org MediaWiki Semântico]",

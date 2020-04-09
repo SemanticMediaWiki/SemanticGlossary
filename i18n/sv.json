@@ -1,8 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Martinwiss",
-			"Lokal Profil"
+			"Lokal Profil",
+			"Martinwiss"
 		]
 	},
 	"semanticglossary-desc": "Ett tillägg för ordlistor som använder [http://semantic-mediawiki.org Semantic MediaWiki]",
