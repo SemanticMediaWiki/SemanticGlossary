@@ -65,10 +65,10 @@ function updateConfiguration {
 	echo '$wgDebugDumpSql = false;' >> LocalSettings.php
 	echo '$wgShowDBErrorBacktrace = true;' >> LocalSettings.php
 	echo "putenv( 'MW_INSTALL_PATH=$(pwd)' );" >> LocalSettings.php
-	
+
 	# SMW#1732
 	echo "wfLoadExtension( 'SemanticMediaWiki' );" >> LocalSettings.php
-	
+	echo "wfLoadExtension( 'Lingo' );" >> LocalSettings.php
 	echo "wfLoadExtension( 'SemanticGlossary' );" >> LocalSettings.php
 
 	php maintenance/update.php --quick
