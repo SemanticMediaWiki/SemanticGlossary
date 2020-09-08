@@ -37,6 +37,9 @@
 		"mediawiki/semantic-media-wiki": "^2.4|^3.0",
 		"mediawiki/lingo": "^2.0.3|^3.0"
 	},
+	"require-dev": {
+		"phpunit/phpunit": "^6.5"
+	},
 	"extra": {
 		"branch-alias": {
 			"dev-master": "3.x-dev"
