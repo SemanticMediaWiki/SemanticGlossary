@@ -5,16 +5,19 @@ services:
 
 matrix:
   include:
-    - env: DB=mysql; MW=master; PHPUNIT=6.5
+    - env: DB=mysql; MW=master; PHPUNIT=8.5
+      php: 7.4
+    - env: DB=mysql; MW=REL1_35
+      php: 7.3
+    - env: DB=mysql; MW=REL1_34
       php: 7.2
-    - env: DB=mysql; MW=REL1_31; TYPE=coverage
-      php: 7.0
     - env: DB=mysql; MW=REL1_33
       php: 7.2
     - env: DB=mysql; MW=REL1_32
       php: 7.1
   allow_failures:
-    - env: DB=mysql; MW=master; PHPUNIT=6.5
+    - env: DB=mysql; MW=master; PHPUNIT=8.5
+    - env: DB=mysql; MW=REL1_35
 
 install:
   - bash ./tests/travis/install-mediawiki.sh
