@@ -2,8 +2,9 @@
 
 namespace SG;
 
-use SMW\DIWikiPage;
 use Hooks;
+use MediaWiki\Linker\LinkTarget;
+use SMW\DIWikiPage;
 
 /**
  * @license GNU GPL v2+
@@ -94,10 +95,15 @@ class HookRegistry {
 		 *
 		 * @since 1.0
 		 */
-		$this->handlers['TitleMoveComplete'] = function ( &$old_title ) {
-			return \SG\Cache\CacheInvalidator::getInstance()->invalidateCacheOnPageMove( $old_title );
-		};
-
+		if ( version_compare( MW_VERSION, "1.35.0", "<" ) ) {
+			$this->handlers['TitleMoveComplete'] = function ( &$old_title ) {
+				return \SG\Cache\CacheInvalidator::getInstance()->invalidateCacheOnPageMove( $old_title );
+			};
+		} else {
+			$this->handlers['PageMoveComplete'] = function ( LinkTarget $old_title ) {
+				return \SG\Cache\CacheInvalidator::getInstance()->invalidateCacheOnPageMove( $old_title );
+			};
+		}
 	}
 
 }
