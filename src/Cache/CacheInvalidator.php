@@ -12,7 +12,7 @@ use SMW\DIProperty;
 
 use Lingo\LingoParser;
 
-use Title;
+use MediaWiki\Linker\LinkTarget;
 
 /**
  * @ingroup SG
@@ -118,12 +118,12 @@ class CacheInvalidator {
 	/**
 	 * @since 1.0
 	 *
-	 * @param Title $title
+	 * @param LinkTarget $title
 	 *
 	 * @return boolean
 	 */
-	public function invalidateCacheOnPageMove( Title $title ) {
-		$this->purgeCache( DIWikiPage::newFromTitle( $title ) );
+	public function invalidateCacheOnPageMove( LinkTarget $title ) {
+		$this->purgeCache( DIWikiPage::newFromText( $title->getDBkey(), $title->getNamespace() );
 		return true;
 	}
 
