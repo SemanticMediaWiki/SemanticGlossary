@@ -123,7 +123,7 @@ class CacheInvalidator {
 	 * @return boolean
 	 */
 	public function invalidateCacheOnPageMove( LinkTarget $title ) {
-		$this->purgeCache( DIWikiPage::newFromText( $title->getDBkey(), $title->getNamespace() );
+		$this->purgeCache( DIWikiPage::newFromText( $title->getDBkey(), $title->getNamespace() ));
 		return true;
 	}
 
