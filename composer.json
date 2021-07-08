@@ -16,7 +16,6 @@
 	"authors": [
 		{
 			"name": "Stephan Gambke",
-			"email": "s7eph4n@gmail.com",
 			"role": "Developer"
 		},
 		{
@@ -25,24 +24,24 @@
 		}
 	],
 	"support": {
+		"email": "semediawiki-user@lists.sourceforge.net",
 		"wiki": "https://www.mediawiki.org/wiki/Extension:Semantic_Glossary",
 		"forum": "https://www.mediawiki.org/wiki/Extension_talk:Semantic_Glossary",
 		"source": "https://github.com/SemanticMediaWiki/SemanticGlossary.git",
-		"issues": "https://github.com/SemanticMediaWiki/SemanticGlossary/issues",
-		"irc": "irc://irc.freenode.org/semantic-mediawiki"
+		"issues": "https://github.com/SemanticMediaWiki/SemanticGlossary/issues"
 	},
 	"require": {
-		"php": ">=5.5",
+		"php": ">=7.1",
 		"composer/installers":"^1.0.12",
-		"mediawiki/semantic-media-wiki": "^2.4|^3.0",
-		"mediawiki/lingo": "^2.0.3|^3.0"
+		"mediawiki/semantic-media-wiki": "^3.1|^3.2",
+		"mediawiki/lingo": "^3.0"
 	},
 	"require-dev": {
-		"phpunit/phpunit": "^6.5"
+		"phpunit/phpunit": "^8.5"
 	},
 	"extra": {
 		"branch-alias": {
-			"dev-master": "3.x-dev"
+			"dev-master": "4.x-dev"
 		}
 	},
 	"autoload": {
