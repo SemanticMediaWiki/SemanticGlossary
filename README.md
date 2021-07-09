@@ -18,11 +18,11 @@ terms and abbreviations can be defined using semantic properties.
 
 ## Installation
 
-Note that the Semantic MediaWiki extension and the Lingo extension need to be installed first. Moreover they need to be
-invoked earlier that this extension.
+Note that the Semantic MediaWiki extension and the Lingo extension need to be installed first.
+Moreover they need to be invoked earlier than this extension.
 
 The way to install this extension is by using [Composer][composer].
-Just add the following to the MediaWiki `composer.local.json` file and run the
+Just add the following to the MediaWiki "composer.local.json" file and run the
 `php composer.phar install/update mediawiki/semantic-glossary` command.
 
 ```json
