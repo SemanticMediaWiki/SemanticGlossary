@@ -1,6 +1,6 @@
 # Semantic Glossary
 
-[![Build Status](https://travis-ci.org/SemanticMediaWiki/SemanticGlossary.svg)](https://travis-ci.org/SemanticMediaWiki/SemanticGlossary)
+[![Build Status](https://www.travis-ci.com/SemanticMediaWiki/SemanticGlossary.svg?branch=master)](https://www.travis-ci.com/SemanticMediaWiki/SemanticGlossary)
 [![Code Coverage](https://scrutinizer-ci.com/g/SemanticMediaWiki/SemanticGlossary/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/SemanticMediaWiki/SemanticGlossary/?branch=master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/SemanticMediaWiki/SemanticGlossary/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/SemanticMediaWiki/SemanticGlossary/?branch=master)
 [![Latest Stable Version](https://poser.pugx.org/mediawiki/semantic-glossary/version.png)](https://packagist.org/packages/mediawiki/semantic-glossary)
@@ -11,35 +11,32 @@ terms and abbreviations can be defined using semantic properties.
 
 ## Requirements
 
-- PHP 5.6 or later
-- MediaWiki 1.27 or later
-- [Semantic MediaWiki][smw] 2.4 or later
+- PHP 7.1 or later
+- MediaWiki 1.31 or later
+- [Semantic MediaWiki][smw] 3.1 or later
+- [Lingo][lg] 3.1 or later
 
 ## Installation
 
-The recommended way to install this extension is by using [Composer][composer].
-Just add the following to the MediaWiki `composer.local.json` file and run the
+Note that the Semantic MediaWiki extension and the Lingo extension need to be installed first.
+Moreover they need to be invoked earlier than this extension.
+
+The way to install this extension is by using [Composer][composer].
+Just add the following to the MediaWiki "composer.local.json" file and run the
 `php composer.phar install/update mediawiki/semantic-glossary` command.
 
 ```json
 {
 	"require": {
-		"mediawiki/semantic-glossary": "~3.0"
+		"mediawiki/semantic-glossary": "~4.0"
 	}
 }
 ```
 
-(Alternatively you can download a tar ball or zip file from
-[GitHub](https://github.com/SemanticMediaWiki/SemanticGlossary/releases/latest)
-and extract it into the `extensions` directory of your MediaWiki installation.)
-
-Then add the following line to your `LocalSettings.php`:
+Then add the following line to your "LocalSettings.php" file:
 ```php
-wfLoadExtension('SemanticGlossary');
+wfLoadExtension( 'SemanticGlossary' );
 ```
-
-It is *NOT* necessary to install the Lingo extension separately. Doing so will
-result in errors.
 
 ## Contribution and support
 
@@ -47,7 +44,6 @@ If you want to contribute work to the project please subscribe to the developers
 have a look at the contribution guideline.
 
 * Ask a question on [the mailing list](https://www.semantic-mediawiki.org/wiki/Mailing_list)
-* Ask a question on the #semantic-mediawiki IRC channel on Freenode.
 
 ## Tests
 
@@ -61,6 +57,7 @@ but can also be executed using `composer phpunit` from the extension base direct
 [license]: https://www.gnu.org/copyleft/gpl.html
 [mw-semantic-glossary]: https://www.mediawiki.org/wiki/Extension:Semantic_Glossary
 [mw-lingo]: https://www.mediawiki.org/wiki/Extension:Lingo
-[smw]: https://www.mediawiki.org/wiki/Semantic_MediaWiki
+[smw]: https://www.mediawiki.org/wiki/Extension:Semantic_MediaWiki
+[lg]: https://www.mediawiki.org/wiki/Extension:Lingo
 [composer]: https://getcomposer.org/
-[travis]: https://travis-ci.org/SemanticMediaWiki/SemanticGlossary
+[travis]: https://www.travis-ci.com/github/SemanticMediaWiki/SemanticGlossary

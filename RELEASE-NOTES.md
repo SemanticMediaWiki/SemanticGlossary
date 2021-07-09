@@ -1,12 +1,28 @@
 This file contains the RELEASE-NOTES of the Semantic Glossary (a.k.a. SG) extension.
 
+### 4.0.0
+
+Released on 2021-07-09.
+
+* New minimum required versions:
+	* PHP 7.1
+	* MediaWiki 1.31
+	* Semantic MediaWiki 3.1
+	* Lingo 3.1
+
+* Compatibility with Semantic MediaWiki 3.1
+* Compatibility with MediaWiki 1.35
+
+* fixes for loading the Lingo dependency
+* translation updates from translatewiki.net
+
 ### 3.0.0
 
 Released on 2018-10-09.
 
 * New minimum required versions:
-  * PHP 5.6
-  * MediaWiki 1.27
+	* PHP 5.6
+	* MediaWiki 1.27
 
 * Compatibility with Semantic MediaWiki 3.0
 * Compatibility with MediaWiki 1.31
@@ -17,9 +33,9 @@ Released on 2018-10-09.
 Released on 2017-05-24.
 
 * Requires Lingo 2.0.3 or above
-  * Fixed fatal error: Call to undefined function Lingo\string()
-  * [#24](https://github.com/SemanticMediaWiki/SemanticGlossary/issues/24) Fixed missing link icon
-  * [#25](https://github.com/SemanticMediaWiki/SemanticGlossary/issues/25) Fixed broken Special:Preferences
+	* Fixed fatal error: Call to undefined function Lingo\string()
+	* [#24](https://github.com/SemanticMediaWiki/SemanticGlossary/issues/24) Fixed missing link icon
+	* [#25](https://github.com/SemanticMediaWiki/SemanticGlossary/issues/25) Fixed broken Special:Preferences
 
 ### 2.1.0
 
@@ -40,9 +56,9 @@ Released on 2016-05-24.
 Released on 2016-03-09.
 
 * New minimum required versions:
-  * MediaWiki 1.26
-  * Semantic MediaWiki 2.3
-  * Lingo 2.0
+	* MediaWiki 1.26
+	* Semantic MediaWiki 2.3
+	* Lingo 2.0
 * Use the new extension registration mechanism introduced in MediwWiki 1.25
 * Rework registration of properties and MW hooks
 * Use autoloader provided by Composer (PSR-4)
