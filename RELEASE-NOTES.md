@@ -8,6 +8,7 @@ Released on 2021-07-09.
 	* PHP 7.1
 	* MediaWiki 1.31
 	* Semantic MediaWiki 3.1
+	* Lingo 3.1
 
 * Compatibility with Semantic MediaWiki 3.1
 * Compatibility with MediaWiki 1.35
