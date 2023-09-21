@@ -3,13 +3,14 @@
 		"authors": [
 			"Hudafu",
 			"Linforest",
+			"LittlePaw365",
 			"Liuxinyu970226"
 		]
 	},
-	"semanticglossary-desc": "有[http://semantic-mediawiki.org Semantic MediaWiki]后端的词汇表扩展程序",
-	"semanticglossary-termdefinedtwice": "该页面[[$1]]之中含有不止一条术语和/或不止一个定义。这些条目对词汇表来说不可用。",
+	"semanticglossary-desc": "使用[http://semantic-mediawiki.org 语义MediaWiki]后端的词汇表扩展",
+	"semanticglossary-termdefinedtwice": "页面[[$1]]含有不止一个术语和/或不止一个定义。这些记录将无法用于词汇表。",
 	"semanticglossary-prop-glt": "词汇表-术语",
 	"semanticglossary-prop-gld": "词汇表-定义",
 	"semanticglossary-prop-gll": "词汇表-链接",
-	"semanticglossary-prop-gls": "词汇表样式"
+	"semanticglossary-prop-gls": "词汇表-样式"
 }
