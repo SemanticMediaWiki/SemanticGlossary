@@ -24,6 +24,9 @@
 	"AutoloadClasses": {
 		"SemanticGlossary": "SemanticGlossary.php"
 	},
+	"AutoloadNamespaces": {
+		"SG\\": "src/"
+	},
 	"callback": "SemanticGlossary::initExtension",
 	"manifest_version": 1
 }
