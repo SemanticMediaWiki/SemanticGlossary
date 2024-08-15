@@ -4,6 +4,8 @@
 			"Умар"
 		]
 	},
+	"semanticglossary-desc": "[http://semantic-mediawiki.org Semantic MediaWiki] тӀехь йина шордар-глоссари",
+	"semanticglossary-termdefinedtwice": "[[$1]] агӀонан чохь цхьаннал сов терминаш а,/йа цхьаннал сов билгалонаш а йу. ДӀайаздарш глоссарин чохь тӀекхочуш хира дац.",
 	"semanticglossary-prop-glt": "Глоссарий-Термин",
 	"semanticglossary-prop-gld": "Глоссарий-Билгалдаккхар",
 	"semanticglossary-prop-gll": "Глоссарий-Хьажорг",
