@@ -1,9 +1,10 @@
 {
 	"name": "Semantic Glossary",
-	"version": "4.0.0",
+	"version": "4.1.0",
 	"author": [
 		"[https://www.mediawiki.org/wiki/User:F.trott Stephan Gambke]",
 		"[https://www.semantic-mediawiki.org/wiki/User:MWJames James Hong Kong]",
+		"[https://www.archixl.nl Youri van den Bogert]",
 		"..."
 	],
 	"url": "https://www.mediawiki.org/wiki/Extension:Semantic_Glossary",
@@ -13,7 +14,7 @@
 	"requires": {
 		"MediaWiki": "~1.31",
 		"extensions": {
-			"Lingo": "*"
+			"Lingo": ">= 3.2.1"
 		}
 	},
 	"MessagesDirs": {
@@ -23,6 +24,9 @@
 	},
 	"AutoloadClasses": {
 		"SemanticGlossary": "SemanticGlossary.php"
+	},
+	"AutoloadNamespaces": {
+		"SG\\": "src/"
 	},
 	"callback": "SemanticGlossary::initExtension",
 	"manifest_version": 1
