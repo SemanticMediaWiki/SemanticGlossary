@@ -29,7 +29,7 @@ use Title;
  *
  * @author mwjames
  */
-class CacheInvalidatorTest extends \PHPUnit_Framework_TestCase {
+class CacheInvalidatorTest extends \PHPUnit\Framework\TestCase {
 
 	public function testCanConstruct() {
 		CacheInvalidator::clear();

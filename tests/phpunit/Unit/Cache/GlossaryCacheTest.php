@@ -18,7 +18,7 @@ use SG\Cache\GlossaryCache;
  *
  * @author mwjames
  */
-class GlossaryCacheTest extends \PHPUnit_Framework_TestCase {
+class GlossaryCacheTest extends \PHPUnit\Framework\TestCase {
 
 	public function testGetDefaultCache() {
 
@@ -34,8 +34,7 @@ class GlossaryCacheTest extends \PHPUnit_Framework_TestCase {
 
 		$instance = new GlossaryCache();
 
-		$this->assertInternalType(
-			'integer',
+		$this->assertIsInt(
 			$instance->getCacheType()
 		);
 	}
@@ -52,13 +51,11 @@ class GlossaryCacheTest extends \PHPUnit_Framework_TestCase {
 			->method( 'getSerialization' )
 			->will( $this->returnValue( 'Foo' ) );
 
-		$this->assertInternalType(
-			'string',
+		$this->assertIsString(
 			$instance->getKeyForSubject( $subject )
 		);
 
-		$this->assertInternalType(
-			'string',
+		$this->assertIsString(
 			$instance->getKeyForLingo()
 		);
 	}

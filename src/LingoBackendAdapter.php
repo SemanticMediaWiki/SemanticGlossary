@@ -56,7 +56,7 @@ class LingoBackendAdapter extends Backend {
 	public function next() {
 
 		if ( $this->elements === array() ) {
-			$this->elements = $this->elementsCacheBuilder->getElements();
+			$this->elements = $this->elementsCacheBuilder->getElements( $this->getSearchTerms() );
 		}
 
 		return array_pop( $this->elements );

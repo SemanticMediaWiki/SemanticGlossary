@@ -6,6 +6,7 @@ use SG\PropertyRegistrationHelper;
 use SMW\DataValueFactory;
 use SMW\Store;
 use SMW\DIProperty;
+use SMW\Query\DescriptionFactory;
 use SMWStringValue as StringValue;
 use SMWPrintRequest as PrintRequest;
 use SMWPropertyValue as PropertyValue;
@@ -42,7 +43,7 @@ class ElementsCacheBuilder {
 	private $mDvLink;
 	private $mDvStyle;
 
-	private $queryResults;
+	private array $queryResults = [];
 
 	/**
 	 * @since  1.1
@@ -58,25 +59,27 @@ class ElementsCacheBuilder {
 	/**
 	 * @since 1.1
 	 *
+	 * @param array $searchTerms
 	 * @return array
 	 */
-	public function getElements() {
+	public function getElements( array $searchTerms = [] ) {
 
 		$ret = array();
+		$cacheId = substr( md5( implode( '', $searchTerms ) ), 0, 8 );
 
-		if ( $this->queryResults === null ) {
-			$this->queryResults = $this->store->getQueryResult( $this->buildQuery() )->getResults();
+		if ( !isset( $this->queryResults[ $cacheId ] ) ) {
+			$this->queryResults[ $cacheId ] = $this->store->getQueryResult( $this->buildQuery( $searchTerms ) )->getResults();
 		}
 
 		// find next line
-		$page = current( $this->queryResults );
+		$page = current( $this->queryResults[ $cacheId ] );
 
 		if ( $page && count( $ret ) == 0 ) {
 
-			next( $this->queryResults );
+			next( $this->queryResults[ $cacheId ] );
 
 			$cachekey = $this->glossaryCache->getKeyForSubject( $page );
-			$cachedResult = $this->glossaryCache->getCache()->get( $cachekey );
+			$cachedResult = $this->glossaryCache->getCache()->get( "{$cachekey}_{$cacheId}" );
 
 			// cache hit?
 			if ( $cachedResult !== false && $cachedResult !== null ) {
@@ -122,14 +125,23 @@ class ElementsCacheBuilder {
 		return $ret;
 	}
 
-	private function buildQuery() {
+	private function buildQuery( array $searchTerms = []) {
 
 		$dataValueFactory = DataValueFactory::getInstance();
+		$descriptionFactory = new DescriptionFactory();
 
 		// build term data item and data value for later use
 		$this->mDiTerm = new DIProperty( PropertyRegistrationHelper::SG_TERM );
 		$this->mDvTerm = $dataValueFactory->newDataValueByType( '_txt' );
 		$this->mDvTerm->setProperty( $this->mDiTerm );
+
+		$valueDescriptions = [];
+		foreach ( $searchTerms as $searchTerm ) {
+			$valueDescriptions[] = $descriptionFactory->newSomeProperty(
+				$this->mDiTerm,
+				$descriptionFactory->newValueDescription( new \SMWDIBlob( $searchTerm ) )
+			);
+		}
 
 		$pvTerm = $dataValueFactory->newDataValueByType( '__pro' );
 		$pvTerm->setDataItem( $this->mDiTerm );
@@ -163,7 +175,9 @@ class ElementsCacheBuilder {
 		$prStyle = new PrintRequest( PrintRequest::PRINT_PROP, null, $pvStyle );
 
 		// Create query
-		$desc = new SomeProperty( new DIProperty( '___glt' ), new ThingDescription() );
+		$desc = sizeof( $searchTerms ) === 0
+			? new SomeProperty( new DIProperty( '___glt' ), new ThingDescription() )
+			: $descriptionFactory->newDisjunction( $valueDescriptions );
 		$desc->addPrintRequest( $prTerm );
 		$desc->addPrintRequest( $prDefinition );
 		$desc->addPrintRequest( $prLink );

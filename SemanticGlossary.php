@@ -14,19 +14,15 @@ class SemanticGlossary {
 	 * @since 2.0
 	 */
 	public static function initExtension() {
-
-		if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
-			require_once __DIR__ . '/vendor/autoload.php';
-		}
-
 		$GLOBALS[ 'wgexLingoBackend' ] = 'SG\LingoBackendAdapter';
+	}
 
-		$GLOBALS[ 'wgExtensionFunctions' ][] = function () {
-
-			$hookRegistry = new HookRegistry();
-
-			$hookRegistry->register();
-		};
+	/**
+	 * @since 4.1.0
+	 */
+	public static function onExtensionFunction(): void {
+		$hookRegistry = new HookRegistry();
+		$hookRegistry->register();
 	}
 
 	/**

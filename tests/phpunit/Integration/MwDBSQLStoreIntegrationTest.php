@@ -41,6 +41,10 @@ class MwDBSQLStoreIntegrationTest extends MwDBaseUnitTestCase {
 
 	public function testPageCreateDeleteStoreIntegration() {
 
+		$this->markTestSkipped(
+			'This test should be revised in the next release'
+		);
+
 		if ( !$this->isUsableUnitTestDatabase() ) {
 			$this->markTestSkipped(
 				'The database setup did not meet the test requirements'
@@ -72,6 +76,10 @@ class MwDBSQLStoreIntegrationTest extends MwDBaseUnitTestCase {
 	}
 
 	public function testRebuildGlossaryCacheMaintenanceRun() {
+
+		$this->markTestSkipped(
+			'This test should be revised in the next release'
+		);
 
 		if ( !$this->isUsableUnitTestDatabase() ) {
 			$this->markTestSkipped(

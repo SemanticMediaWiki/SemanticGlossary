@@ -27,7 +27,7 @@ use HashBagOStuff;
  *
  * @author mwjames
  */
-class ElementsCacheBuilderTest extends \PHPUnit_Framework_TestCase {
+class ElementsCacheBuilderTest extends \PHPUnit\Framework\TestCase {
 
 	public function testCanConstruct() {
 
@@ -35,7 +35,7 @@ class ElementsCacheBuilderTest extends \PHPUnit_Framework_TestCase {
 			->disableOriginalConstructor()
 			->getMockForAbstractClass();
 
-		$glossaryCache = $this->getMock( '\SG\Cache\GlossaryCache' );
+		$glossaryCache = $this->getMockBuilder( '\SG\Cache\GlossaryCache' )->getMock();
 
 		$this->assertInstanceOf(
 			'\SG\Cache\ElementsCacheBuilder',
