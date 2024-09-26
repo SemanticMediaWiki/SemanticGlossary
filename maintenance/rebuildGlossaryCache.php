@@ -54,7 +54,9 @@ class RebuildGlossaryCache extends \Maintenance {
 			return false;
 		}
 
-		$glossaryCacheRebuilder = new GlossaryCacheRebuilder(
+		$this->reportMessage( "This script is not yet finished with the latest version of Lingo!\n\n" );
+
+		/*$glossaryCacheRebuilder = new GlossaryCacheRebuilder(
 			StoreFactory::getStore(),
 			new GlossaryCache(),
 			array( $this, 'reportMessage' )
@@ -67,6 +69,7 @@ class RebuildGlossaryCache extends \Maintenance {
 		}
 
 		$this->reportMessage( $this->mDescription . "\n\n" . 'Use option --help for details.' . "\n"  );
+		*/
 		return false;
 	}
 

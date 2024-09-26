@@ -14,7 +14,7 @@ use SMW\DIProperty;
  *
  * @author mwjames
  */
-class PropertyRegistrationHelperTest extends \PHPUnit_Framework_TestCase {
+class PropertyRegistrationHelperTest extends \PHPUnit\Framework\TestCase {
 
 	public function testCanConstruct() {
 
@@ -46,7 +46,7 @@ class PropertyRegistrationHelperTest extends \PHPUnit_Framework_TestCase {
 			->expects( $this->exactly( 4 ) )
 			->method( 'registerPropertyAlias' );
 
-		
+
 		$propertyRegistrationHelper = new PropertyRegistrationHelper( $propertyRegistry );
 
 		$this->assertTrue(

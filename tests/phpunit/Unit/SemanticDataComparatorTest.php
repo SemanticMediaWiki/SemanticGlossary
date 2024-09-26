@@ -13,7 +13,7 @@ use SG\SemanticDataComparator;
  *
  * @author mwjames
  */
-class SemanticDataComparatorTest extends \PHPUnit_Framework_TestCase {
+class SemanticDataComparatorTest extends \PHPUnit\Framework\TestCase {
 
 	public function testCanConstruct() {
 

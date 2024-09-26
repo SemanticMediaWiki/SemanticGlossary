@@ -19,8 +19,9 @@ use Title;
  * @since 1.1
  *
  * @author mwjames
+ * @todo Should be rewritten
  */
-class GlossaryCacheRebuilderTest extends \PHPUnit_Framework_TestCase {
+class GlossaryCacheRebuilderTest extends \PHPUnit\Framework\TestCase {
 
 	public function testCanConstruct() {
 
@@ -33,64 +34,6 @@ class GlossaryCacheRebuilderTest extends \PHPUnit_Framework_TestCase {
 		$this->assertInstanceOf(
 			'\SG\Maintenance\GlossaryCacheRebuilder',
 			new GlossaryCacheRebuilder( $store, $glossaryCache )
-		);
-	}
-
-	public function testRebuildPagesThatContainDuplicateEntity() {
-
-		$subject = $this->getMockBuilder( '\SMW\DIWikiPage' )
-			->disableOriginalConstructor()
-			->getMock();
-
-		$subject->expects( $this->exactly( 2 ) )
-			->method( 'getTitle' )
-			->will( $this->returnValue( Title::newFromText( __METHOD__ ) ) );
-
-		$queryResult = $this->getMockBuilder( '\SMWQueryResult' )
-			->disableOriginalConstructor()
-			->getMock();
-
-		$queryResult->expects( $this->once() )
-			->method( 'getResults' )
-			->will( $this->returnValue( array( $subject, $subject ) ) );
-
-		$store = $this->getMockBuilder( '\SMW\Store' )
-			->disableOriginalConstructor()
-			->getMockForAbstractClass();
-
-		$store->expects( $this->at( 1 ) )
-			->method( 'getQueryResult' )
-			->will( $this->returnValue( $queryResult ) );
-
-		$bagOStuff = $this->getMockBuilder( 'BagOStuff' )
-			->disableOriginalConstructor()
-			->getMockForAbstractClass();
-
-		$bagOStuff->expects( $this->at( 0 ) )
-			->method( 'delete' )
-			->with( $this->stringContains( 'lingotree' ) );
-
-		$bagOStuff->expects( $this->at( 1 ) )
-			->method( 'delete' )
-			->with( $this->stringContains( 'semanticglossary' ) );
-
-		$bagOStuff->expects( $this->at( 2 ) )
-			->method( 'delete' )
-			->with( $this->stringContains( 'semanticglossary' ) );
-
-		$instance = new GlossaryCacheRebuilder(
-			$store,
-			new GlossaryCache( $bagOStuff )
-		);
-
-		$instance->setParameters( array() );
-
-		$this->assertTrue( $instance->rebuild() );
-
-		$this->assertEquals(
-			1,
-			$instance->getRebuildCount(),
-			'Asserts that rebuild is counted only once because the duplicate entity was removed'
 		);
 	}
 

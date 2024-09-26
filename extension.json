@@ -12,7 +12,7 @@
 	"license-name": "GPL-2.0-or-later",
 	"type": "semantic",
 	"requires": {
-		"MediaWiki": "~1.31",
+		"MediaWiki": ">= 1.39",
 		"extensions": {
 			"Lingo": ">= 3.2.1"
 		}
@@ -28,6 +28,10 @@
 	"AutoloadNamespaces": {
 		"SG\\": "src/"
 	},
+	"ExtensionFunctions": [
+		"SemanticGlossary::onExtensionFunction"
+	],
 	"callback": "SemanticGlossary::initExtension",
+	"load_composer_autoloader": true,
 	"manifest_version": 1
 }

@@ -18,7 +18,7 @@ use SG\LingoBackendAdapter;
  *
  * @author mwjames
  */
-class LingoBackendAdapterTest extends \PHPUnit_Framework_TestCase {
+class LingoBackendAdapterTest extends \PHPUnit\Framework\TestCase {
 
 	public function testCanConstruct() {
 
