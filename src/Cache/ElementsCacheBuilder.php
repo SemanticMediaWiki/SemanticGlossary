@@ -30,17 +30,23 @@ class ElementsCacheBuilder {
 
 	/* @var GlossaryCache */
 	private $glossaryCache;
-
+    /* @var mDiTerm */
 	private $mDiTerm;
+	/* @var mDiDefinition */
 	private $mDiDefinition;
+	/* @var mDiLink */
 	private $mDiLink;
+	/* @var mDiStyle */
 	private $mDiStyle;
-
+    /* @var mDvTerm */
 	private $mDvTerm;
+	/* @var mDvDefinition */
 	private $mDvDefinition;
+	/* @var mDvLink */
 	private $mDvLink;
+	/* @var mDvStyle */
 	private $mDvStyle;
-
+    /* @var queryResults */
 	private array $queryResults = [];
 
 	/**

@@ -21,7 +21,7 @@ class LingoBackendAdapter extends Backend {
 
 	/* @var ElementsCacheBuilder */
 	protected $elementsCacheBuilder = null;
-
+	/* @var array An array of elements */
 	protected $elements = array();
 
 	/**

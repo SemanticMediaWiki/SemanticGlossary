@@ -28,9 +28,11 @@ class GlossaryCacheRebuilder {
 
 	/** @var GlossaryCache */
 	private $glossaryCache;
-
+    /** @var reporter */
 	private $reporter = null;
+	/** @var rebuildCount */
 	private $rebuildCount = 0;
+	/** @var verbose */
 	private $verbose = false;
 
 	/**

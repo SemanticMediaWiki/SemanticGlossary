@@ -24,8 +24,11 @@ use Title;
  */
 class MwDBSQLStoreIntegrationTest extends MwDBaseUnitTestCase {
 
+	/** @var PageCreator */
 	private $pageCreator;
+	/** @var PageDeleter */
 	private $pageDeleter;
+	/** @var RunnerFactory */
 	private $runnerFactory;
 
 	protected function setUp() :void {

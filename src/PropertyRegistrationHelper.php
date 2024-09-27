@@ -23,7 +23,7 @@ class PropertyRegistrationHelper {
 	const SG_DEFINITION = '___gld';
 	const SG_LINK  = '___gll';
 	const SG_STYLE = '___gls';
-
+    /* @var propertyRegistry */
 	private $propertyRegistry;
 
 	/**
