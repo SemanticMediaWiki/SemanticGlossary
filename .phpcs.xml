@@ -28,7 +28,6 @@
         <exclude name="PSR12.Properties.ConstantVisibility.NotFound" />
         <exclude name="Squiz.ControlStructures.ControlSignature.SpaceAfterKeyword" />
         <exclude name="Universal.Lists.DisallowLongListSyntax.Found" />
-        <exclude name="PSR2.Methods.FunctionClosingBrace.SpacingBeforeClose" />
         <exclude name="MediaWiki.Commenting.FunctionComment.MissingReturn" />
 	</rule>
 	<rule ref="MediaWiki.NamingConventions.ValidGlobalName">

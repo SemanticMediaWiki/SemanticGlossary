@@ -64,7 +64,6 @@ class HookRegistry {
 		$this->handlers['SMW::Property::initProperties'] = static function ( $propertyRegistry ) {
 			$propertyRegistrationHelper = new PropertyRegistrationHelper( $propertyRegistry );
 			return $propertyRegistrationHelper->registerProperties();
-
 		};
 
 		/**
