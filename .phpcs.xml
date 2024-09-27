@@ -3,7 +3,6 @@
 	<rule ref="./vendor/mediawiki/mediawiki-codesniffer/MediaWiki">
         <exclude name="MediaWiki.Classes.UnsortedUseStatements.UnsortedUse" />
         <exclude name="MediaWiki.Commenting.MissingCovers.MissingCovers" />
-        <exclude name="Generic.CodeAnalysis.AssignmentInCondition.Found" />
         <exclude name="MediaWiki.PHPUnit.AssertEmpty.AssertEmptyUsed" />
         <exclude name="PSR12.Functions.ReturnTypeDeclaration.SpaceBeforeColon" />
         <exclude name="MediaWiki.PHPUnit.MockBoilerplate.returnValue" />
