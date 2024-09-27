@@ -67,7 +67,7 @@ class GlossaryCacheRebuilder {
 	/**
 	 * @since 1.1
 	 *
-	 * @return boolean
+	 * @return bool
 	 */
 	public function rebuild() {
 		$pages = $this->store->getQueryResult( $this->buildQuery() )->getResults();
@@ -143,6 +143,9 @@ class GlossaryCacheRebuilder {
 
 	/**
 	 * @codeCoverageIgnore
+	 *
+	 * @param string $message The message to report.
+	 * @param bool $output Whether to output the message (default is true).
 	 */
 	private function reportMessage( $message, $output = true ) {
 		if ( is_callable( $this->reporter ) && $output ) {

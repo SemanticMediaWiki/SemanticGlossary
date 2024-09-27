@@ -43,7 +43,7 @@ class SemanticDataComparator {
 	 *
 	 * @param string $propertyId
 	 *
-	 * @return boolean
+	 * @return bool
 	 */
 	public function compareForProperty( $propertyId ) {
 		list( $newEntries, $oldEntries ) = $this->lookupPropertyValues( $propertyId );

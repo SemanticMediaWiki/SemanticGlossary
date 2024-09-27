@@ -2,9 +2,7 @@
 <ruleset>
 	<rule ref="./vendor/mediawiki/mediawiki-codesniffer/MediaWiki">
         <exclude name="MediaWiki.Classes.UnsortedUseStatements.UnsortedUse" />
-        <exclude name="MediaWiki.Commenting.FunctionComment.UppercasePrimitiveCallableReturn" />
         <exclude name="MediaWiki.Usage.StaticClosure.StaticClosure" />
-        <exclude name="MediaWiki.Commenting.FunctionComment.NotShortBoolReturn" />
         <exclude name="Generic.PHP.SAPIUsage.FunctionFound" />
         <exclude name="MediaWiki.Commenting.MissingCovers.MissingCovers" />
         <exclude name="MediaWiki.Commenting.PropertyDocumentation.MissingDocumentationPrivate" />
@@ -21,7 +19,6 @@
         <exclude name="MediaWiki.WhiteSpace.SpaceyParenthesis.SingleSpaceAfterOpenParenthesis" />
         <exclude name="MediaWiki.WhiteSpace.MultipleEmptyLines.MultipleEmptyLines" />
         <exclude name="MediaWiki.PHPUnit.SpecificAssertions.assertArrayHasKey" />
-        <exclude name="MediaWiki.Commenting.FunctionComment.MissingParamTag" />
         <exclude name="MediaWiki.Commenting.FunctionComment.MissingDocumentationPrivate" />
         <exclude name="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.NewLineComment" />
         <exclude name="MediaWiki.Commenting.FunctionComment.DefaultNullTypeParam" />
@@ -39,7 +36,6 @@
         <exclude name="MediaWiki.Usage.ForbiddenFunctions.sizeof" />
         <exclude name="Squiz.Functions.FunctionDeclarationArgumentSpacing.SpacingBeforeClose" />
         <exclude name="MediaWiki.Commenting.FunctionComment.ParamNameNoMatch" />
-        <exclude name="MediaWiki.Commenting.FunctionComment.NotShortBoolParam" />
         <exclude name="PSR12.Properties.ConstantVisibility.NotFound" />
         <exclude name="Squiz.ControlStructures.ControlSignature.SpaceAfterKeyword" />
         <exclude name="Universal.Lists.DisallowLongListSyntax.Found" />

@@ -38,7 +38,7 @@ class PropertyRegistrationHelper {
 	/**
 	 * @since 1.0
 	 *
-	 * @return boolean
+	 * @return bool
 	 */
 	public function registerProperties() {
 		$propertyDefinitions = array(

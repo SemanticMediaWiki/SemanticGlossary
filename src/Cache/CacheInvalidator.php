@@ -72,7 +72,7 @@ class CacheInvalidator {
 	 * @param Store $store
 	 * @param SemanticData $semanticData
 	 *
-	 * @return boolean
+	 * @return bool
 	 */
 	public function invalidateCacheOnStoreUpdate( Store $store, SemanticData $semanticData = null ) {
 		if ( $semanticData === null ) {
@@ -94,9 +94,9 @@ class CacheInvalidator {
 	 *
 	 * @param Store $store
 	 * @param DIWikiPage $subject
-	 * @param boolean|true $purgeLingo
+	 * @param bool|true $purgeLingo
 	 *
-	 * @return boolean
+	 * @return bool
 	 */
 	public function invalidateCacheOnPageDelete( Store $store, DIWikiPage $subject, $purgeLingo = true ) {
 		$this->matchSubobjectsToSubject( $store, $subject );
@@ -114,7 +114,7 @@ class CacheInvalidator {
 	 *
 	 * @param LinkTarget $title
 	 *
-	 * @return boolean
+	 * @return bool
 	 */
 	public function invalidateCacheOnPageMove( LinkTarget $title ) {
 		$this->purgeCache( DIWikiPage::newFromText( $title->getDBkey(), $title->getNamespace() ));
