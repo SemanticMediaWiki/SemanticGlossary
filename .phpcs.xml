@@ -3,10 +3,8 @@
 	<rule ref="./vendor/mediawiki/mediawiki-codesniffer/MediaWiki">
         <exclude name="MediaWiki.Classes.UnsortedUseStatements.UnsortedUse" />
         <exclude name="MediaWiki.Commenting.MissingCovers.MissingCovers" />
-        <exclude name="PSR12.Functions.ReturnTypeDeclaration.SpaceBeforeColon" />
         <exclude name="MediaWiki.PHPUnit.MockBoilerplate.returnValue" />
         <exclude name="MediaWiki.PHPUnit.SetMethods.SetMethods" />
-        <exclude name="PSR12.Functions.ReturnTypeDeclaration.SpaceBeforeReturnType" />
         <exclude name="Generic.Arrays.DisallowLongArraySyntax.Found" />
         <exclude name="MediaWiki.PHPUnit.MockBoilerplate.ConstraintEqualTo" />
         <exclude name="MediaWiki.WhiteSpace.SpaceyParenthesis.SingleSpaceAfterOpenParenthesis" />
