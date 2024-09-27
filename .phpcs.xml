@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<ruleset>
+	<rule ref="./vendor/mediawiki/mediawiki-codesniffer/MediaWiki">
+        <exclude name="MediaWiki.Classes.UnusedUseStatement.UnnecessaryUse" />
+        <exclude name="MediaWiki.Classes.UnsortedUseStatements.UnsortedUse" />
+        <exclude name="MediaWiki.Classes.UnusedUseStatement.UnusedUse" />
+        <exclude name="MediaWiki.WhiteSpace.EmptyLinesBetweenUse.Found" />
+        <exclude name="MediaWiki.Commenting.LicenseComment.InvalidLicenseTag" />
+        <exclude name="Squiz.WhiteSpace.FunctionOpeningBraceSpace.SpacingAfter" />
+        <exclude name="MediaWiki.ExtraCharacters.ParenthesesAroundKeyword.ParenthesesAroundKeywords" />
+        <exclude name="MediaWiki.Commenting.LicenseComment.InvalidLicenseTag" />
+        <exclude name="MediaWiki.Commenting.FunctionComment.UppercasePrimitiveCallableReturn" />
+        <exclude name="MediaWiki.Usage.StaticClosure.StaticClosure" />
+        <exclude name="MediaWiki.Commenting.FunctionComment.NotShortBoolReturn" />
+        <exclude name="Generic.PHP.SAPIUsage.FunctionFound" />
+        <exclude name="MediaWiki.Commenting.MissingCovers.MissingCovers" />
+        <exclude name="MediaWiki.Commenting.PropertyDocumentation.MissingDocumentationPrivate" />
+		<exclude name="MediaWiki.Commenting.PropertyDocumentation.MissingDocumentationProtected" />
+		<exclude name="MediaWiki.Commenting.PropertyDocumentation.MissingDocumentationPublic" />
+        <exclude name="Generic.CodeAnalysis.AssignmentInCondition.Found" />
+        <exclude name="MediaWiki.PHPUnit.AssertEmpty.AssertEmptyUsed" />
+        <exclude name="PSR12.Functions.ReturnTypeDeclaration.SpaceBeforeColon" />
+        <exclude name="MediaWiki.PHPUnit.MockBoilerplate.returnValue" />
+        <exclude name="MediaWiki.PHPUnit.SetMethods.SetMethods" />
+        <exclude name="PSR12.Functions.ReturnTypeDeclaration.SpaceBeforeReturnType" />
+        <exclude name="Generic.Arrays.DisallowLongArraySyntax.Found" />
+        <exclude name="MediaWiki.PHPUnit.MockBoilerplate.ConstraintEqualTo" />
+        <exclude name="MediaWiki.WhiteSpace.SpaceyParenthesis.SingleSpaceAfterOpenParenthesis" />
+        <exclude name="MediaWiki.WhiteSpace.MultipleEmptyLines.MultipleEmptyLines" />
+        <exclude name="MediaWiki.PHPUnit.SpecificAssertions.assertArrayHasKey" />
+        <exclude name="MediaWiki.Commenting.FunctionComment.MissingParamTag" />
+        <exclude name="MediaWiki.Commenting.FunctionComment.MissingDocumentationPrivate" />
+        <exclude name="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.NewLineComment" />
+        <exclude name="MediaWiki.Commenting.FunctionComment.DefaultNullTypeParam" />
+        <exclude name="MediaWiki.Commenting.FunctionComment.NoParamType" />
+        <exclude name="Generic.Files.LineLength.TooLong" />
+        <exclude name="Generic.WhiteSpace.LanguageConstructSpacing.IncorrectSingle" />
+        <exclude name="Generic.WhiteSpace.DisallowSpaceIndent.SpacesUsed" />
+        <exclude name="MediaWiki.Commenting.PropertyDocumentation.WrongStyle" />
+        <exclude name="Generic.WhiteSpace.ScopeIndent.Incorrect" />
+        <exclude name="Generic.Formatting.DisallowMultipleStatements.SameLine" />
+        <exclude name="Generic.CodeAnalysis.EmptyPHPStatement.SemicolonWithoutCodeDetected" />
+        <exclude name="Generic.Formatting.MultipleStatementAlignment.IncorrectWarning" />
+        <exclude name="Generic.PHP.ForbiddenFunctions.FoundWithAlternative" />
+        <exclude name="MediaWiki.WhiteSpace.SpaceyParenthesis.SingleSpaceBeforeCloseParenthesis" />
+        <exclude name="MediaWiki.Usage.ForbiddenFunctions.sizeof" />
+        <exclude name="Squiz.Functions.FunctionDeclarationArgumentSpacing.SpacingBeforeClose" />
+        <exclude name="MediaWiki.Commenting.FunctionComment.ParamNameNoMatch" />
+        <exclude name="MediaWiki.Commenting.FunctionComment.NotShortBoolParam" />
+        <exclude name="PSR12.Properties.ConstantVisibility.NotFound" />
+        <exclude name="Squiz.ControlStructures.ControlSignature.SpaceAfterKeyword" />
+        <exclude name="Universal.Lists.DisallowLongListSyntax.Found" />
+        <exclude name="PSR2.Methods.FunctionClosingBrace.SpacingBeforeClose" />
+        <exclude name="MediaWiki.Commenting.FunctionComment.MissingReturn" />
+	</rule>
+	<rule ref="MediaWiki.NamingConventions.ValidGlobalName">
+		<properties>
+			<property name="allowedPrefixes" type="array" value="eg,wg" />
+		</properties>
+	</rule>
+	<rule ref="MediaWiki.Commenting.FunctionComment.ObjectTypeHintReturn">
+		<severity>0</severity>
+	</rule>
+	<file>.</file>
+	<exclude-pattern>/(vendor|conf)/</exclude-pattern>
+	<exclude-pattern type="relative">extensions/*</exclude-pattern>
+	<arg name="extensions" value="php"/>
+	<arg name="encoding" value="UTF-8"/>
+</ruleset>
