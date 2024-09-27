@@ -2,7 +2,6 @@
 
 namespace SG\Maintenance;
 
-use SG\Maintenance\GlossaryCacheRebuilder;
 use SG\Cache\GlossaryCache;
 
 use SMW\StoreFactory;
