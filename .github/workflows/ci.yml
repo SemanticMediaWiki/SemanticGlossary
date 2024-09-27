@@ -22,7 +22,7 @@ jobs:
             php_version: 8.1
             database_type: mysql
             database_image: "mariadb:10"
-            coverage: false
+            coverage: true
             experimental: true
     env:
       MW_VERSION: ${{ matrix.mediawiki_version }}
