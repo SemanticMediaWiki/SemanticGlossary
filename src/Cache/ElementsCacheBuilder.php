@@ -214,7 +214,7 @@ class ElementsCacheBuilder {
 	private function getLinkValue( $page ) {
 		$link = null;
 
-		$links = $this->store->getPropertyValues( $page, $this->mDiLink );;
+		$links = $this->store->getPropertyValues( $page, $this->mDiLink );
 
 		if ( !empty( $links ) ) {
 			$this->mDvLink->setDataItem( $links[0] );
