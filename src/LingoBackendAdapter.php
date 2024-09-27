@@ -63,17 +63,16 @@ class LingoBackendAdapter extends Backend {
 	}
 
 	/**
-	 * This backend is cache-enabled so this function returns true.
+	 * This backend doesn't use caching, since we do specific queries for glossary 
+	 * terms. This was previously set to true, since the whole glossary would be 
+	 * queried upon. 
 	 *
-	 * Actual caching is done by the parser, the backend just calls
-	 * Parser::purgeCache when necessary.
-	 *
-	 * @since  1.1
+	 * @since  5.0
 	 *
 	 * @return boolean
 	 */
 	public function useCache() {
-		return true;
+		return false;
 	}
 
 }
