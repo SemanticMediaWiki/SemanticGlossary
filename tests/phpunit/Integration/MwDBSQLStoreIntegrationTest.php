@@ -71,7 +71,7 @@ class MwDBSQLStoreIntegrationTest extends MwDBaseUnitTestCase {
 			new DIProperty( PropertyRegistrationHelper::SG_TERM )
 		);
 
-		$this->assertEmpty( $values );
+		$this->assertCount( 0, $values );
 	}
 
 	public function testRebuildGlossaryCacheMaintenanceRun() {
