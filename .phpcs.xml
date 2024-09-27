@@ -11,20 +11,11 @@
         <exclude name="Generic.WhiteSpace.DisallowSpaceIndent.SpacesUsed" />
         <exclude name="MediaWiki.Commenting.PropertyDocumentation.WrongStyle" />
         <exclude name="Generic.WhiteSpace.ScopeIndent.Incorrect" />
-        <exclude name="Generic.CodeAnalysis.EmptyPHPStatement.SemicolonWithoutCodeDetected" />
         <exclude name="Generic.PHP.ForbiddenFunctions.FoundWithAlternative" />
         <exclude name="MediaWiki.Usage.ForbiddenFunctions.sizeof" />
         <exclude name="MediaWiki.Commenting.FunctionComment.ParamNameNoMatch" />
         <exclude name="PSR12.Properties.ConstantVisibility.NotFound" />
         <exclude name="MediaWiki.Commenting.FunctionComment.MissingReturn" />
-	</rule>
-	<rule ref="MediaWiki.NamingConventions.ValidGlobalName">
-		<properties>
-			<property name="allowedPrefixes" type="array" value="eg,wg" />
-		</properties>
-	</rule>
-	<rule ref="MediaWiki.Commenting.FunctionComment.ObjectTypeHintReturn">
-		<severity>0</severity>
 	</rule>
 	<file>.</file>
 	<exclude-pattern>/(vendor|conf)/</exclude-pattern>
