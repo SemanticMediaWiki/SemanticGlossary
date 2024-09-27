@@ -5,7 +5,6 @@
         <exclude name="MediaWiki.Commenting.MissingCovers.MissingCovers" />
         <exclude name="MediaWiki.PHPUnit.SetMethods.SetMethods" />
         <exclude name="Generic.Arrays.DisallowLongArraySyntax.Found" />
-        <exclude name="MediaWiki.PHPUnit.SpecificAssertions.assertArrayHasKey" />
         <exclude name="MediaWiki.Commenting.FunctionComment.MissingDocumentationPrivate" />
         <exclude name="MediaWiki.Commenting.FunctionComment.DefaultNullTypeParam" />
         <exclude name="MediaWiki.Commenting.FunctionComment.NoParamType" />

@@ -28,7 +28,7 @@ class ConfigurationIntegrityTest extends \PHPUnit\Framework\TestCase {
 	}
 
 	protected function assertCacheType( $cacheType ) {
-		$this->assertTrue( array_key_exists( $cacheType, $GLOBALS['wgObjectCaches'] ) );
+		$this->assertArrayHasKey( $cacheType, $GLOBALS[ 'wgObjectCaches' ] );
 	}
 
 }
