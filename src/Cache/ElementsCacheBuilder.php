@@ -196,7 +196,7 @@ class ElementsCacheBuilder {
 	}
 
 	private function getDefinitionValue( $page ) {
-		$definition  = null;
+		$definition = null;
 
 		$definitions = $this->store->getPropertyValues(
 			$page,
@@ -212,7 +212,7 @@ class ElementsCacheBuilder {
 	}
 
 	private function getLinkValue( $page ) {
-		$link  = null;
+		$link = null;
 
 		$links = $this->store->getPropertyValues( $page, $this->mDiLink );;
 
@@ -225,9 +225,9 @@ class ElementsCacheBuilder {
 	}
 
 	private function getStyleValue( $page ) {
-		$style  = null;
+		$style = null;
 
-		$styles = $this->store->getPropertyValues( $page, $this->mDiStyle );;
+		$styles = $this->store->getPropertyValues( $page, $this->mDiStyle );
 
 		if ( !empty( $styles ) ) {
 		  $this->mDvStyle->setDataItem( $styles[0] );

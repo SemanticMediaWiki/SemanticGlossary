@@ -13,9 +13,7 @@
         <exclude name="Generic.WhiteSpace.DisallowSpaceIndent.SpacesUsed" />
         <exclude name="MediaWiki.Commenting.PropertyDocumentation.WrongStyle" />
         <exclude name="Generic.WhiteSpace.ScopeIndent.Incorrect" />
-        <exclude name="Generic.Formatting.DisallowMultipleStatements.SameLine" />
         <exclude name="Generic.CodeAnalysis.EmptyPHPStatement.SemicolonWithoutCodeDetected" />
-        <exclude name="Generic.Formatting.MultipleStatementAlignment.IncorrectWarning" />
         <exclude name="Generic.PHP.ForbiddenFunctions.FoundWithAlternative" />
         <exclude name="MediaWiki.Usage.ForbiddenFunctions.sizeof" />
         <exclude name="MediaWiki.Commenting.FunctionComment.ParamNameNoMatch" />
