@@ -8,7 +8,6 @@
         <exclude name="MediaWiki.Commenting.FunctionComment.MissingDocumentationPrivate" />
         <exclude name="MediaWiki.Commenting.FunctionComment.DefaultNullTypeParam" />
         <exclude name="MediaWiki.Commenting.FunctionComment.NoParamType" />
-        <exclude name="Generic.Files.LineLength.TooLong" />
         <exclude name="Generic.WhiteSpace.DisallowSpaceIndent.SpacesUsed" />
         <exclude name="MediaWiki.Commenting.PropertyDocumentation.WrongStyle" />
         <exclude name="Generic.WhiteSpace.ScopeIndent.Incorrect" />

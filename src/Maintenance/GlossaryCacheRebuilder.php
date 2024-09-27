@@ -91,7 +91,8 @@ class GlossaryCacheRebuilder {
 
 				$this->rebuildCount++;
 
-				$this->reportMessage( "($this->rebuildCount) Processing page " . $title->getPrefixedDBkey() . " ...\n", $this->verbose );
+				$this->reportMessage( "($this->rebuildCount) Processing page " .
+				$title->getPrefixedDBkey() . " ...\n", $this->verbose );
 
 				// FIXME Wrong approach, users outside of smw-core should not
 				// directly create an instance and instead use a factory for

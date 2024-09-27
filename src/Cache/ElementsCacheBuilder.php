@@ -71,7 +71,9 @@ class ElementsCacheBuilder {
 		$cacheId = substr( md5( implode( '', $searchTerms ) ), 0, 8 );
 
 		if ( !isset( $this->queryResults[ $cacheId ] ) ) {
-			$this->queryResults[ $cacheId ] = $this->store->getQueryResult( $this->buildQuery( $searchTerms ) )->getResults();
+			$this->queryResults[ $cacheId ] = $this->store
+				->getQueryResult( $this->buildQuery( $searchTerms ) )
+				->getResults();
 		}
 
 		// find next line
