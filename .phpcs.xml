@@ -5,7 +5,6 @@
         <exclude name="MediaWiki.Commenting.MissingCovers.MissingCovers" />
         <exclude name="MediaWiki.PHPUnit.SetMethods.SetMethods" />
         <exclude name="Generic.Arrays.DisallowLongArraySyntax.Found" />
-        <exclude name="MediaWiki.WhiteSpace.SpaceyParenthesis.SingleSpaceAfterOpenParenthesis" />
         <exclude name="MediaWiki.WhiteSpace.MultipleEmptyLines.MultipleEmptyLines" />
         <exclude name="MediaWiki.PHPUnit.SpecificAssertions.assertArrayHasKey" />
         <exclude name="MediaWiki.Commenting.FunctionComment.MissingDocumentationPrivate" />
@@ -21,7 +20,6 @@
         <exclude name="Generic.CodeAnalysis.EmptyPHPStatement.SemicolonWithoutCodeDetected" />
         <exclude name="Generic.Formatting.MultipleStatementAlignment.IncorrectWarning" />
         <exclude name="Generic.PHP.ForbiddenFunctions.FoundWithAlternative" />
-        <exclude name="MediaWiki.WhiteSpace.SpaceyParenthesis.SingleSpaceBeforeCloseParenthesis" />
         <exclude name="MediaWiki.Usage.ForbiddenFunctions.sizeof" />
         <exclude name="Squiz.Functions.FunctionDeclarationArgumentSpacing.SpacingBeforeClose" />
         <exclude name="MediaWiki.Commenting.FunctionComment.ParamNameNoMatch" />

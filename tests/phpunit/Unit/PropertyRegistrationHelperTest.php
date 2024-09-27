@@ -73,9 +73,9 @@ class PropertyRegistrationHelperTest extends \PHPUnit\Framework\TestCase {
 		$provider = array();
 
 		$provider[] = array( PropertyRegistrationHelper::SG_TERM, SG_PROP_GLT );
-		$provider[] = array(  PropertyRegistrationHelper::SG_DEFINITION, SG_PROP_GLD );
-		$provider[] = array(  PropertyRegistrationHelper::SG_LINK, SG_PROP_GLL );
-		$provider[] = array(  PropertyRegistrationHelper::SG_STYLE, SG_PROP_GLS );
+		$provider[] = array( PropertyRegistrationHelper::SG_DEFINITION, SG_PROP_GLD );
+		$provider[] = array( PropertyRegistrationHelper::SG_LINK, SG_PROP_GLL );
+		$provider[] = array( PropertyRegistrationHelper::SG_STYLE, SG_PROP_GLS );
 
 		return $provider;
 	}

@@ -127,7 +127,7 @@ class ElementsCacheBuilder {
 		return $ret;
 	}
 
-	private function buildQuery( array $searchTerms = []) {
+	private function buildQuery( array $searchTerms = [] ) {
 		$dataValueFactory = DataValueFactory::getInstance();
 		$descriptionFactory = new DescriptionFactory();
 
