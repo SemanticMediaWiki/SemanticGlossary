@@ -2,7 +2,6 @@
 <ruleset>
 	<rule ref="./vendor/mediawiki/mediawiki-codesniffer/MediaWiki">
         <exclude name="MediaWiki.Classes.UnsortedUseStatements.UnsortedUse" />
-        <exclude name="MediaWiki.Usage.StaticClosure.StaticClosure" />
         <exclude name="Generic.PHP.SAPIUsage.FunctionFound" />
         <exclude name="MediaWiki.Commenting.MissingCovers.MissingCovers" />
         <exclude name="MediaWiki.Commenting.PropertyDocumentation.MissingDocumentationPrivate" />
