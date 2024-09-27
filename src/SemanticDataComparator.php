@@ -46,7 +46,9 @@ class SemanticDataComparator {
 	 * @return bool
 	 */
 	public function compareForProperty( $propertyId ) {
-		list( $newEntries, $oldEntries ) = $this->lookupPropertyValues( $propertyId );
+		$values = $this->lookupPropertyValues( $propertyId );
+        $newEntries = $values[ 0 ];
+        $oldEntries = $values[ 1 ];
 
 		if ( $this->hasNotSamePropertyValuesCount( $newEntries, $oldEntries ) ) {
 			return true;

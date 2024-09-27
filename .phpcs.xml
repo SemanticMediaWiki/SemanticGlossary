@@ -18,10 +18,8 @@
         <exclude name="Generic.Formatting.MultipleStatementAlignment.IncorrectWarning" />
         <exclude name="Generic.PHP.ForbiddenFunctions.FoundWithAlternative" />
         <exclude name="MediaWiki.Usage.ForbiddenFunctions.sizeof" />
-        <exclude name="Squiz.Functions.FunctionDeclarationArgumentSpacing.SpacingBeforeClose" />
         <exclude name="MediaWiki.Commenting.FunctionComment.ParamNameNoMatch" />
         <exclude name="PSR12.Properties.ConstantVisibility.NotFound" />
-        <exclude name="Universal.Lists.DisallowLongListSyntax.Found" />
         <exclude name="MediaWiki.Commenting.FunctionComment.MissingReturn" />
 	</rule>
 	<rule ref="MediaWiki.NamingConventions.ValidGlobalName">
