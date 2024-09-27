@@ -3,9 +3,6 @@
 namespace SG\Tests\Maintenance;
 
 use SG\Maintenance\GlossaryCacheRebuilder;
-use SG\Cache\GlossaryCache;
-
-use Title;
 
 /**
  * @uses \SG\Maintenance\GlossaryCacheRebuilder

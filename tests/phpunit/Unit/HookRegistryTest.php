@@ -3,7 +3,6 @@
 namespace SG\Tests;
 
 use SG\HookRegistry;
-use SMW\DIProperty;
 
 /**
  * @covers \SG\HookRegistry
