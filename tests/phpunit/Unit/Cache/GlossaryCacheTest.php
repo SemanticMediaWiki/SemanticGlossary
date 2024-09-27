@@ -46,7 +46,7 @@ class GlossaryCacheTest extends \PHPUnit\Framework\TestCase {
 
 		$subject->expects( $this->once() )
 			->method( 'getSerialization' )
-			->will( $this->returnValue( 'Foo' ) );
+			->willReturn( 'Foo' );
 
 		$this->assertIsString(
 			$instance->getKeyForSubject( $subject )

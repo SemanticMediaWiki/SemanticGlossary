@@ -126,8 +126,7 @@ class CacheInvalidatorTest extends \PHPUnit\Framework\TestCase {
 
 		$store->expects( $this->once() )
 			->method( 'getProperties' )
-			->with( $this->equalTo( $subject ) )
-			->will( $this->returnValue( array() ) );
+			->willReturn( array() );
 
 		$instance = new CacheInvalidator();
 		$instance->setCache( new GlossaryCache( new HashBagOStuff() ) );
@@ -146,15 +145,11 @@ class CacheInvalidatorTest extends \PHPUnit\Framework\TestCase {
 
 		$store->expects( $this->once() )
 			->method( 'getProperties' )
-			->with( $this->equalTo( $subject ) )
-			->will( $this->returnValue( array( '_SOBJ' => $subobject ) ) );
+			->willReturn( array( '_SOBJ' => $subobject ) );
 
 		$store->expects( $this->once() )
 			->method( 'getPropertyValues' )
-			->with(
-				$this->equalTo( $subject ),
-				$this->equalTo( $subobject ) )
-			->will( $this->returnValue( $newSubject ) );
+			->willReturn( $newSubject );
 
 		$glossaryCache = new GlossaryCache( new HashBagOStuff() );
 

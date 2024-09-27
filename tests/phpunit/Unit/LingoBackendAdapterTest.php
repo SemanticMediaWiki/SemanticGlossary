@@ -38,7 +38,7 @@ class LingoBackendAdapterTest extends \PHPUnit\Framework\TestCase {
 
 		$elementsCacheBuilder->expects( $this->once() )
 			->method( 'getElements' )
-			->will( $this->returnValue( array() ) );
+			->willReturn( array() );
 
 		$instance = new LingoBackendAdapter(
 			$lingoMessageLog,
