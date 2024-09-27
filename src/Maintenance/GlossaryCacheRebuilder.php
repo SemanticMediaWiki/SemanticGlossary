@@ -16,7 +16,7 @@ use SMWThingDescription as ThingDescription;
  *
  * @ingroup SG
  *
- * @license GNU GPL v2+
+ * @license GPL-2.0-or-later
  * @since 1.1
  *
  * @author mwjames

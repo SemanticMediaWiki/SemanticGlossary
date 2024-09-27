@@ -17,7 +17,7 @@ use Lingo\Element;
  * @ingroup SG
  * @ingroup SemanticGlossary
  *
- * @license GNU GPL v2+
+ * @license GPL-2.0-or-later
  * @since 1.1
  *
  * @author Stephan Gambke

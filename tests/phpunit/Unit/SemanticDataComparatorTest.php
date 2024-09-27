@@ -8,7 +8,7 @@ use SG\SemanticDataComparator;
  * @covers \SG\SemanticDataComparator
  * @group extension-semantic-glossary
  *
- * @license GNU GPL v2+
+ * @license GPL-2.0-or-later
  * @since 1.0
  *
  * @author mwjames

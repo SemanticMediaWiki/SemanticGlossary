@@ -19,7 +19,7 @@ use HashBagOStuff;
  * @group SGExtension
  * @group extension-semantic-glossary
  *
- * @license GNU GPL v2+
+ * @license GPL-2.0-or-later
  * @since 1.1
  *
  * @author mwjames
