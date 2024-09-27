@@ -19,10 +19,10 @@ define( 'SG_PROP_GLS', 'Glossary-Style' );
  */
 class PropertyRegistrationHelper {
 
-	const SG_TERM = '___glt';
-	const SG_DEFINITION = '___gld';
-	const SG_LINK  = '___gll';
-	const SG_STYLE = '___gls';
+	public const SG_TERM = '___glt';
+	public const SG_DEFINITION = '___gld';
+	public const SG_LINK  = '___gll';
+	public const SG_STYLE = '___gls';
     /* @var propertyRegistry */
 	private $propertyRegistry;
 

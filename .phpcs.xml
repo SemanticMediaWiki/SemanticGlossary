@@ -14,7 +14,6 @@
         <exclude name="Generic.PHP.ForbiddenFunctions.FoundWithAlternative" />
         <exclude name="MediaWiki.Usage.ForbiddenFunctions.sizeof" />
         <exclude name="MediaWiki.Commenting.FunctionComment.ParamNameNoMatch" />
-        <exclude name="PSR12.Properties.ConstantVisibility.NotFound" />
         <exclude name="MediaWiki.Commenting.FunctionComment.MissingReturn" />
 	</rule>
 	<file>.</file>
