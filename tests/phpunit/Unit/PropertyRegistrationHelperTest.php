@@ -43,8 +43,6 @@ class PropertyRegistrationHelperTest extends \PHPUnit\Framework\TestCase {
 		$propertyRegistry
 			->expects( $this->exactly( 4 ) )
 			->method( 'registerPropertyAlias' );
-
-
 		$propertyRegistrationHelper = new PropertyRegistrationHelper( $propertyRegistry );
 
 		$this->assertTrue(

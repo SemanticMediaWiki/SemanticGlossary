@@ -50,7 +50,7 @@ class GlossaryCache {
 	 * @return string
 	 */
 	public function getKeyForSubject( DIWikiPage $subject ) {
-		return  $this->getCache()->makeKey( 'ext', 'semanticglossary', $subject->getSerialization() );
+		return $this->getCache()->makeKey( 'ext', 'semanticglossary', $subject->getSerialization() );
 	}
 
 	/**
@@ -59,7 +59,7 @@ class GlossaryCache {
 	 * @return string
 	 */
 	public function getKeyForLingo() {
-        return  $this->getCache()->makeKey( 'ext', 'lingo', 'lingotree' );
+        return $this->getCache()->makeKey( 'ext', 'lingo', 'lingotree' );
 	}
 
 	/**

@@ -45,7 +45,7 @@ class GlossaryCacheRebuilder {
 	public function __construct( Store $store, GlossaryCache $glossaryCache, $reporter = null ) {
 		$this->store = $store;
 		$this->glossaryCache = $glossaryCache;
-		$this->reporter = $reporter; // Should be a MessageReporter instance
+		$this->reporter = $reporter;
 	}
 
 	/**
