@@ -79,4 +79,4 @@ class RebuildGlossaryCache extends \Maintenance {
 }
 
 $maintClass = 'SG\Maintenance\RebuildGlossaryCache';
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;
