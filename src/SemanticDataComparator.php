@@ -79,7 +79,7 @@ class SemanticDataComparator {
 		$newEntries = array();
 		$oldEntries = array();
 
-		try{
+		try {
 			$property = new DIProperty( $propertyId );
 		} catch ( \Exception $e ) {
 			return array(

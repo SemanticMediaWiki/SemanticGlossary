@@ -26,7 +26,6 @@
         <exclude name="Squiz.Functions.FunctionDeclarationArgumentSpacing.SpacingBeforeClose" />
         <exclude name="MediaWiki.Commenting.FunctionComment.ParamNameNoMatch" />
         <exclude name="PSR12.Properties.ConstantVisibility.NotFound" />
-        <exclude name="Squiz.ControlStructures.ControlSignature.SpaceAfterKeyword" />
         <exclude name="Universal.Lists.DisallowLongListSyntax.Found" />
         <exclude name="MediaWiki.Commenting.FunctionComment.MissingReturn" />
 	</rule>
