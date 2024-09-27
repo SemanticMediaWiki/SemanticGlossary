@@ -70,7 +70,6 @@ class GlossaryCacheRebuilder {
 	 * @return boolean
 	 */
 	public function rebuild() {
-
 		$pages = $this->store->getQueryResult( $this->buildQuery() )->getResults();
 
 		$this->removeEntitiesFromCache( $pages );
@@ -80,7 +79,6 @@ class GlossaryCacheRebuilder {
 	}
 
 	private function updateSelectedPages( array $pages ) {
-
 		$titleCache = array();
 
 		foreach ( $pages as $page ) {
@@ -109,7 +107,6 @@ class GlossaryCacheRebuilder {
 	}
 
 	private function buildQuery() {
-
 		$description = new SomeProperty(
 			new DIProperty( PropertyRegistrationHelper::SG_TERM ),
 			new ThingDescription()
@@ -133,7 +130,6 @@ class GlossaryCacheRebuilder {
 	}
 
 	private function removeEntitiesFromCache( array $pages ) {
-
 		$cache = $this->glossaryCache->getCache();
 
 		$cache->delete( $this->glossaryCache->getKeyForLingo() );

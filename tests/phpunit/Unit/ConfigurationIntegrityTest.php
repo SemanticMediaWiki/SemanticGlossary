@@ -18,7 +18,6 @@ use SG\Cache\GlossaryCache;
 class ConfigurationIntegrityTest extends \PHPUnit\Framework\TestCase {
 
 	public function testValidityOfCacheTypeSetting() {
-
 		$instance = new GlossaryCache();
 
 		if ( isset( $GLOBAL['wgexLingoCacheType'] ) ) {

@@ -37,7 +37,6 @@ class MwDBSQLStoreIntegrationTest extends MwDBaseUnitTestCase {
 	}
 
 	public function testPageCreateDeleteStoreIntegration() {
-
 		$this->markTestSkipped(
 			'This test should be revised in the next release'
 		);
@@ -73,7 +72,6 @@ class MwDBSQLStoreIntegrationTest extends MwDBaseUnitTestCase {
 	}
 
 	public function testRebuildGlossaryCacheMaintenanceRun() {
-
 		$this->markTestSkipped(
 			'This test should be revised in the next release'
 		);

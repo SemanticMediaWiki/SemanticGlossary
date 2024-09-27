@@ -61,7 +61,6 @@ class ElementsCacheBuilder {
 	 * @return array
 	 */
 	public function getElements( array $searchTerms = [] ) {
-
 		$ret = array();
 		$cacheId = substr( md5( implode( '', $searchTerms ) ), 0, 8 );
 
@@ -105,7 +104,6 @@ class ElementsCacheBuilder {
 	}
 
 	private function buildElements( $terms, $definition, $link, $style, $page ) {
-
 		$ret = array();
 
 		foreach ( $terms as $term ) {
@@ -124,7 +122,6 @@ class ElementsCacheBuilder {
 	}
 
 	private function buildQuery( array $searchTerms = []) {
-
 		$dataValueFactory = DataValueFactory::getInstance();
 		$descriptionFactory = new DescriptionFactory();
 
@@ -193,7 +190,6 @@ class ElementsCacheBuilder {
 	}
 
 	private function getDefinitionValue( $page ) {
-
 		$definition  = null;
 
 		$definitions = $this->store->getPropertyValues(
@@ -210,7 +206,6 @@ class ElementsCacheBuilder {
 	}
 
 	private function getLinkValue( $page ) {
-
 		$link  = null;
 
 		$links = $this->store->getPropertyValues( $page, $this->mDiLink );;
@@ -224,7 +219,6 @@ class ElementsCacheBuilder {
 	}
 
 	private function getStyleValue( $page ) {
-
 		$style  = null;
 
 		$styles = $this->store->getPropertyValues( $page, $this->mDiStyle );;
@@ -238,7 +232,6 @@ class ElementsCacheBuilder {
 	}
 
 	private function getTerms( $page ) {
-
 		$collectedTerms = array();
 
 		$terms = $this->store->getPropertyValues( $page, $this->mDiTerm );

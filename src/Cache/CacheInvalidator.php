@@ -39,7 +39,6 @@ class CacheInvalidator {
 	 * @return CacheInvalidator
 	 */
 	public static function getInstance() {
-
 		if ( self::$instance === null ) {
 
 			$instance = new self();
@@ -76,7 +75,6 @@ class CacheInvalidator {
 	 * @return boolean
 	 */
 	public function invalidateCacheOnStoreUpdate( Store $store, SemanticData $semanticData = null ) {
-
 		if ( $semanticData === null ) {
 			return false;
 		}
@@ -101,7 +99,6 @@ class CacheInvalidator {
 	 * @return boolean
 	 */
 	public function invalidateCacheOnPageDelete( Store $store, DIWikiPage $subject, $purgeLingo = true ) {
-
 		$this->matchSubobjectsToSubject( $store, $subject );
 		$this->purgeCache( $subject );
 
@@ -125,7 +122,6 @@ class CacheInvalidator {
 	}
 
 	private function matchAllSubobjects( Store $store, SemanticData $semanticData ) {
-
 		$properties = $semanticData->getProperties();
 
 		if ( array_key_exists( DIProperty::TYPE_SUBOBJECT, $properties ) ) {
@@ -140,7 +136,6 @@ class CacheInvalidator {
 	}
 
 	private function matchSubobjectsToSubject( Store $store, DIWikiPage $subject ) {
-
 		$properties = $store->getProperties( $subject );
 
 		if ( array_key_exists( DIProperty::TYPE_SUBOBJECT, $properties ) ) {
@@ -155,7 +150,6 @@ class CacheInvalidator {
 	}
 
 	private function hasSemanticDataDeviation( Store $store, SemanticData $semanticData ) {
-
 		$dataComparator = new SemanticDataComparator( $store, $semanticData );
 
 		return $dataComparator->compareForProperty( PropertyRegistrationHelper::SG_TERM ) ||
@@ -165,7 +159,6 @@ class CacheInvalidator {
 	}
 
 	private function purgeCache( DIWikiPage $subject ) {
-
 		$this->glossaryCache->getCache()->delete(
 			$this->glossaryCache->getKeyForSubject( $subject )
 		);

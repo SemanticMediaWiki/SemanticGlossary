@@ -43,7 +43,6 @@ class RebuildGlossaryCache extends \Maintenance {
 	 * @see Maintenance::execute
 	 */
 	public function execute() {
-
 		if ( !defined( 'SMW_VERSION' ) ) {
 			$this->reportMessage( "You need to have SMW enabled in order to run the maintenance script!\n\n" );
 			return false;

@@ -27,7 +27,6 @@ use HashBagOStuff;
 class ElementsCacheBuilderTest extends \PHPUnit\Framework\TestCase {
 
 	public function testCanConstruct() {
-
 		$store = $this->getMockBuilder( '\SMW\Store' )
 			->disableOriginalConstructor()
 			->getMockForAbstractClass();
@@ -41,7 +40,6 @@ class ElementsCacheBuilderTest extends \PHPUnit\Framework\TestCase {
 	}
 
 	public function testGetTermsForSingleTermWithDefinitionOnNonCachedResult() {
-
 		$page = DIWikiPage::newFromTitle( Title::newFromText( __METHOD__ ) );
 
 		$queryResult = $this->getMockBuilder( '\stdClass' )
@@ -95,7 +93,6 @@ class ElementsCacheBuilderTest extends \PHPUnit\Framework\TestCase {
 	}
 
 	protected function assertLingoElement( $term, $definition, $link, $style, $result ) {
-
 		$this->assertEquals( $term, $result[ Element::ELEMENT_TERM ] );
 		$this->assertEquals( $definition, $result[ Element::ELEMENT_DEFINITION ] );
 		$this->assertEquals( $link, $result[ Element::ELEMENT_LINK ] );

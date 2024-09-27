@@ -16,7 +16,6 @@ use SG\SemanticDataComparator;
 class SemanticDataComparatorTest extends \PHPUnit\Framework\TestCase {
 
 	public function testCanConstruct() {
-
 		$store = $this->getMockBuilder( '\SMW\Store' )
 			->disableOriginalConstructor()
 			->getMockForAbstractClass();
@@ -40,7 +39,6 @@ class SemanticDataComparatorTest extends \PHPUnit\Framework\TestCase {
 	 * @dataProvider propertyIdProvider
 	 */
 	public function testInspectForEmptyData( $propertyId ) {
-
 		$store = $this->getMockBuilder( '\SMW\Store' )
 			->disableOriginalConstructor()
 			->getMockForAbstractClass();
@@ -67,7 +65,6 @@ class SemanticDataComparatorTest extends \PHPUnit\Framework\TestCase {
 	}
 
 	public function propertyIdProvider() {
-
 		$provider = array(
 			array( 'Foo' ),
 			array( '__Foo' )

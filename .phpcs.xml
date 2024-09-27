@@ -2,8 +2,6 @@
 <ruleset>
 	<rule ref="./vendor/mediawiki/mediawiki-codesniffer/MediaWiki">
         <exclude name="MediaWiki.Classes.UnsortedUseStatements.UnsortedUse" />
-        <exclude name="MediaWiki.Commenting.LicenseComment.InvalidLicenseTag" />
-        <exclude name="Squiz.WhiteSpace.FunctionOpeningBraceSpace.SpacingAfter" />
         <exclude name="MediaWiki.ExtraCharacters.ParenthesesAroundKeyword.ParenthesesAroundKeywords" />
         <exclude name="MediaWiki.Commenting.LicenseComment.InvalidLicenseTag" />
         <exclude name="MediaWiki.Commenting.FunctionComment.UppercasePrimitiveCallableReturn" />

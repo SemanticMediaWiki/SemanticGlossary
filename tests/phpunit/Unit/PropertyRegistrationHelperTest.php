@@ -17,7 +17,6 @@ use SMW\DIProperty;
 class PropertyRegistrationHelperTest extends \PHPUnit\Framework\TestCase {
 
 	public function testCanConstruct() {
-
 		$propertyRegistry =
 			$this->getMockBuilder( '\SMW\PropertyRegistry' )
 			->disableOriginalConstructor()
@@ -32,7 +31,6 @@ class PropertyRegistrationHelperTest extends \PHPUnit\Framework\TestCase {
 	}
 
 	public function testRegisterProperties() {
-
 		$propertyRegistry =
 			$this->getMockBuilder( '\SMW\PropertyRegistry' )
 			->disableOriginalConstructor()
@@ -61,7 +59,6 @@ class PropertyRegistrationHelperTest extends \PHPUnit\Framework\TestCase {
 	 * @param string $label
 	 */
 	public function testRegisteredPropertyById( $id, $label ) {
-
 		$property = new DIProperty( $id );
 
 		$this->assertInstanceOf( '\SMW\DIProperty', $property );
@@ -73,7 +70,6 @@ class PropertyRegistrationHelperTest extends \PHPUnit\Framework\TestCase {
 	 * @return string[][]
 	 */
 	public function propertyDefinitionDataProvider() {
-
 		$provider = array();
 
 		$provider[] = array( PropertyRegistrationHelper::SG_TERM, SG_PROP_GLT );

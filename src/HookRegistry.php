@@ -58,12 +58,10 @@ class HookRegistry {
 	}
 
 	private function addCallbackHandlers() {
-
 		/**
 		 * @see https://github.com/SemanticMediaWiki/SemanticMediaWiki/blob/master/docs/technical/hooks.md
 		 */
 		$this->handlers['SMW::Property::initProperties'] = function ( $propertyRegistry ) {
-
 			$propertyRegistrationHelper = new PropertyRegistrationHelper( $propertyRegistry );
 			return $propertyRegistrationHelper->registerProperties();
 

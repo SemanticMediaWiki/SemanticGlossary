@@ -39,7 +39,6 @@ class CacheInvalidatorTest extends \PHPUnit\Framework\TestCase {
 	}
 
 	public function testInvalidateOnUpdateWithEmptyData() {
-
 		$store = $this->getMockBuilder( '\SMW\Store' )
 			->disableOriginalConstructor()
 			->getMockForAbstractClass();
@@ -58,7 +57,6 @@ class CacheInvalidatorTest extends \PHPUnit\Framework\TestCase {
 	}
 
 	public function testInvalidateOnUpdateWithNullSemanticData() {
-
 		$store = $this->getMockBuilder( '\SMW\Store' )
 			->disableOriginalConstructor()
 			->getMockForAbstractClass();
@@ -72,7 +70,6 @@ class CacheInvalidatorTest extends \PHPUnit\Framework\TestCase {
 	}
 
 	public function testInvalidateOnUpdateWithDifferentSubobjectData() {
-
 		$subject = DIWikiPage::newFromTitle( Title::newFromText( __METHOD__ ) );
 
 		$subobject = new Subobject( $subject->getTitle() );
@@ -121,7 +118,6 @@ class CacheInvalidatorTest extends \PHPUnit\Framework\TestCase {
 	}
 
 	public function testInvalidateOnDeleteWithEmptyData() {
-
 		$subject = DIWikiPage::newFromTitle( Title::newFromText( __METHOD__ ) );
 
 		$store = $this->getMockBuilder( 'SMWStore' )
@@ -140,7 +136,6 @@ class CacheInvalidatorTest extends \PHPUnit\Framework\TestCase {
 	}
 
 	public function testInvalidateOnDeleteWithSubobject() {
-
 		$subobject  = new DIProperty( '_SOBJ' );
 		$subject    = DIWikiPage::newFromTitle( Title::newFromText( __METHOD__ ) );
 		$newSubject = DIWikiPage::newFromTitle( Title::newFromText( 'Subobject' ) );
@@ -179,7 +174,6 @@ class CacheInvalidatorTest extends \PHPUnit\Framework\TestCase {
 	}
 
 	public function testInvalidateOnMove() {
-
 		$title = Title::newFromText( __METHOD__ );
 
 		$instance = new CacheInvalidator();

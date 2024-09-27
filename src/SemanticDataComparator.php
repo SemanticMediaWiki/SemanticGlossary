@@ -46,7 +46,6 @@ class SemanticDataComparator {
 	 * @return boolean
 	 */
 	public function compareForProperty( $propertyId ) {
-
 		list( $newEntries, $oldEntries ) = $this->lookupPropertyValues( $propertyId );
 
 		if ( $this->hasNotSamePropertyValuesCount( $newEntries, $oldEntries ) ) {
@@ -61,7 +60,6 @@ class SemanticDataComparator {
 	}
 
 	private function lookupPropertyValues( $propertyId ) {
-
 		$properties = $this->semanticData->getProperties();
 
 		if ( array_key_exists( $propertyId, $properties ) ) {
@@ -106,7 +104,6 @@ class SemanticDataComparator {
 	}
 
 	private function hasUnmatchPropertyValue( $newEntries, $oldEntries ) {
-
 		foreach ( $newEntries as $newDi ) {
 			$found = false;
 			foreach ( $oldEntries as $oldKey => $oldDi ) {

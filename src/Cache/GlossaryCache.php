@@ -35,7 +35,6 @@ class GlossaryCache {
 	 * @return BagOStuff
 	 */
 	public function getCache() {
-
 		if ( $this->cache === null ) {
 			$this->cache = ObjectCache::getInstance( self::getCacheType() );
 		}
@@ -69,7 +68,6 @@ class GlossaryCache {
 	 * @return string
 	 */
 	public function getCacheType() {
-
 		if ( isset( $GLOBAL['wgexLingoCacheType'] ) && $GLOBAL['wgexLingoCacheType'] !== null ) {
 			return $GLOBAL['wgexLingoCacheType'];
 		}

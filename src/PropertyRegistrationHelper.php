@@ -41,7 +41,6 @@ class PropertyRegistrationHelper {
 	 * @return boolean
 	 */
 	public function registerProperties() {
-
 		$propertyDefinitions = array(
 			self::SG_TERM => array(
 				'label' => SG_PROP_GLT,
@@ -73,7 +72,6 @@ class PropertyRegistrationHelper {
      * @return bool
      */
     protected function registerPropertiesFromList( array $propertyList ) {
-
 		foreach ( $propertyList as $propertyId => $definition ) {
 
 			$this->propertyRegistry->registerProperty(

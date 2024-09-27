@@ -21,7 +21,6 @@ use SG\LingoBackendAdapter;
 class LingoBackendAdapterTest extends \PHPUnit\Framework\TestCase {
 
 	public function testCanConstruct() {
-
 		$this->assertInstanceOf(
 			'\SG\LingoBackendAdapter',
 			new LingoBackendAdapter()
@@ -29,7 +28,6 @@ class LingoBackendAdapterTest extends \PHPUnit\Framework\TestCase {
 	}
 
 	public function testNextOnEmptyElementsResult() {
-
 		$lingoMessageLog = $this->getMockBuilder( '\Lingo\MessageLog' )
 			->disableOriginalConstructor()
 			->getMock();
