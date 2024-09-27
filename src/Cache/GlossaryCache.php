@@ -3,7 +3,6 @@
 namespace SG\Cache;
 
 use SMW\DIWikiPage;
-
 use ObjectCache;
 use BagOStuff;
 

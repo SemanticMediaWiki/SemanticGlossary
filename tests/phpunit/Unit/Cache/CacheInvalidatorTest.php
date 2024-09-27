@@ -5,13 +5,11 @@ namespace SG\Tests\Cache;
 use SG\PropertyRegistrationHelper;
 use SG\Cache\CacheInvalidator;
 use SG\Cache\GlossaryCache;
-
 use SMW\Subobject;
 use SMW\SemanticData;
 use SMW\DIWikiPage;
 use SMW\DIProperty;
 use SMWDIBlob as DIBlob;
-
 use HashBagOStuff;
 use Title;
 

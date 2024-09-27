@@ -3,13 +3,10 @@
 namespace SG\Tests\Integration;
 
 use SG\PropertyRegistrationHelper;
-
 use SMW\Tests\MwDBaseUnitTestCase;
 use SMW\Tests\Utils\UtilityFactory;
-
 use SMW\DIProperty;
 use SMW\DIWikiPage;
-
 use Title;
 
 /**

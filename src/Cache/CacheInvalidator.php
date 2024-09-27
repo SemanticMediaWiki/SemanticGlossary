@@ -4,14 +4,11 @@ namespace SG\Cache;
 
 use SG\SemanticDataComparator;
 use SG\PropertyRegistrationHelper;
-
 use SMW\Store;
 use SMW\SemanticData;
 use SMW\DIWikiPage;
 use SMW\DIProperty;
-
 use Lingo\LingoParser;
-
 use MediaWiki\Linker\LinkTarget;
 
 /**

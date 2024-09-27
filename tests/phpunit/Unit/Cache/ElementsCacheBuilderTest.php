@@ -4,12 +4,9 @@ namespace SG\Tests\Cache;
 
 use SG\Cache\ElementsCacheBuilder;
 use SG\Cache\GlossaryCache;
-
 use Lingo\Element;
-
 use SMWDIWikiPage as DIWikiPage;
 use SMWDIBlob as DIBlob;
-
 use Title;
 use HashBagOStuff;
 

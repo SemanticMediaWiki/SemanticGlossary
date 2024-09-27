@@ -4,10 +4,8 @@ namespace SG\Maintenance;
 
 use SG\PropertyRegistrationHelper;
 use SG\Cache\GlossaryCache;
-
 use SMWUpdateJob as UpdateJob;
 use SMW\Store;
-
 use SMWQuery as Query;
 use SMWSomeProperty as SomeProperty;
 use SMWDIProperty as DIProperty;

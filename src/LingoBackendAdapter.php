@@ -4,9 +4,7 @@ namespace SG;
 
 use SG\Cache\ElementsCacheBuilder;
 use SG\Cache\GlossaryCache;
-
 use SMW\StoreFactory;
-
 use Lingo\Backend;
 use Lingo\MessageLog;
 
