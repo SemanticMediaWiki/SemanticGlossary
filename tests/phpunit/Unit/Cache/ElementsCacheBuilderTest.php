@@ -59,15 +59,12 @@ class ElementsCacheBuilderTest extends \PHPUnit\Framework\TestCase {
 			->method( 'getQueryResult' )
 			->willReturn( $queryResult );
 
-		// at() position depends on the sequence as to when a method is called
-
-		$store->expects( $this->at( 1 ) )
+		$store->expects( $this->any() )
 			->method( 'getPropertyValues' )
-			->willReturn( array( new DIBlob( ' Foo term ' ) ) );
-
-		$store->expects( $this->at( 2 ) )
-			->method( 'getPropertyValues' )
-			->willReturn( array( new DIBlob( ' some Definition ' ) ) );
+			->willReturnOnConsecutiveCalls(
+				[ new DIBlob( ' Foo term ' ) ],
+				[ new DIBlob( ' some Definition ' ) ]
+			);
 
 		$glossaryCache = new GlossaryCache( new HashBagOStuff() );
 
