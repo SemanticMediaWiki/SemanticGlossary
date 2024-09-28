@@ -35,7 +35,7 @@ jobs:
             smw_version: dev-master
             php_version: 8.1
             database_type: mysql
-            database_image: "mariadb:11.2"
+            database_image: "mysql:8"
             coverage: false
             experimental: true
     env:
