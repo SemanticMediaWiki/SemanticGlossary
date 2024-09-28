@@ -1,5 +1,8 @@
 # Semantic Glossary
 
+[![CI](https://github.com/SemanticMediaWiki/SemanticGlossary/actions/workflows/ci.yml/badge.svg)](https://github.com/SemanticMediaWiki/SemanticGlossary/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/github/SemanticMediaWiki/SemanticGlossary/graph/badge.svg?token=yoC0GYEOkx)](https://codecov.io/github/SemanticMediaWiki/SemanticGlossary)
+
 The [Semantic Glossary][mw-semantic-glossary] (a.k.a SG) is a [Semantic MediaWiki][smw] extension where
 terms and abbreviations can be defined using semantic properties.
 
