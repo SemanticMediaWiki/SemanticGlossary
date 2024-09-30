@@ -45,6 +45,8 @@ class ElementsCacheBuilder {
 
 	private array $queryResults = [];
 
+	private int $batchSize = 5;
+
 	/**
 	 * @since  1.1
 	 *
@@ -62,44 +64,42 @@ class ElementsCacheBuilder {
 	 * @param array $searchTerms
 	 * @return array
 	 */
-	public function getElements( array $searchTerms = [] ) {
+	public function getElements(array $searchTerms = [])
+	{
+		$ret = [];
+		$batches = array_chunk($searchTerms, $this->batchSize);
 
-		$ret = array();
-		$cacheId = substr( md5( implode( '', $searchTerms ) ), 0, 8 );
+		foreach ($batches as $batch) {
+			$cacheId = substr( md5( implode( '', $batch ) ), 0, 8 );
 
-		if ( !isset( $this->queryResults[ $cacheId ] ) ) {
-			$this->queryResults[ $cacheId ] = $this->store->getQueryResult( $this->buildQuery( $searchTerms ) )->getResults();
-		}
+			if (!isset($this->queryResults[$cacheId])) {
+				$this->queryResults[$cacheId] = $this->store->getQueryResult($this->buildQuery($batch))->getResults();
+			}
 
-		// find next line
-		$page = current( $this->queryResults[ $cacheId ] );
+			foreach ($this->queryResults[$cacheId] as $page) {
+				$cachekey = $this->glossaryCache->getKeyForSubject($page);
+				$cachedResult = $this->glossaryCache->getCache()->get("{$cachekey}_{$cacheId}");
 
-		if ( $page && count( $ret ) == 0 ) {
+				// Cache hit?
+				if ($cachedResult !== false && $cachedResult !== null) {
+					wfDebug("Cache hit: Got glossary entry $cachekey from cache.\n");
+					$ret = array_merge($ret, $cachedResult);
+				} else {
+					wfDebug("Cache miss: Glossary entry $cachekey not found in cache.\n");
 
-			next( $this->queryResults[ $cacheId ] );
+					$elements = $this->buildElements(
+						$this->getTerms($page),
+						$this->getDefinitionValue($page),
+						$this->getLinkValue($page),
+						$this->getStyleValue($page),
+						$page
+					);
 
-			$cachekey = $this->glossaryCache->getKeyForSubject( $page );
-			$cachedResult = $this->glossaryCache->getCache()->get( "{$cachekey}_{$cacheId}" );
+					wfDebug("Cached glossary entry $cachekey.\n");
+					$this->glossaryCache->getCache()->set($cachekey, $elements);
 
-			// cache hit?
-			if ( $cachedResult !== false && $cachedResult !== null ) {
-
-				wfDebug( "Cache hit: Got glossary entry $cachekey from cache.\n" );
-				$ret = &$cachedResult;
-			} else {
-
-				wfDebug( "Cache miss: Glossary entry $cachekey not found in cache.\n" );
-
-				$ret = $this->buildElements(
-					$this->getTerms( $page ),
-					$this->getDefinitionValue( $page ),
-					$this->getLinkValue( $page ),
-					$this->getStyleValue( $page ),
-					$page
-				);
-
-				wfDebug( "Cached glossary entry $cachekey.\n" );
-				$this->glossaryCache->getCache()->set( $cachekey, $ret );
+					$ret = array_merge($ret, $elements);
+				}
 			}
 		}
 

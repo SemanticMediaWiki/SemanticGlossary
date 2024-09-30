@@ -26,6 +26,9 @@ class LingoBackendAdapter extends Backend {
 
 	protected $elements = array();
 
+	protected $elementsFetched = false;
+
+
 	/**
 	 * @since 1.1
 	 *
@@ -54,18 +57,26 @@ class LingoBackendAdapter extends Backend {
 	 * @return array|null the next element or null
 	 */
 	public function next() {
-
-		if ( $this->elements === array() ) {
+		if ( !$this->elementsFetched ) {
 			$this->elements = $this->elementsCacheBuilder->getElements( $this->getSearchTerms() );
+			$this->elementsFetched = true;
 		}
 
 		return array_pop( $this->elements );
 	}
 
 	/**
-	 * This backend doesn't use caching, since we do specific queries for glossary 
-	 * terms. This was previously set to true, since the whole glossary would be 
-	 * queried upon. 
+	 * @inheritDoc
+	 */
+	public function setSearchTerms( array $searchTerms ) {
+		$searchTerms = array_filter( $searchTerms, static fn ( $term ) => strlen( $term ) > 2 );
+		parent::setSearchTerms( $searchTerms );
+	}
+
+	/**
+	 * This backend doesn't use caching, since we do specific queries for glossary
+	 * terms. This was previously set to true, since the whole glossary would be
+	 * queried upon.
 	 *
 	 * @since  5.0
 	 *
