@@ -83,7 +83,7 @@ class LingoBackendAdapter extends Backend {
 	 * @return boolean
 	 */
 	public function useCache() {
-		return false;
+		return true;
 	}
 
 }

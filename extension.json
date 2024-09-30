@@ -14,7 +14,7 @@
 	"requires": {
 		"MediaWiki": ">= 1.39",
 		"extensions": {
-			"Lingo": ">= 3.2.2"
+			"Lingo": ">= 3.2.3"
 		}
 	},
 	"MessagesDirs": {
