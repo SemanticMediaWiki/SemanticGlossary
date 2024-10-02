@@ -65,7 +65,8 @@
 			"@phpunit-coverage"
 		],
 		"analyze": [
-			"@lint"
+			"@lint",
+			"@phpcs"
 		],
 		"fix": [
 			"@phpcs-fix"
@@ -77,7 +78,7 @@
 			"find coverage/php -type f -name '*.html' -exec sed -i 's|/var/www/html/extensions/||g' {} +"
 		],
 		"integration": "composer phpunit -- --testsuite=semantic-result-formats-integration",
-		"phpcs": "phpcs -ps -d memory_limit=2G ${MW_INSTALL_PATH:-../..}/extensions/SemanticGlossary",
+		"phpcs": "phpcs -ps -d memory_limit=2G",
 		"phpcs-fix": "phpcbf -p",
 		"lint": "parallel-lint . --exclude vendor --exclude node_modules --exclude extensions",
 		"minus-x": "minus-x check ."

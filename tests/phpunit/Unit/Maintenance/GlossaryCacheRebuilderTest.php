@@ -3,9 +3,6 @@
 namespace SG\Tests\Maintenance;
 
 use SG\Maintenance\GlossaryCacheRebuilder;
-use SG\Cache\GlossaryCache;
-
-use Title;
 
 /**
  * @uses \SG\Maintenance\GlossaryCacheRebuilder
@@ -15,7 +12,7 @@ use Title;
  * @group SG
  * @group SGExtension
  *
- * @license GNU GPL v2+
+ * @license GPL-2.0-or-later
  * @since 1.1
  *
  * @author mwjames
@@ -23,7 +20,6 @@ use Title;
 class GlossaryCacheRebuilderTest extends \PHPUnit\Framework\TestCase {
 
 	public function testCanConstruct() {
-
 		$this->markTestSkipped(
 			'This test should be revised in the next release'
 		);

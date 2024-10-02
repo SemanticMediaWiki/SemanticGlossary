@@ -3,13 +3,9 @@
 namespace SG\Tests\Integration;
 
 use SG\PropertyRegistrationHelper;
-
-use SMW\Tests\MwDBaseUnitTestCase;
 use SMW\Tests\Utils\UtilityFactory;
-
 use SMW\DIProperty;
 use SMW\DIWikiPage;
-
 use Title;
 
 /**
@@ -20,18 +16,21 @@ use Title;
  * @group mediawiki-database
  * @group medium
  *
- * @license GNU GPL v2+
+ * @license GPL-2.0-or-later
  * @since 1.1
  *
  * @author mwjames
  */
-class MwDBSQLStoreIntegrationTest extends MwDBaseUnitTestCase {
+class MwDBSQLStoreIntegrationTest extends \PHPUnit\Framework\TestCase {
 
+	/** @var PageCreator */
 	private $pageCreator;
+	/** @var PageDeleter */
 	private $pageDeleter;
+	/** @var RunnerFactory */
 	private $runnerFactory;
 
-	protected function setUp() :void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->pageCreator = UtilityFactory::getInstance()->newPageCreator();
@@ -40,7 +39,6 @@ class MwDBSQLStoreIntegrationTest extends MwDBaseUnitTestCase {
 	}
 
 	public function testPageCreateDeleteStoreIntegration() {
-
 		$this->markTestSkipped(
 			'This test should be revised in the next release'
 		);
@@ -72,11 +70,10 @@ class MwDBSQLStoreIntegrationTest extends MwDBaseUnitTestCase {
 			new DIProperty( PropertyRegistrationHelper::SG_TERM )
 		);
 
-		$this->assertEmpty( $values );
+		$this->assertCount( 0, $values );
 	}
 
 	public function testRebuildGlossaryCacheMaintenanceRun() {
-
 		$this->markTestSkipped(
 			'This test should be revised in the next release'
 		);

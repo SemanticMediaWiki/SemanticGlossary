@@ -2,11 +2,6 @@
 
 namespace SG\Maintenance;
 
-use SG\Maintenance\GlossaryCacheRebuilder;
-use SG\Cache\GlossaryCache;
-
-use SMW\StoreFactory;
-
 $basePath = getenv( 'MW_INSTALL_PATH' ) !== false ? getenv( 'MW_INSTALL_PATH' ) : __DIR__ . '/../../..';
 
 require_once $basePath . '/maintenance/Maintenance.php';
@@ -21,7 +16,7 @@ require_once $basePath . '/maintenance/Maintenance.php';
  * @ingroup SemanticGlossary
  * @ingroup Maintenance
  *
- * @license GNU GPL v2+
+ * @license GPL-2.0-or-later
  * @since 1.1
  *
  * @author mwjames
@@ -48,7 +43,6 @@ class RebuildGlossaryCache extends \Maintenance {
 	 * @see Maintenance::execute
 	 */
 	public function execute() {
-
 		if ( !defined( 'SMW_VERSION' ) ) {
 			$this->reportMessage( "You need to have SMW enabled in order to run the maintenance script!\n\n" );
 			return false;
@@ -85,4 +79,4 @@ class RebuildGlossaryCache extends \Maintenance {
 }
 
 $maintClass = 'SG\Maintenance\RebuildGlossaryCache';
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

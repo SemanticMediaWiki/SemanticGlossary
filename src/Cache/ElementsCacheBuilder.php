@@ -7,9 +7,7 @@ use SMW\DataValueFactory;
 use SMW\Store;
 use SMW\DIProperty;
 use SMW\Query\DescriptionFactory;
-use SMWStringValue as StringValue;
 use SMWPrintRequest as PrintRequest;
-use SMWPropertyValue as PropertyValue;
 use SMWThingDescription as ThingDescription;
 use SMWSomeProperty as SomeProperty;
 use SMWQuery as Query;
@@ -19,7 +17,7 @@ use Lingo\Element;
  * @ingroup SG
  * @ingroup SemanticGlossary
  *
- * @license GNU GPL v2+
+ * @license GPL-2.0-or-later
  * @since 1.1
  *
  * @author Stephan Gambke
@@ -32,17 +30,23 @@ class ElementsCacheBuilder {
 
 	/* @var GlossaryCache */
 	private $glossaryCache;
-
+    /* @var mDiTerm */
 	private $mDiTerm;
+	/* @var mDiDefinition */
 	private $mDiDefinition;
+	/* @var mDiLink */
 	private $mDiLink;
+	/* @var mDiStyle */
 	private $mDiStyle;
-
+    /* @var mDvTerm */
 	private $mDvTerm;
+	/* @var mDvDefinition */
 	private $mDvDefinition;
+	/* @var mDvLink */
 	private $mDvLink;
+	/* @var mDvStyle */
 	private $mDvStyle;
-
+    /* @var queryResults */
 	private array $queryResults = [];
 
 	/**
@@ -63,12 +67,13 @@ class ElementsCacheBuilder {
 	 * @return array
 	 */
 	public function getElements( array $searchTerms = [] ) {
-
 		$ret = array();
 		$cacheId = substr( md5( implode( '', $searchTerms ) ), 0, 8 );
 
 		if ( !isset( $this->queryResults[ $cacheId ] ) ) {
-			$this->queryResults[ $cacheId ] = $this->store->getQueryResult( $this->buildQuery( $searchTerms ) )->getResults();
+			$this->queryResults[ $cacheId ] = $this->store
+				->getQueryResult( $this->buildQuery( $searchTerms ) )
+				->getResults();
 		}
 
 		// find next line
@@ -107,7 +112,6 @@ class ElementsCacheBuilder {
 	}
 
 	private function buildElements( $terms, $definition, $link, $style, $page ) {
-
 		$ret = array();
 
 		foreach ( $terms as $term ) {
@@ -125,8 +129,7 @@ class ElementsCacheBuilder {
 		return $ret;
 	}
 
-	private function buildQuery( array $searchTerms = []) {
-
+	private function buildQuery( array $searchTerms = [] ) {
 		$dataValueFactory = DataValueFactory::getInstance();
 		$descriptionFactory = new DescriptionFactory();
 
@@ -195,8 +198,7 @@ class ElementsCacheBuilder {
 	}
 
 	private function getDefinitionValue( $page ) {
-
-		$definition  = null;
+		$definition = null;
 
 		$definitions = $this->store->getPropertyValues(
 			$page,
@@ -212,10 +214,9 @@ class ElementsCacheBuilder {
 	}
 
 	private function getLinkValue( $page ) {
+		$link = null;
 
-		$link  = null;
-
-		$links = $this->store->getPropertyValues( $page, $this->mDiLink );;
+		$links = $this->store->getPropertyValues( $page, $this->mDiLink );
 
 		if ( !empty( $links ) ) {
 			$this->mDvLink->setDataItem( $links[0] );
@@ -226,10 +227,9 @@ class ElementsCacheBuilder {
 	}
 
 	private function getStyleValue( $page ) {
+		$style = null;
 
-		$style  = null;
-
-		$styles = $this->store->getPropertyValues( $page, $this->mDiStyle );;
+		$styles = $this->store->getPropertyValues( $page, $this->mDiStyle );
 
 		if ( !empty( $styles ) ) {
 		  $this->mDvStyle->setDataItem( $styles[0] );
@@ -240,7 +240,6 @@ class ElementsCacheBuilder {
 	}
 
 	private function getTerms( $page ) {
-
 		$collectedTerms = array();
 
 		$terms = $this->store->getPropertyValues( $page, $this->mDiTerm );

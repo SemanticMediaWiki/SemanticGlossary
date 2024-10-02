@@ -12,18 +12,18 @@ define( 'SG_PROP_GLS', 'Glossary-Style' );
 /**
  * @ingroup SemanticGlossary
  *
- * @license GNU GPL v2+
+ * @license GPL-2.0-or-later
  * @since 1.0
  *
  * @author mwjames
  */
 class PropertyRegistrationHelper {
 
-	const SG_TERM = '___glt';
-	const SG_DEFINITION = '___gld';
-	const SG_LINK  = '___gll';
-	const SG_STYLE = '___gls';
-
+	public const SG_TERM = '___glt';
+	public const SG_DEFINITION = '___gld';
+	public const SG_LINK  = '___gll';
+	public const SG_STYLE = '___gls';
+    /* @var propertyRegistry */
 	private $propertyRegistry;
 
 	/**
@@ -38,10 +38,9 @@ class PropertyRegistrationHelper {
 	/**
 	 * @since 1.0
 	 *
-	 * @return boolean
+	 * @return bool
 	 */
 	public function registerProperties() {
-
 		$propertyDefinitions = array(
 			self::SG_TERM => array(
 				'label' => SG_PROP_GLT,
@@ -73,7 +72,6 @@ class PropertyRegistrationHelper {
      * @return bool
      */
     protected function registerPropertiesFromList( array $propertyList ) {
-
 		foreach ( $propertyList as $propertyId => $definition ) {
 
 			$this->propertyRegistry->registerProperty(

@@ -1,10 +1,7 @@
 # Semantic Glossary
 
-[![Build Status](https://www.travis-ci.com/SemanticMediaWiki/SemanticGlossary.svg?branch=master)](https://www.travis-ci.com/SemanticMediaWiki/SemanticGlossary)
-[![Code Coverage](https://scrutinizer-ci.com/g/SemanticMediaWiki/SemanticGlossary/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/SemanticMediaWiki/SemanticGlossary/?branch=master)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/SemanticMediaWiki/SemanticGlossary/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/SemanticMediaWiki/SemanticGlossary/?branch=master)
-[![Latest Stable Version](https://poser.pugx.org/mediawiki/semantic-glossary/version.png)](https://packagist.org/packages/mediawiki/semantic-glossary)
-[![Packagist download count](https://poser.pugx.org/mediawiki/semantic-glossary/d/total.png)](https://packagist.org/packages/mediawiki/semantic-glossary)
+[![CI](https://github.com/SemanticMediaWiki/SemanticGlossary/actions/workflows/ci.yml/badge.svg)](https://github.com/SemanticMediaWiki/SemanticGlossary/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/github/SemanticMediaWiki/SemanticGlossary/graph/badge.svg?token=yoC0GYEOkx)](https://codecov.io/github/SemanticMediaWiki/SemanticGlossary)
 
 The [Semantic Glossary][mw-semantic-glossary] (a.k.a SG) is a [Semantic MediaWiki][smw] extension where
 terms and abbreviations can be defined using semantic properties.

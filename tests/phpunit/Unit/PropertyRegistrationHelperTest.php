@@ -9,7 +9,7 @@ use SMW\DIProperty;
  * @covers \SG\PropertyRegistrationHelper
  * @group semantic-glossary
  *
- * @license GNU GPL v2+
+ * @license GPL-2.0-or-later
  * @since 1.0
  *
  * @author mwjames
@@ -17,7 +17,6 @@ use SMW\DIProperty;
 class PropertyRegistrationHelperTest extends \PHPUnit\Framework\TestCase {
 
 	public function testCanConstruct() {
-
 		$propertyRegistry =
 			$this->getMockBuilder( '\SMW\PropertyRegistry' )
 			->disableOriginalConstructor()
@@ -32,7 +31,6 @@ class PropertyRegistrationHelperTest extends \PHPUnit\Framework\TestCase {
 	}
 
 	public function testRegisterProperties() {
-
 		$propertyRegistry =
 			$this->getMockBuilder( '\SMW\PropertyRegistry' )
 			->disableOriginalConstructor()
@@ -45,8 +43,6 @@ class PropertyRegistrationHelperTest extends \PHPUnit\Framework\TestCase {
 		$propertyRegistry
 			->expects( $this->exactly( 4 ) )
 			->method( 'registerPropertyAlias' );
-
-
 		$propertyRegistrationHelper = new PropertyRegistrationHelper( $propertyRegistry );
 
 		$this->assertTrue(
@@ -61,7 +57,6 @@ class PropertyRegistrationHelperTest extends \PHPUnit\Framework\TestCase {
 	 * @param string $label
 	 */
 	public function testRegisteredPropertyById( $id, $label ) {
-
 		$property = new DIProperty( $id );
 
 		$this->assertInstanceOf( '\SMW\DIProperty', $property );
@@ -73,13 +68,12 @@ class PropertyRegistrationHelperTest extends \PHPUnit\Framework\TestCase {
 	 * @return string[][]
 	 */
 	public function propertyDefinitionDataProvider() {
-
 		$provider = array();
 
 		$provider[] = array( PropertyRegistrationHelper::SG_TERM, SG_PROP_GLT );
-		$provider[] = array(  PropertyRegistrationHelper::SG_DEFINITION, SG_PROP_GLD );
-		$provider[] = array(  PropertyRegistrationHelper::SG_LINK, SG_PROP_GLL );
-		$provider[] = array(  PropertyRegistrationHelper::SG_STYLE, SG_PROP_GLS );
+		$provider[] = array( PropertyRegistrationHelper::SG_DEFINITION, SG_PROP_GLD );
+		$provider[] = array( PropertyRegistrationHelper::SG_LINK, SG_PROP_GLL );
+		$provider[] = array( PropertyRegistrationHelper::SG_STYLE, SG_PROP_GLS );
 
 		return $provider;
 	}

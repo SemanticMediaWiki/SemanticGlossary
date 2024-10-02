@@ -3,13 +3,12 @@
 namespace SG\Tests;
 
 use SG\HookRegistry;
-use SMW\DIProperty;
 
 /**
  * @covers \SG\HookRegistry
  * @group semantic-glossary
  *
- * @license GNU GPL v2+
+ * @license GPL-2.0-or-later
  * @since 1.2
  *
  * @author mwjames
@@ -17,7 +16,6 @@ use SMW\DIProperty;
 class HookRegistryTest extends \PHPUnit\Framework\TestCase {
 
 	public function testCanConstruct() {
-
 		$store = $this->getMockBuilder( '\SMW\Store' )
 			->disableOriginalConstructor()
 			->getMockForAbstractClass();
