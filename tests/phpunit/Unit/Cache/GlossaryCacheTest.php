@@ -13,7 +13,7 @@ use SG\Cache\GlossaryCache;
  * @group SGExtension
  * @group extension-semantic-glossary
  *
- * @license GNU GPL v2+
+ * @license GPL-2.0-or-later
  * @since 1.0
  *
  * @author mwjames
@@ -21,7 +21,6 @@ use SG\Cache\GlossaryCache;
 class GlossaryCacheTest extends \PHPUnit\Framework\TestCase {
 
 	public function testGetDefaultCache() {
-
 		$instance = new GlossaryCache();
 
 		$this->assertInstanceOf(
@@ -31,7 +30,6 @@ class GlossaryCacheTest extends \PHPUnit\Framework\TestCase {
 	}
 
 	public function testGetCacheType() {
-
 		$instance = new GlossaryCache();
 
 		$this->assertIsInt(
@@ -40,7 +38,6 @@ class GlossaryCacheTest extends \PHPUnit\Framework\TestCase {
 	}
 
 	public function testGetKeys() {
-
 		$instance = new GlossaryCache();
 
 		$subject = $this->getMockBuilder( '\SMW\DIWikiPage' )

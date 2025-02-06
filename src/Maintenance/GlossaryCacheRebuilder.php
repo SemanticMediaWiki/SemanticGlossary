@@ -2,23 +2,21 @@
 
 namespace SG\Maintenance;
 
-use SG\PropertyRegistrationHelper;
 use SG\Cache\GlossaryCache;
-
-use SMWUpdateJob as UpdateJob;
+use SG\PropertyRegistrationHelper;
 use SMW\Store;
-
+use SMWDIProperty as DIProperty;
 use SMWQuery as Query;
 use SMWSomeProperty as SomeProperty;
-use SMWDIProperty as DIProperty;
 use SMWThingDescription as ThingDescription;
+use SMWUpdateJob as UpdateJob;
 
 /**
  * Part of the `rebuildGlossaryCache.php` maintenance script
  *
  * @ingroup SG
  *
- * @license GNU GPL v2+
+ * @license GPL-2.0-or-later
  * @since 1.1
  *
  * @author mwjames
@@ -31,8 +29,19 @@ class GlossaryCacheRebuilder {
 	/** @var GlossaryCache */
 	private $glossaryCache;
 
+	/**
+	 * @var null
+	 */
 	private $reporter = null;
+
+	/**
+	 * @var int
+	 */
 	private $rebuildCount = 0;
+
+	/**
+	 * @var bool
+	 */
 	private $verbose = false;
 
 	/**
@@ -40,7 +49,9 @@ class GlossaryCacheRebuilder {
 	 *
 	 * @param Store $store
 	 * @param GlossaryCache $glossaryCache
-	 * @param $reporter
+	 * @param null $reporter
+	 *
+	 * @return void
 	 */
 	public function __construct( Store $store, GlossaryCache $glossaryCache, $reporter = null ) {
 		$this->store = $store;
@@ -69,10 +80,9 @@ class GlossaryCacheRebuilder {
 	/**
 	 * @since 1.1
 	 *
-	 * @return boolean
+	 * @return bool
 	 */
 	public function rebuild() {
-
 		$pages = $this->store->getQueryResult( $this->buildQuery() )->getResults();
 
 		$this->removeEntitiesFromCache( $pages );
@@ -81,9 +91,15 @@ class GlossaryCacheRebuilder {
 		return true;
 	}
 
+	/**
+	 * Update selected pages
+	 *
+	 * @param array $pages
+	 *
+	 * @return true
+	 */
 	private function updateSelectedPages( array $pages ) {
-
-		$titleCache = array();
+		$titleCache = [];
 
 		foreach ( $pages as $page ) {
 
@@ -110,8 +126,12 @@ class GlossaryCacheRebuilder {
 		return true;
 	}
 
+	/**
+	 * Build a query to retrieve all pages that have a glossary term
+	 *
+	 * @return Query
+	 */
 	private function buildQuery() {
-
 		$description = new SomeProperty(
 			new DIProperty( PropertyRegistrationHelper::SG_TERM ),
 			new ThingDescription()
@@ -134,8 +154,14 @@ class GlossaryCacheRebuilder {
 		return $resultQuery;
 	}
 
+	/**
+	 * Remove entities from cache
+	 *
+	 * @param array $pages
+	 *
+	 * @return void
+	 */
 	private function removeEntitiesFromCache( array $pages ) {
-
 		$cache = $this->glossaryCache->getCache();
 
 		$cache->delete( $this->glossaryCache->getKeyForLingo() );
@@ -148,9 +174,12 @@ class GlossaryCacheRebuilder {
 	}
 
 	/**
-	 * @codeCoverageIgnore
+	 * @param string $message
+	 * @param bool $output
+	 *
+	 * @return void
 	 */
-	private function reportMessage( $message, $output = true ) {
+	private function reportMessage( string $message, $output = true ) {
 		if ( is_callable( $this->reporter ) && $output ) {
 			call_user_func( $this->reporter, $message );
 		}

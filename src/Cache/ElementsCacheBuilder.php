@@ -2,24 +2,23 @@
 
 namespace SG\Cache;
 
+use Lingo\Element;
 use SG\PropertyRegistrationHelper;
 use SMW\DataValueFactory;
-use SMW\Store;
 use SMW\DIProperty;
+use SMW\DIWikiPage;
 use SMW\Query\DescriptionFactory;
-use SMWStringValue as StringValue;
+use SMW\Store;
 use SMWPrintRequest as PrintRequest;
-use SMWPropertyValue as PropertyValue;
-use SMWThingDescription as ThingDescription;
-use SMWSomeProperty as SomeProperty;
 use SMWQuery as Query;
-use Lingo\Element;
+use SMWSomeProperty as SomeProperty;
+use SMWThingDescription as ThingDescription;
 
 /**
  * @ingroup SG
  * @ingroup SemanticGlossary
  *
- * @license GNU GPL v2+
+ * @license GPL-2.0-or-later
  * @since 1.1
  *
  * @author Stephan Gambke
@@ -27,31 +26,70 @@ use Lingo\Element;
  */
 class ElementsCacheBuilder {
 
-	/* @var Store */
+	/**
+	 * @var SMWStore|Store
+	 */
 	private $store;
 
-	/* @var GlossaryCache */
+	/**
+	 * @var GlossaryCache
+	 */
 	private $glossaryCache;
 
+	/**
+	 * @var DIProperty
+	 */
 	private $mDiTerm;
+
+	/**
+	 * @var DIProperty
+	 */
 	private $mDiDefinition;
+
+	/**
+	 * @var DIProperty
+	 */
 	private $mDiLink;
+
+	/**
+	 * @var DIProperty
+	 */
 	private $mDiStyle;
 
+	/**
+	 * @var \SMWDataValue
+	 */
 	private $mDvTerm;
+
+	/**
+	 * @var \SMWDataValue
+	 */
 	private $mDvDefinition;
+
+	/**
+	 * @var \SMWDataValue
+	 */
 	private $mDvLink;
+
+	/**
+	 * @var \SMWDataValue
+	 */
 	private $mDvStyle;
 
+	/**
+	 * @var array
+	 */
 	private array $queryResults = [];
 
+	/**
+	 * @var int
+	 */
 	private int $batchSize = 5;
 
 	/**
+	 * @param Store $store
+	 * @param GlossaryCache $glossaryCache
 	 * @since  1.1
-	 *
-	 * @param SMWStore $store
-	 * @param GlossaryCache $cache
 	 */
 	public function __construct( Store $store, GlossaryCache $glossaryCache ) {
 		$this->store = $store;
@@ -59,46 +97,48 @@ class ElementsCacheBuilder {
 	}
 
 	/**
-	 * @since 1.1
-	 *
 	 * @param array $searchTerms
 	 * @return array
+	 * @since 1.1
+	 *
 	 */
-	public function getElements(array $searchTerms = [])
-	{
+	public function getElements( array $searchTerms = [] ) {
 		$ret = [];
-		$batches = array_chunk($searchTerms, $this->batchSize);
+		$batches = array_chunk( $searchTerms, $this->batchSize );
 
-		foreach ($batches as $batch) {
+		foreach ( $batches as $batch ) {
 			$cacheId = substr( md5( implode( '', $batch ) ), 0, 8 );
 
-			if (!isset($this->queryResults[$cacheId])) {
-				$this->queryResults[$cacheId] = $this->store->getQueryResult($this->buildQuery($batch))->getResults();
+			if ( !isset( $this->queryResults[$cacheId] ) ) {
+				$this->queryResults[$cacheId] = $this->store->getQueryResult( $this->buildQuery( $batch ) )->getResults();
 			}
 
-			foreach ($this->queryResults[$cacheId] as $page) {
-				$cachekey = $this->glossaryCache->getKeyForSubject($page);
-				$cachedResult = $this->glossaryCache->getCache()->get("{$cachekey}_{$cacheId}");
+			/**
+			 * @var DIWikiPage $page
+			 */
+			foreach ( $this->queryResults[$cacheId] as $page ) {
+				$cachekey = $this->glossaryCache->getKeyForSubject( $page );
+				$cachedResult = $this->glossaryCache->getCache()->get( "{$cachekey}_{$cacheId}" );
 
 				// Cache hit?
-				if ($cachedResult !== false && $cachedResult !== null) {
-					wfDebug("Cache hit: Got glossary entry $cachekey from cache.\n");
-					$ret = array_merge($ret, $cachedResult);
+				if ( $cachedResult !== false && $cachedResult !== null ) {
+					wfDebug( "Cache hit: Got glossary entry $cachekey from cache.\n" );
+					$ret = array_merge( $ret, $cachedResult );
 				} else {
-					wfDebug("Cache miss: Glossary entry $cachekey not found in cache.\n");
+					wfDebug( "Cache miss: Glossary entry $cachekey not found in cache.\n" );
 
 					$elements = $this->buildElements(
-						$this->getTerms($page),
-						$this->getDefinitionValue($page),
-						$this->getLinkValue($page),
-						$this->getStyleValue($page),
+						$this->getTerms( $page ),
+						$this->getDefinitionValue( $page ),
+						$this->getLinkValue( $page ),
+						$this->getStyleValue( $page ),
 						$page
 					);
 
-					wfDebug("Cached glossary entry $cachekey.\n");
-					$this->glossaryCache->getCache()->set($cachekey, $elements);
+					wfDebug( "Cached glossary entry $cachekey.\n" );
+					$this->glossaryCache->getCache()->set( $cachekey, $elements );
 
-					$ret = array_merge($ret, $elements);
+					$ret = array_merge( $ret, $elements );
 				}
 			}
 		}
@@ -106,18 +146,26 @@ class ElementsCacheBuilder {
 		return $ret;
 	}
 
-	private function buildElements( $terms, $definition, $link, $style, $page ) {
-
-		$ret = array();
+	/**
+	 * @param string $terms
+	 * @param string $definition
+	 * @param string $link
+	 * @param string $style
+	 * @param string $page
+	 *
+	 * @return array
+	 */
+	private function buildElements( $terms, $definition, $link, $style, $page ): array {
+		$ret = [];
 
 		foreach ( $terms as $term ) {
-			$tmp_ret = array(
+			$tmp_ret = [
 				Element::ELEMENT_TERM => $term,
 				Element::ELEMENT_DEFINITION => $definition,
 				Element::ELEMENT_LINK => $link,
 				Element::ELEMENT_STYLE => $style,
 				Element::ELEMENT_SOURCE => $page
-			);
+			];
 
 			$ret[] = $tmp_ret;
 		}
@@ -125,8 +173,14 @@ class ElementsCacheBuilder {
 		return $ret;
 	}
 
-	private function buildQuery( array $searchTerms = []) {
-
+	/**
+	 * Build a query to get the glossary elements
+	 *
+	 * @param array $searchTerms
+	 *
+	 * @return Query
+	 */
+	private function buildQuery( array $searchTerms = [] ) {
 		$dataValueFactory = DataValueFactory::getInstance();
 		$descriptionFactory = new DescriptionFactory();
 
@@ -175,7 +229,7 @@ class ElementsCacheBuilder {
 		$prStyle = new PrintRequest( PrintRequest::PRINT_PROP, null, $pvStyle );
 
 		// Create query
-		$desc = sizeof( $searchTerms ) === 0
+		$desc = count( $searchTerms ) === 0
 			? new SomeProperty( new DIProperty( '___glt' ), new ThingDescription() )
 			: $descriptionFactory->newDisjunction( $valueDescriptions );
 		$desc->addPrintRequest( $prTerm );
@@ -194,14 +248,17 @@ class ElementsCacheBuilder {
 		return $query;
 	}
 
-	private function getDefinitionValue( $page ) {
+	/**
+	 * Retrieve the definition value from the page
+	 *
+	 * @param DIWikiPage $page
+	 *
+	 * @return string|null
+	 */
+	private function getDefinitionValue( DIWikiPage $page ): ?string {
+		$definition = null;
 
-		$definition  = null;
-
-		$definitions = $this->store->getPropertyValues(
-			$page,
-			$this->mDiDefinition
-		);
+		$definitions = $this->store->getPropertyValues( $page, $this->mDiDefinition );
 
 		if ( !empty( $definitions ) ) {
 			$this->mDvDefinition->setDataItem( $definitions[0] );
@@ -211,11 +268,17 @@ class ElementsCacheBuilder {
 		return $definition;
 	}
 
-	private function getLinkValue( $page ) {
+	/**
+	 * Retrieve the link value from the page
+	 *
+	 * @param DIWikiPage $page
+	 *
+	 * @return string|null
+	 */
+	private function getLinkValue( DIWikiPage $page ): ?string {
+		$link = null;
 
-		$link  = null;
-
-		$links = $this->store->getPropertyValues( $page, $this->mDiLink );;
+		$links = $this->store->getPropertyValues( $page, $this->mDiLink );
 
 		if ( !empty( $links ) ) {
 			$this->mDvLink->setDataItem( $links[0] );
@@ -225,27 +288,39 @@ class ElementsCacheBuilder {
 		return $link;
 	}
 
-	private function getStyleValue( $page ) {
+	/**
+	 * Retrieve the style value from the page
+	 *
+	 * @param DIWikiPage $page
+	 *
+	 * @return string|null
+	 */
+	private function getStyleValue( DIWikiPage $page ) {
+		$style = null;
 
-		$style  = null;
-
-		$styles = $this->store->getPropertyValues( $page, $this->mDiStyle );;
+		$styles = $this->store->getPropertyValues( $page, $this->mDiStyle );
 
 		if ( !empty( $styles ) ) {
-		  $this->mDvStyle->setDataItem( $styles[0] );
-		  $style = trim( $this->mDvStyle->getShortWikiText() );
+			$this->mDvStyle->setDataItem( $styles[0] );
+			$style = trim( $this->mDvStyle->getShortWikiText() );
 		}
 
 		return $style;
 	}
 
-	private function getTerms( $page ) {
-
-		$collectedTerms = array();
+	/**
+	 * Retrieve the terms from the page
+	 *
+	 * @param DIWikiPage $page
+	 *
+	 * @return array
+	 */
+	private function getTerms( DIWikiPage $page ) {
+		$collectedTerms = [];
 
 		$terms = $this->store->getPropertyValues( $page, $this->mDiTerm );
 
-		if ( $terms !== array() ) {
+		if ( $terms !== [] ) {
 			foreach ( $terms as $term ) {
 				$this->mDvTerm->setDataItem( $term );
 				$collectedTerms[] = trim( $this->mDvTerm->getShortWikiText() );

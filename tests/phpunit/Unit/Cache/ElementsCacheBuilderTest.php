@@ -2,16 +2,13 @@
 
 namespace SG\Tests\Cache;
 
+use HashBagOStuff;
+use Lingo\Element;
 use SG\Cache\ElementsCacheBuilder;
 use SG\Cache\GlossaryCache;
-
-use Lingo\Element;
-
-use SMWDIWikiPage as DIWikiPage;
 use SMWDIBlob as DIBlob;
-
+use SMWDIWikiPage as DIWikiPage;
 use Title;
-use HashBagOStuff;
 
 /**
  * @covers \SG\Cache\ElementsCacheBuilder
@@ -22,7 +19,7 @@ use HashBagOStuff;
  * @group SGExtension
  * @group extension-semantic-glossary
  *
- * @license GNU GPL v2+
+ * @license GPL-2.0-or-later
  * @since 1.1
  *
  * @author mwjames
@@ -30,7 +27,6 @@ use HashBagOStuff;
 class ElementsCacheBuilderTest extends \PHPUnit\Framework\TestCase {
 
 	public function testCanConstruct() {
-
 		$store = $this->getMockBuilder( '\SMW\Store' )
 			->disableOriginalConstructor()
 			->getMockForAbstractClass();
@@ -44,19 +40,18 @@ class ElementsCacheBuilderTest extends \PHPUnit\Framework\TestCase {
 	}
 
 	public function testGetTermsForSingleTermWithDefinitionOnNonCachedResult() {
-
 		$this->markTestSkipped( 'Needs to be fixed with the new version of SG' );
 
 		$page = DIWikiPage::newFromTitle( Title::newFromText( __METHOD__ ) );
 
 		$queryResult = $this->getMockBuilder( '\stdClass' )
 			->disableOriginalConstructor()
-			->setMethods( array( 'getResults' ) )
+			->onlyMethods( [ 'getResults' ] )
 			->getMock();
 
 		$queryResult->expects( $this->once() )
 			->method( 'getResults' )
-			->will( $this->returnValue( array( $page ) ) );
+			->will( $this->returnValue( [ $page ] ) );
 
 		$store = $this->getMockBuilder( 'SMWStore' )
 			->disableOriginalConstructor()
@@ -70,11 +65,11 @@ class ElementsCacheBuilderTest extends \PHPUnit\Framework\TestCase {
 
 		$store->expects( $this->at( 1 ) )
 			->method( 'getPropertyValues' )
-			->will( $this->returnValue( array( new DIBlob( ' Foo term ' ) ) ) );
+			->will( $this->returnValue( [ new DIBlob( ' Foo term ' ) ] ) );
 
 		$store->expects( $this->at( 2 ) )
 			->method( 'getPropertyValues' )
-			->will( $this->returnValue( array( new DIBlob( ' some Definition ' ) ) ) );
+			->will( $this->returnValue( [ new DIBlob( ' some Definition ' ) ] ) );
 
 		$glossaryCache = new GlossaryCache( new HashBagOStuff() );
 
@@ -100,7 +95,6 @@ class ElementsCacheBuilderTest extends \PHPUnit\Framework\TestCase {
 	}
 
 	protected function assertLingoElement( $term, $definition, $link, $style, $result ) {
-
 		$this->assertEquals( $term, $result[ Element::ELEMENT_TERM ] );
 		$this->assertEquals( $definition, $result[ Element::ELEMENT_DEFINITION ] );
 		$this->assertEquals( $link, $result[ Element::ELEMENT_LINK ] );

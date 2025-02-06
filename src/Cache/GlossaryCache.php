@@ -2,24 +2,25 @@
 
 namespace SG\Cache;
 
-use SMW\DIWikiPage;
-
-use ObjectCache;
 use BagOStuff;
+use ObjectCache;
+use SMW\DIWikiPage;
 
 /**
  * @ingroup SG
  * @ingroup SemanticGlossary
  *
- * @license GNU GPL v2+
+ * @license GPL-2.0-or-later
  * @since 1.0
  *
  * @author mwjames
  */
 class GlossaryCache {
 
-	/* @var BagOstuff */
-	private $cache = null;
+	/**
+	 * @var BagOStuff|null
+	 */
+	private ?BagOStuff $cache = null;
 
 	/**
 	 * @since 1.1
@@ -36,7 +37,6 @@ class GlossaryCache {
 	 * @return BagOStuff
 	 */
 	public function getCache() {
-
 		if ( $this->cache === null ) {
 			$this->cache = ObjectCache::getInstance( self::getCacheType() );
 		}
@@ -52,7 +52,7 @@ class GlossaryCache {
 	 * @return string
 	 */
 	public function getKeyForSubject( DIWikiPage $subject ) {
-		return  $this->getCache()->makeKey( 'ext', 'semanticglossary', $subject->getSerialization() );
+		return $this->getCache()->makeKey( 'ext', 'semanticglossary', $subject->getSerialization() );
 	}
 
 	/**
@@ -61,7 +61,7 @@ class GlossaryCache {
 	 * @return string
 	 */
 	public function getKeyForLingo() {
-        return  $this->getCache()->makeKey( 'ext', 'lingo', 'lingotree' );
+		return $this->getCache()->makeKey( 'ext', 'lingo', 'lingotree' );
 	}
 
 	/**
@@ -70,7 +70,6 @@ class GlossaryCache {
 	 * @return string
 	 */
 	public function getCacheType() {
-
 		if ( isset( $GLOBAL['wgexLingoCacheType'] ) && $GLOBAL['wgexLingoCacheType'] !== null ) {
 			return $GLOBAL['wgexLingoCacheType'];
 		}

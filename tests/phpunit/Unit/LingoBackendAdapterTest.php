@@ -13,7 +13,7 @@ use SG\LingoBackendAdapter;
  * @group SGExtension
  * @group extension-semantic-glossary
  *
- * @license GNU GPL v2+
+ * @license GPL-2.0-or-later
  * @since 1.1
  *
  * @author mwjames
@@ -21,7 +21,6 @@ use SG\LingoBackendAdapter;
 class LingoBackendAdapterTest extends \PHPUnit\Framework\TestCase {
 
 	public function testCanConstruct() {
-
 		$this->assertInstanceOf(
 			'\SG\LingoBackendAdapter',
 			new LingoBackendAdapter()
@@ -29,7 +28,6 @@ class LingoBackendAdapterTest extends \PHPUnit\Framework\TestCase {
 	}
 
 	public function testNextOnEmptyElementsResult() {
-
 		$this->markTestSkipped( 'Needs to be fixed with the new version of SG' );
 
 		$lingoMessageLog = $this->getMockBuilder( '\Lingo\MessageLog' )
@@ -42,7 +40,7 @@ class LingoBackendAdapterTest extends \PHPUnit\Framework\TestCase {
 
 		$elementsCacheBuilder->expects( $this->once() )
 			->method( 'getElements' )
-			->will( $this->returnValue( array() ) );
+			->will( $this->returnValue( [] ) );
 
 		$instance = new LingoBackendAdapter(
 			$lingoMessageLog,

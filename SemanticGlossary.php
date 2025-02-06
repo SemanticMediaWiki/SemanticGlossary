@@ -1,7 +1,6 @@
 <?php
 
 use SG\HookRegistry;
-use SMW\ApplicationFactory;
 
 /**
  * Class SemanticGlossary

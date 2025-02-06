@@ -8,7 +8,7 @@ use SG\SemanticDataComparator;
  * @covers \SG\SemanticDataComparator
  * @group extension-semantic-glossary
  *
- * @license GNU GPL v2+
+ * @license GPL-2.0-or-later
  * @since 1.0
  *
  * @author mwjames
@@ -16,7 +16,6 @@ use SG\SemanticDataComparator;
 class SemanticDataComparatorTest extends \PHPUnit\Framework\TestCase {
 
 	public function testCanConstruct() {
-
 		$store = $this->getMockBuilder( '\SMW\Store' )
 			->disableOriginalConstructor()
 			->getMockForAbstractClass();
@@ -40,7 +39,6 @@ class SemanticDataComparatorTest extends \PHPUnit\Framework\TestCase {
 	 * @dataProvider propertyIdProvider
 	 */
 	public function testInspectForEmptyData( $propertyId ) {
-
 		$store = $this->getMockBuilder( '\SMW\Store' )
 			->disableOriginalConstructor()
 			->getMockForAbstractClass();
@@ -54,7 +52,7 @@ class SemanticDataComparatorTest extends \PHPUnit\Framework\TestCase {
 
 		$semanticData->expects( $this->once() )
 			->method( 'getProperties' )
-			->will( $this->returnValue( array() ) );
+			->will( $this->returnValue( [] ) );
 
 		$instance = new SemanticDataComparator(
 			$store,
@@ -67,11 +65,10 @@ class SemanticDataComparatorTest extends \PHPUnit\Framework\TestCase {
 	}
 
 	public function propertyIdProvider() {
-
-		$provider = array(
-			array( 'Foo' ),
-			array( '__Foo' )
-		);
+		$provider = [
+			[ 'Foo' ],
+			[ '__Foo' ]
+		];
 
 		return $provider;
 	}

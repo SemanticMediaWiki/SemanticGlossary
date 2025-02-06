@@ -10,7 +10,7 @@ use SG\Cache\GlossaryCache;
  * @group SG
  * @group SGExtension
  *
- * @license GNU GPL v2+
+ * @license GPL-2.0-or-later
  * @since 1.0
  *
  * @author mwjames
@@ -18,7 +18,6 @@ use SG\Cache\GlossaryCache;
 class ConfigurationIntegrityTest extends \PHPUnit\Framework\TestCase {
 
 	public function testValidityOfCacheTypeSetting() {
-
 		$instance = new GlossaryCache();
 
 		if ( isset( $GLOBAL['wgexLingoCacheType'] ) ) {
@@ -29,7 +28,7 @@ class ConfigurationIntegrityTest extends \PHPUnit\Framework\TestCase {
 	}
 
 	protected function assertCacheType( $cacheType ) {
-		$this->assertTrue( array_key_exists( $cacheType, $GLOBALS['wgObjectCaches'] ) );
+		$this->assertArrayHasKey( $cacheType, $GLOBALS['wgObjectCaches'] );
 	}
 
 }

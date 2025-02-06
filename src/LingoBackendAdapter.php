@@ -2,32 +2,37 @@
 
 namespace SG;
 
-use SG\Cache\ElementsCacheBuilder;
-use SG\Cache\GlossaryCache;
-
-use SMW\StoreFactory;
-
 use Lingo\Backend;
 use Lingo\MessageLog;
+use SG\Cache\ElementsCacheBuilder;
+use SG\Cache\GlossaryCache;
+use SMW\StoreFactory;
 
 /**
  * @ingroup SG
  * @ingroup SemanticGlossary
  *
- * @license GNU GPL v2+
+ * @license GPL-2.0-or-later
  * @since 1.1
  *
  * @author mwjames
  */
 class LingoBackendAdapter extends Backend {
 
-	/* @var ElementsCacheBuilder */
+	/**
+	 * @var ElementsCacheBuilder|null
+	 */
 	protected $elementsCacheBuilder = null;
 
-	protected $elements = array();
+	/**
+	 * @var array
+	 */
+	protected $elements = [];
 
+	/**
+	 * @var bool
+	 */
 	protected $elementsFetched = false;
-
 
 	/**
 	 * @since 1.1
@@ -80,10 +85,10 @@ class LingoBackendAdapter extends Backend {
 	 *
 	 * @since  5.0
 	 *
-	 * @return boolean
+	 * @return bool
 	 */
 	public function useCache() {
-		return true;
+		return false;
 	}
 
 }
