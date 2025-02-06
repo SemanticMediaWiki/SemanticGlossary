@@ -46,7 +46,9 @@ class SemanticDataComparator {
 	 * @return bool
 	 */
 	public function compareForProperty( string $propertyId ) {
-		list( $newEntries, $oldEntries ) = $this->lookupPropertyValues( $propertyId );
+		$entries = $this->lookupPropertyValues( $propertyId );
+		$newEntries = $entries[0];
+		$oldEntries = $entries[1];
 
 		if ( $this->hasNotSamePropertyValuesCount( $newEntries, $oldEntries ) ) {
 			return true;
@@ -87,7 +89,7 @@ class SemanticDataComparator {
 		$newEntries = [];
 		$oldEntries = [];
 
-		try{
+		try {
 			$property = new DIProperty( $propertyId );
 		} catch ( \Exception $e ) {
 			return [
