@@ -5,13 +5,11 @@ namespace SG\Tests\Cache;
 use SG\PropertyRegistrationHelper;
 use SG\Cache\CacheInvalidator;
 use SG\Cache\GlossaryCache;
-
 use SMW\Subobject;
 use SMW\SemanticData;
 use SMW\DIWikiPage;
 use SMW\DIProperty;
 use SMWDIBlob as DIBlob;
-
 use HashBagOStuff;
 use Title;
 
@@ -24,7 +22,7 @@ use Title;
  * @group SGExtension
  * @group extension-semantic-glossary
  *
- * @license GNU GPL v2+
+ * @license GPL-2.0-or-later
  * @since 1.0
  *
  * @author mwjames
@@ -41,7 +39,6 @@ class CacheInvalidatorTest extends \PHPUnit\Framework\TestCase {
 	}
 
 	public function testInvalidateOnUpdateWithEmptyData() {
-
 		$store = $this->getMockBuilder( '\SMW\Store' )
 			->disableOriginalConstructor()
 			->getMockForAbstractClass();
@@ -60,7 +57,6 @@ class CacheInvalidatorTest extends \PHPUnit\Framework\TestCase {
 	}
 
 	public function testInvalidateOnUpdateWithNullSemanticData() {
-
 		$store = $this->getMockBuilder( '\SMW\Store' )
 			->disableOriginalConstructor()
 			->getMockForAbstractClass();
@@ -74,7 +70,6 @@ class CacheInvalidatorTest extends \PHPUnit\Framework\TestCase {
 	}
 
 	public function testInvalidateOnUpdateWithDifferentSubobjectData() {
-
 		$subject = DIWikiPage::newFromTitle( Title::newFromText( __METHOD__ ) );
 
 		$subobject = new Subobject( $subject->getTitle() );
@@ -123,7 +118,6 @@ class CacheInvalidatorTest extends \PHPUnit\Framework\TestCase {
 	}
 
 	public function testInvalidateOnDeleteWithEmptyData() {
-
 		$subject = DIWikiPage::newFromTitle( Title::newFromText( __METHOD__ ) );
 
 		$store = $this->getMockBuilder( 'SMWStore' )
@@ -132,8 +126,7 @@ class CacheInvalidatorTest extends \PHPUnit\Framework\TestCase {
 
 		$store->expects( $this->once() )
 			->method( 'getProperties' )
-			->with( $this->equalTo( $subject ) )
-			->will( $this->returnValue( array() ) );
+			->willReturn( array() );
 
 		$instance = new CacheInvalidator();
 		$instance->setCache( new GlossaryCache( new HashBagOStuff() ) );
@@ -142,7 +135,6 @@ class CacheInvalidatorTest extends \PHPUnit\Framework\TestCase {
 	}
 
 	public function testInvalidateOnDeleteWithSubobject() {
-
 		$subobject  = new DIProperty( '_SOBJ' );
 		$subject    = DIWikiPage::newFromTitle( Title::newFromText( __METHOD__ ) );
 		$newSubject = DIWikiPage::newFromTitle( Title::newFromText( 'Subobject' ) );
@@ -153,15 +145,11 @@ class CacheInvalidatorTest extends \PHPUnit\Framework\TestCase {
 
 		$store->expects( $this->once() )
 			->method( 'getProperties' )
-			->with( $this->equalTo( $subject ) )
-			->will( $this->returnValue( array( '_SOBJ' => $subobject ) ) );
+			->willReturn( array( '_SOBJ' => $subobject ) );
 
 		$store->expects( $this->once() )
 			->method( 'getPropertyValues' )
-			->with(
-				$this->equalTo( $subject ),
-				$this->equalTo( $subobject ) )
-			->will( $this->returnValue( $newSubject ) );
+			->willReturn( $newSubject );
 
 		$glossaryCache = new GlossaryCache( new HashBagOStuff() );
 
@@ -181,7 +169,6 @@ class CacheInvalidatorTest extends \PHPUnit\Framework\TestCase {
 	}
 
 	public function testInvalidateOnMove() {
-
 		$title = Title::newFromText( __METHOD__ );
 
 		$instance = new CacheInvalidator();

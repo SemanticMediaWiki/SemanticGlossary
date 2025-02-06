@@ -10,7 +10,7 @@ use SMW\DIProperty;
  * @ingroup SG
  * @ingroup SemanticGlossary
  *
- * @license GNU GPL v2+
+ * @license GPL-2.0-or-later
  * @since 1.0
  *
  * @author Stephan Gambke
@@ -43,11 +43,12 @@ class SemanticDataComparator {
 	 *
 	 * @param string $propertyId
 	 *
-	 * @return boolean
+	 * @return bool
 	 */
 	public function compareForProperty( $propertyId ) {
-
-		list( $newEntries, $oldEntries ) = $this->lookupPropertyValues( $propertyId );
+		$values = $this->lookupPropertyValues( $propertyId );
+        $newEntries = $values[ 0 ];
+        $oldEntries = $values[ 1 ];
 
 		if ( $this->hasNotSamePropertyValuesCount( $newEntries, $oldEntries ) ) {
 			return true;
@@ -61,7 +62,6 @@ class SemanticDataComparator {
 	}
 
 	private function lookupPropertyValues( $propertyId ) {
-
 		$properties = $this->semanticData->getProperties();
 
 		if ( array_key_exists( $propertyId, $properties ) ) {
@@ -81,7 +81,7 @@ class SemanticDataComparator {
 		$newEntries = array();
 		$oldEntries = array();
 
-		try{
+		try {
 			$property = new DIProperty( $propertyId );
 		} catch ( \Exception $e ) {
 			return array(
@@ -106,7 +106,6 @@ class SemanticDataComparator {
 	}
 
 	private function hasUnmatchPropertyValue( $newEntries, $oldEntries ) {
-
 		foreach ( $newEntries as $newDi ) {
 			$found = false;
 			foreach ( $oldEntries as $oldKey => $oldDi ) {
