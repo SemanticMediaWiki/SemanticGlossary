@@ -1,7 +1,7 @@
 {
 	"name": "mediawiki/semantic-glossary",
 	"type": "mediawiki-extension",
-	"description": "A terminology markup extension with a Semantic MediaWiki back-end",
+	"description": "A terminology markup extension with a Semantic MediaWiki back-end test",
 	"keywords": [
 		"wiki",
 		"MediaWiki",
