@@ -52,7 +52,7 @@ class SemanticDataComparatorTest extends \PHPUnit\Framework\TestCase {
 
 		$semanticData->expects( $this->once() )
 			->method( 'getProperties' )
-			->will( $this->returnValue( [] ) );
+			->willReturn( [] );
 
 		$instance = new SemanticDataComparator(
 			$store,

@@ -56,7 +56,9 @@ class GlossaryCacheRebuilder {
 	public function __construct( Store $store, GlossaryCache $glossaryCache, $reporter = null ) {
 		$this->store = $store;
 		$this->glossaryCache = $glossaryCache;
-		$this->reporter = $reporter; // Should be a MessageReporter instance
+
+		// Should be a MessageReporter instance
+		$this->reporter = $reporter;
 	}
 
 	/**
@@ -109,7 +111,10 @@ class GlossaryCacheRebuilder {
 
 				$this->rebuildCount++;
 
-				$this->reportMessage( "($this->rebuildCount) Processing page " . $title->getPrefixedDBkey() . " ...\n", $this->verbose );
+				$this->reportMessage(
+					"($this->rebuildCount) Processing page " . $title->getPrefixedDBkey() . " ...\n",
+					$this->verbose
+				);
 
 				// FIXME Wrong approach, users outside of smw-core should not
 				// directly create an instance and instead use a factory for

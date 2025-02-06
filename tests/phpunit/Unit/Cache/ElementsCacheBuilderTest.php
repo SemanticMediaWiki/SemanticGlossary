@@ -51,7 +51,7 @@ class ElementsCacheBuilderTest extends \PHPUnit\Framework\TestCase {
 
 		$queryResult->expects( $this->once() )
 			->method( 'getResults' )
-			->will( $this->returnValue( [ $page ] ) );
+			->willReturn( [ $page ] );
 
 		$store = $this->getMockBuilder( 'SMWStore' )
 			->disableOriginalConstructor()
@@ -59,17 +59,17 @@ class ElementsCacheBuilderTest extends \PHPUnit\Framework\TestCase {
 
 		$store->expects( $this->once() )
 			->method( 'getQueryResult' )
-			->will( $this->returnValue( $queryResult ) );
+			->willReturn( $queryResult );
 
 		// at() position depends on the sequence as to when a method is called
 
 		$store->expects( $this->at( 1 ) )
 			->method( 'getPropertyValues' )
-			->will( $this->returnValue( [ new DIBlob( ' Foo term ' ) ] ) );
+			->willReturn( [ new DIBlob( ' Foo term ' ) ] );
 
 		$store->expects( $this->at( 2 ) )
 			->method( 'getPropertyValues' )
-			->will( $this->returnValue( [ new DIBlob( ' some Definition ' ) ] ) );
+			->willReturn( [ new DIBlob( ' some Definition ' ) ] );
 
 		$glossaryCache = new GlossaryCache( new HashBagOStuff() );
 

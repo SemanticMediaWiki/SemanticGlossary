@@ -110,7 +110,8 @@ class ElementsCacheBuilder {
 			$cacheId = substr( md5( implode( '', $batch ) ), 0, 8 );
 
 			if ( !isset( $this->queryResults[$cacheId] ) ) {
-				$this->queryResults[$cacheId] = $this->store->getQueryResult( $this->buildQuery( $batch ) )->getResults();
+				$query = $this->buildQuery( $batch );
+				$this->queryResults[$cacheId] = $this->store->getQueryResult( $query )->getResults();
 			}
 
 			/**
