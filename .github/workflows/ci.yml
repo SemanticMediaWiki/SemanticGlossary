@@ -31,6 +31,28 @@ jobs:
             database_image: "mariadb:11.2"
             coverage: true
             experimental: false
+          - mediawiki_version: '1.41'
+            smw_version: dev-master
+            php_version: 8.1
+            database_type: mysql
+            database_image: "mariadb:11.2"
+            coverage: false
+            experimental: false
+          - mediawiki_version: '1.42'
+            smw_version: dev-master
+            php_version: 8.1
+            database_type: mysql
+            database_image: "mariadb:11.2"
+            coverage: false
+            experimental: false
+          - mediawiki_version: '1.43'
+            smw_version: dev-master
+            php_version: 8.1
+            database_type: mysql
+            database_image: "mariadb:11.2"
+            coverage: false
+            experimental: false
+
     env:
       MW_VERSION: ${{ matrix.mediawiki_version }}
       SMW_VERSION: ${{ matrix.smw_version }}
