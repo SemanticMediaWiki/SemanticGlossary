@@ -2,7 +2,7 @@
 
 namespace SG;
 
-use Hooks;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Linker\LinkTarget;
 use SMW\DIWikiPage;
 
@@ -34,7 +34,7 @@ class HookRegistry {
 	 * @return bool
 	 */
 	public function isRegistered( $name ) {
-		return Hooks::isRegistered( $name );
+		return MediaWikiServices::getInstance()->getHookContainer()->isRegistered( $name );
 	}
 
 	/**
@@ -53,7 +53,7 @@ class HookRegistry {
 	 */
 	public function register() {
 		foreach ( $this->handlers as $name => $callback ) {
-			Hooks::register( $name, $callback );
+			MediaWikiServices::getInstance()->getHookContainer()->register( $name, $callback );
 		}
 	}
 
@@ -92,15 +92,9 @@ class HookRegistry {
 		 *
 		 * @since 1.0
 		 */
-		if ( version_compare( MW_VERSION, "1.35.0", "<" ) ) {
-			$this->handlers['TitleMoveComplete'] = static function ( &$old_title ) {
-				return \SG\Cache\CacheInvalidator::getInstance()->invalidateCacheOnPageMove( $old_title );
-			};
-		} else {
-			$this->handlers['PageMoveComplete'] = static function ( LinkTarget $old_title ) {
-				return \SG\Cache\CacheInvalidator::getInstance()->invalidateCacheOnPageMove( $old_title );
-			};
-		}
+		$this->handlers['PageMoveComplete'] = static function ( LinkTarget $old_title ) {
+			return \SG\Cache\CacheInvalidator::getInstance()->invalidateCacheOnPageMove( $old_title );
+		};
 	}
 
 }
