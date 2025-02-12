@@ -2,9 +2,9 @@
 
 namespace SG\Cache;
 
-use SMW\DIWikiPage;
-use ObjectCache;
 use BagOStuff;
+use ObjectCache;
+use SMW\DIWikiPage;
 
 /**
  * @ingroup SG
@@ -17,8 +17,10 @@ use BagOStuff;
  */
 class GlossaryCache {
 
-	/* @var BagOstuff */
-	private $cache = null;
+	/**
+	 * @var BagOStuff|null
+	 */
+	private ?BagOStuff $cache = null;
 
 	/**
 	 * @since 1.1
@@ -59,7 +61,7 @@ class GlossaryCache {
 	 * @return string
 	 */
 	public function getKeyForLingo() {
-        return $this->getCache()->makeKey( 'ext', 'lingo', 'lingotree' );
+		return $this->getCache()->makeKey( 'ext', 'lingo', 'lingotree' );
 	}
 
 	/**

@@ -33,7 +33,7 @@
 	"require": {
 		"php": ">=7.1",
 		"composer/installers":"^1.0.12",
-		"mediawiki/lingo": "3.1.1"
+		"mediawiki/lingo": "3.2.3"
 	},
 	"require-dev": {
 		"mediawiki/mediawiki-codesniffer": "43.0.0",

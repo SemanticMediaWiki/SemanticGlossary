@@ -52,7 +52,7 @@ class SemanticDataComparatorTest extends \PHPUnit\Framework\TestCase {
 
 		$semanticData->expects( $this->once() )
 			->method( 'getProperties' )
-			->willReturn( array() );
+			->willReturn( [] );
 
 		$instance = new SemanticDataComparator(
 			$store,
@@ -65,10 +65,10 @@ class SemanticDataComparatorTest extends \PHPUnit\Framework\TestCase {
 	}
 
 	public function propertyIdProvider() {
-		$provider = array(
-			array( 'Foo' ),
-			array( '__Foo' )
-		);
+		$provider = [
+			[ 'Foo' ],
+			[ '__Foo' ]
+		];
 
 		return $provider;
 	}

@@ -2,14 +2,14 @@
 
 namespace SG\Cache;
 
-use SG\SemanticDataComparator;
-use SG\PropertyRegistrationHelper;
-use SMW\Store;
-use SMW\SemanticData;
-use SMW\DIWikiPage;
-use SMW\DIProperty;
 use Lingo\LingoParser;
 use MediaWiki\Linker\LinkTarget;
+use SG\PropertyRegistrationHelper;
+use SG\SemanticDataComparator;
+use SMW\DIProperty;
+use SMW\DIWikiPage;
+use SMW\SemanticData;
+use SMW\Store;
 
 /**
  * @ingroup SG
@@ -70,7 +70,7 @@ class CacheInvalidator {
 	 * @since 1.0
 	 *
 	 * @param Store $store
-	 * @param SemanticData $semanticData
+	 * @param SemanticData|null $semanticData
 	 *
 	 * @return bool
 	 */
@@ -121,6 +121,12 @@ class CacheInvalidator {
 		return true;
 	}
 
+	/**
+	 * @param Store $store
+	 * @param SemanticData $semanticData
+	 *
+	 * @return void
+	 */
 	private function matchAllSubobjects( Store $store, SemanticData $semanticData ) {
 		$properties = $semanticData->getProperties();
 
@@ -135,6 +141,12 @@ class CacheInvalidator {
 		}
 	}
 
+	/**
+	 * @param Store $store
+	 * @param DIWikiPage $subject
+	 *
+	 * @return void
+	 */
 	private function matchSubobjectsToSubject( Store $store, DIWikiPage $subject ) {
 		$properties = $store->getProperties( $subject );
 
@@ -149,6 +161,12 @@ class CacheInvalidator {
 		}
 	}
 
+	/**
+	 * @param Store $store
+	 * @param SemanticData $semanticData
+	 *
+	 * @return bool
+	 */
 	private function hasSemanticDataDeviation( Store $store, SemanticData $semanticData ) {
 		$dataComparator = new SemanticDataComparator( $store, $semanticData );
 
@@ -158,6 +176,11 @@ class CacheInvalidator {
 			$dataComparator->compareForProperty( PropertyRegistrationHelper::SG_STYLE );
 	}
 
+	/**
+	 * @param DIWikiPage $subject
+	 *
+	 * @return true
+	 */
 	private function purgeCache( DIWikiPage $subject ) {
 		$this->glossaryCache->getCache()->delete(
 			$this->glossaryCache->getKeyForSubject( $subject )

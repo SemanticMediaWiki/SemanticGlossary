@@ -2,14 +2,14 @@
 
 namespace SG\Maintenance;
 
-use SG\PropertyRegistrationHelper;
 use SG\Cache\GlossaryCache;
-use SMWUpdateJob as UpdateJob;
+use SG\PropertyRegistrationHelper;
 use SMW\Store;
+use SMWDIProperty as DIProperty;
 use SMWQuery as Query;
 use SMWSomeProperty as SomeProperty;
-use SMWDIProperty as DIProperty;
 use SMWThingDescription as ThingDescription;
+use SMWUpdateJob as UpdateJob;
 
 /**
  * Part of the `rebuildGlossaryCache.php` maintenance script
@@ -28,11 +28,20 @@ class GlossaryCacheRebuilder {
 
 	/** @var GlossaryCache */
 	private $glossaryCache;
-    /** @var reporter */
+
+	/**
+	 * @var null
+	 */
 	private $reporter = null;
-	/** @var rebuildCount */
+
+	/**
+	 * @var int
+	 */
 	private $rebuildCount = 0;
-	/** @var verbose */
+
+	/**
+	 * @var bool
+	 */
 	private $verbose = false;
 
 	/**
@@ -40,11 +49,15 @@ class GlossaryCacheRebuilder {
 	 *
 	 * @param Store $store
 	 * @param GlossaryCache $glossaryCache
-	 * @param $reporter
+	 * @param null $reporter
+	 *
+	 * @return void
 	 */
 	public function __construct( Store $store, GlossaryCache $glossaryCache, $reporter = null ) {
 		$this->store = $store;
 		$this->glossaryCache = $glossaryCache;
+
+		// Should be a MessageReporter instance
 		$this->reporter = $reporter;
 	}
 
@@ -80,8 +93,15 @@ class GlossaryCacheRebuilder {
 		return true;
 	}
 
+	/**
+	 * Update selected pages
+	 *
+	 * @param array $pages
+	 *
+	 * @return true
+	 */
 	private function updateSelectedPages( array $pages ) {
-		$titleCache = array();
+		$titleCache = [];
 
 		foreach ( $pages as $page ) {
 
@@ -91,8 +111,10 @@ class GlossaryCacheRebuilder {
 
 				$this->rebuildCount++;
 
-				$this->reportMessage( "($this->rebuildCount) Processing page " .
-				$title->getPrefixedDBkey() . " ...\n", $this->verbose );
+				$this->reportMessage(
+					"($this->rebuildCount) Processing page " . $title->getPrefixedDBkey() . " ...\n",
+					$this->verbose
+				);
 
 				// FIXME Wrong approach, users outside of smw-core should not
 				// directly create an instance and instead use a factory for
@@ -109,6 +131,11 @@ class GlossaryCacheRebuilder {
 		return true;
 	}
 
+	/**
+	 * Build a query to retrieve all pages that have a glossary term
+	 *
+	 * @return Query
+	 */
 	private function buildQuery() {
 		$description = new SomeProperty(
 			new DIProperty( PropertyRegistrationHelper::SG_TERM ),
@@ -132,6 +159,13 @@ class GlossaryCacheRebuilder {
 		return $resultQuery;
 	}
 
+	/**
+	 * Remove entities from cache
+	 *
+	 * @param array $pages
+	 *
+	 * @return void
+	 */
 	private function removeEntitiesFromCache( array $pages ) {
 		$cache = $this->glossaryCache->getCache();
 
@@ -145,12 +179,12 @@ class GlossaryCacheRebuilder {
 	}
 
 	/**
-	 * @codeCoverageIgnore
+	 * @param string $message
+	 * @param bool $output
 	 *
-	 * @param string $message The message to report.
-	 * @param bool $output Whether to output the message (default is true).
+	 * @return void
 	 */
-	private function reportMessage( $message, $output = true ) {
+	private function reportMessage( string $message, $output = true ) {
 		if ( is_callable( $this->reporter ) && $output ) {
 			call_user_func( $this->reporter, $message );
 		}

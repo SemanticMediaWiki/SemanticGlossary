@@ -2,9 +2,9 @@
 
 namespace SG;
 
-use SMW\Store;
-use SMW\SemanticData;
 use SMW\DIProperty;
+use SMW\SemanticData;
+use SMW\Store;
 
 /**
  * @ingroup SG
@@ -45,10 +45,10 @@ class SemanticDataComparator {
 	 *
 	 * @return bool
 	 */
-	public function compareForProperty( $propertyId ) {
-		$values = $this->lookupPropertyValues( $propertyId );
-        $newEntries = $values[ 0 ];
-        $oldEntries = $values[ 1 ];
+	public function compareForProperty( string $propertyId ) {
+		$entries = $this->lookupPropertyValues( $propertyId );
+		$newEntries = $entries[0];
+		$oldEntries = $entries[1];
 
 		if ( $this->hasNotSamePropertyValuesCount( $newEntries, $oldEntries ) ) {
 			return true;
@@ -61,7 +61,15 @@ class SemanticDataComparator {
 		return false;
 	}
 
-	private function lookupPropertyValues( $propertyId ) {
+	/**
+	 * Returns the new and old entries for a given property
+	 *
+	 * @param string $propertyId
+	 *
+	 * @return array|array[]
+	 *
+	 */
+	private function lookupPropertyValues( string $propertyId ) {
 		$properties = $this->semanticData->getProperties();
 
 		if ( array_key_exists( $propertyId, $properties ) ) {
@@ -72,22 +80,22 @@ class SemanticDataComparator {
 				$properties[$propertyId]
 			);
 
-			return array(
+			return [
 				$newEntries,
 				$oldEntries
-			);
+			];
 		}
 
-		$newEntries = array();
-		$oldEntries = array();
+		$newEntries = [];
+		$oldEntries = [];
 
 		try {
 			$property = new DIProperty( $propertyId );
 		} catch ( \Exception $e ) {
-			return array(
+			return [
 				$newEntries,
 				$oldEntries
-			);
+			];
 		}
 
 		$oldEntries = $this->store->getPropertyValues(
@@ -95,17 +103,33 @@ class SemanticDataComparator {
 			$property
 		);
 
-		return array(
+		return [
 			$newEntries,
 			$oldEntries
-		);
+		];
 	}
 
-	private function hasNotSamePropertyValuesCount( $newEntries, $oldEntries ) {
+	/**
+	 * Returns true if the number of property values is different
+	 *
+	 * @param array $newEntries
+	 * @param array $oldEntries
+	 *
+	 * @return bool
+	 */
+	private function hasNotSamePropertyValuesCount( array $newEntries, array $oldEntries ) {
 		return count( $newEntries ) !== count( $oldEntries );
 	}
 
-	private function hasUnmatchPropertyValue( $newEntries, $oldEntries ) {
+	/**
+	 * Returns true if the property values are different
+	 *
+	 * @param array $newEntries
+	 * @param array $oldEntries
+	 *
+	 * @return bool
+	 */
+	private function hasUnmatchPropertyValue( array $newEntries, array $oldEntries ) {
 		foreach ( $newEntries as $newDi ) {
 			$found = false;
 			foreach ( $oldEntries as $oldKey => $oldDi ) {

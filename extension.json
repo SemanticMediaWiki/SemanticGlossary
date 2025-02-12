@@ -1,6 +1,6 @@
 {
 	"name": "Semantic Glossary",
-	"version": "5.0.0",
+	"version": "5.0.1",
 	"author": [
 		"[https://www.mediawiki.org/wiki/User:F.trott Stephan Gambke]",
 		"[https://www.semantic-mediawiki.org/wiki/User:MWJames James Hong Kong]",
@@ -14,7 +14,7 @@
 	"requires": {
 		"MediaWiki": ">= 1.39",
 		"extensions": {
-			"Lingo": ">= 3.2.1"
+			"Lingo": ">= 3.2.3"
 		}
 	},
 	"MessagesDirs": {
