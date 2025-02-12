@@ -5,7 +5,7 @@ namespace SG\Tests\Integration;
 use SG\PropertyRegistrationHelper;
 use SMW\DIProperty;
 use SMW\DIWikiPage;
-use SMW\Tests\MwDBaseUnitTestCase;
+use SMW\Tests\DatabaseTestCase;
 use SMW\Tests\Utils\PageCreator;
 use SMW\Tests\Utils\PageDeleter;
 use SMW\Tests\Utils\Runners\RunnerFactory;
@@ -25,7 +25,7 @@ use Title;
  *
  * @author mwjames
  */
-class MwDBSQLStoreIntegrationTest extends MwDBaseUnitTestCase {
+class MwDBSQLStoreIntegrationTest extends DatabaseTestCase {
 
 	/**
 	 * @var PageCreator|null
