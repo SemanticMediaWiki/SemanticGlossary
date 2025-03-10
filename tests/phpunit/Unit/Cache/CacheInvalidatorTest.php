@@ -85,7 +85,7 @@ class CacheInvalidatorTest extends \PHPUnit\Framework\TestCase {
 			new DIBlob( 'Bar' )
 		);
 
-		$store = $this->getMockBuilder( 'SMWStore' )
+		$store = $this->getMockBuilder( '\SMW\Store' )
 			->disableOriginalConstructor()
 			->getMockForAbstractClass();
 
@@ -120,7 +120,7 @@ class CacheInvalidatorTest extends \PHPUnit\Framework\TestCase {
 	public function testInvalidateOnDeleteWithEmptyData() {
 		$subject = DIWikiPage::newFromTitle( Title::newFromText( __METHOD__ ) );
 
-		$store = $this->getMockBuilder( 'SMWStore' )
+		$store = $this->getMockBuilder( '\SMW\Store' )
 			->disableOriginalConstructor()
 			->getMockForAbstractClass();
 
@@ -140,7 +140,7 @@ class CacheInvalidatorTest extends \PHPUnit\Framework\TestCase {
 		$subject    = DIWikiPage::newFromTitle( Title::newFromText( __METHOD__ ) );
 		$newSubject = DIWikiPage::newFromTitle( Title::newFromText( 'Subobject' ) );
 
-		$store = $this->getMockBuilder( 'SMWStore' )
+		$store = $this->getMockBuilder( '\SMW\Store' )
 			->disableOriginalConstructor()
 			->getMockForAbstractClass();
 

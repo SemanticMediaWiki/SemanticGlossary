@@ -1,6 +1,0 @@
-services:
-  wiki:
-    volumes:
-      - ./../:/var/www/html/extensions/SemanticResultFormats
-      # exclude folder vendor from mountig to docker container
-      - /var/www/html/extensions/SemanticResultFormats/vendor

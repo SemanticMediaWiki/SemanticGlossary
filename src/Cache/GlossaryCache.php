@@ -27,7 +27,7 @@ class GlossaryCache {
 	 *
 	 * @param BagOStuff|null $cache
 	 */
-	public function __construct( BagOStuff $cache = null ) {
+	public function __construct( ?BagOStuff $cache = null ) {
 		$this->cache = $cache;
 	}
 

@@ -74,7 +74,7 @@ class CacheInvalidator {
 	 *
 	 * @return bool
 	 */
-	public function invalidateCacheOnStoreUpdate( Store $store, SemanticData $semanticData = null ) {
+	public function invalidateCacheOnStoreUpdate( Store $store, ?SemanticData $semanticData = null ) {
 		if ( $semanticData === null ) {
 			return false;
 		}
