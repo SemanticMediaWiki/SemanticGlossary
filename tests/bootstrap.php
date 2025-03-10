@@ -1,16 +1,24 @@
 <?php
 
-if ( PHP_SAPI !== 'cli' ) {
+if ( PHP_SAPI !== 'cli' && PHP_SAPI !== 'phpdbg' ) {
 	die( 'Not an entry point' );
 }
 
-$autoloaderClassPath = __DIR__ . '/../../SemanticMediaWiki/tests/autoloader.php';
+error_reporting( E_ALL | E_STRICT );
+date_default_timezone_set( 'UTC' );
+ini_set( 'display_errors', 1 );
 
-if ( !is_readable( $autoloaderClassPath ) ) {
-	die( 'The SemanticMediaWiki test autoloader is not available' );
+if ( !defined( 'SMW_PHPUNIT_AUTOLOADER_FILE' ) || !is_readable( SMW_PHPUNIT_AUTOLOADER_FILE ) ) {
+	die( "\nThe Semantic MediaWiki test autoloader is not available" );
 }
 
-$autoloader = require $autoloaderClassPath;
+$width = 25;
+
+if ( !defined( 'SMW_PHPUNIT_FIRST_COLUMN_WIDTH' ) ) {
+	define( 'SMW_PHPUNIT_FIRST_COLUMN_WIDTH', $width );
+}
+
+$autoloader = require SMW_PHPUNIT_AUTOLOADER_FILE;
 $autoloader->addPsr4( 'SG\\Tests\\', __DIR__ . '/phpunit/Unit' );
 $autoloader->addPsr4( 'SG\\Tests\\Integration\\', __DIR__ . '/phpunit/Integration' );
 $autoloader->addPsr4( 'SMW\\Test\\', __DIR__ . '/../../SemanticMediaWiki/tests/phpunit' );

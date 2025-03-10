@@ -3,9 +3,13 @@
 namespace SG\Tests\Integration;
 
 use SG\PropertyRegistrationHelper;
-use SMW\Tests\Utils\UtilityFactory;
 use SMW\DIProperty;
 use SMW\DIWikiPage;
+use SMW\Tests\DatabaseTestCase;
+use SMW\Tests\Utils\PageCreator;
+use SMW\Tests\Utils\PageDeleter;
+use SMW\Tests\Utils\Runners\RunnerFactory;
+use SMW\Tests\Utils\UtilityFactory;
 use Title;
 
 /**
@@ -21,13 +25,21 @@ use Title;
  *
  * @author mwjames
  */
-class MwDBSQLStoreIntegrationTest extends \PHPUnit\Framework\TestCase {
+class MwDBSQLStoreIntegrationTest extends DatabaseTestCase {
 
-	/** @var PageCreator */
+	/**
+	 * @var PageCreator|null
+	 */
 	private $pageCreator;
-	/** @var PageDeleter */
+
+	/**
+	 * @var PageDeleter|null
+	 */
 	private $pageDeleter;
-	/** @var RunnerFactory */
+
+	/**
+	 * @var RunnerFactory|null
+	 */
 	private $runnerFactory;
 
 	protected function setUp(): void {
@@ -70,7 +82,7 @@ class MwDBSQLStoreIntegrationTest extends \PHPUnit\Framework\TestCase {
 			new DIProperty( PropertyRegistrationHelper::SG_TERM )
 		);
 
-		$this->assertCount( 0, $values );
+		$this->assertSame( [], $values );
 	}
 
 	public function testRebuildGlossaryCacheMaintenanceRun() {

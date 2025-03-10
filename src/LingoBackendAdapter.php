@@ -2,11 +2,11 @@
 
 namespace SG;
 
+use Lingo\Backend;
+use Lingo\MessageLog;
 use SG\Cache\ElementsCacheBuilder;
 use SG\Cache\GlossaryCache;
 use SMW\StoreFactory;
-use Lingo\Backend;
-use Lingo\MessageLog;
 
 /**
  * @ingroup SG
@@ -19,10 +19,20 @@ use Lingo\MessageLog;
  */
 class LingoBackendAdapter extends Backend {
 
-	/* @var ElementsCacheBuilder */
+	/**
+	 * @var ElementsCacheBuilder|null
+	 */
 	protected $elementsCacheBuilder = null;
-	/* @var array An array of elements */
-	protected $elements = array();
+
+	/**
+	 * @var array
+	 */
+	protected $elements = [];
+
+	/**
+	 * @var bool
+	 */
+	protected $elementsFetched = false;
 
 	/**
 	 * @since 1.1
@@ -52,25 +62,33 @@ class LingoBackendAdapter extends Backend {
 	 * @return array|null the next element or null
 	 */
 	public function next() {
-		if ( $this->elements === array() ) {
+		if ( !$this->elementsFetched ) {
 			$this->elements = $this->elementsCacheBuilder->getElements( $this->getSearchTerms() );
+			$this->elementsFetched = true;
 		}
 
 		return array_pop( $this->elements );
 	}
 
 	/**
-	 * This backend is cache-enabled so this function returns true.
+	 * @inheritDoc
+	 */
+	public function setSearchTerms( array $searchTerms ) {
+		$searchTerms = array_filter( $searchTerms, static fn ( $term ) => strlen( $term ) > 2 );
+		parent::setSearchTerms( $searchTerms );
+	}
+
+	/**
+	 * This backend doesn't use caching, since we do specific queries for glossary
+	 * terms. This was previously set to true, since the whole glossary would be
+	 * queried upon.
 	 *
-	 * Actual caching is done by the parser, the backend just calls
-	 * Parser::purgeCache when necessary.
-	 *
-	 * @since  1.1
+	 * @since  5.0
 	 *
 	 * @return bool
 	 */
 	public function useCache() {
-		return true;
+		return false;
 	}
 
 }

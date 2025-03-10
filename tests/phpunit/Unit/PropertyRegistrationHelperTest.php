@@ -43,6 +43,7 @@ class PropertyRegistrationHelperTest extends \PHPUnit\Framework\TestCase {
 		$propertyRegistry
 			->expects( $this->exactly( 4 ) )
 			->method( 'registerPropertyAlias' );
+
 		$propertyRegistrationHelper = new PropertyRegistrationHelper( $propertyRegistry );
 
 		$this->assertTrue(
@@ -68,12 +69,12 @@ class PropertyRegistrationHelperTest extends \PHPUnit\Framework\TestCase {
 	 * @return string[][]
 	 */
 	public function propertyDefinitionDataProvider() {
-		$provider = array();
+		$provider = [];
 
-		$provider[] = array( PropertyRegistrationHelper::SG_TERM, SG_PROP_GLT );
-		$provider[] = array( PropertyRegistrationHelper::SG_DEFINITION, SG_PROP_GLD );
-		$provider[] = array( PropertyRegistrationHelper::SG_LINK, SG_PROP_GLL );
-		$provider[] = array( PropertyRegistrationHelper::SG_STYLE, SG_PROP_GLS );
+		$provider[] = [ PropertyRegistrationHelper::SG_TERM, SG_PROP_GLT ];
+		$provider[] = [ PropertyRegistrationHelper::SG_DEFINITION, SG_PROP_GLD ];
+		$provider[] = [ PropertyRegistrationHelper::SG_LINK, SG_PROP_GLL ];
+		$provider[] = [ PropertyRegistrationHelper::SG_STYLE, SG_PROP_GLS ];
 
 		return $provider;
 	}

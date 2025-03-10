@@ -2,15 +2,15 @@
 
 namespace SG\Tests\Cache;
 
-use SG\PropertyRegistrationHelper;
+use HashBagOStuff;
 use SG\Cache\CacheInvalidator;
 use SG\Cache\GlossaryCache;
-use SMW\Subobject;
-use SMW\SemanticData;
-use SMW\DIWikiPage;
+use SG\PropertyRegistrationHelper;
 use SMW\DIProperty;
+use SMW\DIWikiPage;
+use SMW\SemanticData;
+use SMW\Subobject;
 use SMWDIBlob as DIBlob;
-use HashBagOStuff;
 use Title;
 
 /**
@@ -126,7 +126,8 @@ class CacheInvalidatorTest extends \PHPUnit\Framework\TestCase {
 
 		$store->expects( $this->once() )
 			->method( 'getProperties' )
-			->willReturn( array() );
+			->with( $subject )
+			->willReturn( [] );
 
 		$instance = new CacheInvalidator();
 		$instance->setCache( new GlossaryCache( new HashBagOStuff() ) );
@@ -145,10 +146,12 @@ class CacheInvalidatorTest extends \PHPUnit\Framework\TestCase {
 
 		$store->expects( $this->once() )
 			->method( 'getProperties' )
-			->willReturn( array( '_SOBJ' => $subobject ) );
+			->with( $subject )
+			->willReturn( [ '_SOBJ' => $subobject ] );
 
 		$store->expects( $this->once() )
 			->method( 'getPropertyValues' )
+			->with( $subject, $subobject )
 			->willReturn( $newSubject );
 
 		$glossaryCache = new GlossaryCache( new HashBagOStuff() );
