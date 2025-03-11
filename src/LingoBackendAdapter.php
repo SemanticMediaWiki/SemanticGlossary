@@ -40,7 +40,7 @@ class LingoBackendAdapter extends Backend {
 	 * @param MessageLog|null &$messages
 	 * @param ElementsCacheBuilder|null $elementsCacheBuilder
 	 */
-	public function __construct( MessageLog &$messages = null, ElementsCacheBuilder $elementsCacheBuilder = null ) {
+	public function __construct( ?MessageLog &$messages = null, ?ElementsCacheBuilder $elementsCacheBuilder = null ) {
 		parent::__construct( $messages );
 		$this->elementsCacheBuilder = $elementsCacheBuilder;
 

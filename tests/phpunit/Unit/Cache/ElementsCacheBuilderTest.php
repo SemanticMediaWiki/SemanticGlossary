@@ -9,7 +9,7 @@ use SG\Cache\ElementsCacheBuilder;
 use SG\Cache\GlossaryCache;
 use SMW\Store;
 use SMWDIBlob as DIBlob;
-use SMWDIWikiPage as DIWikiPage;
+use SMW\DIWikiPage;
 use stdClass;
 use Title;
 

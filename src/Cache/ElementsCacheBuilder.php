@@ -9,10 +9,10 @@ use SMW\DIProperty;
 use SMW\DIWikiPage;
 use SMW\Query\DescriptionFactory;
 use SMW\Store;
-use SMWPrintRequest as PrintRequest;
+use SMW\Query\PrintRequest;
 use SMWQuery as Query;
-use SMWSomeProperty as SomeProperty;
-use SMWThingDescription as ThingDescription;
+use SMW\Query\Language\SomeProperty;
+use SMW\Query\Language\ThingDescription;
 
 /**
  * @ingroup SG
