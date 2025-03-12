@@ -1,9 +1,17 @@
 This file contains the RELEASE-NOTES of the Semantic Glossary (a.k.a. SG) extension.
 
-### 4.1.0
+### 5.0.1
+
+Released on 2025-03-12.
+
 * New minumum required versions:
-	* Lingo: 3.2.1
+	* MediaWiki 1.39 
+	* Lingo: 3.2.3
 * Improved glossary searching by using the given 'search terms' passed by Lingo
+* Support for newer MediaWiki versions
+* Support for newer Semantic MediaWiki versions
+* Improved testing and CI
+
 ### 4.0.0
 
 Released on 2021-07-09.
