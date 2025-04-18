@@ -82,6 +82,11 @@ class ElementsCacheBuilder {
 	private array $queryResults = [];
 
 	/**
+	 * @var array
+	 */
+	private array $registeredTerms = [];
+
+	/**
 	 * @var int
 	 */
 	private int $batchSize = 5;
@@ -160,6 +165,11 @@ class ElementsCacheBuilder {
 		$ret = [];
 
 		foreach ( $terms as $term ) {
+			$uuid = substr( md5( $term . $definition . $link ), 0, 8 );
+			if ( in_array( $uuid, $this->registeredTerms ) ) {
+				continue;
+			}
+
 			$tmp_ret = [
 				Element::ELEMENT_TERM => $term,
 				Element::ELEMENT_DEFINITION => $definition,
@@ -167,8 +177,10 @@ class ElementsCacheBuilder {
 				Element::ELEMENT_STYLE => $style,
 				Element::ELEMENT_SOURCE => $page
 			];
-
 			$ret[] = $tmp_ret;
+
+			// We register the term to avoid duplicates
+			$this->registeredTerms[] = $uuid;
 		}
 
 		return $ret;
@@ -194,7 +206,11 @@ class ElementsCacheBuilder {
 		foreach ( $searchTerms as $searchTerm ) {
 			$valueDescriptions[] = $descriptionFactory->newSomeProperty(
 				$this->mDiTerm,
-				$descriptionFactory->newValueDescription( new \SMWDIBlob( $searchTerm ) )
+				$descriptionFactory->newValueDescription(
+					new \SMWDIBlob( $searchTerm ),
+					null,
+					SMW_CMP_LIKE
+				)
 			);
 		}
 
