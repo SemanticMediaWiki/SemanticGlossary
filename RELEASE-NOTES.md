@@ -1,5 +1,11 @@
 This file contains the RELEASE-NOTES of the Semantic Glossary (a.k.a. SG) extension.
 
+### 5.0.2
+Released on TBA.
+
+* Query optimization for glossary terms with spaces ([#85](https://github.com/SemanticMediaWiki/SemanticGlossary/issues/85))
+* Added deduplicated fix
+
 ### 5.0.1
 
 Released on 2025-03-12.
