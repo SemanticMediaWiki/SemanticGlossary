@@ -7,9 +7,9 @@ use Lingo\Element;
 use PHPUnit\Framework\TestCase;
 use SG\Cache\ElementsCacheBuilder;
 use SG\Cache\GlossaryCache;
+use SMW\DIWikiPage;
 use SMW\Store;
 use SMWDIBlob as DIBlob;
-use SMW\DIWikiPage;
 use stdClass;
 use Title;
 
@@ -101,6 +101,42 @@ class ElementsCacheBuilderTest extends TestCase {
 		);
 		$this->assertLingoElement( 'CachedTerm', 'CachedDefinition', 'CachedLink', 'CachedStyle', $results[0] );
 		$this->assertLingoElement( 'Term2', 'Definition2', 'Link2', 'Style2', $results[1] );
+	}
+
+	/**
+	 * Tests if getElements correctly finds terms using SMW_CMP_LIKE (e.g., containing spaces).
+	 */
+	public function testGetElementsFindsTermsWithLikeComparison() {
+		$page = $this->createMockWikiPage();
+		$searchTerm = 'term with space';
+		$fullTerm = 'the term with space';
+		$definition = 'Test Definition';
+		$link = 'Test Link';
+		$style = 'Test Style';
+
+		// Expect 1 call to getQueryResult as we only have one search term (no batching needed)
+		$this->setupQueryResultMock( $page, 1 );
+
+		// Mock the property values returned for the page
+		$this->setupPropertyValuesMock( [
+			[ new DIBlob( $fullTerm ) ],
+			[ new DIBlob( $definition ) ],
+			[ new DIBlob( $link ) ],
+			[ new DIBlob( $style ) ]
+		] );
+
+		// Execute the method under test
+		$results = $this->instance->getElements( [ $searchTerm ] );
+
+		// Assertions
+		$this->assertCount( 1, $results, 'Should return exactly one element' );
+		$this->assertLingoElement(
+			$fullTerm,
+			$definition,
+			$link,
+			$style,
+			$results[0]
+		);
 	}
 
 	public function testGetElementsReturnsEmptyArrayForEmptySearchTerms() {
