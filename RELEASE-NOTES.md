@@ -1,15 +1,14 @@
 This file contains the RELEASE-NOTES of the Semantic Glossary (a.k.a. SG) extension.
 
-### 5.0.3
-Released on TBA.
-
-* Fix "creation of dynamic property is deprecated".
-
-### 5.0.2
+### 5.1.0
 Released on TBA.
 
 * Query optimization for glossary terms with spaces ([#85](https://github.com/SemanticMediaWiki/SemanticGlossary/issues/85))
 * Added deduplicated fix
+* Fix "creation of dynamic property is deprecated", thank you ArchiXL
+* Fixed glossary terms with spaces and mutliple glossary terms, thank you @YOUR1 ([#93](https://github.com/SemanticMediaWiki/SemanticGlossary/pull/93))
+* Re-enable rebuildGlossaryCache maintenance script and fix tests ([dbdec05](https://github.com/SemanticMediaWiki/SemanticGlossary/commit/dbdec05277a6823b13df2b8cc23f378cd233d768)))
+* improve SMW 6 compatibility
 
 ### 5.0.1
 
