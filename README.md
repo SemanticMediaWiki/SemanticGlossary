@@ -8,10 +8,10 @@ terms and abbreviations can be defined using semantic properties.
 
 ## Requirements
 
-- PHP 7.1 or later
-- MediaWiki 1.31 or later
-- [Semantic MediaWiki][smw] 3.1 or later
-- [Lingo][lg] 3.1 or later
+- PHP 8.1 or later
+- MediaWiki 1.43 or later
+- [Semantic MediaWiki][smw] 6.0 or later
+- [Lingo][lg] 3.2.3 or later
 
 ## Installation
 
@@ -25,7 +25,7 @@ Just add the following to the MediaWiki "composer.local.json" file and run the
 ```json
 {
 	"require": {
-		"mediawiki/semantic-glossary": "~4.0"
+		"mediawiki/semantic-glossary": "~6.0"
 	}
 }
 ```
@@ -44,7 +44,7 @@ have a look at the contribution guideline.
 
 ## Tests
 
-This extension provides unit and integration tests that are run by a [continues integration platform][travis]
+This extension provides unit and integration tests that are run by a [continuous integration platform][ci]
 but can also be executed using `composer phpunit` from the extension base directory.
 
 ## License
@@ -57,4 +57,4 @@ but can also be executed using `composer phpunit` from the extension base direct
 [smw]: https://www.mediawiki.org/wiki/Extension:Semantic_MediaWiki
 [lg]: https://www.mediawiki.org/wiki/Extension:Lingo
 [composer]: https://getcomposer.org/
-[travis]: https://www.travis-ci.com/github/SemanticMediaWiki/SemanticGlossary
+[ci]: https://github.com/SemanticMediaWiki/SemanticGlossary/actions
