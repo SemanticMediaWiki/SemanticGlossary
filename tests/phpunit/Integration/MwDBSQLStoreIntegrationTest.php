@@ -3,6 +3,7 @@
 namespace SG\Tests\Integration;
 
 use MediaWikiIntegrationTestCase;
+use MediaWiki\Title\Title;
 use SG\PropertyRegistrationHelper;
 use SMW\DIProperty;
 use SMW\DIWikiPage;
@@ -11,7 +12,6 @@ use SMW\SemanticData;
 use SMW\StoreFactory;
 use SMW\Tests\Utils\UtilityFactory;
 use SMWDIBlob as DIBlob;
-use Title;
 
 /**
  * @ingroup Test
