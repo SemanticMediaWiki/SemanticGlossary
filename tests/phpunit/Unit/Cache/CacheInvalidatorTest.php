@@ -46,9 +46,8 @@ class CacheInvalidatorTest extends \PHPUnit\Framework\TestCase {
 		$store->method( 'getPropertyValues' )
 			->willReturn( [] );
 
-		$semanticData = $this->getMockBuilder( '\SMW\SemanticData' )
-			->disableOriginalConstructor()
-			->getMockForAbstractClass();
+		$subject = DIWikiPage::newFromTitle( Title::newFromText( __METHOD__ ) );
+		$semanticData = new SemanticData( $subject );
 
 		$instance = new CacheInvalidator();
 		$instance->setCache( new GlossaryCache( new HashBagOStuff() ) );
