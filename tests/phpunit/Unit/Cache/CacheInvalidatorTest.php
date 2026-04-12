@@ -72,7 +72,7 @@ class CacheInvalidatorTest extends \PHPUnit\Framework\TestCase {
 		$subject = DIWikiPage::newFromTitle( Title::newFromText( __METHOD__ ) );
 
 		$subobject = new Subobject( $subject->getTitle() );
-		$subobject->setSemanticData( '_999999' );
+		$subobject->setEmptyContainerForId( '_999999' );
 
 		$subobject->getSemanticData()->addPropertyObjectValue(
 			new DIProperty( PropertyRegistrationHelper::SG_TERM ),
