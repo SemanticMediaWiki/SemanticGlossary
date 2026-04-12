@@ -3,6 +3,7 @@
 namespace SG\Tests\Cache;
 
 use HashBagOStuff;
+use MediaWiki\Title\Title;
 use SG\Cache\CacheInvalidator;
 use SG\Cache\GlossaryCache;
 use SG\PropertyRegistrationHelper;
@@ -11,7 +12,6 @@ use SMW\DIWikiPage;
 use SMW\SemanticData;
 use SMW\Subobject;
 use SMWDIBlob as DIBlob;
-use Title;
 
 /**
  * @covers \SG\Cache\CacheInvalidator
