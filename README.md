@@ -2,6 +2,8 @@
 
 [![CI](https://github.com/SemanticMediaWiki/SemanticGlossary/actions/workflows/ci.yml/badge.svg)](https://github.com/SemanticMediaWiki/SemanticGlossary/actions/workflows/ci.yml)
 [![codecov](https://codecov.io/github/SemanticMediaWiki/SemanticGlossary/graph/badge.svg?token=yoC0GYEOkx)](https://codecov.io/github/SemanticMediaWiki/SemanticGlossary)
+[![Latest Stable Version](https://poser.pugx.org/mediawiki/semantic-glossary/version.png)](https://packagist.org/packages/mediawiki/semantic-glossary)
+[![Packagist download count](https://poser.pugx.org/mediawiki/semantic-glossary/d/total.png)](https://packagist.org/packages/mediawiki/semantic-glossary)
 
 The [Semantic Glossary][mw-semantic-glossary] (a.k.a SG) is a [Semantic MediaWiki][smw] extension where
 terms and abbreviations can be defined using semantic properties.
@@ -15,7 +17,7 @@ terms and abbreviations can be defined using semantic properties.
 
 ## Installation
 
-Note that the Semantic MediaWiki extension and the Lingo extension need to be installed first.
+Note that the Semantic MediaWiki and Lingo extensions need to be installed first.
 Moreover they need to be invoked earlier than this extension.
 
 The way to install this extension is by using [Composer][composer].
@@ -37,14 +39,14 @@ wfLoadExtension( 'SemanticGlossary' );
 
 ## Contribution and support
 
-If you want to contribute work to the project please subscribe to the developers mailing list and
+If you want to contribute work to the project, please subscribe to the developers' mailing list and
 have a look at the contribution guideline.
 
 * Ask a question on [the mailing list](https://www.semantic-mediawiki.org/wiki/Mailing_list)
 
 ## Tests
 
-This extension provides unit and integration tests that are run by a [continuous integration platform][ci]
+This extension provides unit and integration tests that are run by a [continuous integration platform][travis]
 but can also be executed using `composer phpunit` from the extension base directory.
 
 ## License

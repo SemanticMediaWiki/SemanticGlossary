@@ -12,12 +12,12 @@ EXTENSION=SemanticGlossary
 
 # docker images
 MW_VERSION?=1.43
-PHP_VERSION?=8.2
-DB_TYPE?=sqlite
-DB_IMAGE?=""
+PHP_VERSION?=8.1
+DB_TYPE?=mysql
+DB_IMAGE?="mariadb:11.2"
 
 # extensions
-SMW_VERSION?=6.0.1
+SMW_VERSION ?=6.0.1
 MM_VERSION ?= 3.1.0
 LINGO_VERSION ?= 3.2.3
 

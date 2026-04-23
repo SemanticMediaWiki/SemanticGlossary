@@ -3,6 +3,7 @@
 namespace SG\Tests\Cache;
 
 use HashBagOStuff;
+use MediaWiki\Title\Title;
 use SG\Cache\CacheInvalidator;
 use SG\Cache\GlossaryCache;
 use SG\PropertyRegistrationHelper;
@@ -11,7 +12,6 @@ use SMW\DIWikiPage;
 use SMW\SemanticData;
 use SMW\Subobject;
 use SMWDIBlob as DIBlob;
-use Title;
 
 /**
  * @covers \SG\Cache\CacheInvalidator
@@ -46,9 +46,8 @@ class CacheInvalidatorTest extends \PHPUnit\Framework\TestCase {
 		$store->method( 'getPropertyValues' )
 			->willReturn( [] );
 
-		$semanticData = $this->getMockBuilder( '\SMW\SemanticData' )
-			->disableOriginalConstructor()
-			->getMockForAbstractClass();
+		$subject = DIWikiPage::newFromTitle( Title::newFromText( __METHOD__ ) );
+		$semanticData = new SemanticData( $subject );
 
 		$instance = new CacheInvalidator();
 		$instance->setCache( new GlossaryCache( new HashBagOStuff() ) );
@@ -73,7 +72,7 @@ class CacheInvalidatorTest extends \PHPUnit\Framework\TestCase {
 		$subject = DIWikiPage::newFromTitle( Title::newFromText( __METHOD__ ) );
 
 		$subobject = new Subobject( $subject->getTitle() );
-		$subobject->setSemanticData( '_999999' );
+		$subobject->setEmptyContainerForId( '_999999' );
 
 		$subobject->getSemanticData()->addPropertyObjectValue(
 			new DIProperty( PropertyRegistrationHelper::SG_TERM ),

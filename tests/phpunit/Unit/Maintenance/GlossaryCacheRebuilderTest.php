@@ -3,11 +3,11 @@
 namespace SG\Tests\Maintenance;
 
 use HashBagOStuff;
+use MediaWiki\Title\Title;
 use SG\Cache\GlossaryCache;
 use SG\Maintenance\GlossaryCacheRebuilder;
 use SMW\DIWikiPage;
 use SMW\Store;
-use Title;
 
 /**
  * @covers \SG\Maintenance\GlossaryCacheRebuilder

@@ -4,6 +4,7 @@ namespace SG\Tests\Cache;
 
 use HashBagOStuff;
 use Lingo\Element;
+use MediaWiki\Title\Title;
 use PHPUnit\Framework\TestCase;
 use SG\Cache\ElementsCacheBuilder;
 use SG\Cache\GlossaryCache;
@@ -11,7 +12,6 @@ use SMW\DIWikiPage;
 use SMW\Store;
 use SMWDIBlob as DIBlob;
 use stdClass;
-use Title;
 
 /**
  * @covers \SG\Cache\ElementsCacheBuilder
