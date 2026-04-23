@@ -165,8 +165,7 @@ class MwDBSQLStoreIntegrationTest extends SMWIntegrationTestCase {
 
 		// Now test that ElementsCacheBuilder can find this term
 		// when searching for a partial match (just "Workflow")
-		$glossaryCache = new GlossaryCache( new 
-                                       BagOStuff() );
+		$glossaryCache = new GlossaryCache( new HashBagOStuff() );
 		$elementsCacheBuilder = new ElementsCacheBuilder( $store, $glossaryCache );
 
 		// Search for partial term - should find "Workflow Schema"
