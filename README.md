@@ -59,4 +59,4 @@ but can also be executed using `composer phpunit` from the extension base direct
 [smw]: https://www.mediawiki.org/wiki/Extension:Semantic_MediaWiki
 [lg]: https://www.mediawiki.org/wiki/Extension:Lingo
 [composer]: https://getcomposer.org/
-[travis]: https://www.travis-ci.com/github/SemanticMediaWiki/SemanticGlossary
+[ci]: https://github.com/SemanticMediaWiki/SemanticGlossary/actions

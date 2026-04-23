@@ -207,7 +207,7 @@ class ElementsCacheBuilder {
 			$valueDescriptions[] = $descriptionFactory->newSomeProperty(
 				$this->mDiTerm,
 				$descriptionFactory->newValueDescription(
-					new \SMWDIBlob( $searchTerm ),
+					new \SMWDIBlob( '*' . $searchTerm . '*' ),
 					null,
 					SMW_CMP_LIKE
 				)
