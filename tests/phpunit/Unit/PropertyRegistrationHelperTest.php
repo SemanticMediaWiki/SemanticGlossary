@@ -3,7 +3,7 @@
 namespace SG\Tests;
 
 use SG\PropertyRegistrationHelper;
-use SMW\DIProperty;
+use SMW\DataItems\Property;
 
 /**
  * @covers \SG\PropertyRegistrationHelper
@@ -58,9 +58,9 @@ class PropertyRegistrationHelperTest extends \PHPUnit\Framework\TestCase {
 	 * @param string $label
 	 */
 	public function testRegisteredPropertyById( $id, $label ) {
-		$property = new DIProperty( $id );
+		$property = new Property( $id );
 
-		$this->assertInstanceOf( '\SMW\DIProperty', $property );
+		$this->assertInstanceOf( Property::class, $property );
 		$this->assertEquals( $label, $property->getLabel() );
 		$this->assertTrue( $property->isShown() );
 	}

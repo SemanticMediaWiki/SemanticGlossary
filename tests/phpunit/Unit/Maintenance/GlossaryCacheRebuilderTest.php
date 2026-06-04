@@ -6,7 +6,9 @@ use HashBagOStuff;
 use MediaWiki\Title\Title;
 use SG\Cache\GlossaryCache;
 use SG\Maintenance\GlossaryCacheRebuilder;
-use SMW\DIWikiPage;
+use SMW\DataItems\WikiPage;
+use SMW\MediaWiki\JobFactory;
+use SMW\MediaWiki\Jobs\UpdateJob;
 use SMW\Store;
 
 /**
@@ -34,6 +36,11 @@ class GlossaryCacheRebuilderTest extends \PHPUnit\Framework\TestCase {
 	 */
 	private $glossaryCache;
 
+	/**
+	 * @var JobFactory
+	 */
+	private $jobFactory;
+
 	protected function setUp(): void {
 		parent::setUp();
 
@@ -42,17 +49,21 @@ class GlossaryCacheRebuilderTest extends \PHPUnit\Framework\TestCase {
 			->getMockForAbstractClass();
 
 		$this->glossaryCache = new GlossaryCache( new HashBagOStuff() );
+
+		$this->jobFactory = $this->getMockBuilder( JobFactory::class )
+			->disableOriginalConstructor()
+			->getMock();
 	}
 
 	public function testCanConstruct() {
 		$this->assertInstanceOf(
 			GlossaryCacheRebuilder::class,
-			new GlossaryCacheRebuilder( $this->storeMock, $this->glossaryCache )
+			new GlossaryCacheRebuilder( $this->storeMock, $this->glossaryCache, $this->jobFactory )
 		);
 	}
 
 	public function testSetParametersWithVerbose() {
-		$instance = new GlossaryCacheRebuilder( $this->storeMock, $this->glossaryCache );
+		$instance = new GlossaryCacheRebuilder( $this->storeMock, $this->glossaryCache, $this->jobFactory );
 		$instance->setParameters( [ 'verbose' => true ] );
 
 		// No exception means parameters were accepted
@@ -60,13 +71,13 @@ class GlossaryCacheRebuilderTest extends \PHPUnit\Framework\TestCase {
 	}
 
 	public function testGetRebuildCountInitiallyZero() {
-		$instance = new GlossaryCacheRebuilder( $this->storeMock, $this->glossaryCache );
+		$instance = new GlossaryCacheRebuilder( $this->storeMock, $this->glossaryCache, $this->jobFactory );
 
 		$this->assertSame( 0, $instance->getRebuildCount() );
 	}
 
 	public function testRebuildClearsCacheAndPurgesLingo() {
-		$page = DIWikiPage::newFromTitle( Title::newFromText( 'GlossaryTestPage' ) );
+		$page = WikiPage::newFromTitle( Title::newFromText( 'GlossaryTestPage' ) );
 
 		// Pre-populate cache for the subject
 		$cacheKey = $this->glossaryCache->getKeyForSubject( $page );
@@ -87,12 +98,22 @@ class GlossaryCacheRebuilderTest extends \PHPUnit\Framework\TestCase {
 			->method( 'getQueryResult' )
 			->willReturnOnConsecutiveCalls( 1, $queryResult );
 
+		// The rebuild queues an SMW update job per processed page; stub the
+		// factory so the unit test does not run a real job against the store.
+		$updateJob = $this->getMockBuilder( UpdateJob::class )
+			->disableOriginalConstructor()
+			->getMock();
+		$updateJob->method( 'run' )->willReturn( true );
+
+		$this->jobFactory->method( 'newUpdateJob' )
+			->willReturn( $updateJob );
+
 		$messages = [];
 		$reporter = static function ( $message ) use ( &$messages ) {
 			$messages[] = $message;
 		};
 
-		$instance = new GlossaryCacheRebuilder( $this->storeMock, $this->glossaryCache, $reporter );
+		$instance = new GlossaryCacheRebuilder( $this->storeMock, $this->glossaryCache, $this->jobFactory, $reporter );
 		$instance->setParameters( [ 'verbose' => true ] );
 
 		$result = $instance->rebuild();

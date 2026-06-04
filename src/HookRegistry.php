@@ -4,7 +4,7 @@ namespace SG;
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Linker\LinkTarget;
-use SMW\DIWikiPage;
+use SMW\DataItems\WikiPage;
 
 /**
  * @license GPL-2.0-or-later
@@ -71,7 +71,7 @@ class HookRegistry {
 		 *
 		 * @since 1.0
 		 */
-		$this->handlers['SMWStore::updateDataBefore'] = static function ( $store, $semanticData ) {
+		$this->handlers['SMW::Store::BeforeDataUpdateComplete'] = static function ( $store, $semanticData ) {
 			return \SG\Cache\CacheInvalidator::getInstance()->invalidateCacheOnStoreUpdate( $store, $semanticData );
 		};
 
@@ -83,7 +83,7 @@ class HookRegistry {
 		$this->handlers['SMW::SQLStore::AfterDeleteSubjectComplete'] = static function ( $store, $title ) {
 			return \SG\Cache\CacheInvalidator::getInstance()->invalidateCacheOnPageDelete(
 				$store,
-				DIWikiPage::newFromTitle( $title )
+				WikiPage::newFromTitle( $title )
 			);
 		};
 

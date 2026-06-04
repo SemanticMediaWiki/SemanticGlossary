@@ -5,13 +5,13 @@ namespace SG\Maintenance;
 use Lingo\LingoParser;
 use SG\Cache\GlossaryCache;
 use SG\PropertyRegistrationHelper;
-use SMW\DIProperty;
-use SMW\MediaWiki\Jobs\UpdateJob;
+use SMW\DataItems\Property;
+use SMW\MediaWiki\JobFactory;
 use SMW\Query\Language\SomeProperty;
 use SMW\Query\Language\ThingDescription;
+use SMW\Query\Query;
 use SMW\Query\QueryResult;
 use SMW\Store;
-use SMWQuery as Query;
 
 /**
  * Part of the `rebuildGlossaryCache.php` maintenance script
@@ -30,6 +30,9 @@ class GlossaryCacheRebuilder {
 
 	/** @var GlossaryCache */
 	private $glossaryCache;
+
+	/** @var JobFactory */
+	private $jobFactory;
 
 	/**
 	 * @var null
@@ -51,13 +54,20 @@ class GlossaryCacheRebuilder {
 	 *
 	 * @param Store $store
 	 * @param GlossaryCache $glossaryCache
+	 * @param JobFactory $jobFactory
 	 * @param null $reporter
 	 *
 	 * @return void
 	 */
-	public function __construct( Store $store, GlossaryCache $glossaryCache, $reporter = null ) {
+	public function __construct(
+		Store $store,
+		GlossaryCache $glossaryCache,
+		JobFactory $jobFactory,
+		$reporter = null
+	) {
 		$this->store = $store;
 		$this->glossaryCache = $glossaryCache;
+		$this->jobFactory = $jobFactory;
 
 		// Should be a MessageReporter instance
 		$this->reporter = $reporter;
@@ -118,10 +128,7 @@ class GlossaryCacheRebuilder {
 					$this->verbose
 				);
 
-				// FIXME Wrong approach, users outside of smw-core should not
-				// directly create an instance and instead use a factory for
-				// that purpose such as JobFactory::newUpdateJob( ... )
-				$updatejob = new UpdateJob( $title );
+				$updatejob = $this->jobFactory->newUpdateJob( $title );
 				$updatejob->run();
 
 				$titleCache[ $title->getPrefixedDBkey() ] = true;
@@ -140,7 +147,7 @@ class GlossaryCacheRebuilder {
 	 */
 	private function buildQuery() {
 		$description = new SomeProperty(
-			new DIProperty( PropertyRegistrationHelper::SG_TERM ),
+			new Property( PropertyRegistrationHelper::SG_TERM ),
 			new ThingDescription()
 		);
 

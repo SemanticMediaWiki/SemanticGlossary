@@ -14,10 +14,10 @@ EXTENSION=SemanticGlossary
 MW_VERSION?=1.43
 PHP_VERSION?=8.1
 DB_TYPE?=mysql
-DB_IMAGE?="mariadb:11.2"
+DB_IMAGE?="mariadb:11.4"
 
 # extensions
-SMW_VERSION ?=6.0.1
+SMW_VERSION ?=dev-master
 MM_VERSION ?= 3.1.0
 LINGO_VERSION ?= 3.2.3
 
