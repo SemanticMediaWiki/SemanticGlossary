@@ -6,11 +6,11 @@ use Lingo\Element;
 use SG\Cache\ElementsCacheBuilder;
 use SG\Cache\GlossaryCache;
 use SG\PropertyRegistrationHelper;
-use SMW\DIProperty;
+use SMW\DataItems\Blob;
+use SMW\DataItems\Property;
 use SMW\PropertyRegistry;
 use SMW\Tests\SMWIntegrationTestCase;
 use SMW\Tests\Utils\UtilityFactory;
-use SMWDIBlob as DIBlob;
 use HashBagOStuff;
 
 /**
@@ -72,19 +72,19 @@ class MwDBSQLStoreIntegrationTest extends SMWIntegrationTestCase {
 		$this->subjectsToBeCleared[] = $semanticData->getSubject();
 
 		$semanticData->addPropertyObjectValue(
-			new DIProperty( PropertyRegistrationHelper::SG_TERM ),
-			new DIBlob( 'testTerm' )
+			new Property( PropertyRegistrationHelper::SG_TERM ),
+			new Blob( 'testTerm' )
 		);
 		$semanticData->addPropertyObjectValue(
-			new DIProperty( PropertyRegistrationHelper::SG_DEFINITION ),
-			new DIBlob( 'testDefinition' )
+			new Property( PropertyRegistrationHelper::SG_DEFINITION ),
+			new Blob( 'testDefinition' )
 		);
 
 		$store->updateData( $semanticData );
 
 		$values = $store->getPropertyValues(
 			$semanticData->getSubject(),
-			new DIProperty( PropertyRegistrationHelper::SG_TERM )
+			new Property( PropertyRegistrationHelper::SG_TERM )
 		);
 
 		$this->assertNotEmpty( $values );
@@ -95,7 +95,7 @@ class MwDBSQLStoreIntegrationTest extends SMWIntegrationTestCase {
 
 		$values = $store->getPropertyValues(
 			$semanticData->getSubject(),
-			new DIProperty( PropertyRegistrationHelper::SG_TERM )
+			new Property( PropertyRegistrationHelper::SG_TERM )
 		);
 
 		$this->assertSame( [], $values );
@@ -137,20 +137,20 @@ class MwDBSQLStoreIntegrationTest extends SMWIntegrationTestCase {
 
 		// Create a glossary entry with a term containing spaces
 		$semanticData->addPropertyObjectValue(
-			new DIProperty( PropertyRegistrationHelper::SG_TERM ),
-			new DIBlob( 'Workflow Schema' )
+			new Property( PropertyRegistrationHelper::SG_TERM ),
+			new Blob( 'Workflow Schema' )
 		);
 		$semanticData->addPropertyObjectValue(
-			new DIProperty( PropertyRegistrationHelper::SG_DEFINITION ),
-			new DIBlob( 'A schema that defines workflow processes' )
+			new Property( PropertyRegistrationHelper::SG_DEFINITION ),
+			new Blob( 'A schema that defines workflow processes' )
 		);
 		$semanticData->addPropertyObjectValue(
-			new DIProperty( PropertyRegistrationHelper::SG_LINK ),
-			new DIBlob( 'Workflow_Schema' )
+			new Property( PropertyRegistrationHelper::SG_LINK ),
+			new Blob( 'Workflow_Schema' )
 		);
 		$semanticData->addPropertyObjectValue(
-			new DIProperty( PropertyRegistrationHelper::SG_STYLE ),
-			new DIBlob( 'glossary-term' )
+			new Property( PropertyRegistrationHelper::SG_STYLE ),
+			new Blob( 'glossary-term' )
 		);
 
 		$store->updateData( $semanticData );
@@ -158,7 +158,7 @@ class MwDBSQLStoreIntegrationTest extends SMWIntegrationTestCase {
 		// Verify data was stored correctly
 		$storedTerms = $store->getPropertyValues(
 			$semanticData->getSubject(),
-			new DIProperty( PropertyRegistrationHelper::SG_TERM )
+			new Property( PropertyRegistrationHelper::SG_TERM )
 		);
 		$this->assertNotEmpty( $storedTerms, 'Term should be stored' );
 		$this->assertSame( 'Workflow Schema', $storedTerms[0]->getString() );
@@ -210,24 +210,24 @@ class MwDBSQLStoreIntegrationTest extends SMWIntegrationTestCase {
 
 		// Create a glossary entry with multiple terms (synonyms)
 		$semanticData->addPropertyObjectValue(
-			new DIProperty( PropertyRegistrationHelper::SG_TERM ),
-			new DIBlob( 'Workflow' )
+			new Property( PropertyRegistrationHelper::SG_TERM ),
+			new Blob( 'Workflow' )
 		);
 		$semanticData->addPropertyObjectValue(
-			new DIProperty( PropertyRegistrationHelper::SG_TERM ),
-			new DIBlob( 'Workflows' )
+			new Property( PropertyRegistrationHelper::SG_TERM ),
+			new Blob( 'Workflows' )
 		);
 		$semanticData->addPropertyObjectValue(
-			new DIProperty( PropertyRegistrationHelper::SG_DEFINITION ),
-			new DIBlob( 'A sequence of processes' )
+			new Property( PropertyRegistrationHelper::SG_DEFINITION ),
+			new Blob( 'A sequence of processes' )
 		);
 		$semanticData->addPropertyObjectValue(
-			new DIProperty( PropertyRegistrationHelper::SG_LINK ),
-			new DIBlob( 'Workflow' )
+			new Property( PropertyRegistrationHelper::SG_LINK ),
+			new Blob( 'Workflow' )
 		);
 		$semanticData->addPropertyObjectValue(
-			new DIProperty( PropertyRegistrationHelper::SG_STYLE ),
-			new DIBlob( 'glossary-term' )
+			new Property( PropertyRegistrationHelper::SG_STYLE ),
+			new Blob( 'glossary-term' )
 		);
 
 		$store->updateData( $semanticData );
@@ -235,7 +235,7 @@ class MwDBSQLStoreIntegrationTest extends SMWIntegrationTestCase {
 		// Verify data was stored correctly
 		$storedTerms = $store->getPropertyValues(
 			$semanticData->getSubject(),
-			new DIProperty( PropertyRegistrationHelper::SG_TERM )
+			new Property( PropertyRegistrationHelper::SG_TERM )
 		);
 		$this->assertCount( 2, $storedTerms, 'Both terms should be stored' );
 

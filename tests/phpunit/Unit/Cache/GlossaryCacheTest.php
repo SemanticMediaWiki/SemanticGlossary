@@ -3,6 +3,8 @@
 namespace SG\Tests\Cache;
 
 use SG\Cache\GlossaryCache;
+use SMW\DataItems\WikiPage;
+use Wikimedia\ObjectCache\BagOStuff;
 
 /**
  * @covers \SG\Cache\GlossaryCache
@@ -24,7 +26,7 @@ class GlossaryCacheTest extends \PHPUnit\Framework\TestCase {
 		$instance = new GlossaryCache();
 
 		$this->assertInstanceOf(
-			'BagOStuff',
+			BagOStuff::class,
 			$instance->getCache()
 		);
 	}
@@ -40,7 +42,7 @@ class GlossaryCacheTest extends \PHPUnit\Framework\TestCase {
 	public function testGetKeys() {
 		$instance = new GlossaryCache();
 
-		$subject = $this->getMockBuilder( '\SMW\DIWikiPage' )
+		$subject = $this->getMockBuilder( WikiPage::class )
 			->disableOriginalConstructor()
 			->getMock();
 

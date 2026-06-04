@@ -2,8 +2,8 @@
 
 namespace SG;
 
-use SMW\DIProperty;
-use SMW\SemanticData;
+use SMW\DataItems\Property;
+use SMW\DataModel\SemanticData;
 use SMW\Store;
 
 /**
@@ -90,7 +90,7 @@ class SemanticDataComparator {
 		$oldEntries = [];
 
 		try {
-			$property = new DIProperty( $propertyId );
+			$property = new Property( $propertyId );
 		} catch ( \Exception $e ) {
 			return [
 				$newEntries,

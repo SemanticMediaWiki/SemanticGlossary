@@ -3,6 +3,8 @@
 namespace SG\Tests;
 
 use SG\SemanticDataComparator;
+use SMW\DataModel\SemanticData;
+use SMW\Store;
 
 /**
  * @covers \SG\SemanticDataComparator
@@ -16,11 +18,11 @@ use SG\SemanticDataComparator;
 class SemanticDataComparatorTest extends \PHPUnit\Framework\TestCase {
 
 	public function testCanConstruct() {
-		$store = $this->getMockBuilder( '\SMW\Store' )
+		$store = $this->getMockBuilder( Store::class )
 			->disableOriginalConstructor()
 			->getMockForAbstractClass();
 
-		$semanticData = $this->getMockBuilder( '\SMW\SemanticData' )
+		$semanticData = $this->getMockBuilder( SemanticData::class )
 			->disableOriginalConstructor()
 			->getMock();
 
@@ -39,14 +41,14 @@ class SemanticDataComparatorTest extends \PHPUnit\Framework\TestCase {
 	 * @dataProvider propertyIdProvider
 	 */
 	public function testInspectForEmptyData( $propertyId ) {
-		$store = $this->getMockBuilder( '\SMW\Store' )
+		$store = $this->getMockBuilder( Store::class )
 			->disableOriginalConstructor()
 			->getMockForAbstractClass();
 
 		$store->method( 'getPropertyValues' )
 			->willReturn( [] );
 
-		$semanticData = $this->getMockBuilder( '\SMW\SemanticData' )
+		$semanticData = $this->getMockBuilder( SemanticData::class )
 			->disableOriginalConstructor()
 			->getMock();
 

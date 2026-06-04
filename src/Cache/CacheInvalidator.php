@@ -6,9 +6,9 @@ use Lingo\LingoParser;
 use MediaWiki\Linker\LinkTarget;
 use SG\PropertyRegistrationHelper;
 use SG\SemanticDataComparator;
-use SMW\DIProperty;
-use SMW\DIWikiPage;
-use SMW\SemanticData;
+use SMW\DataItems\Property;
+use SMW\DataItems\WikiPage;
+use SMW\DataModel\SemanticData;
 use SMW\Store;
 
 /**
@@ -93,12 +93,12 @@ class CacheInvalidator {
 	 * @since 1.0
 	 *
 	 * @param Store $store
-	 * @param DIWikiPage $subject
+	 * @param WikiPage $subject
 	 * @param bool|true $purgeLingo
 	 *
 	 * @return bool
 	 */
-	public function invalidateCacheOnPageDelete( Store $store, DIWikiPage $subject, $purgeLingo = true ) {
+	public function invalidateCacheOnPageDelete( Store $store, WikiPage $subject, $purgeLingo = true ) {
 		$this->matchSubobjectsToSubject( $store, $subject );
 		$this->purgeCache( $subject );
 
@@ -117,7 +117,7 @@ class CacheInvalidator {
 	 * @return bool
 	 */
 	public function invalidateCacheOnPageMove( LinkTarget $title ) {
-		$this->purgeCache( DIWikiPage::newFromText( $title->getDBkey(), $title->getNamespace() ) );
+		$this->purgeCache( WikiPage::newFromText( $title->getDBkey(), $title->getNamespace() ) );
 		return true;
 	}
 
@@ -130,8 +130,8 @@ class CacheInvalidator {
 	private function matchAllSubobjects( Store $store, SemanticData $semanticData ) {
 		$properties = $semanticData->getProperties();
 
-		if ( array_key_exists( DIProperty::TYPE_SUBOBJECT, $properties ) ) {
-			foreach ( $semanticData->getPropertyValues( $properties[ DIProperty::TYPE_SUBOBJECT ] ) as $subobject ) {
+		if ( array_key_exists( Property::TYPE_SUBOBJECT, $properties ) ) {
+			foreach ( $semanticData->getPropertyValues( $properties[ Property::TYPE_SUBOBJECT ] ) as $subobject ) {
 				$this->invalidateCacheOnStoreUpdate(
 					$store,
 					$semanticData->findSubSemanticData( $subobject->getSubobjectName() ),
@@ -143,15 +143,15 @@ class CacheInvalidator {
 
 	/**
 	 * @param Store $store
-	 * @param DIWikiPage $subject
+	 * @param WikiPage $subject
 	 *
 	 * @return void
 	 */
-	private function matchSubobjectsToSubject( Store $store, DIWikiPage $subject ) {
+	private function matchSubobjectsToSubject( Store $store, WikiPage $subject ) {
 		$properties = $store->getProperties( $subject );
 
-		if ( array_key_exists( DIProperty::TYPE_SUBOBJECT, $properties ) ) {
-			foreach ( $store->getPropertyValues( $subject, $properties[ DIProperty::TYPE_SUBOBJECT ] ) as $subobject ) {
+		if ( array_key_exists( Property::TYPE_SUBOBJECT, $properties ) ) {
+			foreach ( $store->getPropertyValues( $subject, $properties[ Property::TYPE_SUBOBJECT ] ) as $subobject ) {
 				$this->invalidateCacheOnPageDelete(
 					$store,
 					$subobject->getSubject(),
@@ -177,11 +177,11 @@ class CacheInvalidator {
 	}
 
 	/**
-	 * @param DIWikiPage $subject
+	 * @param WikiPage $subject
 	 *
 	 * @return true
 	 */
-	private function purgeCache( DIWikiPage $subject ) {
+	private function purgeCache( WikiPage $subject ) {
 		$this->glossaryCache->getCache()->delete(
 			$this->glossaryCache->getKeyForSubject( $subject )
 		);

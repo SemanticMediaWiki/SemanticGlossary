@@ -7,11 +7,11 @@ use MediaWiki\Title\Title;
 use SG\Cache\CacheInvalidator;
 use SG\Cache\GlossaryCache;
 use SG\PropertyRegistrationHelper;
-use SMW\DIProperty;
-use SMW\DIWikiPage;
-use SMW\SemanticData;
-use SMW\Subobject;
-use SMWDIBlob as DIBlob;
+use SMW\DataItems\Blob;
+use SMW\DataItems\Property;
+use SMW\DataItems\WikiPage;
+use SMW\DataModel\SemanticData;
+use SMW\DataModel\Subobject;
 
 /**
  * @covers \SG\Cache\CacheInvalidator
@@ -46,7 +46,7 @@ class CacheInvalidatorTest extends \PHPUnit\Framework\TestCase {
 		$store->method( 'getPropertyValues' )
 			->willReturn( [] );
 
-		$subject = DIWikiPage::newFromTitle( Title::newFromText( __METHOD__ ) );
+		$subject = WikiPage::newFromTitle( Title::newFromText( __METHOD__ ) );
 		$semanticData = new SemanticData( $subject );
 
 		$instance = new CacheInvalidator();
@@ -69,19 +69,19 @@ class CacheInvalidatorTest extends \PHPUnit\Framework\TestCase {
 	}
 
 	public function testInvalidateOnUpdateWithDifferentSubobjectData() {
-		$subject = DIWikiPage::newFromTitle( Title::newFromText( __METHOD__ ) );
+		$subject = WikiPage::newFromTitle( Title::newFromText( __METHOD__ ) );
 
 		$subobject = new Subobject( $subject->getTitle() );
 		$subobject->setEmptyContainerForId( '_999999' );
 
 		$subobject->getSemanticData()->addPropertyObjectValue(
-			new DIProperty( PropertyRegistrationHelper::SG_TERM ),
-			new DIBlob( 'Foo' )
+			new Property( PropertyRegistrationHelper::SG_TERM ),
+			new Blob( 'Foo' )
 		);
 
 		$subobject->getSemanticData()->addPropertyObjectValue(
-			new DIProperty( PropertyRegistrationHelper::SG_DEFINITION ),
-			new DIBlob( 'Bar' )
+			new Property( PropertyRegistrationHelper::SG_DEFINITION ),
+			new Blob( 'Bar' )
 		);
 
 		$store = $this->getMockBuilder( '\SMW\Store' )
@@ -117,7 +117,7 @@ class CacheInvalidatorTest extends \PHPUnit\Framework\TestCase {
 	}
 
 	public function testInvalidateOnDeleteWithEmptyData() {
-		$subject = DIWikiPage::newFromTitle( Title::newFromText( __METHOD__ ) );
+		$subject = WikiPage::newFromTitle( Title::newFromText( __METHOD__ ) );
 
 		$store = $this->getMockBuilder( '\SMW\Store' )
 			->disableOriginalConstructor()
@@ -135,9 +135,9 @@ class CacheInvalidatorTest extends \PHPUnit\Framework\TestCase {
 	}
 
 	public function testInvalidateOnDeleteWithSubobject() {
-		$subobject  = new DIProperty( '_SOBJ' );
-		$subject    = DIWikiPage::newFromTitle( Title::newFromText( __METHOD__ ) );
-		$newSubject = DIWikiPage::newFromTitle( Title::newFromText( 'Subobject' ) );
+		$subobject  = new Property( '_SOBJ' );
+		$subject    = WikiPage::newFromTitle( Title::newFromText( __METHOD__ ) );
+		$newSubject = WikiPage::newFromTitle( Title::newFromText( 'Subobject' ) );
 
 		$store = $this->getMockBuilder( '\SMW\Store' )
 			->disableOriginalConstructor()

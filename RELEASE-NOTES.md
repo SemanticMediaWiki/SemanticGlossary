@@ -1,5 +1,12 @@
 This file contains the RELEASE-NOTES of the Semantic Glossary (a.k.a. SG) extension.
 
+### 7.0.0
+
+* New minimum required version: Semantic MediaWiki 7.0
+* Added support for Semantic MediaWiki 7.0
+* Fixed glossary cache invalidation on page edits, which stopped working after Semantic MediaWiki renamed the data-update hook
+* Fixed the `rebuildGlossaryCache.php` maintenance script against Semantic MediaWiki 7.0
+
 ### 6.0.0
 
 Released on March 13, 2026.

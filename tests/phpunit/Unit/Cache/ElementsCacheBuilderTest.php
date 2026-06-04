@@ -8,9 +8,9 @@ use MediaWiki\Title\Title;
 use PHPUnit\Framework\TestCase;
 use SG\Cache\ElementsCacheBuilder;
 use SG\Cache\GlossaryCache;
-use SMW\DIWikiPage;
+use SMW\DataItems\Blob;
+use SMW\DataItems\WikiPage;
 use SMW\Store;
-use SMWDIBlob as DIBlob;
 use stdClass;
 
 /**
@@ -119,10 +119,10 @@ class ElementsCacheBuilderTest extends TestCase {
 
 		// Mock the property values returned for the page
 		$this->setupPropertyValuesMock( [
-			[ new DIBlob( $fullTerm ) ],
-			[ new DIBlob( $definition ) ],
-			[ new DIBlob( $link ) ],
-			[ new DIBlob( $style ) ]
+			[ new Blob( $fullTerm ) ],
+			[ new Blob( $definition ) ],
+			[ new Blob( $link ) ],
+			[ new Blob( $style ) ]
 		] );
 
 		// Execute the method under test
@@ -162,7 +162,7 @@ class ElementsCacheBuilderTest extends TestCase {
 		$this->assertEquals( $link, $result[ Element::ELEMENT_LINK ] );
 		$this->assertEquals( $style, $result[ Element::ELEMENT_STYLE ] );
 		$this->assertInstanceOf(
-			DIWikiPage::class,
+			WikiPage::class,
 			$result[ Element::ELEMENT_SOURCE ]
 		);
 	}
@@ -173,23 +173,23 @@ class ElementsCacheBuilderTest extends TestCase {
 	public function provideNullAndEmptyValues() {
 		return [
 			'all empty arrays' => [ [ [], [], [], [] ] ],
-			'null values' => [ [ [], [ new DIBlob( null ) ], [], [] ] ],
-			'empty strings' => [ [ [], [], [], [ new DIBlob( '' ) ] ] ],
+			'null values' => [ [ [], [ new Blob( null ) ], [], [] ] ],
+			'empty strings' => [ [ [], [], [], [ new Blob( '' ) ] ] ],
 		];
 	}
 
 	/**
-	 * @return DIWikiPage
+	 * @return WikiPage
 	 */
 	private function createMockWikiPage() {
-		return DIWikiPage::newFromTitle( Title::newFromText( __METHOD__ ) );
+		return WikiPage::newFromTitle( Title::newFromText( __METHOD__ ) );
 	}
 
 	/**
-	 * @param DIWikiPage $page
+	 * @param WikiPage $page
 	 * @param int $expectedCalls
 	 */
-	private function setupQueryResultMock( DIWikiPage $page, $expectedCalls ) {
+	private function setupQueryResultMock( WikiPage $page, $expectedCalls ) {
 		$queryResult = $this->getMockBuilder( stdClass::class )
 			->addMethods( [ 'getResults' ] )
 			->getMock();
@@ -227,10 +227,10 @@ class ElementsCacheBuilderTest extends TestCase {
 	}
 
 	/**
-	 * @param DIWikiPage $page
+	 * @param WikiPage $page
 	 * @param array $searchTerms
 	 */
-	private function setupCacheForFirstBatch( DIWikiPage $page, array $searchTerms ) {
+	private function setupCacheForFirstBatch( WikiPage $page, array $searchTerms ) {
 		$firstBatchTerms = array_slice( $searchTerms, 0, self::BATCH_SIZE );
 		$cacheId = substr( md5( implode( '', $firstBatchTerms ) ), 0, 8 );
 		$cacheKey = $this->glossaryCache->getKeyForSubject( $page ) . '_' . $cacheId;
@@ -251,10 +251,10 @@ class ElementsCacheBuilderTest extends TestCase {
 	 */
 	private function setupPropertyValuesForSecondBatch() {
 		$sequence = [
-			[ new DIBlob( 'Term2' ) ],
-			[ new DIBlob( 'Definition2' ) ],
-			[ new DIBlob( 'Link2' ) ],
-			[ new DIBlob( 'Style2' ) ]
+			[ new Blob( 'Term2' ) ],
+			[ new Blob( 'Definition2' ) ],
+			[ new Blob( 'Link2' ) ],
+			[ new Blob( 'Style2' ) ]
 		];
 
 		$this->setupPropertyValuesMock( $sequence );

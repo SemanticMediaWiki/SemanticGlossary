@@ -2,9 +2,9 @@
 
 namespace SG\Cache;
 
-use BagOStuff;
-use ObjectCache;
-use SMW\DIWikiPage;
+use MediaWiki\MediaWikiServices;
+use SMW\DataItems\WikiPage;
+use Wikimedia\ObjectCache\BagOStuff;
 
 /**
  * @ingroup SG
@@ -38,7 +38,9 @@ class GlossaryCache {
 	 */
 	public function getCache() {
 		if ( $this->cache === null ) {
-			$this->cache = ObjectCache::getInstance( self::getCacheType() );
+			$this->cache = MediaWikiServices::getInstance()
+				->getObjectCacheFactory()
+				->getInstance( self::getCacheType() );
 		}
 
 		return $this->cache;
@@ -47,11 +49,11 @@ class GlossaryCache {
 	/**
 	 * @since 1.0
 	 *
-	 * @param DIWikiPage $subject
+	 * @param WikiPage $subject
 	 *
 	 * @return string
 	 */
-	public function getKeyForSubject( DIWikiPage $subject ) {
+	public function getKeyForSubject( WikiPage $subject ) {
 		return $this->getCache()->makeKey( 'ext', 'semanticglossary', $subject->getSerialization() );
 	}
 

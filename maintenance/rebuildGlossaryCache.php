@@ -3,6 +3,7 @@
 namespace SG\Maintenance;
 
 use SG\Cache\GlossaryCache;
+use SMW\Services\ServicesFactory;
 use SMW\StoreFactory;
 
 $basePath = getenv( 'MW_INSTALL_PATH' ) !== false ? getenv( 'MW_INSTALL_PATH' ) : __DIR__ . '/../../..';
@@ -54,6 +55,7 @@ class RebuildGlossaryCache extends \Maintenance {
 		$glossaryCacheRebuilder = new GlossaryCacheRebuilder(
 			StoreFactory::getStore(),
 			new GlossaryCache(),
+			ServicesFactory::getInstance()->getJobFactory(),
 			[ $this, 'reportMessage' ]
 		);
 

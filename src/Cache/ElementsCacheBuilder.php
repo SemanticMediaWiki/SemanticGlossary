@@ -4,15 +4,17 @@ namespace SG\Cache;
 
 use Lingo\Element;
 use SG\PropertyRegistrationHelper;
+use SMW\DataItems\Blob;
+use SMW\DataItems\Property;
+use SMW\DataItems\WikiPage;
 use SMW\DataValueFactory;
-use SMW\DIProperty;
-use SMW\DIWikiPage;
+use SMW\DataValues\DataValue;
 use SMW\Query\DescriptionFactory;
-use SMW\Store;
-use SMW\Query\PrintRequest;
-use SMWQuery as Query;
 use SMW\Query\Language\SomeProperty;
 use SMW\Query\Language\ThingDescription;
+use SMW\Query\PrintRequest;
+use SMW\Query\Query;
+use SMW\Store;
 
 /**
  * @ingroup SG
@@ -27,7 +29,7 @@ use SMW\Query\Language\ThingDescription;
 class ElementsCacheBuilder {
 
 	/**
-	 * @var SMWStore|Store
+	 * @var Store
 	 */
 	private $store;
 
@@ -37,42 +39,42 @@ class ElementsCacheBuilder {
 	private $glossaryCache;
 
 	/**
-	 * @var DIProperty
+	 * @var Property
 	 */
 	private $mDiTerm;
 
 	/**
-	 * @var DIProperty
+	 * @var Property
 	 */
 	private $mDiDefinition;
 
 	/**
-	 * @var DIProperty
+	 * @var Property
 	 */
 	private $mDiLink;
 
 	/**
-	 * @var DIProperty
+	 * @var Property
 	 */
 	private $mDiStyle;
 
 	/**
-	 * @var \SMWDataValue
+	 * @var DataValue
 	 */
 	private $mDvTerm;
 
 	/**
-	 * @var \SMWDataValue
+	 * @var DataValue
 	 */
 	private $mDvDefinition;
 
 	/**
-	 * @var \SMWDataValue
+	 * @var DataValue
 	 */
 	private $mDvLink;
 
 	/**
-	 * @var \SMWDataValue
+	 * @var DataValue
 	 */
 	private $mDvStyle;
 
@@ -120,7 +122,7 @@ class ElementsCacheBuilder {
 			}
 
 			/**
-			 * @var DIWikiPage $page
+			 * @var WikiPage $page
 			 */
 			foreach ( $this->queryResults[$cacheId] as $page ) {
 				$cachekey = $this->glossaryCache->getKeyForSubject( $page );
@@ -198,7 +200,7 @@ class ElementsCacheBuilder {
 		$descriptionFactory = new DescriptionFactory();
 
 		// build term data item and data value for later use
-		$this->mDiTerm = new DIProperty( PropertyRegistrationHelper::SG_TERM );
+		$this->mDiTerm = new Property( PropertyRegistrationHelper::SG_TERM );
 		$this->mDvTerm = $dataValueFactory->newDataValueByType( '_txt' );
 		$this->mDvTerm->setProperty( $this->mDiTerm );
 
@@ -207,7 +209,7 @@ class ElementsCacheBuilder {
 			$valueDescriptions[] = $descriptionFactory->newSomeProperty(
 				$this->mDiTerm,
 				$descriptionFactory->newValueDescription(
-					new \SMWDIBlob( '*' . $searchTerm . '*' ),
+					new Blob( '*' . $searchTerm . '*' ),
 					null,
 					SMW_CMP_LIKE
 				)
@@ -219,7 +221,7 @@ class ElementsCacheBuilder {
 		$prTerm = new PrintRequest( PrintRequest::PRINT_PROP, null, $pvTerm );
 
 		// build definition data item and data value for later use
-		$this->mDiDefinition = new DIProperty( PropertyRegistrationHelper::SG_DEFINITION );
+		$this->mDiDefinition = new Property( PropertyRegistrationHelper::SG_DEFINITION );
 		$this->mDvDefinition = $dataValueFactory->newDataValueByType( '_txt' );
 		$this->mDvDefinition->setProperty( $this->mDiDefinition );
 
@@ -228,7 +230,7 @@ class ElementsCacheBuilder {
 		$prDefinition = new PrintRequest( PrintRequest::PRINT_PROP, null, $pvDefinition );
 
 		// build link data item and data value for later use
-		$this->mDiLink = new DIProperty( PropertyRegistrationHelper::SG_LINK );
+		$this->mDiLink = new Property( PropertyRegistrationHelper::SG_LINK );
 		$this->mDvLink = $dataValueFactory->newDataValueByType( '_txt' );
 		$this->mDvLink->setProperty( $this->mDiLink );
 
@@ -237,7 +239,7 @@ class ElementsCacheBuilder {
 		$prLink = new PrintRequest( PrintRequest::PRINT_PROP, null, $pvLink );
 
 		// build style data item and data value for later use
-		$this->mDiStyle = new DIProperty( PropertyRegistrationHelper::SG_STYLE );
+		$this->mDiStyle = new Property( PropertyRegistrationHelper::SG_STYLE );
 		$this->mDvStyle = $dataValueFactory->newDataValueByType( '_txt' );
 		$this->mDvStyle->setProperty( $this->mDiStyle );
 
@@ -247,7 +249,7 @@ class ElementsCacheBuilder {
 
 		// Create query
 		$desc = count( $searchTerms ) === 0
-			? new SomeProperty( new DIProperty( '___glt' ), new ThingDescription() )
+			? new SomeProperty( new Property( '___glt' ), new ThingDescription() )
 			: $descriptionFactory->newDisjunction( $valueDescriptions );
 		$desc->addPrintRequest( $prTerm );
 		$desc->addPrintRequest( $prDefinition );
@@ -258,9 +260,7 @@ class ElementsCacheBuilder {
 		$query->sort = true;
 		$query->sortkeys['___glt'] = 'ASC';
 
-		if ( defined( 'SMWQuery::PROC_CONTEXT' ) ) {
-			$query->setOption( Query::PROC_CONTEXT, 'SG.ElementsCacheBuilder' );
-		}
+		$query->setOption( Query::PROC_CONTEXT, 'SG.ElementsCacheBuilder' );
 
 		return $query;
 	}
@@ -268,11 +268,11 @@ class ElementsCacheBuilder {
 	/**
 	 * Retrieve the definition value from the page
 	 *
-	 * @param DIWikiPage $page
+	 * @param WikiPage $page
 	 *
 	 * @return string|null
 	 */
-	private function getDefinitionValue( DIWikiPage $page ): ?string {
+	private function getDefinitionValue( WikiPage $page ): ?string {
 		$definition = null;
 
 		$definitions = $this->store->getPropertyValues( $page, $this->mDiDefinition );
@@ -288,11 +288,11 @@ class ElementsCacheBuilder {
 	/**
 	 * Retrieve the link value from the page
 	 *
-	 * @param DIWikiPage $page
+	 * @param WikiPage $page
 	 *
 	 * @return string|null
 	 */
-	private function getLinkValue( DIWikiPage $page ): ?string {
+	private function getLinkValue( WikiPage $page ): ?string {
 		$link = null;
 
 		$links = $this->store->getPropertyValues( $page, $this->mDiLink );
@@ -308,11 +308,11 @@ class ElementsCacheBuilder {
 	/**
 	 * Retrieve the style value from the page
 	 *
-	 * @param DIWikiPage $page
+	 * @param WikiPage $page
 	 *
 	 * @return string|null
 	 */
-	private function getStyleValue( DIWikiPage $page ) {
+	private function getStyleValue( WikiPage $page ) {
 		$style = null;
 
 		$styles = $this->store->getPropertyValues( $page, $this->mDiStyle );
@@ -328,11 +328,11 @@ class ElementsCacheBuilder {
 	/**
 	 * Retrieve the terms from the page
 	 *
-	 * @param DIWikiPage $page
+	 * @param WikiPage $page
 	 *
 	 * @return array
 	 */
-	private function getTerms( DIWikiPage $page ) {
+	private function getTerms( WikiPage $page ) {
 		$collectedTerms = [];
 
 		$terms = $this->store->getPropertyValues( $page, $this->mDiTerm );
