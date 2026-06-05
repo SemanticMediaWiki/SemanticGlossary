@@ -39,6 +39,29 @@ class GlossaryCacheTest extends \PHPUnit\Framework\TestCase {
 		);
 	}
 
+	public function testGetCacheTypeRespectsLingoCacheType() {
+		$instance = new GlossaryCache();
+
+		$previousLingo = $GLOBALS['wgexLingoCacheType'] ?? null;
+		$previousMain = $GLOBALS['wgMainCacheType'];
+
+		// Pick a Lingo cache type distinct from the main cache type so the
+		// assertion fails if the (formerly mistyped) override is ignored and
+		// the main cache type is returned instead.
+		$GLOBALS['wgexLingoCacheType'] = CACHE_DB;
+		$GLOBALS['wgMainCacheType'] = CACHE_NONE;
+
+		try {
+			$this->assertSame(
+				CACHE_DB,
+				$instance->getCacheType()
+			);
+		} finally {
+			$GLOBALS['wgexLingoCacheType'] = $previousLingo;
+			$GLOBALS['wgMainCacheType'] = $previousMain;
+		}
+	}
+
 	public function testGetKeys() {
 		$instance = new GlossaryCache();
 
