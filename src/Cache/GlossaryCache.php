@@ -72,8 +72,8 @@ class GlossaryCache {
 	 * @return string
 	 */
 	public function getCacheType() {
-		if ( isset( $GLOBAL['wgexLingoCacheType'] ) && $GLOBAL['wgexLingoCacheType'] !== null ) {
-			return $GLOBAL['wgexLingoCacheType'];
+		if ( isset( $GLOBALS['wgexLingoCacheType'] ) && $GLOBALS['wgexLingoCacheType'] !== null ) {
+			return $GLOBALS['wgexLingoCacheType'];
 		}
 
 		return $GLOBALS['wgMainCacheType'];
