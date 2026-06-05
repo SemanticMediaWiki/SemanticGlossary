@@ -6,6 +6,7 @@ This file contains the RELEASE-NOTES of the Semantic Glossary (a.k.a. SG) extens
 * Added support for Semantic MediaWiki 7.0
 * Fixed glossary cache invalidation on page edits, which stopped working after Semantic MediaWiki renamed the data-update hook
 * Fixed the `rebuildGlossaryCache.php` maintenance script against Semantic MediaWiki 7.0
+* Moved hook registration into `extension.json` and removed the procedural extension entry point; the Lingo backend registration no longer overwrites a custom `$wgexLingoBackend` set in `LocalSettings.php`
 * Fixed `$wgexLingoCacheType` being ignored due to a `$GLOBAL`/`$GLOBALS` typo; a custom cache type configured for the glossary cache is now honored
 
 ### 6.0.0
