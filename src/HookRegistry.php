@@ -2,11 +2,15 @@
 
 namespace SG;
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Linker\LinkTarget;
+use SG\Cache\CacheInvalidator;
 use SMW\DataItems\WikiPage;
 
 /**
+ * Static hook handlers, registered declaratively through extension.json.
+ *
+ * @see https://github.com/SemanticMediaWiki/SemanticMediaWiki/blob/master/docs/technical/hooks.md
+ *
  * @license GPL-2.0-or-later
  * @since 1.0
  *
@@ -15,86 +19,61 @@ use SMW\DataItems\WikiPage;
 class HookRegistry {
 
 	/**
-	 * @var array
-	 */
-	private $handlers = [];
-
-	/**
-	 * @since 1.0
-	 */
-	public function __construct() {
-		$this->addCallbackHandlers();
-	}
-
-	/**
-	 * @since  1.1
+	 * Register the Semantic Glossary properties.
 	 *
-	 * @param string $name
+	 * @since 1.0
+	 *
+	 * @param mixed $propertyRegistry
 	 *
 	 * @return bool
 	 */
-	public function isRegistered( $name ) {
-		return MediaWikiServices::getInstance()->getHookContainer()->isRegistered( $name );
+	public static function onInitProperties( $propertyRegistry ) {
+		$propertyRegistrationHelper = new PropertyRegistrationHelper( $propertyRegistry );
+		return $propertyRegistrationHelper->registerProperties();
 	}
 
 	/**
-	 * @since  1.1
+	 * Invalidate the glossary cache on store update.
 	 *
-	 * @param string $name
+	 * @since 1.0
 	 *
-	 * @return callable|false
+	 * @param mixed $store
+	 * @param mixed $semanticData
+	 *
+	 * @return bool
 	 */
-	public function getHandlerFor( $name ) {
-		return isset( $this->handlers[$name] ) ? $this->handlers[$name] : false;
+	public static function onBeforeDataUpdateComplete( $store, $semanticData ) {
+		return CacheInvalidator::getInstance()->invalidateCacheOnStoreUpdate( $store, $semanticData );
 	}
 
 	/**
-	 * @since  1.0
+	 * Invalidate the glossary cache on subject delete.
+	 *
+	 * @since 1.0
+	 *
+	 * @param mixed $store
+	 * @param mixed $title
+	 *
+	 * @return bool
 	 */
-	public function register() {
-		foreach ( $this->handlers as $name => $callback ) {
-			MediaWikiServices::getInstance()->getHookContainer()->register( $name, $callback );
-		}
+	public static function onAfterDeleteSubjectComplete( $store, $title ) {
+		return CacheInvalidator::getInstance()->invalidateCacheOnPageDelete(
+			$store,
+			WikiPage::newFromTitle( $title )
+		);
 	}
 
-	private function addCallbackHandlers() {
-		/**
-		 * @see https://github.com/SemanticMediaWiki/SemanticMediaWiki/blob/master/docs/technical/hooks.md
-		 */
-		$this->handlers['SMW::Property::initProperties'] = static function ( $propertyRegistry ) {
-			$propertyRegistrationHelper = new PropertyRegistrationHelper( $propertyRegistry );
-			return $propertyRegistrationHelper->registerProperties();
-		};
-
-		/**
-		 * Invalidate on update
-		 *
-		 * @since 1.0
-		 */
-		$this->handlers['SMW::Store::BeforeDataUpdateComplete'] = static function ( $store, $semanticData ) {
-			return \SG\Cache\CacheInvalidator::getInstance()->invalidateCacheOnStoreUpdate( $store, $semanticData );
-		};
-
-		/**
-		 * Invalidate on delete
-		 *
-		 * @since 1.0
-		 */
-		$this->handlers['SMW::SQLStore::AfterDeleteSubjectComplete'] = static function ( $store, $title ) {
-			return \SG\Cache\CacheInvalidator::getInstance()->invalidateCacheOnPageDelete(
-				$store,
-				WikiPage::newFromTitle( $title )
-			);
-		};
-
-		/**
-		 * Invalidate on title move
-		 *
-		 * @since 1.0
-		 */
-		$this->handlers['PageMoveComplete'] = static function ( LinkTarget $old_title ) {
-			return \SG\Cache\CacheInvalidator::getInstance()->invalidateCacheOnPageMove( $old_title );
-		};
+	/**
+	 * Invalidate the glossary cache on title move.
+	 *
+	 * @since 1.0
+	 *
+	 * @param LinkTarget $old_title
+	 *
+	 * @return bool
+	 */
+	public static function onPageMoveComplete( LinkTarget $old_title ) {
+		return CacheInvalidator::getInstance()->invalidateCacheOnPageMove( $old_title );
 	}
 
 }
