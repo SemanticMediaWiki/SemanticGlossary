@@ -46,11 +46,6 @@
 			"dev-master": "7.x-dev"
 		}
 	},
-	"autoload": {
-		"psr-4": {
-			"SG\\": "src/"
-		}
-	},
 	"config": {
 		"process-timeout": 0,
 		"allow-plugins": {

@@ -15,15 +15,44 @@ use SG\HookRegistry;
  */
 class HookRegistryTest extends \PHPUnit\Framework\TestCase {
 
-	public function testCanConstruct() {
-		$store = $this->getMockBuilder( '\SMW\Store' )
+	public function testOnInitPropertiesRegistersProperties() {
+		$propertyRegistry = $this->getMockBuilder( '\SMW\PropertyRegistry' )
 			->disableOriginalConstructor()
-			->getMockForAbstractClass();
+			->getMock();
 
-		$this->assertInstanceOf(
-			'\SG\HookRegistry',
-			new HookRegistry( $store )
+		$propertyRegistry
+			->expects( $this->exactly( 4 ) )
+			->method( 'registerProperty' );
+
+		$propertyRegistry
+			->expects( $this->exactly( 4 ) )
+			->method( 'registerPropertyAlias' );
+
+		$this->assertTrue(
+			HookRegistry::onInitProperties( $propertyRegistry )
 		);
+	}
+
+	/**
+	 * @dataProvider cacheInvalidationHandlerProvider
+	 *
+	 * @param string $handler
+	 */
+	public function testCacheInvalidationHandlersAreCallable( $handler ) {
+		$this->assertTrue(
+			is_callable( [ HookRegistry::class, $handler ] )
+		);
+	}
+
+	/**
+	 * @return string[][]
+	 */
+	public function cacheInvalidationHandlerProvider() {
+		return [
+			[ 'onBeforeDataUpdateComplete' ],
+			[ 'onAfterDeleteSubjectComplete' ],
+			[ 'onPageMoveComplete' ],
+		];
 	}
 
 }

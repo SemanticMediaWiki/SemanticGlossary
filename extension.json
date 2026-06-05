@@ -23,16 +23,17 @@
 			"i18n"
 		]
 	},
-	"AutoloadClasses": {
-		"SemanticGlossary": "SemanticGlossary.php"
-	},
 	"AutoloadNamespaces": {
 		"SG\\": "src/"
 	},
+	"Hooks": {
+		"SMW::Property::initProperties": "SG\\HookRegistry::onInitProperties",
+		"SMW::Store::BeforeDataUpdateComplete": "SG\\HookRegistry::onBeforeDataUpdateComplete",
+		"SMW::SQLStore::AfterDeleteSubjectComplete": "SG\\HookRegistry::onAfterDeleteSubjectComplete",
+		"PageMoveComplete": "SG\\HookRegistry::onPageMoveComplete"
+	},
 	"ExtensionFunctions": [
-		"SemanticGlossary::onExtensionFunction"
+		"SG\\Setup::onExtensionFunction"
 	],
-	"callback": "SemanticGlossary::initExtension",
-	"load_composer_autoloader": true,
 	"manifest_version": 2
 }
