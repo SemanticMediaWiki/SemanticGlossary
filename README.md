@@ -12,7 +12,7 @@ terms and abbreviations can be defined using semantic properties.
 
 - PHP 8.1 or later
 - MediaWiki 1.43 or later
-- [Semantic MediaWiki][smw] 6.0 or later
+- [Semantic MediaWiki][smw] 7.0 or later
 - [Lingo][lg] 3.2.3 or later
 
 ## Installation
@@ -27,7 +27,7 @@ Just add the following to the MediaWiki "composer.local.json" file and run the
 ```json
 {
 	"require": {
-		"mediawiki/semantic-glossary": "~6.0"
+		"mediawiki/semantic-glossary": "~7.0"
 	}
 }
 ```
@@ -46,7 +46,7 @@ have a look at the contribution guideline.
 
 ## Tests
 
-This extension provides unit and integration tests that are run by a [continuous integration platform][travis]
+This extension provides unit and integration tests that are run by a [continuous integration platform][ci]
 but can also be executed using `composer phpunit` from the extension base directory.
 
 ## License
