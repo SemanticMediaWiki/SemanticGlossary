@@ -4,6 +4,8 @@
 			"شاه زمان پټان"
 		]
 	},
+	"semanticglossary-desc": "د [http://semantic-mediawiki.org ماناپوهنيزه مېډياويکي] سره د ويي‌پانگې يو شاتاړی",
+	"semanticglossary-termdefinedtwice": "[[$1]] مخ له يوه زياتې گړنې او/يا له يو زيات پېژندون لري. ننوتنې به د ويي‌پانگې لپاره د لاسرسي وړ نه وي.",
 	"semanticglossary-prop-glt": "ويي‌پانگې - وينگ",
 	"semanticglossary-prop-gld": "ويي‌پانگې-پېژندون",
 	"semanticglossary-prop-gll": "ويي‌پانگې-تړونی",

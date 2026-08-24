@@ -1,0 +1,13 @@
+{
+	"@metadata": {
+		"authors": [
+			"Wizzard"
+		]
+	},
+	"semanticglossary-desc": "Rozšírenie pre glosár s backendom [http://semantic-mediawiki.org Semantic MediaWiki]",
+	"semanticglossary-termdefinedtwice": "Stránka [[$1]] obsahuje viac než jeden termín a/alebo viac než jednu definíciu. Tieto položky nebudú v glosári dostupné.",
+	"semanticglossary-prop-glt": "Glossary-Term",
+	"semanticglossary-prop-gld": "Glossary-Definition",
+	"semanticglossary-prop-gll": "Glossary-Link",
+	"semanticglossary-prop-gls": "Glossary-Style"
+}
