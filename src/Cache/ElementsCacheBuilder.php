@@ -94,6 +94,11 @@ class ElementsCacheBuilder {
 	private int $batchSize = 5;
 
 	/**
+	 * @var bool|null
+	 */
+	private ?bool $hasGlossaryTerms = null;
+
+	/**
 	 * @param Store $store
 	 * @param GlossaryCache $glossaryCache
 	 * @since  1.1
@@ -111,6 +116,11 @@ class ElementsCacheBuilder {
 	 */
 	public function getElements( array $searchTerms = [] ) {
 		$ret = [];
+
+		if ( !$this->hasGlossaryTerms() ) {
+			return $ret;
+		}
+
 		$batches = array_chunk( $searchTerms, $this->batchSize );
 
 		foreach ( $batches as $batch ) {
@@ -186,6 +196,27 @@ class ElementsCacheBuilder {
 		}
 
 		return $ret;
+	}
+
+	/**
+	 * Whether the wiki has any glossary term at all. Without one, the term property has no
+	 * entity id in the SQLStore and every batch query would return nothing, while each still
+	 * costs several database queries (property id lookup, hierarchy lookup, temporary tables).
+	 * Other stores have no cheap check, so they keep querying.
+	 *
+	 * @return bool
+	 */
+	private function hasGlossaryTerms(): bool {
+		if ( $this->hasGlossaryTerms === null ) {
+			$this->hasGlossaryTerms = true;
+
+			if ( method_exists( $this->store, 'getObjectIds' ) ) {
+				$termProperty = new Property( PropertyRegistrationHelper::SG_TERM );
+				$this->hasGlossaryTerms = $this->store->getObjectIds()->getSMWPropertyID( $termProperty ) !== 0;
+			}
+		}
+
+		return $this->hasGlossaryTerms;
 	}
 
 	/**
