@@ -23,6 +23,9 @@
 			"i18n"
 		]
 	},
+	"AutoloadClasses": {
+		"SG\\Maintenance\\RebuildGlossaryCache": "maintenance/rebuildGlossaryCache.php"
+	},
 	"AutoloadNamespaces": {
 		"SG\\": "src/"
 	},
