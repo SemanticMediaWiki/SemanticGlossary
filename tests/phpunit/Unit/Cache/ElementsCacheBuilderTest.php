@@ -149,6 +149,60 @@ class ElementsCacheBuilderTest extends TestCase {
 		);
 	}
 
+	public function testGetElementsSkipsQueriesWhenTermPropertyHasNoId() {
+		$store = $this->createStoreWithTermPropertyId( 0 );
+		$store->expects( $this->never() )
+			->method( 'getQueryResult' );
+
+		$instance = new ElementsCacheBuilder( $store, $this->glossaryCache );
+
+		$this->assertSame(
+			[],
+			$instance->getElements( $this->generateSearchTerms( 12 ) ),
+			'Should not query the store when the wiki has no glossary terms'
+		);
+	}
+
+	public function testGetElementsQueriesWhenTermPropertyHasId() {
+		$store = $this->createStoreWithTermPropertyId( 42 );
+
+		$queryResult = $this->getMockBuilder( stdClass::class )
+			->addMethods( [ 'getResults' ] )
+			->getMock();
+		$queryResult->method( 'getResults' )
+			->willReturn( [] );
+
+		// 12 search terms in batches of BATCH_SIZE
+		$store->expects( $this->exactly( (int)ceil( 12 / self::BATCH_SIZE ) ) )
+			->method( 'getQueryResult' )
+			->willReturn( $queryResult );
+
+		$instance = new ElementsCacheBuilder( $store, $this->glossaryCache );
+		$instance->getElements( $this->generateSearchTerms( 12 ) );
+	}
+
+	/**
+	 * @param int $termPropertyId
+	 * @return Store
+	 */
+	private function createStoreWithTermPropertyId( int $termPropertyId ) {
+		$entityIdManager = $this->getMockBuilder( stdClass::class )
+			->addMethods( [ 'getSMWPropertyID' ] )
+			->getMock();
+		$entityIdManager->expects( $this->once() )
+			->method( 'getSMWPropertyID' )
+			->willReturn( $termPropertyId );
+
+		$store = $this->getMockBuilder( Store::class )
+			->disableOriginalConstructor()
+			->addMethods( [ 'getObjectIds' ] )
+			->getMockForAbstractClass();
+		$store->method( 'getObjectIds' )
+			->willReturn( $entityIdManager );
+
+		return $store;
+	}
+
 	/**
 	 * @param string $term
 	 * @param string $definition
