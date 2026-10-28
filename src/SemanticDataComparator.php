@@ -67,7 +67,6 @@ class SemanticDataComparator {
 	 * @param string $propertyId
 	 *
 	 * @return array|array[]
-	 *
 	 */
 	private function lookupPropertyValues( string $propertyId ) {
 		$properties = $this->semanticData->getProperties();
