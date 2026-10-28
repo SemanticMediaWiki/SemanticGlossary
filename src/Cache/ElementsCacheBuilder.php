@@ -112,7 +112,6 @@ class ElementsCacheBuilder {
 	 * @param array $searchTerms
 	 * @return array
 	 * @since 1.1
-	 *
 	 */
 	public function getElements( array $searchTerms = [] ) {
 		$ret = [];
