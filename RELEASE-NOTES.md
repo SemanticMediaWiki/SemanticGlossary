@@ -1,5 +1,13 @@
 This file contains the RELEASE-NOTES of the Semantic Glossary (a.k.a. SG) extension.
 
+### 7.0.1
+
+Released on October 28, 2026.
+
+* Skip glossary queries when the wiki has no glossary terms, avoiding thousands of needless database queries per page parse ([#102](https://github.com/SemanticMediaWiki/SemanticGlossary/pull/102))
+* Fixed autoloading of the `rebuildGlossaryCache.php` maintenance class, which was only found when the file happened to be loaded already ([#103](https://github.com/SemanticMediaWiki/SemanticGlossary/pull/103))
+* Translation updates from translatewiki.net
+
 ### 7.0.0
 
 Released on June 8, 2026.
